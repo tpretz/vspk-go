@@ -1,2 +1,2 @@
 # vspk-go
-vspk, in Go
+master branch is private. Use version branches.
