@@ -67,6 +67,7 @@ type VRS struct {
 	HypervisorIdentifier      string        `json:"hypervisorIdentifier,omitempty"`
 	HypervisorName            string        `json:"hypervisorName,omitempty"`
 	HypervisorType            string        `json:"hypervisorType,omitempty"`
+	IsResilient               bool          `json:"isResilient"`
 	LastEventName             string        `json:"lastEventName,omitempty"`
 	LastEventObject           string        `json:"lastEventObject,omitempty"`
 	LastEventTimestamp        int           `json:"lastEventTimestamp,omitempty"`

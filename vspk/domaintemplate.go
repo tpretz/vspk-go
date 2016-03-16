@@ -50,7 +50,6 @@ type DomainTemplate struct {
 	ParentID                        string `json:"parentID,omitempty"`
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
-	AssociatedBGPProfileID          string `json:"associatedBGPProfileID,omitempty"`
 	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
 	Description                     string `json:"description,omitempty"`
 	Encryption                      string `json:"encryption,omitempty"`

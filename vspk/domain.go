@@ -50,13 +50,11 @@ type Domain struct {
 	ParentID                        string        `json:"parentID,omitempty"`
 	ParentType                      string        `json:"parentType,omitempty"`
 	Owner                           string        `json:"owner,omitempty"`
-	BGPEnabled                      bool          `json:"BGPEnabled"`
 	DHCPBehavior                    string        `json:"DHCPBehavior,omitempty"`
 	DHCPServerAddress               string        `json:"DHCPServerAddress,omitempty"`
 	ECMPCount                       int           `json:"ECMPCount,omitempty"`
 	PATEnabled                      string        `json:"PATEnabled,omitempty"`
 	ApplicationDeploymentPolicy     string        `json:"applicationDeploymentPolicy,omitempty"`
-	AssociatedBGPProfileID          string        `json:"associatedBGPProfileID,omitempty"`
 	AssociatedMulticastChannelMapID string        `json:"associatedMulticastChannelMapID,omitempty"`
 	BackHaulRouteDistinguisher      string        `json:"backHaulRouteDistinguisher,omitempty"`
 	BackHaulRouteTarget             string        `json:"backHaulRouteTarget,omitempty"`

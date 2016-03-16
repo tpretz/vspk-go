@@ -50,7 +50,6 @@ type Enterprise struct {
 	ParentID                              string        `json:"parentID,omitempty"`
 	ParentType                            string        `json:"parentType,omitempty"`
 	Owner                                 string        `json:"owner,omitempty"`
-	BGPEnabled                            bool          `json:"BGPEnabled"`
 	DHCPLeaseInterval                     int           `json:"DHCPLeaseInterval,omitempty"`
 	LDAPAuthorizationEnabled              bool          `json:"LDAPAuthorizationEnabled"`
 	LDAPEnabled                           bool          `json:"LDAPEnabled"`

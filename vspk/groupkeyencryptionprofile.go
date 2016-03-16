@@ -56,7 +56,6 @@ type GroupKeyEncryptionProfile struct {
 	SEKPayloadEncryptionBCAlgorithm      string `json:"SEKPayloadEncryptionBCAlgorithm,omitempty"`
 	SEKPayloadEncryptionKeyLength        int    `json:"SEKPayloadEncryptionKeyLength,omitempty"`
 	SEKPayloadSigningAlgorithm           string `json:"SEKPayloadSigningAlgorithm,omitempty"`
-	AssociatedEnterpriseID               string `json:"associatedEnterpriseID,omitempty"`
 	Description                          string `json:"description,omitempty"`
 	EntityScope                          string `json:"entityScope,omitempty"`
 	ExternalID                           string `json:"externalID,omitempty"`

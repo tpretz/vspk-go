@@ -52,7 +52,6 @@ type InfrastructureGatewayProfile struct {
 	Owner                  string `json:"owner,omitempty"`
 	NTPServerKey           string `json:"NTPServerKey,omitempty"`
 	NTPServerKeyID         int    `json:"NTPServerKeyID,omitempty"`
-	ControllerLessDuration string `json:"controllerLessDuration,omitempty"`
 	DatapathSyncTimeout    int    `json:"datapathSyncTimeout,omitempty"`
 	DeadTimer              string `json:"deadTimer,omitempty"`
 	Description            string `json:"description,omitempty"`
