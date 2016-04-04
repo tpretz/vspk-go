@@ -51,6 +51,7 @@ type IngressACLTemplate struct {
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
 	Active                 bool   `json:"active"`
+	AllowAddressSpoof      bool   `json:"allowAddressSpoof"`
 	AllowL2AddressSpoof    bool   `json:"allowL2AddressSpoof"`
 	AssocAclTemplateId     string `json:"assocAclTemplateId,omitempty"`
 	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`

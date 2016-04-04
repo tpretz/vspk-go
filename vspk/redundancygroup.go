@@ -234,3 +234,17 @@ func (o *RedundancyGroup) CreateWANService(child *WANService) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
+
+// VsgRedundantPorts retrieves the list of child VsgRedundantPorts of the RedundancyGroup
+func (o *RedundancyGroup) VsgRedundantPorts(info *bambou.FetchingInfo) (VsgRedundantPortsList, *bambou.Error) {
+
+	var list VsgRedundantPortsList
+	err := bambou.CurrentSession().FetchChildren(o, VsgRedundantPortIdentity, &list, info)
+	return list, err
+}
+
+// CreateVsgRedundantPort creates a new child VsgRedundantPort under the RedundancyGroup
+func (o *RedundancyGroup) CreateVsgRedundantPort(child *VsgRedundantPort) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}

@@ -46,34 +46,33 @@ type VMsAncestor interface {
 
 // VM represents the model of a vm
 type VM struct {
-	ID              string        `json:"ID,omitempty"`
-	ParentID        string        `json:"parentID,omitempty"`
-	ParentType      string        `json:"parentType,omitempty"`
-	Owner           string        `json:"owner,omitempty"`
-	UUID            string        `json:"UUID,omitempty"`
-	VRSID           string        `json:"VRSID,omitempty"`
-	AppName         string        `json:"appName,omitempty"`
-	DeleteExpiry    int           `json:"deleteExpiry,omitempty"`
-	DeleteMode      string        `json:"deleteMode,omitempty"`
-	DomainIDs       []interface{} `json:"domainIDs,omitempty"`
-	EnterpriseID    string        `json:"enterpriseID,omitempty"`
-	EnterpriseName  string        `json:"enterpriseName,omitempty"`
-	EntityScope     string        `json:"entityScope,omitempty"`
-	ExternalID      string        `json:"externalID,omitempty"`
-	HypervisorIP    string        `json:"hypervisorIP,omitempty"`
-	Interfaces      []interface{} `json:"interfaces,omitempty"`
-	L2DomainIDs     []interface{} `json:"l2DomainIDs,omitempty"`
-	LastUpdatedBy   string        `json:"lastUpdatedBy,omitempty"`
-	Name            string        `json:"name,omitempty"`
-	OrchestrationID string        `json:"orchestrationID,omitempty"`
-	ReasonType      string        `json:"reasonType,omitempty"`
-	ResyncInfo      interface{}   `json:"resyncInfo,omitempty"`
-	SiteIdentifier  string        `json:"siteIdentifier,omitempty"`
-	Status          string        `json:"status,omitempty"`
-	SubnetIDs       []interface{} `json:"subnetIDs,omitempty"`
-	UserID          string        `json:"userID,omitempty"`
-	UserName        string        `json:"userName,omitempty"`
-	ZoneIDs         []interface{} `json:"zoneIDs,omitempty"`
+	ID             string        `json:"ID,omitempty"`
+	ParentID       string        `json:"parentID,omitempty"`
+	ParentType     string        `json:"parentType,omitempty"`
+	Owner          string        `json:"owner,omitempty"`
+	UUID           string        `json:"UUID,omitempty"`
+	VRSID          string        `json:"VRSID,omitempty"`
+	AppName        string        `json:"appName,omitempty"`
+	DeleteExpiry   int           `json:"deleteExpiry,omitempty"`
+	DeleteMode     string        `json:"deleteMode,omitempty"`
+	DomainIDs      []interface{} `json:"domainIDs,omitempty"`
+	EnterpriseID   string        `json:"enterpriseID,omitempty"`
+	EnterpriseName string        `json:"enterpriseName,omitempty"`
+	EntityScope    string        `json:"entityScope,omitempty"`
+	ExternalID     string        `json:"externalID,omitempty"`
+	HypervisorIP   string        `json:"hypervisorIP,omitempty"`
+	Interfaces     []interface{} `json:"interfaces,omitempty"`
+	L2DomainIDs    []interface{} `json:"l2DomainIDs,omitempty"`
+	LastUpdatedBy  string        `json:"lastUpdatedBy,omitempty"`
+	Name           string        `json:"name,omitempty"`
+	ReasonType     string        `json:"reasonType,omitempty"`
+	ResyncInfo     interface{}   `json:"resyncInfo,omitempty"`
+	SiteIdentifier string        `json:"siteIdentifier,omitempty"`
+	Status         string        `json:"status,omitempty"`
+	SubnetIDs      []interface{} `json:"subnetIDs,omitempty"`
+	UserID         string        `json:"userID,omitempty"`
+	UserName       string        `json:"userName,omitempty"`
+	ZoneIDs        []interface{} `json:"zoneIDs,omitempty"`
 }
 
 // NewVM returns a new *VM

@@ -50,12 +50,15 @@ type Domain struct {
 	ParentID                        string        `json:"parentID,omitempty"`
 	ParentType                      string        `json:"parentType,omitempty"`
 	Owner                           string        `json:"owner,omitempty"`
+	BGPEnabled                      bool          `json:"BGPEnabled"`
 	DHCPBehavior                    string        `json:"DHCPBehavior,omitempty"`
 	DHCPServerAddress               string        `json:"DHCPServerAddress,omitempty"`
 	ECMPCount                       int           `json:"ECMPCount,omitempty"`
 	PATEnabled                      string        `json:"PATEnabled,omitempty"`
 	ApplicationDeploymentPolicy     string        `json:"applicationDeploymentPolicy,omitempty"`
+	AssociatedBGPProfileID          string        `json:"associatedBGPProfileID,omitempty"`
 	AssociatedMulticastChannelMapID string        `json:"associatedMulticastChannelMapID,omitempty"`
+	AssociatedPATMapperID           string        `json:"associatedPATMapperID,omitempty"`
 	BackHaulRouteDistinguisher      string        `json:"backHaulRouteDistinguisher,omitempty"`
 	BackHaulRouteTarget             string        `json:"backHaulRouteTarget,omitempty"`
 	BackHaulVNID                    int           `json:"backHaulVNID,omitempty"`
@@ -220,6 +223,34 @@ func (o *Domain) EgressACLTemplates(info *bambou.FetchingInfo) (EgressACLTemplat
 
 // CreateEgressACLTemplate creates a new child EgressACLTemplate under the Domain
 func (o *Domain) CreateEgressACLTemplate(child *EgressACLTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// DomainFIPAclTemplates retrieves the list of child DomainFIPAclTemplates of the Domain
+func (o *Domain) DomainFIPAclTemplates(info *bambou.FetchingInfo) (DomainFIPAclTemplatesList, *bambou.Error) {
+
+	var list DomainFIPAclTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, DomainFIPAclTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateDomainFIPAclTemplate creates a new child DomainFIPAclTemplate under the Domain
+func (o *Domain) CreateDomainFIPAclTemplate(child *DomainFIPAclTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// FloatingIPACLTemplates retrieves the list of child FloatingIPACLTemplates of the Domain
+func (o *Domain) FloatingIPACLTemplates(info *bambou.FetchingInfo) (FloatingIPACLTemplatesList, *bambou.Error) {
+
+	var list FloatingIPACLTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, FloatingIPACLTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateFloatingIPACLTemplate creates a new child FloatingIPACLTemplate under the Domain
+func (o *Domain) CreateFloatingIPACLTemplate(child *FloatingIPACLTemplate) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -444,6 +475,20 @@ func (o *Domain) RedirectionTargets(info *bambou.FetchingInfo) (RedirectionTarge
 
 // CreateRedirectionTarget creates a new child RedirectionTarget under the Domain
 func (o *Domain) CreateRedirectionTarget(child *RedirectionTarget) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// RoutingPolicies retrieves the list of child RoutingPolicies of the Domain
+func (o *Domain) RoutingPolicies(info *bambou.FetchingInfo) (RoutingPoliciesList, *bambou.Error) {
+
+	var list RoutingPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, RoutingPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateRoutingPolicy creates a new child RoutingPolicy under the Domain
+func (o *Domain) CreateRoutingPolicy(child *RoutingPolicy) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

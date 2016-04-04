@@ -77,6 +77,7 @@ type Subnet struct {
 	ServiceID                         int    `json:"serviceID,omitempty"`
 	SplitSubnet                       bool   `json:"splitSubnet"`
 	TemplateID                        string `json:"templateID,omitempty"`
+	Underlay                          bool   `json:"underlay"`
 	UnderlayEnabled                   string `json:"underlayEnabled,omitempty"`
 	VnId                              int    `json:"vnId,omitempty"`
 }
@@ -182,6 +183,25 @@ func (o *Subnet) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList
 func (o *Subnet) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// IKEGatewayConnections retrieves the list of child IKEGatewayConnections of the Subnet
+func (o *Subnet) IKEGatewayConnections(info *bambou.FetchingInfo) (IKEGatewayConnectionsList, *bambou.Error) {
+
+	var list IKEGatewayConnectionsList
+	err := bambou.CurrentSession().FetchChildren(o, IKEGatewayConnectionIdentity, &list, info)
+	return list, err
+}
+
+// AssignIKEGatewayConnections assigns the list of IKEGatewayConnections to the Subnet
+func (o *Subnet) AssignIKEGatewayConnections(children IKEGatewayConnectionsList) *bambou.Error {
+
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, IKEGatewayConnectionIdentity)
 }
 
 // IPReservations retrieves the list of child IPReservations of the Subnet

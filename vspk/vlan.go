@@ -50,6 +50,7 @@ type VLAN struct {
 	ParentID                    string `json:"parentID,omitempty"`
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
+	AssociatedBGPProfileID      string `json:"associatedBGPProfileID,omitempty"`
 	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
 	Description                 string `json:"description,omitempty"`
 	EntityScope                 string `json:"entityScope,omitempty"`
@@ -123,6 +124,20 @@ func (o *VLAN) CreateAlarm(child *Alarm) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// BGPNeighbors retrieves the list of child BGPNeighbors of the VLAN
+func (o *VLAN) BGPNeighbors(info *bambou.FetchingInfo) (BGPNeighborsList, *bambou.Error) {
+
+	var list BGPNeighborsList
+	err := bambou.CurrentSession().FetchChildren(o, BGPNeighborIdentity, &list, info)
+	return list, err
+}
+
+// CreateBGPNeighbor creates a new child BGPNeighbor under the VLAN
+func (o *VLAN) CreateBGPNeighbor(child *BGPNeighbor) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // EnterprisePermissions retrieves the list of child EnterprisePermissions of the VLAN
 func (o *VLAN) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
 
@@ -165,6 +180,20 @@ func (o *VLAN) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// IKEGatewayConnections retrieves the list of child IKEGatewayConnections of the VLAN
+func (o *VLAN) IKEGatewayConnections(info *bambou.FetchingInfo) (IKEGatewayConnectionsList, *bambou.Error) {
+
+	var list IKEGatewayConnectionsList
+	err := bambou.CurrentSession().FetchChildren(o, IKEGatewayConnectionIdentity, &list, info)
+	return list, err
+}
+
+// CreateIKEGatewayConnection creates a new child IKEGatewayConnection under the VLAN
+func (o *VLAN) CreateIKEGatewayConnection(child *IKEGatewayConnection) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Metadatas retrieves the list of child Metadatas of the VLAN
 func (o *VLAN) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -177,6 +206,25 @@ func (o *VLAN) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Erro
 func (o *VLAN) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// PATNATPools retrieves the list of child PATNATPools of the VLAN
+func (o *VLAN) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *bambou.Error) {
+
+	var list PATNATPoolsList
+	err := bambou.CurrentSession().FetchChildren(o, PATNATPoolIdentity, &list, info)
+	return list, err
+}
+
+// AssignPATNATPools assigns the list of PATNATPools to the VLAN
+func (o *VLAN) AssignPATNATPools(children PATNATPoolsList) *bambou.Error {
+
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, PATNATPoolIdentity)
 }
 
 // Permissions retrieves the list of child Permissions of the VLAN

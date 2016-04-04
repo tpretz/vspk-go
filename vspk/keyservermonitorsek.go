@@ -116,34 +116,6 @@ func (o *KeyServerMonitorSEK) CreateGlobalMetadata(child *GlobalMetadata) *bambo
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// KeyServerMonitorEncryptedSeeds retrieves the list of child KeyServerMonitorEncryptedSeeds of the KeyServerMonitorSEK
-func (o *KeyServerMonitorSEK) KeyServerMonitorEncryptedSeeds(info *bambou.FetchingInfo) (KeyServerMonitorEncryptedSeedsList, *bambou.Error) {
-
-	var list KeyServerMonitorEncryptedSeedsList
-	err := bambou.CurrentSession().FetchChildren(o, KeyServerMonitorEncryptedSeedIdentity, &list, info)
-	return list, err
-}
-
-// CreateKeyServerMonitorEncryptedSeed creates a new child KeyServerMonitorEncryptedSeed under the KeyServerMonitorSEK
-func (o *KeyServerMonitorSEK) CreateKeyServerMonitorEncryptedSeed(child *KeyServerMonitorEncryptedSeed) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// KeyServerMonitorEncryptedSEKs retrieves the list of child KeyServerMonitorEncryptedSEKs of the KeyServerMonitorSEK
-func (o *KeyServerMonitorSEK) KeyServerMonitorEncryptedSEKs(info *bambou.FetchingInfo) (KeyServerMonitorEncryptedSEKsList, *bambou.Error) {
-
-	var list KeyServerMonitorEncryptedSEKsList
-	err := bambou.CurrentSession().FetchChildren(o, KeyServerMonitorEncryptedSEKIdentity, &list, info)
-	return list, err
-}
-
-// CreateKeyServerMonitorEncryptedSEK creates a new child KeyServerMonitorEncryptedSEK under the KeyServerMonitorSEK
-func (o *KeyServerMonitorSEK) CreateKeyServerMonitorEncryptedSEK(child *KeyServerMonitorEncryptedSEK) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the KeyServerMonitorSEK
 func (o *KeyServerMonitorSEK) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 

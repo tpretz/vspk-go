@@ -46,35 +46,37 @@ type SharedNetworkResourcesAncestor interface {
 
 // SharedNetworkResource represents the model of a sharednetworkresource
 type SharedNetworkResource struct {
-	ID                         string `json:"ID,omitempty"`
-	ParentID                   string `json:"parentID,omitempty"`
-	ParentType                 string `json:"parentType,omitempty"`
-	Owner                      string `json:"owner,omitempty"`
-	DHCPManaged                bool   `json:"DHCPManaged"`
-	ECMPCount                  int    `json:"ECMPCount,omitempty"`
-	AccessRestrictionEnabled   bool   `json:"accessRestrictionEnabled"`
-	Address                    string `json:"address,omitempty"`
-	BackHaulRouteDistinguisher string `json:"backHaulRouteDistinguisher,omitempty"`
-	BackHaulRouteTarget        string `json:"backHaulRouteTarget,omitempty"`
-	BackHaulVNID               int    `json:"backHaulVNID,omitempty"`
-	Description                string `json:"description,omitempty"`
-	DomainRouteDistinguisher   string `json:"domainRouteDistinguisher,omitempty"`
-	DomainRouteTarget          string `json:"domainRouteTarget,omitempty"`
-	EntityScope                string `json:"entityScope,omitempty"`
-	ExternalID                 string `json:"externalID,omitempty"`
-	Gateway                    string `json:"gateway,omitempty"`
-	LastUpdatedBy              string `json:"lastUpdatedBy,omitempty"`
-	Name                       string `json:"name,omitempty"`
-	Netmask                    string `json:"netmask,omitempty"`
-	PermittedActionType        string `json:"permittedActionType,omitempty"`
-	SharedResourceParentID     string `json:"sharedResourceParentID,omitempty"`
-	Type                       string `json:"type,omitempty"`
-	Underlay                   bool   `json:"underlay"`
-	UplinkGWVlanAttachmentID   string `json:"uplinkGWVlanAttachmentID,omitempty"`
-	UplinkInterfaceIP          string `json:"uplinkInterfaceIP,omitempty"`
-	UplinkInterfaceMAC         string `json:"uplinkInterfaceMAC,omitempty"`
-	UplinkVPortName            string `json:"uplinkVPortName,omitempty"`
-	VnID                       int    `json:"vnID,omitempty"`
+	ID                          string `json:"ID,omitempty"`
+	ParentID                    string `json:"parentID,omitempty"`
+	ParentType                  string `json:"parentType,omitempty"`
+	Owner                       string `json:"owner,omitempty"`
+	DHCPManaged                 bool   `json:"DHCPManaged"`
+	ECMPCount                   int    `json:"ECMPCount,omitempty"`
+	AccessRestrictionEnabled    bool   `json:"accessRestrictionEnabled"`
+	Address                     string `json:"address,omitempty"`
+	AssociatedPATMapperID       string `json:"associatedPATMapperID,omitempty"`
+	BackHaulRouteDistinguisher  string `json:"backHaulRouteDistinguisher,omitempty"`
+	BackHaulRouteTarget         string `json:"backHaulRouteTarget,omitempty"`
+	BackHaulVNID                int    `json:"backHaulVNID,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	DomainRouteDistinguisher    string `json:"domainRouteDistinguisher,omitempty"`
+	DomainRouteTarget           string `json:"domainRouteTarget,omitempty"`
+	DynamicPATAllocationEnabled bool   `json:"dynamicPATAllocationEnabled"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
+	Gateway                     string `json:"gateway,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	Netmask                     string `json:"netmask,omitempty"`
+	PermittedActionType         string `json:"permittedActionType,omitempty"`
+	SharedResourceParentID      string `json:"sharedResourceParentID,omitempty"`
+	Type                        string `json:"type,omitempty"`
+	Underlay                    bool   `json:"underlay"`
+	UplinkGWVlanAttachmentID    string `json:"uplinkGWVlanAttachmentID,omitempty"`
+	UplinkInterfaceIP           string `json:"uplinkInterfaceIP,omitempty"`
+	UplinkInterfaceMAC          string `json:"uplinkInterfaceMAC,omitempty"`
+	UplinkVPortName             string `json:"uplinkVPortName,omitempty"`
+	VnID                        int    `json:"vnID,omitempty"`
 }
 
 // NewSharedNetworkResource returns a new *SharedNetworkResource

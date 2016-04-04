@@ -29,7 +29,7 @@ package vspk
 
 const (
 	SDKAPIPrefix       = "nuage/api"
-	SDKAPIVersion      = 3.2
+	SDKAPIVersion      = 4.0
 	SDKName            = "vspk"
 	SDKProductAccronym = "VSD"
 	SDKProductName     = "VSD"

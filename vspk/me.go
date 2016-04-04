@@ -143,6 +143,34 @@ func (o *Me) CreateAutoDiscoveredGateway(child *AutoDiscoveredGateway) *bambou.E
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// BGPNeighbors retrieves the list of child BGPNeighbors of the Me
+func (o *Me) BGPNeighbors(info *bambou.FetchingInfo) (BGPNeighborsList, *bambou.Error) {
+
+	var list BGPNeighborsList
+	err := bambou.CurrentSession().FetchChildren(o, BGPNeighborIdentity, &list, info)
+	return list, err
+}
+
+// CreateBGPNeighbor creates a new child BGPNeighbor under the Me
+func (o *Me) CreateBGPNeighbor(child *BGPNeighbor) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// BGPProfiles retrieves the list of child BGPProfiles of the Me
+func (o *Me) BGPProfiles(info *bambou.FetchingInfo) (BGPProfilesList, *bambou.Error) {
+
+	var list BGPProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, BGPProfileIdentity, &list, info)
+	return list, err
+}
+
+// CreateBGPProfile creates a new child BGPProfile under the Me
+func (o *Me) CreateBGPProfile(child *BGPProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Certificates retrieves the list of child Certificates of the Me
 func (o *Me) Certificates(info *bambou.FetchingInfo) (CertificatesList, *bambou.Error) {
 
@@ -223,6 +251,34 @@ func (o *Me) EgressACLTemplates(info *bambou.FetchingInfo) (EgressACLTemplatesLi
 
 // CreateEgressACLTemplate creates a new child EgressACLTemplate under the Me
 func (o *Me) CreateEgressACLTemplate(child *EgressACLTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// DomainFIPAclTemplates retrieves the list of child DomainFIPAclTemplates of the Me
+func (o *Me) DomainFIPAclTemplates(info *bambou.FetchingInfo) (DomainFIPAclTemplatesList, *bambou.Error) {
+
+	var list DomainFIPAclTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, DomainFIPAclTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateDomainFIPAclTemplate creates a new child DomainFIPAclTemplate under the Me
+func (o *Me) CreateDomainFIPAclTemplate(child *DomainFIPAclTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// FloatingIPACLTemplates retrieves the list of child FloatingIPACLTemplates of the Me
+func (o *Me) FloatingIPACLTemplates(info *bambou.FetchingInfo) (FloatingIPACLTemplatesList, *bambou.Error) {
+
+	var list FloatingIPACLTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, FloatingIPACLTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateFloatingIPACLTemplate creates a new child FloatingIPACLTemplate under the Me
+func (o *Me) CreateFloatingIPACLTemplate(child *FloatingIPACLTemplate) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -685,6 +741,20 @@ func (o *Me) RedundancyGroups(info *bambou.FetchingInfo) (RedundancyGroupsList, 
 
 // CreateRedundancyGroup creates a new child RedundancyGroup under the Me
 func (o *Me) CreateRedundancyGroup(child *RedundancyGroup) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// RoutingPolicies retrieves the list of child RoutingPolicies of the Me
+func (o *Me) RoutingPolicies(info *bambou.FetchingInfo) (RoutingPoliciesList, *bambou.Error) {
+
+	var list RoutingPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, RoutingPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateRoutingPolicy creates a new child RoutingPolicy under the Me
+func (o *Me) CreateRoutingPolicy(child *RoutingPolicy) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

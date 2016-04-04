@@ -52,6 +52,8 @@ type IngressAdvFwdEntryTemplate struct {
 	Owner                           string `json:"owner,omitempty"`
 	DSCP                            string `json:"DSCP,omitempty"`
 	FCOverride                      string `json:"FCOverride,omitempty"`
+	ICMPCode                        string `json:"ICMPCode,omitempty"`
+	ICMPType                        string `json:"ICMPType,omitempty"`
 	Action                          string `json:"action,omitempty"`
 	AddressOverride                 string `json:"addressOverride,omitempty"`
 	AssociatedApplicationID         string `json:"associatedApplicationID,omitempty"`
@@ -67,6 +69,7 @@ type IngressAdvFwdEntryTemplate struct {
 	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	LocationID                      string `json:"locationID,omitempty"`
 	LocationType                    string `json:"locationType,omitempty"`
+	MirrorDestinationID             string `json:"mirrorDestinationID,omitempty"`
 	NetworkID                       string `json:"networkID,omitempty"`
 	NetworkType                     string `json:"networkType,omitempty"`
 	PolicyState                     string `json:"policyState,omitempty"`

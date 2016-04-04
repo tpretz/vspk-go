@@ -82,10 +82,12 @@ type SystemConfig struct {
 	VNIDPublicNetworkLowerLimit                       int    `json:"VNIDPublicNetworkLowerLimit,omitempty"`
 	VNIDPublicNetworkUpperLimit                       int    `json:"VNIDPublicNetworkUpperLimit,omitempty"`
 	VNIDUpperLimit                                    int    `json:"VNIDUpperLimit,omitempty"`
+	VPortInitStatefulTimer                            int    `json:"VPortInitStatefulTimer,omitempty"`
 	VSCOnSameVersionAsVSD                             bool   `json:"VSCOnSameVersionAsVSD"`
 	VSDReadOnlyMode                                   bool   `json:"VSDReadOnlyMode"`
 	VSDUpgradeIsComplete                              bool   `json:"VSDUpgradeIsComplete"`
 	AlarmsMaxPerObject                                int    `json:"alarmsMaxPerObject,omitempty"`
+	AllowEnterpriseAvatarOnNSG                        bool   `json:"allowEnterpriseAvatarOnNSG"`
 	AvatarBasePath                                    string `json:"avatarBasePath,omitempty"`
 	AvatarBaseURL                                     string `json:"avatarBaseURL,omitempty"`
 	CustomerIDUpperLimit                              int    `json:"customerIDUpperLimit,omitempty"`
@@ -138,9 +140,10 @@ type SystemConfig struct {
 	PageMaxSize                                       int    `json:"pageMaxSize,omitempty"`
 	PageSize                                          int    `json:"pageSize,omitempty"`
 	PostProcessorThreadsCount                         int    `json:"postProcessorThreadsCount,omitempty"`
-	ReflexiveACLTimeout                               int    `json:"reflexiveACLTimeout,omitempty"`
 	ServiceIDUpperLimit                               int    `json:"serviceIDUpperLimit,omitempty"`
 	StackTraceEnabled                                 bool   `json:"stackTraceEnabled"`
+	StatefulACLNonTCPTimeout                          int    `json:"statefulACLNonTCPTimeout,omitempty"`
+	StatefulACLTCPTimeout                             int    `json:"statefulACLTCPTimeout,omitempty"`
 	StaticWANServicePurgeTime                         int    `json:"staticWANServicePurgeTime,omitempty"`
 	StatsCollectorAddress                             string `json:"statsCollectorAddress,omitempty"`
 	StatsCollectorPort                                string `json:"statsCollectorPort,omitempty"`
@@ -156,6 +159,8 @@ type SystemConfig struct {
 	SysmonCleanupTaskInterval                         int    `json:"sysmonCleanupTaskInterval,omitempty"`
 	SysmonNodePresenceTimeout                         int    `json:"sysmonNodePresenceTimeout,omitempty"`
 	SysmonProbeResponseTimeout                        int    `json:"sysmonProbeResponseTimeout,omitempty"`
+	SystemAvatarData                                  string `json:"systemAvatarData,omitempty"`
+	SystemAvatarType                                  string `json:"systemAvatarType,omitempty"`
 	TwoFactorCodeExpiry                               int    `json:"twoFactorCodeExpiry,omitempty"`
 	TwoFactorCodeLength                               int    `json:"twoFactorCodeLength,omitempty"`
 	TwoFactorCodeSeedLength                           int    `json:"twoFactorCodeSeedLength,omitempty"`

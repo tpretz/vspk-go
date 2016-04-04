@@ -86,10 +86,17 @@ type VRS struct {
 	PeakMemoryUsage           float64       `json:"peakMemoryUsage,omitempty"`
 	Peer                      string        `json:"peer,omitempty"`
 	Personality               string        `json:"personality,omitempty"`
+	PrimaryVSCConnectionLost  bool          `json:"primaryVSCConnectionLost"`
 	ProductVersion            string        `json:"productVersion,omitempty"`
+	RevertBehaviorEnabled     bool          `json:"revertBehaviorEnabled"`
+	RevertCompleted           bool          `json:"revertCompleted"`
+	RevertCount               int           `json:"revertCount,omitempty"`
+	RevertFailedCount         int           `json:"revertFailedCount,omitempty"`
 	Role                      string        `json:"role,omitempty"`
 	Status                    string        `json:"status,omitempty"`
 	Uptime                    int           `json:"uptime,omitempty"`
+	VscConfigState            string        `json:"vscConfigState,omitempty"`
+	VscCurrentState           string        `json:"vscCurrentState,omitempty"`
 }
 
 // NewVRS returns a new *VRS

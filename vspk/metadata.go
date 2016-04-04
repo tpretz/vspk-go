@@ -124,8 +124,13 @@ func (o *Metadata) MetadataTags(info *bambou.FetchingInfo) (MetadataTagsList, *b
 	return list, err
 }
 
-// CreateMetadataTag creates a new child MetadataTag under the Metadata
-func (o *Metadata) CreateMetadataTag(child *MetadataTag) *bambou.Error {
+// AssignMetadataTags assigns the list of MetadataTags to the Metadata
+func (o *Metadata) AssignMetadataTags(children MetadataTagsList) *bambou.Error {
 
-	return bambou.CurrentSession().CreateChild(o, child)
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, MetadataTagIdentity)
 }

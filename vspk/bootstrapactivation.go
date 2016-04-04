@@ -63,6 +63,7 @@ type BootstrapActivation struct {
 	SrkPassword      string `json:"srkPassword,omitempty"`
 	Status           string `json:"status,omitempty"`
 	TpmOwnerPassword string `json:"tpmOwnerPassword,omitempty"`
+	TpmState         int    `json:"tpmState,omitempty"`
 	VsdTime          int    `json:"vsdTime,omitempty"`
 }
 

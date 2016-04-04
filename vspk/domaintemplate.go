@@ -50,7 +50,9 @@ type DomainTemplate struct {
 	ParentID                        string `json:"parentID,omitempty"`
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
+	AssociatedBGPProfileID          string `json:"associatedBGPProfileID,omitempty"`
 	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
+	AssociatedPATMapperID           string `json:"associatedPATMapperID,omitempty"`
 	Description                     string `json:"description,omitempty"`
 	Encryption                      string `json:"encryption,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
@@ -132,6 +134,34 @@ func (o *DomainTemplate) EgressACLTemplates(info *bambou.FetchingInfo) (EgressAC
 
 // CreateEgressACLTemplate creates a new child EgressACLTemplate under the DomainTemplate
 func (o *DomainTemplate) CreateEgressACLTemplate(child *EgressACLTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// DomainFIPAclTemplates retrieves the list of child DomainFIPAclTemplates of the DomainTemplate
+func (o *DomainTemplate) DomainFIPAclTemplates(info *bambou.FetchingInfo) (DomainFIPAclTemplatesList, *bambou.Error) {
+
+	var list DomainFIPAclTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, DomainFIPAclTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateDomainFIPAclTemplate creates a new child DomainFIPAclTemplate under the DomainTemplate
+func (o *DomainTemplate) CreateDomainFIPAclTemplate(child *DomainFIPAclTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// FloatingIPACLTemplates retrieves the list of child FloatingIPACLTemplates of the DomainTemplate
+func (o *DomainTemplate) FloatingIPACLTemplates(info *bambou.FetchingInfo) (FloatingIPACLTemplatesList, *bambou.Error) {
+
+	var list FloatingIPACLTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, FloatingIPACLTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateFloatingIPACLTemplate creates a new child FloatingIPACLTemplate under the DomainTemplate
+func (o *DomainTemplate) CreateFloatingIPACLTemplate(child *FloatingIPACLTemplate) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

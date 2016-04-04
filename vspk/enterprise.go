@@ -50,6 +50,7 @@ type Enterprise struct {
 	ParentID                              string        `json:"parentID,omitempty"`
 	ParentType                            string        `json:"parentType,omitempty"`
 	Owner                                 string        `json:"owner,omitempty"`
+	BGPEnabled                            bool          `json:"BGPEnabled"`
 	DHCPLeaseInterval                     int           `json:"DHCPLeaseInterval,omitempty"`
 	LDAPAuthorizationEnabled              bool          `json:"LDAPAuthorizationEnabled"`
 	LDAPEnabled                           bool          `json:"LDAPEnabled"`
@@ -71,6 +72,7 @@ type Enterprise struct {
 	FloatingIPsQuota                      int           `json:"floatingIPsQuota,omitempty"`
 	FloatingIPsUsed                       int           `json:"floatingIPsUsed,omitempty"`
 	LastUpdatedBy                         string        `json:"lastUpdatedBy,omitempty"`
+	LocalAS                               int           `json:"localAS,omitempty"`
 	Name                                  string        `json:"name,omitempty"`
 	ReceiveMultiCastListID                string        `json:"receiveMultiCastListID,omitempty"`
 	SendMultiCastListID                   string        `json:"sendMultiCastListID,omitempty"`
@@ -160,6 +162,20 @@ func (o *Enterprise) CreateApplicationService(child *ApplicationService) *bambou
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// BGPProfiles retrieves the list of child BGPProfiles of the Enterprise
+func (o *Enterprise) BGPProfiles(info *bambou.FetchingInfo) (BGPProfilesList, *bambou.Error) {
+
+	var list BGPProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, BGPProfileIdentity, &list, info)
+	return list, err
+}
+
+// CreateBGPProfile creates a new child BGPProfile under the Enterprise
+func (o *Enterprise) CreateBGPProfile(child *BGPProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Domains retrieves the list of child Domains of the Enterprise
 func (o *Enterprise) Domains(info *bambou.FetchingInfo) (DomainsList, *bambou.Error) {
 
@@ -226,6 +242,20 @@ func (o *Enterprise) EnterpriseNetworks(info *bambou.FetchingInfo) (EnterpriseNe
 
 // CreateEnterpriseNetwork creates a new child EnterpriseNetwork under the Enterprise
 func (o *Enterprise) CreateEnterpriseNetwork(child *EnterpriseNetwork) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EnterpriseSecurities retrieves the list of child EnterpriseSecurities of the Enterprise
+func (o *Enterprise) EnterpriseSecurities(info *bambou.FetchingInfo) (EnterpriseSecuritiesList, *bambou.Error) {
+
+	var list EnterpriseSecuritiesList
+	err := bambou.CurrentSession().FetchChildren(o, EnterpriseSecurityIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterpriseSecurity creates a new child EnterpriseSecurity under the Enterprise
+func (o *Enterprise) CreateEnterpriseSecurity(child *EnterpriseSecurity) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -338,6 +368,76 @@ func (o *Enterprise) GroupKeyEncryptionProfiles(info *bambou.FetchingInfo) (Grou
 
 // CreateGroupKeyEncryptionProfile creates a new child GroupKeyEncryptionProfile under the Enterprise
 func (o *Enterprise) CreateGroupKeyEncryptionProfile(child *GroupKeyEncryptionProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// IKECertificates retrieves the list of child IKECertificates of the Enterprise
+func (o *Enterprise) IKECertificates(info *bambou.FetchingInfo) (IKECertificatesList, *bambou.Error) {
+
+	var list IKECertificatesList
+	err := bambou.CurrentSession().FetchChildren(o, IKECertificateIdentity, &list, info)
+	return list, err
+}
+
+// CreateIKECertificate creates a new child IKECertificate under the Enterprise
+func (o *Enterprise) CreateIKECertificate(child *IKECertificate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// IKEEncryptionprofiles retrieves the list of child IKEEncryptionprofiles of the Enterprise
+func (o *Enterprise) IKEEncryptionprofiles(info *bambou.FetchingInfo) (IKEEncryptionprofilesList, *bambou.Error) {
+
+	var list IKEEncryptionprofilesList
+	err := bambou.CurrentSession().FetchChildren(o, IKEEncryptionprofileIdentity, &list, info)
+	return list, err
+}
+
+// CreateIKEEncryptionprofile creates a new child IKEEncryptionprofile under the Enterprise
+func (o *Enterprise) CreateIKEEncryptionprofile(child *IKEEncryptionprofile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// IKEGateways retrieves the list of child IKEGateways of the Enterprise
+func (o *Enterprise) IKEGateways(info *bambou.FetchingInfo) (IKEGatewaysList, *bambou.Error) {
+
+	var list IKEGatewaysList
+	err := bambou.CurrentSession().FetchChildren(o, IKEGatewayIdentity, &list, info)
+	return list, err
+}
+
+// CreateIKEGateway creates a new child IKEGateway under the Enterprise
+func (o *Enterprise) CreateIKEGateway(child *IKEGateway) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// IKEGatewayProfiles retrieves the list of child IKEGatewayProfiles of the Enterprise
+func (o *Enterprise) IKEGatewayProfiles(info *bambou.FetchingInfo) (IKEGatewayProfilesList, *bambou.Error) {
+
+	var list IKEGatewayProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, IKEGatewayProfileIdentity, &list, info)
+	return list, err
+}
+
+// CreateIKEGatewayProfile creates a new child IKEGatewayProfile under the Enterprise
+func (o *Enterprise) CreateIKEGatewayProfile(child *IKEGatewayProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// IKEPSKs retrieves the list of child IKEPSKs of the Enterprise
+func (o *Enterprise) IKEPSKs(info *bambou.FetchingInfo) (IKEPSKsList, *bambou.Error) {
+
+	var list IKEPSKsList
+	err := bambou.CurrentSession().FetchChildren(o, IKEPSKIdentity, &list, info)
+	return list, err
+}
+
+// CreateIKEPSK creates a new child IKEPSK under the Enterprise
+func (o *Enterprise) CreateIKEPSK(child *IKEPSK) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -538,6 +638,20 @@ func (o *Enterprise) CreatePATNATPool(child *PATNATPool) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// PublicNetworkMacros retrieves the list of child PublicNetworkMacros of the Enterprise
+func (o *Enterprise) PublicNetworkMacros(info *bambou.FetchingInfo) (PublicNetworkMacrosList, *bambou.Error) {
+
+	var list PublicNetworkMacrosList
+	err := bambou.CurrentSession().FetchChildren(o, PublicNetworkMacroIdentity, &list, info)
+	return list, err
+}
+
+// CreatePublicNetworkMacro creates a new child PublicNetworkMacro under the Enterprise
+func (o *Enterprise) CreatePublicNetworkMacro(child *PublicNetworkMacro) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // RateLimiters retrieves the list of child RateLimiters of the Enterprise
 func (o *Enterprise) RateLimiters(info *bambou.FetchingInfo) (RateLimitersList, *bambou.Error) {
 
@@ -562,6 +676,20 @@ func (o *Enterprise) RedundancyGroups(info *bambou.FetchingInfo) (RedundancyGrou
 
 // CreateRedundancyGroup creates a new child RedundancyGroup under the Enterprise
 func (o *Enterprise) CreateRedundancyGroup(child *RedundancyGroup) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// RoutingPolicies retrieves the list of child RoutingPolicies of the Enterprise
+func (o *Enterprise) RoutingPolicies(info *bambou.FetchingInfo) (RoutingPoliciesList, *bambou.Error) {
+
+	var list RoutingPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, RoutingPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateRoutingPolicy creates a new child RoutingPolicy under the Enterprise
+func (o *Enterprise) CreateRoutingPolicy(child *RoutingPolicy) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

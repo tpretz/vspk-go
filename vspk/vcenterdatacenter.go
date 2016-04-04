@@ -65,6 +65,7 @@ type VCenterDataCenter struct {
 	ExternalID                       string `json:"externalID,omitempty"`
 	FlowEvictionThreshold            int    `json:"flowEvictionThreshold,omitempty"`
 	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
+	ManagedObjectID                  string `json:"managedObjectID,omitempty"`
 	MetadataServerIP                 string `json:"metadataServerIP,omitempty"`
 	MetadataServerListenPort         int    `json:"metadataServerListenPort,omitempty"`
 	MetadataServerPort               int    `json:"metadataServerPort,omitempty"`
@@ -157,6 +158,20 @@ func (o *VCenterDataCenter) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// AutoDiscoverClusters retrieves the list of child AutoDiscoverClusters of the VCenterDataCenter
+func (o *VCenterDataCenter) AutoDiscoverClusters(info *bambou.FetchingInfo) (AutoDiscoverClustersList, *bambou.Error) {
+
+	var list AutoDiscoverClustersList
+	err := bambou.CurrentSession().FetchChildren(o, AutoDiscoverClusterIdentity, &list, info)
+	return list, err
+}
+
+// CreateAutoDiscoverCluster creates a new child AutoDiscoverCluster under the VCenterDataCenter
+func (o *VCenterDataCenter) CreateAutoDiscoverCluster(child *AutoDiscoverCluster) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the VCenterDataCenter
 func (o *VCenterDataCenter) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -195,6 +210,20 @@ func (o *VCenterDataCenter) VCenterClusters(info *bambou.FetchingInfo) (VCenterC
 
 // CreateVCenterCluster creates a new child VCenterCluster under the VCenterDataCenter
 func (o *VCenterDataCenter) CreateVCenterCluster(child *VCenterCluster) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VCenterHypervisors retrieves the list of child VCenterHypervisors of the VCenterDataCenter
+func (o *VCenterDataCenter) VCenterHypervisors(info *bambou.FetchingInfo) (VCenterHypervisorsList, *bambou.Error) {
+
+	var list VCenterHypervisorsList
+	err := bambou.CurrentSession().FetchChildren(o, VCenterHypervisorIdentity, &list, info)
+	return list, err
+}
+
+// CreateVCenterHypervisor creates a new child VCenterHypervisor under the VCenterDataCenter
+func (o *VCenterDataCenter) CreateVCenterHypervisor(child *VCenterHypervisor) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

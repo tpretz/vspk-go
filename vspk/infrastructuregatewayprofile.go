@@ -52,8 +52,11 @@ type InfrastructureGatewayProfile struct {
 	Owner                  string `json:"owner,omitempty"`
 	NTPServerKey           string `json:"NTPServerKey,omitempty"`
 	NTPServerKeyID         int    `json:"NTPServerKeyID,omitempty"`
+	ControllerLessDuration string `json:"controllerLessDuration,omitempty"`
+	ControllerLessEnabled  bool   `json:"controllerLessEnabled"`
 	DatapathSyncTimeout    int    `json:"datapathSyncTimeout,omitempty"`
 	DeadTimer              string `json:"deadTimer,omitempty"`
+	DeadTimerEnabled       bool   `json:"deadTimerEnabled"`
 	Description            string `json:"description,omitempty"`
 	EnterpriseID           string `json:"enterpriseID,omitempty"`
 	EntityScope            string `json:"entityScope,omitempty"`
@@ -69,6 +72,8 @@ type InfrastructureGatewayProfile struct {
 	RemoteLogServerAddress string `json:"remoteLogServerAddress,omitempty"`
 	RemoteLogServerPort    int    `json:"remoteLogServerPort,omitempty"`
 	RemoteLogUsername      string `json:"remoteLogUsername,omitempty"`
+	RevertBehaviour        bool   `json:"revertBehaviour"`
+	RevertTimer            int    `json:"revertTimer,omitempty"`
 	StatsCollectorPort     int    `json:"statsCollectorPort,omitempty"`
 	SystemSyncScheduler    string `json:"systemSyncScheduler,omitempty"`
 	SystemSyncWindow       string `json:"systemSyncWindow,omitempty"`

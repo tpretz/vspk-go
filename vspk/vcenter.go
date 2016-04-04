@@ -53,6 +53,7 @@ type VCenter struct {
 	AllowDataDHCP                    bool   `json:"allowDataDHCP"`
 	AllowMgmtDHCP                    bool   `json:"allowMgmtDHCP"`
 	AutoResolveFrequency             int    `json:"autoResolveFrequency,omitempty"`
+	ConnectionStatus                 bool   `json:"connectionStatus"`
 	CustomizedScriptURL              string `json:"customizedScriptURL,omitempty"`
 	DataDNS1                         string `json:"dataDNS1,omitempty"`
 	DataDNS2                         string `json:"dataDNS2,omitempty"`
@@ -165,6 +166,20 @@ func (o *VCenter) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Autodiscovereddatacenters retrieves the list of child Autodiscovereddatacenters of the VCenter
+func (o *VCenter) Autodiscovereddatacenters(info *bambou.FetchingInfo) (AutodiscovereddatacentersList, *bambou.Error) {
+
+	var list AutodiscovereddatacentersList
+	err := bambou.CurrentSession().FetchChildren(o, AutodiscovereddatacenterIdentity, &list, info)
+	return list, err
+}
+
+// CreateAutodiscovereddatacenter creates a new child Autodiscovereddatacenter under the VCenter
+func (o *VCenter) CreateAutodiscovereddatacenter(child *Autodiscovereddatacenter) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the VCenter
 func (o *VCenter) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -175,6 +190,20 @@ func (o *VCenter) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasLis
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the VCenter
 func (o *VCenter) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Jobs retrieves the list of child Jobs of the VCenter
+func (o *VCenter) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
+
+	var list JobsList
+	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
+	return list, err
+}
+
+// CreateJob creates a new child Job under the VCenter
+func (o *VCenter) CreateJob(child *Job) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

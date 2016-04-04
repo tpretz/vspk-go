@@ -58,6 +58,7 @@ type StaticRoute struct {
 	Netmask            string `json:"netmask,omitempty"`
 	NextHopIp          string `json:"nextHopIp,omitempty"`
 	RouteDistinguisher string `json:"routeDistinguisher,omitempty"`
+	Type               string `json:"type,omitempty"`
 }
 
 // NewStaticRoute returns a new *StaticRoute

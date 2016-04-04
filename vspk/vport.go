@@ -146,6 +146,20 @@ func (o *VPort) CreateAlarm(child *Alarm) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// BGPNeighbors retrieves the list of child BGPNeighbors of the VPort
+func (o *VPort) BGPNeighbors(info *bambou.FetchingInfo) (BGPNeighborsList, *bambou.Error) {
+
+	var list BGPNeighborsList
+	err := bambou.CurrentSession().FetchChildren(o, BGPNeighborIdentity, &list, info)
+	return list, err
+}
+
+// CreateBGPNeighbor creates a new child BGPNeighbor under the VPort
+func (o *VPort) CreateBGPNeighbor(child *BGPNeighbor) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // BridgeInterfaces retrieves the list of child BridgeInterfaces of the VPort
 func (o *VPort) BridgeInterfaces(info *bambou.FetchingInfo) (BridgeInterfacesList, *bambou.Error) {
 

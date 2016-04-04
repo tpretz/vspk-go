@@ -51,6 +51,7 @@ type NSGateway struct {
 	ParentType                         string `json:"parentType,omitempty"`
 	Owner                              string `json:"owner,omitempty"`
 	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
+	TPMStatus                          string `json:"TPMStatus,omitempty"`
 	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
 	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
 	AutoDiscGatewayID                  string `json:"autoDiscGatewayID,omitempty"`
@@ -63,6 +64,7 @@ type NSGateway struct {
 	EnterpriseID                       string `json:"enterpriseID,omitempty"`
 	EntityScope                        string `json:"entityScope,omitempty"`
 	ExternalID                         string `json:"externalID,omitempty"`
+	LastConfigurationReloadTimestamp   int    `json:"lastConfigurationReloadTimestamp,omitempty"`
 	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
 	LocationID                         string `json:"locationID,omitempty"`
 	Name                               string `json:"name,omitempty"`
@@ -186,6 +188,20 @@ func (o *NSGateway) CreateEventLog(child *EventLog) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// GatewaySecurities retrieves the list of child GatewaySecurities of the NSGateway
+func (o *NSGateway) GatewaySecurities(info *bambou.FetchingInfo) (GatewaySecuritiesList, *bambou.Error) {
+
+	var list GatewaySecuritiesList
+	err := bambou.CurrentSession().FetchChildren(o, GatewaySecurityIdentity, &list, info)
+	return list, err
+}
+
+// CreateGatewaySecurity creates a new child GatewaySecurity under the NSGateway
+func (o *NSGateway) CreateGatewaySecurity(child *GatewaySecurity) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSGateway
 func (o *NSGateway) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -278,10 +294,15 @@ func (o *NSGateway) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *ba
 	return list, err
 }
 
-// CreatePATNATPool creates a new child PATNATPool under the NSGateway
-func (o *NSGateway) CreatePATNATPool(child *PATNATPool) *bambou.Error {
+// AssignPATNATPools assigns the list of PATNATPools to the NSGateway
+func (o *NSGateway) AssignPATNATPools(children PATNATPoolsList) *bambou.Error {
 
-	return bambou.CurrentSession().CreateChild(o, child)
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, PATNATPoolIdentity)
 }
 
 // Permissions retrieves the list of child Permissions of the NSGateway
@@ -294,6 +315,20 @@ func (o *NSGateway) Permissions(info *bambou.FetchingInfo) (PermissionsList, *ba
 
 // CreatePermission creates a new child Permission under the NSGateway
 func (o *NSGateway) CreatePermission(child *Permission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Subnets retrieves the list of child Subnets of the NSGateway
+func (o *NSGateway) Subnets(info *bambou.FetchingInfo) (SubnetsList, *bambou.Error) {
+
+	var list SubnetsList
+	err := bambou.CurrentSession().FetchChildren(o, SubnetIdentity, &list, info)
+	return list, err
+}
+
+// CreateSubnet creates a new child Subnet under the NSGateway
+func (o *NSGateway) CreateSubnet(child *Subnet) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

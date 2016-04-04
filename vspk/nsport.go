@@ -50,6 +50,7 @@ type NSPort struct {
 	ParentID                    string `json:"parentID,omitempty"`
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
+	NATTraversal                string `json:"NATTraversal,omitempty"`
 	VLANRange                   string `json:"VLANRange,omitempty"`
 	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
 	AssociatedRedundantPortID   string `json:"associatedRedundantPortID,omitempty"`
@@ -205,6 +206,34 @@ func (o *NSPort) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambo
 
 // CreatePermission creates a new child Permission under the NSPort
 func (o *NSPort) CreatePermission(child *Permission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Statistics retrieves the list of child Statistics of the NSPort
+func (o *NSPort) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
+
+	var list StatisticsList
+	err := bambou.CurrentSession().FetchChildren(o, StatisticsIdentity, &list, info)
+	return list, err
+}
+
+// CreateStatistics creates a new child Statistics under the NSPort
+func (o *NSPort) CreateStatistics(child *Statistics) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// StatisticsPolicies retrieves the list of child StatisticsPolicies of the NSPort
+func (o *NSPort) StatisticsPolicies(info *bambou.FetchingInfo) (StatisticsPoliciesList, *bambou.Error) {
+
+	var list StatisticsPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, StatisticsPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateStatisticsPolicy creates a new child StatisticsPolicy under the NSPort
+func (o *NSPort) CreateStatisticsPolicy(child *StatisticsPolicy) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

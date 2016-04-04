@@ -297,3 +297,17 @@ func (o *Zone) CreateVMInterface(child *VMInterface) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
+
+// VPorts retrieves the list of child VPorts of the Zone
+func (o *Zone) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error) {
+
+	var list VPortsList
+	err := bambou.CurrentSession().FetchChildren(o, VPortIdentity, &list, info)
+	return list, err
+}
+
+// CreateVPort creates a new child VPort under the Zone
+func (o *Zone) CreateVPort(child *VPort) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}

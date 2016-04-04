@@ -55,11 +55,17 @@ type PATNATPool struct {
 	AssociatedGatewayType string `json:"associatedGatewayType,omitempty"`
 	DefaultPATIP          string `json:"defaultPATIP,omitempty"`
 	Description           string `json:"description,omitempty"`
+	DynamicSourceEnabled  bool   `json:"dynamicSourceEnabled"`
+	EndAddressRange       string `json:"endAddressRange,omitempty"`
+	EndSourceAddress      string `json:"endSourceAddress,omitempty"`
 	EntityScope           string `json:"entityScope,omitempty"`
 	ExternalID            string `json:"externalID,omitempty"`
 	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
 	Name                  string `json:"name,omitempty"`
 	PermittedAction       string `json:"permittedAction,omitempty"`
+	StartAddressRange     string `json:"startAddressRange,omitempty"`
+	StartSourceAddress    string `json:"startSourceAddress,omitempty"`
+	TranslationTimeout    int    `json:"translationTimeout,omitempty"`
 }
 
 // NewPATNATPool returns a new *PATNATPool
@@ -102,6 +108,20 @@ func (o *PATNATPool) Save() *bambou.Error {
 func (o *PATNATPool) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// AddressMaps retrieves the list of child AddressMaps of the PATNATPool
+func (o *PATNATPool) AddressMaps(info *bambou.FetchingInfo) (AddressMapsList, *bambou.Error) {
+
+	var list AddressMapsList
+	err := bambou.CurrentSession().FetchChildren(o, AddressMapIdentity, &list, info)
+	return list, err
+}
+
+// CreateAddressMap creates a new child AddressMap under the PATNATPool
+func (o *PATNATPool) CreateAddressMap(child *AddressMap) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // EnterprisePermissions retrieves the list of child EnterprisePermissions of the PATNATPool

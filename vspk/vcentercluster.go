@@ -53,6 +53,7 @@ type VCenterCluster struct {
 	AllowDataDHCP                    bool   `json:"allowDataDHCP"`
 	AllowMgmtDHCP                    bool   `json:"allowMgmtDHCP"`
 	AssocVCenterDataCenterID         string `json:"assocVCenterDataCenterID,omitempty"`
+	AssocVCenterID                   string `json:"assocVCenterID,omitempty"`
 	CustomizedScriptURL              string `json:"customizedScriptURL,omitempty"`
 	DataDNS1                         string `json:"dataDNS1,omitempty"`
 	DataDNS2                         string `json:"dataDNS2,omitempty"`
@@ -65,6 +66,7 @@ type VCenterCluster struct {
 	ExternalID                       string `json:"externalID,omitempty"`
 	FlowEvictionThreshold            int    `json:"flowEvictionThreshold,omitempty"`
 	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
+	ManagedObjectID                  string `json:"managedObjectID,omitempty"`
 	MetadataServerIP                 string `json:"metadataServerIP,omitempty"`
 	MetadataServerListenPort         int    `json:"metadataServerListenPort,omitempty"`
 	MetadataServerPort               int    `json:"metadataServerPort,omitempty"`
@@ -103,6 +105,7 @@ type VCenterCluster struct {
 	Personality                      string `json:"personality,omitempty"`
 	PortgroupMetadata                bool   `json:"portgroupMetadata"`
 	PrimaryNuageController           string `json:"primaryNuageController,omitempty"`
+	Scope                            bool   `json:"scope"`
 	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
 	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
 	SiteId                           string `json:"siteId,omitempty"`
@@ -157,6 +160,20 @@ func (o *VCenterCluster) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// AutoDiscoverHypervisorFromClusters retrieves the list of child AutoDiscoverHypervisorFromClusters of the VCenterCluster
+func (o *VCenterCluster) AutoDiscoverHypervisorFromClusters(info *bambou.FetchingInfo) (AutoDiscoverHypervisorFromClustersList, *bambou.Error) {
+
+	var list AutoDiscoverHypervisorFromClustersList
+	err := bambou.CurrentSession().FetchChildren(o, AutoDiscoverHypervisorFromClusterIdentity, &list, info)
+	return list, err
+}
+
+// CreateAutoDiscoverHypervisorFromCluster creates a new child AutoDiscoverHypervisorFromCluster under the VCenterCluster
+func (o *VCenterCluster) CreateAutoDiscoverHypervisorFromCluster(child *AutoDiscoverHypervisorFromCluster) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the VCenterCluster
 func (o *VCenterCluster) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -167,6 +184,20 @@ func (o *VCenterCluster) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetad
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the VCenterCluster
 func (o *VCenterCluster) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Jobs retrieves the list of child Jobs of the VCenterCluster
+func (o *VCenterCluster) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
+
+	var list JobsList
+	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
+	return list, err
+}
+
+// CreateJob creates a new child Job under the VCenterCluster
+func (o *VCenterCluster) CreateJob(child *Job) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
