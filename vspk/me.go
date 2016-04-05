@@ -549,6 +549,20 @@ func (o *Me) CreateLicense(child *License) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// LicenseStatus retrieves the list of child LicenseStatus of the Me
+func (o *Me) LicenseStatus(info *bambou.FetchingInfo) (LicenseStatusList, *bambou.Error) {
+
+	var list LicenseStatusList
+	err := bambou.CurrentSession().FetchChildren(o, LicenseStatusIdentity, &list, info)
+	return list, err
+}
+
+// CreateLicenseStatus creates a new child LicenseStatus under the Me
+func (o *Me) CreateLicenseStatus(child *LicenseStatus) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Metadatas retrieves the list of child Metadatas of the Me
 func (o *Me) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 

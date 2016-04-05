@@ -29,23 +29,23 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// LicensestatusIdentity represents the Identity of the object
-var LicensestatusIdentity = bambou.Identity{
+// LicenseStatusIdentity represents the Identity of the object
+var LicenseStatusIdentity = bambou.Identity{
 	Name:     "licensestatus",
 	Category: "licensestatus",
 }
 
-// LicensestatusList represents a list of Licensestatus
-type LicensestatusList []*Licensestatus
+// LicenseStatusList represents a list of LicenseStatus
+type LicenseStatusList []*LicenseStatus
 
-// LicensestatusAncestor is the interface of an ancestor of a Licensestatus must implement.
-type LicensestatusAncestor interface {
-	Licensestatus(*bambou.FetchingInfo) (LicensestatusList, *bambou.Error)
-	CreateLicensestatus(*Licensestatus) *bambou.Error
+// LicenseStatusAncestor is the interface of an ancestor of a LicenseStatus must implement.
+type LicenseStatusAncestor interface {
+	LicenseStatus(*bambou.FetchingInfo) (LicenseStatusList, *bambou.Error)
+	CreateLicenseStatus(*LicenseStatus) *bambou.Error
 }
 
-// Licensestatus represents the model of a licensestatus
-type Licensestatus struct {
+// LicenseStatus represents the model of a licensestatus
+type LicenseStatus struct {
 	ID                          string `json:"ID,omitempty"`
 	ParentID                    string `json:"parentID,omitempty"`
 	ParentType                  string `json:"parentType,omitempty"`
@@ -62,44 +62,44 @@ type Licensestatus struct {
 	TotalLicensedVRSsCount      string `json:"totalLicensedVRSsCount,omitempty"`
 }
 
-// NewLicensestatus returns a new *Licensestatus
-func NewLicensestatus() *Licensestatus {
+// NewLicenseStatus returns a new *LicenseStatus
+func NewLicenseStatus() *LicenseStatus {
 
-	return &Licensestatus{}
+	return &LicenseStatus{}
 }
 
 // Identity returns the Identity of the object.
-func (o *Licensestatus) Identity() bambou.Identity {
+func (o *LicenseStatus) Identity() bambou.Identity {
 
-	return LicensestatusIdentity
+	return LicenseStatusIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Licensestatus) Identifier() string {
+func (o *LicenseStatus) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Licensestatus) SetIdentifier(ID string) {
+func (o *LicenseStatus) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the Licensestatus from the server
-func (o *Licensestatus) Fetch() *bambou.Error {
+// Fetch retrieves the LicenseStatus from the server
+func (o *LicenseStatus) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the Licensestatus into the server
-func (o *Licensestatus) Save() *bambou.Error {
+// Save saves the LicenseStatus into the server
+func (o *LicenseStatus) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the Licensestatus from the server
-func (o *Licensestatus) Delete() *bambou.Error {
+// Delete deletes the LicenseStatus from the server
+func (o *LicenseStatus) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }
