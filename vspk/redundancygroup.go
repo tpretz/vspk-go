@@ -58,6 +58,7 @@ type RedundancyGroup struct {
 	GatewayPeer1ID                      string `json:"gatewayPeer1ID,omitempty"`
 	GatewayPeer1Name                    string `json:"gatewayPeer1Name,omitempty"`
 	GatewayPeer2AutodiscoveredGatewayID string `json:"gatewayPeer2AutodiscoveredGatewayID,omitempty"`
+	GatewayPeer2ID                      string `json:"gatewayPeer2ID,omitempty"`
 	GatewayPeer2Name                    string `json:"gatewayPeer2Name,omitempty"`
 	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
 	Name                                string `json:"name,omitempty"`
@@ -231,6 +232,20 @@ func (o *RedundancyGroup) WANServices(info *bambou.FetchingInfo) (WANServicesLis
 
 // CreateWANService creates a new child WANService under the RedundancyGroup
 func (o *RedundancyGroup) CreateWANService(child *WANService) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VsgRedundantPorts retrieves the list of child VsgRedundantPorts of the RedundancyGroup
+func (o *RedundancyGroup) VsgRedundantPorts(info *bambou.FetchingInfo) (VsgRedundantPortsList, *bambou.Error) {
+
+	var list VsgRedundantPortsList
+	err := bambou.CurrentSession().FetchChildren(o, VsgRedundantPortIdentity, &list, info)
+	return list, err
+}
+
+// CreateVsgRedundantPort creates a new child VsgRedundantPort under the RedundancyGroup
+func (o *RedundancyGroup) CreateVsgRedundantPort(child *VsgRedundantPort) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
