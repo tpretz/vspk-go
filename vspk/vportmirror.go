@@ -51,17 +51,17 @@ type VPortMirror struct {
 	ParentType            string `json:"parentType,omitempty"`
 	Owner                 string `json:"owner,omitempty"`
 	VPortName             string `json:"VPortName,omitempty"`
-	AttachedNetworkType   string `json:"attachedNetworkType,omitempty"`
-	DomainName            string `json:"domainName,omitempty"`
-	EnterpiseName         string `json:"enterpiseName,omitempty"`
-	EntityScope           string `json:"entityScope,omitempty"`
-	ExternalID            string `json:"externalID,omitempty"`
 	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
+	NetworkName           string `json:"networkName,omitempty"`
 	MirrorDestinationID   string `json:"mirrorDestinationID,omitempty"`
 	MirrorDestinationName string `json:"mirrorDestinationName,omitempty"`
 	MirrorDirection       string `json:"mirrorDirection,omitempty"`
-	NetworkName           string `json:"networkName,omitempty"`
+	EnterpiseName         string `json:"enterpiseName,omitempty"`
+	EntityScope           string `json:"entityScope,omitempty"`
+	DomainName            string `json:"domainName,omitempty"`
 	VportId               string `json:"vportId,omitempty"`
+	AttachedNetworkType   string `json:"attachedNetworkType,omitempty"`
+	ExternalID            string `json:"externalID,omitempty"`
 }
 
 // NewVPortMirror returns a new *VPortMirror
@@ -108,20 +108,6 @@ func (o *VPortMirror) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VPortMirror
-func (o *VPortMirror) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the VPortMirror
-func (o *VPortMirror) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the VPortMirror
 func (o *VPortMirror) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -132,6 +118,20 @@ func (o *VPortMirror) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bamb
 
 // CreateMetadata creates a new child Metadata under the VPortMirror
 func (o *VPortMirror) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VPortMirror
+func (o *VPortMirror) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the VPortMirror
+func (o *VPortMirror) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

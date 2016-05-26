@@ -51,16 +51,16 @@ type RedirectionTarget struct {
 	ParentType        string `json:"parentType,omitempty"`
 	Owner             string `json:"owner,omitempty"`
 	ESI               string `json:"ESI,omitempty"`
-	Description       string `json:"description,omitempty"`
-	EndPointType      string `json:"endPointType,omitempty"`
-	EntityScope       string `json:"entityScope,omitempty"`
-	ExternalID        string `json:"externalID,omitempty"`
-	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
 	Name              string `json:"name,omitempty"`
+	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
 	RedundancyEnabled bool   `json:"redundancyEnabled"`
 	TemplateID        string `json:"templateID,omitempty"`
-	TriggerType       string `json:"triggerType,omitempty"`
+	Description       string `json:"description,omitempty"`
 	VirtualNetworkID  string `json:"virtualNetworkID,omitempty"`
+	EndPointType      string `json:"endPointType,omitempty"`
+	EntityScope       string `json:"entityScope,omitempty"`
+	TriggerType       string `json:"triggerType,omitempty"`
+	ExternalID        string `json:"externalID,omitempty"`
 }
 
 // NewRedirectionTarget returns a new *RedirectionTarget
@@ -107,16 +107,30 @@ func (o *RedirectionTarget) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the RedirectionTarget
-func (o *RedirectionTarget) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the RedirectionTarget
+func (o *RedirectionTarget) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the RedirectionTarget
-func (o *RedirectionTarget) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the RedirectionTarget
+func (o *RedirectionTarget) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VirtualIPs retrieves the list of child VirtualIPs of the RedirectionTarget
+func (o *RedirectionTarget) VirtualIPs(info *bambou.FetchingInfo) (VirtualIPsList, *bambou.Error) {
+
+	var list VirtualIPsList
+	err := bambou.CurrentSession().FetchChildren(o, VirtualIPIdentity, &list, info)
+	return list, err
+}
+
+// CreateVirtualIP creates a new child VirtualIP under the RedirectionTarget
+func (o *RedirectionTarget) CreateVirtualIP(child *VirtualIP) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -149,34 +163,6 @@ func (o *RedirectionTarget) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the RedirectionTarget
-func (o *RedirectionTarget) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the RedirectionTarget
-func (o *RedirectionTarget) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VirtualIPs retrieves the list of child VirtualIPs of the RedirectionTarget
-func (o *RedirectionTarget) VirtualIPs(info *bambou.FetchingInfo) (VirtualIPsList, *bambou.Error) {
-
-	var list VirtualIPsList
-	err := bambou.CurrentSession().FetchChildren(o, VirtualIPIdentity, &list, info)
-	return list, err
-}
-
-// CreateVirtualIP creates a new child VirtualIP under the RedirectionTarget
-func (o *RedirectionTarget) CreateVirtualIP(child *VirtualIP) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // VPorts retrieves the list of child VPorts of the RedirectionTarget
 func (o *RedirectionTarget) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error) {
 
@@ -194,4 +180,18 @@ func (o *RedirectionTarget) AssignVPorts(children VPortsList) *bambou.Error {
 	}
 
 	return bambou.CurrentSession().AssignChildren(o, list, VPortIdentity)
+}
+
+// EventLogs retrieves the list of child EventLogs of the RedirectionTarget
+func (o *RedirectionTarget) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the RedirectionTarget
+func (o *RedirectionTarget) CreateEventLog(child *EventLog) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }

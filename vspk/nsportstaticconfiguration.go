@@ -51,13 +51,13 @@ type NSPortStaticConfiguration struct {
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
 	DNSAddress    string `json:"DNSAddress,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	Gateway       string `json:"gateway,omitempty"`
 	Address       string `json:"address,omitempty"`
+	Netmask       string `json:"netmask,omitempty"`
 	Enabled       bool   `json:"enabled"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
-	Gateway       string `json:"gateway,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Netmask       string `json:"netmask,omitempty"`
 }
 
 // NewNSPortStaticConfiguration returns a new *NSPortStaticConfiguration
@@ -102,20 +102,6 @@ func (o *NSPortStaticConfiguration) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSPortStaticConfiguration
-func (o *NSPortStaticConfiguration) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the NSPortStaticConfiguration
-func (o *NSPortStaticConfiguration) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the NSPortStaticConfiguration
 func (o *NSPortStaticConfiguration) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -126,6 +112,20 @@ func (o *NSPortStaticConfiguration) Metadatas(info *bambou.FetchingInfo) (Metada
 
 // CreateMetadata creates a new child Metadata under the NSPortStaticConfiguration
 func (o *NSPortStaticConfiguration) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSPortStaticConfiguration
+func (o *NSPortStaticConfiguration) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the NSPortStaticConfiguration
+func (o *NSPortStaticConfiguration) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -50,14 +50,14 @@ type ExternalService struct {
 	ParentID      string `json:"parentID,omitempty"`
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	ServiceType   string `json:"serviceType,omitempty"`
 	Description   string `json:"description,omitempty"`
 	Direction     string `json:"direction,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Name          string `json:"name,omitempty"`
-	ServiceType   string `json:"serviceType,omitempty"`
 	Stage         string `json:"stage,omitempty"`
+	ExternalID    string `json:"externalID,omitempty"`
 }
 
 // NewExternalService returns a new *ExternalService
@@ -102,48 +102,6 @@ func (o *ExternalService) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EndPoints retrieves the list of child EndPoints of the ExternalService
-func (o *ExternalService) EndPoints(info *bambou.FetchingInfo) (EndPointsList, *bambou.Error) {
-
-	var list EndPointsList
-	err := bambou.CurrentSession().FetchChildren(o, EndPointIdentity, &list, info)
-	return list, err
-}
-
-// CreateEndPoint creates a new child EndPoint under the ExternalService
-func (o *ExternalService) CreateEndPoint(child *EndPoint) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the ExternalService
-func (o *ExternalService) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the ExternalService
-func (o *ExternalService) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the ExternalService
-func (o *ExternalService) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the ExternalService
-func (o *ExternalService) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the ExternalService
 func (o *ExternalService) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -168,6 +126,48 @@ func (o *ExternalService) MetadataTags(info *bambou.FetchingInfo) (MetadataTagsL
 
 // CreateMetadataTag creates a new child MetadataTag under the ExternalService
 func (o *ExternalService) CreateMetadataTag(child *MetadataTag) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the ExternalService
+func (o *ExternalService) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the ExternalService
+func (o *ExternalService) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EndPoints retrieves the list of child EndPoints of the ExternalService
+func (o *ExternalService) EndPoints(info *bambou.FetchingInfo) (EndPointsList, *bambou.Error) {
+
+	var list EndPointsList
+	err := bambou.CurrentSession().FetchChildren(o, EndPointIdentity, &list, info)
+	return list, err
+}
+
+// CreateEndPoint creates a new child EndPoint under the ExternalService
+func (o *ExternalService) CreateEndPoint(child *EndPoint) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the ExternalService
+func (o *ExternalService) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the ExternalService
+func (o *ExternalService) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -50,12 +50,12 @@ type NetworkLayout struct {
 	ParentID            string `json:"parentID,omitempty"`
 	ParentType          string `json:"parentType,omitempty"`
 	Owner               string `json:"owner,omitempty"`
-	AutonomousSystemNum int    `json:"autonomousSystemNum,omitempty"`
-	EntityScope         string `json:"entityScope,omitempty"`
-	ExternalID          string `json:"externalID,omitempty"`
 	LastUpdatedBy       string `json:"lastUpdatedBy,omitempty"`
-	RouteReflectorIP    string `json:"routeReflectorIP,omitempty"`
 	ServiceType         string `json:"serviceType,omitempty"`
+	EntityScope         string `json:"entityScope,omitempty"`
+	RouteReflectorIP    string `json:"routeReflectorIP,omitempty"`
+	AutonomousSystemNum int    `json:"autonomousSystemNum,omitempty"`
+	ExternalID          string `json:"externalID,omitempty"`
 }
 
 // NewNetworkLayout returns a new *NetworkLayout
@@ -100,20 +100,6 @@ func (o *NetworkLayout) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NetworkLayout
-func (o *NetworkLayout) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the NetworkLayout
-func (o *NetworkLayout) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the NetworkLayout
 func (o *NetworkLayout) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -124,6 +110,20 @@ func (o *NetworkLayout) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *ba
 
 // CreateMetadata creates a new child Metadata under the NetworkLayout
 func (o *NetworkLayout) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NetworkLayout
+func (o *NetworkLayout) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the NetworkLayout
+func (o *NetworkLayout) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

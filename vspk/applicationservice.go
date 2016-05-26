@@ -51,16 +51,16 @@ type ApplicationService struct {
 	ParentType      string `json:"parentType,omitempty"`
 	Owner           string `json:"owner,omitempty"`
 	DSCP            string `json:"DSCP,omitempty"`
+	Name            string `json:"name,omitempty"`
+	LastUpdatedBy   string `json:"lastUpdatedBy,omitempty"`
 	Description     string `json:"description,omitempty"`
 	DestinationPort string `json:"destinationPort,omitempty"`
 	Direction       string `json:"direction,omitempty"`
 	EntityScope     string `json:"entityScope,omitempty"`
+	SourcePort      string `json:"sourcePort,omitempty"`
+	Protocol        string `json:"protocol,omitempty"`
 	EtherType       string `json:"etherType,omitempty"`
 	ExternalID      string `json:"externalID,omitempty"`
-	LastUpdatedBy   string `json:"lastUpdatedBy,omitempty"`
-	Name            string `json:"name,omitempty"`
-	Protocol        string `json:"protocol,omitempty"`
-	SourcePort      string `json:"sourcePort,omitempty"`
 }
 
 // NewApplicationService returns a new *ApplicationService
@@ -110,16 +110,16 @@ func (o *ApplicationService) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the ApplicationService
-func (o *ApplicationService) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the ApplicationService
+func (o *ApplicationService) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the ApplicationService
-func (o *ApplicationService) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the ApplicationService
+func (o *ApplicationService) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -138,16 +138,16 @@ func (o *ApplicationService) CreateGlobalMetadata(child *GlobalMetadata) *bambou
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the ApplicationService
-func (o *ApplicationService) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the ApplicationService
+func (o *ApplicationService) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the ApplicationService
-func (o *ApplicationService) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the ApplicationService
+func (o *ApplicationService) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

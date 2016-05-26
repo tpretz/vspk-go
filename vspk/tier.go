@@ -50,20 +50,20 @@ type Tier struct {
 	ParentID                    string `json:"parentID,omitempty"`
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	Gateway                     string `json:"gateway,omitempty"`
 	Address                     string `json:"address,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	Metadata                    string `json:"metadata,omitempty"`
+	Netmask                     string `json:"netmask,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
 	AssociatedApplicationID     string `json:"associatedApplicationID,omitempty"`
 	AssociatedFloatingIPPoolID  string `json:"associatedFloatingIPPoolID,omitempty"`
 	AssociatedNetworkMacroID    string `json:"associatedNetworkMacroID,omitempty"`
 	AssociatedNetworkObjectID   string `json:"associatedNetworkObjectID,omitempty"`
 	AssociatedNetworkObjectType string `json:"associatedNetworkObjectType,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
 	ExternalID                  string `json:"externalID,omitempty"`
-	Gateway                     string `json:"gateway,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	Metadata                    string `json:"metadata,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	Netmask                     string `json:"netmask,omitempty"`
 	Type                        string `json:"type,omitempty"`
 }
 
@@ -111,16 +111,30 @@ func (o *Tier) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the Tier
-func (o *Tier) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// TCAs retrieves the list of child TCAs of the Tier
+func (o *Tier) TCAs(info *bambou.FetchingInfo) (TCAsList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list TCAsList
+	err := bambou.CurrentSession().FetchChildren(o, TCAIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the Tier
-func (o *Tier) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateTCA creates a new child TCA under the Tier
+func (o *Tier) CreateTCA(child *TCA) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Metadatas retrieves the list of child Metadatas of the Tier
+func (o *Tier) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the Tier
+func (o *Tier) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -139,16 +153,30 @@ func (o *Tier) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the Tier
-func (o *Tier) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// VMs retrieves the list of child VMs of the Tier
+func (o *Tier) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list VMsList
+	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the Tier
-func (o *Tier) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateVM creates a new child VM under the Tier
+func (o *Tier) CreateVM(child *VM) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VPorts retrieves the list of child VPorts of the Tier
+func (o *Tier) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error) {
+
+	var list VPortsList
+	err := bambou.CurrentSession().FetchChildren(o, VPortIdentity, &list, info)
+	return list, err
+}
+
+// CreateVPort creates a new child VPort under the Tier
+func (o *Tier) CreateVPort(child *VPort) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -181,44 +209,16 @@ func (o *Tier) CreateStatisticsPolicy(child *StatisticsPolicy) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// TCAs retrieves the list of child TCAs of the Tier
-func (o *Tier) TCAs(info *bambou.FetchingInfo) (TCAsList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the Tier
+func (o *Tier) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list TCAsList
-	err := bambou.CurrentSession().FetchChildren(o, TCAIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateTCA creates a new child TCA under the Tier
-func (o *Tier) CreateTCA(child *TCA) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMs retrieves the list of child VMs of the Tier
-func (o *Tier) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
-
-	var list VMsList
-	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
-	return list, err
-}
-
-// CreateVM creates a new child VM under the Tier
-func (o *Tier) CreateVM(child *VM) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VPorts retrieves the list of child VPorts of the Tier
-func (o *Tier) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error) {
-
-	var list VPortsList
-	err := bambou.CurrentSession().FetchChildren(o, VPortIdentity, &list, info)
-	return list, err
-}
-
-// CreateVPort creates a new child VPort under the Tier
-func (o *Tier) CreateVPort(child *VPort) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the Tier
+func (o *Tier) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

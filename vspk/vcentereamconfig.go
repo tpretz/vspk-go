@@ -53,12 +53,12 @@ type VCenterEAMConfig struct {
 	EamServerIP         string `json:"eamServerIP,omitempty"`
 	EamServerPortNumber int    `json:"eamServerPortNumber,omitempty"`
 	EamServerPortType   string `json:"eamServerPortType,omitempty"`
+	LastUpdatedBy       string `json:"lastUpdatedBy,omitempty"`
+	VibURL              string `json:"vibURL,omitempty"`
 	EntityScope         string `json:"entityScope,omitempty"`
+	OvfURL              string `json:"ovfURL,omitempty"`
 	ExtensionKey        string `json:"extensionKey,omitempty"`
 	ExternalID          string `json:"externalID,omitempty"`
-	LastUpdatedBy       string `json:"lastUpdatedBy,omitempty"`
-	OvfURL              string `json:"ovfURL,omitempty"`
-	VibURL              string `json:"vibURL,omitempty"`
 }
 
 // NewVCenterEAMConfig returns a new *VCenterEAMConfig
@@ -103,20 +103,6 @@ func (o *VCenterEAMConfig) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VCenterEAMConfig
-func (o *VCenterEAMConfig) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the VCenterEAMConfig
-func (o *VCenterEAMConfig) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the VCenterEAMConfig
 func (o *VCenterEAMConfig) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -127,6 +113,20 @@ func (o *VCenterEAMConfig) Metadatas(info *bambou.FetchingInfo) (MetadatasList, 
 
 // CreateMetadata creates a new child Metadata under the VCenterEAMConfig
 func (o *VCenterEAMConfig) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VCenterEAMConfig
+func (o *VCenterEAMConfig) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the VCenterEAMConfig
+func (o *VCenterEAMConfig) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

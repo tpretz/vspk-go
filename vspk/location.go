@@ -50,17 +50,17 @@ type Location struct {
 	ParentID      string  `json:"parentID,omitempty"`
 	ParentType    string  `json:"parentType,omitempty"`
 	Owner         string  `json:"owner,omitempty"`
-	Address       string  `json:"address,omitempty"`
-	Country       string  `json:"country,omitempty"`
-	EntityScope   string  `json:"entityScope,omitempty"`
-	ExternalID    string  `json:"externalID,omitempty"`
-	IgnoreGeocode bool    `json:"ignoreGeocode"`
 	LastUpdatedBy string  `json:"lastUpdatedBy,omitempty"`
 	Latitude      float64 `json:"latitude,omitempty"`
+	Address       string  `json:"address,omitempty"`
+	IgnoreGeocode bool    `json:"ignoreGeocode"`
+	TimeZoneID    string  `json:"timeZoneID,omitempty"`
+	EntityScope   string  `json:"entityScope,omitempty"`
 	Locality      string  `json:"locality,omitempty"`
 	Longitude     float64 `json:"longitude,omitempty"`
+	Country       string  `json:"country,omitempty"`
 	State         string  `json:"state,omitempty"`
-	TimeZoneID    string  `json:"timeZoneID,omitempty"`
+	ExternalID    string  `json:"externalID,omitempty"`
 }
 
 // NewLocation returns a new *Location
@@ -107,20 +107,6 @@ func (o *Location) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Location
-func (o *Location) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the Location
-func (o *Location) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the Location
 func (o *Location) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -131,6 +117,20 @@ func (o *Location) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.
 
 // CreateMetadata creates a new child Metadata under the Location
 func (o *Location) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Location
+func (o *Location) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Location
+func (o *Location) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

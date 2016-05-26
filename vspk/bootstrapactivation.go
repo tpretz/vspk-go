@@ -50,20 +50,20 @@ type BootstrapActivation struct {
 	ParentID         string `json:"parentID,omitempty"`
 	ParentType       string `json:"parentType,omitempty"`
 	Owner            string `json:"owner,omitempty"`
-	Action           string `json:"action,omitempty"`
 	Cacert           string `json:"cacert,omitempty"`
-	Cert             string `json:"cert,omitempty"`
-	ConfigURL        string `json:"configURL,omitempty"`
-	Csr              string `json:"csr,omitempty"`
-	EntityScope      string `json:"entityScope,omitempty"`
-	ExternalID       string `json:"externalID,omitempty"`
 	Hash             string `json:"hash,omitempty"`
 	LastUpdatedBy    string `json:"lastUpdatedBy,omitempty"`
+	Action           string `json:"action,omitempty"`
 	Seed             string `json:"seed,omitempty"`
-	SrkPassword      string `json:"srkPassword,omitempty"`
-	Status           string `json:"status,omitempty"`
+	Cert             string `json:"cert,omitempty"`
+	EntityScope      string `json:"entityScope,omitempty"`
+	ConfigURL        string `json:"configURL,omitempty"`
 	TpmOwnerPassword string `json:"tpmOwnerPassword,omitempty"`
+	SrkPassword      string `json:"srkPassword,omitempty"`
 	VsdTime          int    `json:"vsdTime,omitempty"`
+	Csr              string `json:"csr,omitempty"`
+	Status           string `json:"status,omitempty"`
+	ExternalID       string `json:"externalID,omitempty"`
 }
 
 // NewBootstrapActivation returns a new *BootstrapActivation
@@ -108,20 +108,6 @@ func (o *BootstrapActivation) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the BootstrapActivation
-func (o *BootstrapActivation) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the BootstrapActivation
-func (o *BootstrapActivation) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the BootstrapActivation
 func (o *BootstrapActivation) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -132,6 +118,20 @@ func (o *BootstrapActivation) Metadatas(info *bambou.FetchingInfo) (MetadatasLis
 
 // CreateMetadata creates a new child Metadata under the BootstrapActivation
 func (o *BootstrapActivation) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the BootstrapActivation
+func (o *BootstrapActivation) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the BootstrapActivation
+func (o *BootstrapActivation) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

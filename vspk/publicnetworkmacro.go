@@ -51,12 +51,12 @@ type PublicNetworkMacro struct {
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
 	IPType        string `json:"IPType,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
 	Address       string `json:"address,omitempty"`
+	Netmask       string `json:"netmask,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Name          string `json:"name,omitempty"`
-	Netmask       string `json:"netmask,omitempty"`
 }
 
 // NewPublicNetworkMacro returns a new *PublicNetworkMacro
@@ -101,16 +101,16 @@ func (o *PublicNetworkMacro) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the PublicNetworkMacro
-func (o *PublicNetworkMacro) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the PublicNetworkMacro
+func (o *PublicNetworkMacro) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the PublicNetworkMacro
-func (o *PublicNetworkMacro) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the PublicNetworkMacro
+func (o *PublicNetworkMacro) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -129,16 +129,16 @@ func (o *PublicNetworkMacro) CreateGlobalMetadata(child *GlobalMetadata) *bambou
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the PublicNetworkMacro
-func (o *PublicNetworkMacro) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the PublicNetworkMacro
+func (o *PublicNetworkMacro) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the PublicNetworkMacro
-func (o *PublicNetworkMacro) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the PublicNetworkMacro
+func (o *PublicNetworkMacro) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

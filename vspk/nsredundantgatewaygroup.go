@@ -50,11 +50,8 @@ type NSRedundantGatewayGroup struct {
 	ParentID                            string        `json:"parentID,omitempty"`
 	ParentType                          string        `json:"parentType,omitempty"`
 	Owner                               string        `json:"owner,omitempty"`
-	ConsecutiveFailuresCount            int           `json:"consecutiveFailuresCount,omitempty"`
-	Description                         string        `json:"description,omitempty"`
-	EnterpriseID                        string        `json:"enterpriseID,omitempty"`
-	EntityScope                         string        `json:"entityScope,omitempty"`
-	ExternalID                          string        `json:"externalID,omitempty"`
+	Name                                string        `json:"name,omitempty"`
+	LastUpdatedBy                       string        `json:"lastUpdatedBy,omitempty"`
 	GatewayPeer1AutodiscoveredGatewayID string        `json:"gatewayPeer1AutodiscoveredGatewayID,omitempty"`
 	GatewayPeer1ID                      string        `json:"gatewayPeer1ID,omitempty"`
 	GatewayPeer1Name                    string        `json:"gatewayPeer1Name,omitempty"`
@@ -62,12 +59,15 @@ type NSRedundantGatewayGroup struct {
 	GatewayPeer2Name                    string        `json:"gatewayPeer2Name,omitempty"`
 	HeartbeatInterval                   int           `json:"heartbeatInterval,omitempty"`
 	HeartbeatVLANID                     int           `json:"heartbeatVLANID,omitempty"`
-	LastUpdatedBy                       string        `json:"lastUpdatedBy,omitempty"`
-	Name                                string        `json:"name,omitempty"`
-	PermittedAction                     string        `json:"permittedAction,omitempty"`
-	Personality                         string        `json:"personality,omitempty"`
 	RedundancyPortIDs                   []interface{} `json:"redundancyPortIDs,omitempty"`
 	RedundantGatewayStatus              string        `json:"redundantGatewayStatus,omitempty"`
+	PermittedAction                     string        `json:"permittedAction,omitempty"`
+	Personality                         string        `json:"personality,omitempty"`
+	Description                         string        `json:"description,omitempty"`
+	EnterpriseID                        string        `json:"enterpriseID,omitempty"`
+	EntityScope                         string        `json:"entityScope,omitempty"`
+	ConsecutiveFailuresCount            int           `json:"consecutiveFailuresCount,omitempty"`
+	ExternalID                          string        `json:"externalID,omitempty"`
 }
 
 // NewNSRedundantGatewayGroup returns a new *NSRedundantGatewayGroup
@@ -112,6 +112,20 @@ func (o *NSRedundantGatewayGroup) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the NSRedundantGatewayGroup
+func (o *NSRedundantGatewayGroup) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the NSRedundantGatewayGroup
+func (o *NSRedundantGatewayGroup) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Alarms retrieves the list of child Alarms of the NSRedundantGatewayGroup
 func (o *NSRedundantGatewayGroup) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
@@ -126,20 +140,6 @@ func (o *NSRedundantGatewayGroup) CreateAlarm(child *Alarm) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// EventLogs retrieves the list of child EventLogs of the NSRedundantGatewayGroup
-func (o *NSRedundantGatewayGroup) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the NSRedundantGatewayGroup
-func (o *NSRedundantGatewayGroup) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSRedundantGatewayGroup
 func (o *NSRedundantGatewayGroup) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -150,20 +150,6 @@ func (o *NSRedundantGatewayGroup) GlobalMetadatas(info *bambou.FetchingInfo) (Gl
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the NSRedundantGatewayGroup
 func (o *NSRedundantGatewayGroup) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the NSRedundantGatewayGroup
-func (o *NSRedundantGatewayGroup) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the NSRedundantGatewayGroup
-func (o *NSRedundantGatewayGroup) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -192,6 +178,20 @@ func (o *NSRedundantGatewayGroup) RedundantPorts(info *bambou.FetchingInfo) (Red
 
 // CreateRedundantPort creates a new child RedundantPort under the NSRedundantGatewayGroup
 func (o *NSRedundantGatewayGroup) CreateRedundantPort(child *RedundantPort) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the NSRedundantGatewayGroup
+func (o *NSRedundantGatewayGroup) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the NSRedundantGatewayGroup
+func (o *NSRedundantGatewayGroup) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

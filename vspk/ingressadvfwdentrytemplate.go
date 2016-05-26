@@ -50,33 +50,34 @@ type IngressAdvFwdEntryTemplate struct {
 	ParentID                        string `json:"parentID,omitempty"`
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
-	DSCP                            string `json:"DSCP,omitempty"`
 	FCOverride                      string `json:"FCOverride,omitempty"`
+	DSCP                            string `json:"DSCP,omitempty"`
+	Name                            string `json:"name,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Action                          string `json:"action,omitempty"`
 	AddressOverride                 string `json:"addressOverride,omitempty"`
+	RedirectVPortTagID              string `json:"redirectVPortTagID,omitempty"`
+	Description                     string `json:"description,omitempty"`
+	DestinationPort                 string `json:"destinationPort,omitempty"`
+	NetworkID                       string `json:"networkID,omitempty"`
+	NetworkType                     string `json:"networkType,omitempty"`
+	FlowLoggingEnabled              bool   `json:"flowLoggingEnabled"`
+	EntityScope                     string `json:"entityScope,omitempty"`
+	LocationID                      string `json:"locationID,omitempty"`
+	LocationType                    string `json:"locationType,omitempty"`
+	PolicyState                     string `json:"policyState,omitempty"`
+	SourcePort                      string `json:"sourcePort,omitempty"`
+	UplinkPreference                string `json:"uplinkPreference,omitempty"`
+	Priority                        int    `json:"priority,omitempty"`
+	Protocol                        string `json:"protocol,omitempty"`
 	AssociatedApplicationID         string `json:"associatedApplicationID,omitempty"`
 	AssociatedApplicationObjectID   string `json:"associatedApplicationObjectID,omitempty"`
 	AssociatedApplicationObjectType string `json:"associatedApplicationObjectType,omitempty"`
 	AssociatedLiveEntityID          string `json:"associatedLiveEntityID,omitempty"`
-	Description                     string `json:"description,omitempty"`
-	DestinationPort                 string `json:"destinationPort,omitempty"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	EtherType                       string `json:"etherType,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
-	FlowLoggingEnabled              bool   `json:"flowLoggingEnabled"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	LocationID                      string `json:"locationID,omitempty"`
-	LocationType                    string `json:"locationType,omitempty"`
-	NetworkID                       string `json:"networkID,omitempty"`
-	NetworkType                     string `json:"networkType,omitempty"`
-	PolicyState                     string `json:"policyState,omitempty"`
-	Priority                        int    `json:"priority,omitempty"`
-	Protocol                        string `json:"protocol,omitempty"`
-	RedirectVPortTagID              string `json:"redirectVPortTagID,omitempty"`
-	SourcePort                      string `json:"sourcePort,omitempty"`
 	StatsID                         string `json:"statsID,omitempty"`
 	StatsLoggingEnabled             bool   `json:"statsLoggingEnabled"`
-	UplinkPreference                string `json:"uplinkPreference,omitempty"`
+	EtherType                       string `json:"etherType,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewIngressAdvFwdEntryTemplate returns a new *IngressAdvFwdEntryTemplate
@@ -128,6 +129,20 @@ func (o *IngressAdvFwdEntryTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the IngressAdvFwdEntryTemplate
+func (o *IngressAdvFwdEntryTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the IngressAdvFwdEntryTemplate
+func (o *IngressAdvFwdEntryTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the IngressAdvFwdEntryTemplate
 func (o *IngressAdvFwdEntryTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -152,20 +167,6 @@ func (o *IngressAdvFwdEntryTemplate) Jobs(info *bambou.FetchingInfo) (JobsList, 
 
 // CreateJob creates a new child Job under the IngressAdvFwdEntryTemplate
 func (o *IngressAdvFwdEntryTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the IngressAdvFwdEntryTemplate
-func (o *IngressAdvFwdEntryTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the IngressAdvFwdEntryTemplate
-func (o *IngressAdvFwdEntryTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

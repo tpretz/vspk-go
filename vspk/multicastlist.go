@@ -50,10 +50,10 @@ type MultiCastList struct {
 	ParentID      string `json:"parentID,omitempty"`
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
 	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
 	McastType     string `json:"mcastType,omitempty"`
+	EntityScope   string `json:"entityScope,omitempty"`
+	ExternalID    string `json:"externalID,omitempty"`
 }
 
 // NewMultiCastList returns a new *MultiCastList
@@ -98,20 +98,6 @@ func (o *MultiCastList) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the MultiCastList
-func (o *MultiCastList) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the MultiCastList
-func (o *MultiCastList) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the MultiCastList
 func (o *MultiCastList) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -122,6 +108,20 @@ func (o *MultiCastList) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *ba
 
 // CreateMetadata creates a new child Metadata under the MultiCastList
 func (o *MultiCastList) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the MultiCastList
+func (o *MultiCastList) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the MultiCastList
+func (o *MultiCastList) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

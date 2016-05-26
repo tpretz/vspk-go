@@ -50,30 +50,30 @@ type VM struct {
 	ParentID        string        `json:"parentID,omitempty"`
 	ParentType      string        `json:"parentType,omitempty"`
 	Owner           string        `json:"owner,omitempty"`
-	UUID            string        `json:"UUID,omitempty"`
+	L2DomainIDs     []interface{} `json:"l2DomainIDs,omitempty"`
 	VRSID           string        `json:"VRSID,omitempty"`
-	AppName         string        `json:"appName,omitempty"`
+	UUID            string        `json:"UUID,omitempty"`
+	Name            string        `json:"name,omitempty"`
+	LastUpdatedBy   string        `json:"lastUpdatedBy,omitempty"`
+	ReasonType      string        `json:"reasonType,omitempty"`
 	DeleteExpiry    int           `json:"deleteExpiry,omitempty"`
 	DeleteMode      string        `json:"deleteMode,omitempty"`
-	DomainIDs       []interface{} `json:"domainIDs,omitempty"`
+	ResyncInfo      interface{}   `json:"resyncInfo,omitempty"`
+	SiteIdentifier  string        `json:"siteIdentifier,omitempty"`
+	Interfaces      []interface{} `json:"interfaces,omitempty"`
 	EnterpriseID    string        `json:"enterpriseID,omitempty"`
 	EnterpriseName  string        `json:"enterpriseName,omitempty"`
 	EntityScope     string        `json:"entityScope,omitempty"`
-	ExternalID      string        `json:"externalID,omitempty"`
-	HypervisorIP    string        `json:"hypervisorIP,omitempty"`
-	Interfaces      []interface{} `json:"interfaces,omitempty"`
-	L2DomainIDs     []interface{} `json:"l2DomainIDs,omitempty"`
-	LastUpdatedBy   string        `json:"lastUpdatedBy,omitempty"`
-	Name            string        `json:"name,omitempty"`
+	DomainIDs       []interface{} `json:"domainIDs,omitempty"`
+	ZoneIDs         []interface{} `json:"zoneIDs,omitempty"`
+	AppName         string        `json:"appName,omitempty"`
 	OrchestrationID string        `json:"orchestrationID,omitempty"`
-	ReasonType      string        `json:"reasonType,omitempty"`
-	ResyncInfo      interface{}   `json:"resyncInfo,omitempty"`
-	SiteIdentifier  string        `json:"siteIdentifier,omitempty"`
-	Status          string        `json:"status,omitempty"`
-	SubnetIDs       []interface{} `json:"subnetIDs,omitempty"`
 	UserID          string        `json:"userID,omitempty"`
 	UserName        string        `json:"userName,omitempty"`
-	ZoneIDs         []interface{} `json:"zoneIDs,omitempty"`
+	Status          string        `json:"status,omitempty"`
+	SubnetIDs       []interface{} `json:"subnetIDs,omitempty"`
+	ExternalID      string        `json:"externalID,omitempty"`
+	HypervisorIP    string        `json:"hypervisorIP,omitempty"`
 }
 
 // NewVM returns a new *VM
@@ -118,44 +118,16 @@ func (o *VM) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Alarms retrieves the list of child Alarms of the VM
-func (o *VM) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+// VMResyncs retrieves the list of child VMResyncs of the VM
+func (o *VM) VMResyncs(info *bambou.FetchingInfo) (VMResyncsList, *bambou.Error) {
 
-	var list AlarmsList
-	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	var list VMResyncsList
+	err := bambou.CurrentSession().FetchChildren(o, VMResyncIdentity, &list, info)
 	return list, err
 }
 
-// CreateAlarm creates a new child Alarm under the VM
-func (o *VM) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the VM
-func (o *VM) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the VM
-func (o *VM) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VM
-func (o *VM) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the VM
-func (o *VM) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreateVMResync creates a new child VMResync under the VM
+func (o *VM) CreateVMResync(child *VMResync) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -174,16 +146,30 @@ func (o *VM) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// VMResyncs retrieves the list of child VMResyncs of the VM
-func (o *VM) VMResyncs(info *bambou.FetchingInfo) (VMResyncsList, *bambou.Error) {
+// Alarms retrieves the list of child Alarms of the VM
+func (o *VM) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
-	var list VMResyncsList
-	err := bambou.CurrentSession().FetchChildren(o, VMResyncIdentity, &list, info)
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
 	return list, err
 }
 
-// CreateVMResync creates a new child VMResync under the VM
-func (o *VM) CreateVMResync(child *VMResync) *bambou.Error {
+// CreateAlarm creates a new child Alarm under the VM
+func (o *VM) CreateAlarm(child *Alarm) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VM
+func (o *VM) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the VM
+func (o *VM) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -212,6 +198,20 @@ func (o *VM) VRSs(info *bambou.FetchingInfo) (VRSsList, *bambou.Error) {
 
 // CreateVRS creates a new child VRS under the VM
 func (o *VM) CreateVRS(child *VRS) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the VM
+func (o *VM) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the VM
+func (o *VM) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

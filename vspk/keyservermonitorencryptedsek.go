@@ -51,13 +51,13 @@ type KeyServerMonitorEncryptedSEK struct {
 	ParentType                                string  `json:"parentType,omitempty"`
 	Owner                                     string  `json:"owner,omitempty"`
 	NSGCertificateSerialNumber                float64 `json:"NSGCertificateSerialNumber,omitempty"`
-	AssociatedKeyServerMonitorSEKCreationTime float64 `json:"associatedKeyServerMonitorSEKCreationTime,omitempty"`
-	AssociatedKeyServerMonitorSEKID           string  `json:"associatedKeyServerMonitorSEKID,omitempty"`
-	EntityScope                               string  `json:"entityScope,omitempty"`
-	ExternalID                                string  `json:"externalID,omitempty"`
+	LastUpdatedBy                             string  `json:"lastUpdatedBy,omitempty"`
 	GatewaySecuredDataID                      string  `json:"gatewaySecuredDataID,omitempty"`
 	KeyServerCertificateSerialNumber          float64 `json:"keyServerCertificateSerialNumber,omitempty"`
-	LastUpdatedBy                             string  `json:"lastUpdatedBy,omitempty"`
+	EntityScope                               string  `json:"entityScope,omitempty"`
+	AssociatedKeyServerMonitorSEKCreationTime float64 `json:"associatedKeyServerMonitorSEKCreationTime,omitempty"`
+	AssociatedKeyServerMonitorSEKID           string  `json:"associatedKeyServerMonitorSEKID,omitempty"`
+	ExternalID                                string  `json:"externalID,omitempty"`
 }
 
 // NewKeyServerMonitorEncryptedSEK returns a new *KeyServerMonitorEncryptedSEK
@@ -102,20 +102,6 @@ func (o *KeyServerMonitorEncryptedSEK) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the KeyServerMonitorEncryptedSEK
-func (o *KeyServerMonitorEncryptedSEK) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the KeyServerMonitorEncryptedSEK
-func (o *KeyServerMonitorEncryptedSEK) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the KeyServerMonitorEncryptedSEK
 func (o *KeyServerMonitorEncryptedSEK) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -126,6 +112,20 @@ func (o *KeyServerMonitorEncryptedSEK) Metadatas(info *bambou.FetchingInfo) (Met
 
 // CreateMetadata creates a new child Metadata under the KeyServerMonitorEncryptedSEK
 func (o *KeyServerMonitorEncryptedSEK) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the KeyServerMonitorEncryptedSEK
+func (o *KeyServerMonitorEncryptedSEK) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the KeyServerMonitorEncryptedSEK
+func (o *KeyServerMonitorEncryptedSEK) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

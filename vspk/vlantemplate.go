@@ -50,12 +50,12 @@ type VLANTemplate struct {
 	ParentID                    string `json:"parentID,omitempty"`
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
+	Value                       int    `json:"value,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
 	Description                 string `json:"description,omitempty"`
 	EntityScope                 string `json:"entityScope,omitempty"`
+	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
 	ExternalID                  string `json:"externalID,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	Value                       int    `json:"value,omitempty"`
 }
 
 // NewVLANTemplate returns a new *VLANTemplate
@@ -100,20 +100,6 @@ func (o *VLANTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VLANTemplate
-func (o *VLANTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the VLANTemplate
-func (o *VLANTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the VLANTemplate
 func (o *VLANTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -124,6 +110,20 @@ func (o *VLANTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bam
 
 // CreateMetadata creates a new child Metadata under the VLANTemplate
 func (o *VLANTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VLANTemplate
+func (o *VLANTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the VLANTemplate
+func (o *VLANTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

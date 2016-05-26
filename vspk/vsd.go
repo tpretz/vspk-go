@@ -51,29 +51,29 @@ type VSD struct {
 	ParentType                  string        `json:"parentType,omitempty"`
 	Owner                       string        `json:"owner,omitempty"`
 	URL                         string        `json:"URL,omitempty"`
-	Address                     string        `json:"address,omitempty"`
-	AlreadyMarkedForUnavailable bool          `json:"alreadyMarkedForUnavailable"`
-	AverageCPUUsage             float64       `json:"averageCPUUsage,omitempty"`
-	AverageMemoryUsage          float64       `json:"averageMemoryUsage,omitempty"`
-	CurrentCPUUsage             float64       `json:"currentCPUUsage,omitempty"`
-	CurrentMemoryUsage          float64       `json:"currentMemoryUsage,omitempty"`
-	Description                 string        `json:"description,omitempty"`
-	Disks                       []interface{} `json:"disks,omitempty"`
-	EntityScope                 string        `json:"entityScope,omitempty"`
-	ExternalID                  string        `json:"externalID,omitempty"`
+	Name                        string        `json:"name,omitempty"`
+	ManagementIP                string        `json:"managementIP,omitempty"`
 	LastStateChange             int           `json:"lastStateChange,omitempty"`
 	LastUpdatedBy               string        `json:"lastUpdatedBy,omitempty"`
-	Location                    string        `json:"location,omitempty"`
-	ManagementIP                string        `json:"managementIP,omitempty"`
-	Messages                    []interface{} `json:"messages,omitempty"`
-	Mode                        string        `json:"mode,omitempty"`
-	Name                        string        `json:"name,omitempty"`
+	Address                     string        `json:"address,omitempty"`
 	PeakCPUUsage                float64       `json:"peakCPUUsage,omitempty"`
 	PeakMemoryUsage             float64       `json:"peakMemoryUsage,omitempty"`
 	PeerAddresses               string        `json:"peerAddresses,omitempty"`
+	Description                 string        `json:"description,omitempty"`
+	Messages                    []interface{} `json:"messages,omitempty"`
+	Disks                       []interface{} `json:"disks,omitempty"`
+	AlreadyMarkedForUnavailable bool          `json:"alreadyMarkedForUnavailable"`
+	UnavailableTimestamp        int           `json:"unavailableTimestamp,omitempty"`
+	EntityScope                 string        `json:"entityScope,omitempty"`
+	Location                    string        `json:"location,omitempty"`
+	Mode                        string        `json:"mode,omitempty"`
 	ProductVersion              string        `json:"productVersion,omitempty"`
 	Status                      string        `json:"status,omitempty"`
-	UnavailableTimestamp        int           `json:"unavailableTimestamp,omitempty"`
+	CurrentCPUUsage             float64       `json:"currentCPUUsage,omitempty"`
+	CurrentMemoryUsage          float64       `json:"currentMemoryUsage,omitempty"`
+	AverageCPUUsage             float64       `json:"averageCPUUsage,omitempty"`
+	AverageMemoryUsage          float64       `json:"averageMemoryUsage,omitempty"`
+	ExternalID                  string        `json:"externalID,omitempty"`
 }
 
 // NewVSD returns a new *VSD
@@ -118,6 +118,20 @@ func (o *VSD) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the VSD
+func (o *VSD) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the VSD
+func (o *VSD) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Alarms retrieves the list of child Alarms of the VSD
 func (o *VSD) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
@@ -128,34 +142,6 @@ func (o *VSD) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
 // CreateAlarm creates a new child Alarm under the VSD
 func (o *VSD) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VSDComponents retrieves the list of child VSDComponents of the VSD
-func (o *VSD) VSDComponents(info *bambou.FetchingInfo) (VSDComponentsList, *bambou.Error) {
-
-	var list VSDComponentsList
-	err := bambou.CurrentSession().FetchChildren(o, VSDComponentIdentity, &list, info)
-	return list, err
-}
-
-// CreateVSDComponent creates a new child VSDComponent under the VSD
-func (o *VSD) CreateVSDComponent(child *VSDComponent) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the VSD
-func (o *VSD) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the VSD
-func (o *VSD) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -188,16 +174,30 @@ func (o *VSD) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the VSD
-func (o *VSD) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// VSDComponents retrieves the list of child VSDComponents of the VSD
+func (o *VSD) VSDComponents(info *bambou.FetchingInfo) (VSDComponentsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list VSDComponentsList
+	err := bambou.CurrentSession().FetchChildren(o, VSDComponentIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the VSD
-func (o *VSD) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateVSDComponent creates a new child VSDComponent under the VSD
+func (o *VSD) CreateVSDComponent(child *VSDComponent) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the VSD
+func (o *VSD) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the VSD
+func (o *VSD) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

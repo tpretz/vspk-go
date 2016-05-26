@@ -50,17 +50,17 @@ type AutoDiscoveredGateway struct {
 	ParentID      string        `json:"parentID,omitempty"`
 	ParentType    string        `json:"parentType,omitempty"`
 	Owner         string        `json:"owner,omitempty"`
-	Controllers   []interface{} `json:"controllers,omitempty"`
-	Description   string        `json:"description,omitempty"`
-	EntityScope   string        `json:"entityScope,omitempty"`
-	ExternalID    string        `json:"externalID,omitempty"`
-	GatewayID     string        `json:"gatewayID,omitempty"`
-	LastUpdatedBy string        `json:"lastUpdatedBy,omitempty"`
 	Name          string        `json:"name,omitempty"`
+	LastUpdatedBy string        `json:"lastUpdatedBy,omitempty"`
+	GatewayID     string        `json:"gatewayID,omitempty"`
 	Peer          string        `json:"peer,omitempty"`
 	Personality   string        `json:"personality,omitempty"`
-	SystemID      string        `json:"systemID,omitempty"`
+	Description   string        `json:"description,omitempty"`
+	EntityScope   string        `json:"entityScope,omitempty"`
+	Controllers   []interface{} `json:"controllers,omitempty"`
 	Vtep          string        `json:"vtep,omitempty"`
+	ExternalID    string        `json:"externalID,omitempty"`
+	SystemID      string        `json:"systemID,omitempty"`
 }
 
 // NewAutoDiscoveredGateway returns a new *AutoDiscoveredGateway
@@ -105,30 +105,16 @@ func (o *AutoDiscoveredGateway) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the AutoDiscoveredGateway
-func (o *AutoDiscoveredGateway) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// WANServices retrieves the list of child WANServices of the AutoDiscoveredGateway
+func (o *AutoDiscoveredGateway) WANServices(info *bambou.FetchingInfo) (WANServicesList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list WANServicesList
+	err := bambou.CurrentSession().FetchChildren(o, WANServiceIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the AutoDiscoveredGateway
-func (o *AutoDiscoveredGateway) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the AutoDiscoveredGateway
-func (o *AutoDiscoveredGateway) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the AutoDiscoveredGateway
-func (o *AutoDiscoveredGateway) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreateWANService creates a new child WANService under the AutoDiscoveredGateway
+func (o *AutoDiscoveredGateway) CreateWANService(child *WANService) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -147,16 +133,16 @@ func (o *AutoDiscoveredGateway) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// NSPorts retrieves the list of child NSPorts of the AutoDiscoveredGateway
-func (o *AutoDiscoveredGateway) NSPorts(info *bambou.FetchingInfo) (NSPortsList, *bambou.Error) {
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the AutoDiscoveredGateway
+func (o *AutoDiscoveredGateway) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
-	var list NSPortsList
-	err := bambou.CurrentSession().FetchChildren(o, NSPortIdentity, &list, info)
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateNSPort creates a new child NSPort under the AutoDiscoveredGateway
-func (o *AutoDiscoveredGateway) CreateNSPort(child *NSPort) *bambou.Error {
+// CreateGlobalMetadata creates a new child GlobalMetadata under the AutoDiscoveredGateway
+func (o *AutoDiscoveredGateway) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -175,16 +161,30 @@ func (o *AutoDiscoveredGateway) CreatePort(child *Port) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// WANServices retrieves the list of child WANServices of the AutoDiscoveredGateway
-func (o *AutoDiscoveredGateway) WANServices(info *bambou.FetchingInfo) (WANServicesList, *bambou.Error) {
+// NSPorts retrieves the list of child NSPorts of the AutoDiscoveredGateway
+func (o *AutoDiscoveredGateway) NSPorts(info *bambou.FetchingInfo) (NSPortsList, *bambou.Error) {
 
-	var list WANServicesList
-	err := bambou.CurrentSession().FetchChildren(o, WANServiceIdentity, &list, info)
+	var list NSPortsList
+	err := bambou.CurrentSession().FetchChildren(o, NSPortIdentity, &list, info)
 	return list, err
 }
 
-// CreateWANService creates a new child WANService under the AutoDiscoveredGateway
-func (o *AutoDiscoveredGateway) CreateWANService(child *WANService) *bambou.Error {
+// CreateNSPort creates a new child NSPort under the AutoDiscoveredGateway
+func (o *AutoDiscoveredGateway) CreateNSPort(child *NSPort) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the AutoDiscoveredGateway
+func (o *AutoDiscoveredGateway) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the AutoDiscoveredGateway
+func (o *AutoDiscoveredGateway) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

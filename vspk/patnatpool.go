@@ -50,16 +50,16 @@ type PATNATPool struct {
 	ParentID              string `json:"parentID,omitempty"`
 	ParentType            string `json:"parentType,omitempty"`
 	Owner                 string `json:"owner,omitempty"`
+	Name                  string `json:"name,omitempty"`
+	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
 	AddressRange          string `json:"addressRange,omitempty"`
-	AssociatedGatewayId   string `json:"associatedGatewayId,omitempty"`
-	AssociatedGatewayType string `json:"associatedGatewayType,omitempty"`
 	DefaultPATIP          string `json:"defaultPATIP,omitempty"`
+	PermittedAction       string `json:"permittedAction,omitempty"`
 	Description           string `json:"description,omitempty"`
 	EntityScope           string `json:"entityScope,omitempty"`
+	AssociatedGatewayId   string `json:"associatedGatewayId,omitempty"`
+	AssociatedGatewayType string `json:"associatedGatewayType,omitempty"`
 	ExternalID            string `json:"externalID,omitempty"`
-	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
-	Name                  string `json:"name,omitempty"`
-	PermittedAction       string `json:"permittedAction,omitempty"`
 }
 
 // NewPATNATPool returns a new *PATNATPool
@@ -104,30 +104,16 @@ func (o *PATNATPool) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EnterprisePermissions retrieves the list of child EnterprisePermissions of the PATNATPool
-func (o *PATNATPool) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
+// NATMapEntries retrieves the list of child NATMapEntries of the PATNATPool
+func (o *PATNATPool) NATMapEntries(info *bambou.FetchingInfo) (NATMapEntriesList, *bambou.Error) {
 
-	var list EnterprisePermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
+	var list NATMapEntriesList
+	err := bambou.CurrentSession().FetchChildren(o, NATMapEntryIdentity, &list, info)
 	return list, err
 }
 
-// CreateEnterprisePermission creates a new child EnterprisePermission under the PATNATPool
-func (o *PATNATPool) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the PATNATPool
-func (o *PATNATPool) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the PATNATPool
-func (o *PATNATPool) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreateNATMapEntry creates a new child NATMapEntry under the PATNATPool
+func (o *PATNATPool) CreateNATMapEntry(child *NATMapEntry) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -146,16 +132,30 @@ func (o *PATNATPool) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// NATMapEntries retrieves the list of child NATMapEntries of the PATNATPool
-func (o *PATNATPool) NATMapEntries(info *bambou.FetchingInfo) (NATMapEntriesList, *bambou.Error) {
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the PATNATPool
+func (o *PATNATPool) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
-	var list NATMapEntriesList
-	err := bambou.CurrentSession().FetchChildren(o, NATMapEntryIdentity, &list, info)
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateNATMapEntry creates a new child NATMapEntry under the PATNATPool
-func (o *PATNATPool) CreateNATMapEntry(child *NATMapEntry) *bambou.Error {
+// CreateGlobalMetadata creates a new child GlobalMetadata under the PATNATPool
+func (o *PATNATPool) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EnterprisePermissions retrieves the list of child EnterprisePermissions of the PATNATPool
+func (o *PATNATPool) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
+
+	var list EnterprisePermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterprisePermission creates a new child EnterprisePermission under the PATNATPool
+func (o *PATNATPool) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

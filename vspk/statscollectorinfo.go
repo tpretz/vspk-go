@@ -50,13 +50,13 @@ type StatsCollectorInfo struct {
 	ParentID      string `json:"parentID,omitempty"`
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
 	AddressType   string `json:"addressType,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
-	IpAddress     string `json:"ipAddress,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
 	Port          string `json:"port,omitempty"`
+	IpAddress     string `json:"ipAddress,omitempty"`
 	ProtoBufPort  string `json:"protoBufPort,omitempty"`
+	ExternalID    string `json:"externalID,omitempty"`
 }
 
 // NewStatsCollectorInfo returns a new *StatsCollectorInfo
@@ -101,20 +101,6 @@ func (o *StatsCollectorInfo) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the StatsCollectorInfo
-func (o *StatsCollectorInfo) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the StatsCollectorInfo
-func (o *StatsCollectorInfo) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the StatsCollectorInfo
 func (o *StatsCollectorInfo) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -125,6 +111,20 @@ func (o *StatsCollectorInfo) Metadatas(info *bambou.FetchingInfo) (MetadatasList
 
 // CreateMetadata creates a new child Metadata under the StatsCollectorInfo
 func (o *StatsCollectorInfo) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the StatsCollectorInfo
+func (o *StatsCollectorInfo) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the StatsCollectorInfo
+func (o *StatsCollectorInfo) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

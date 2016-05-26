@@ -50,21 +50,21 @@ type Gateway struct {
 	ParentID          string `json:"parentID,omitempty"`
 	ParentType        string `json:"parentType,omitempty"`
 	Owner             string `json:"owner,omitempty"`
-	AutoDiscGatewayID string `json:"autoDiscGatewayID,omitempty"`
-	Description       string `json:"description,omitempty"`
-	EnterpriseID      string `json:"enterpriseID,omitempty"`
-	EntityScope       string `json:"entityScope,omitempty"`
-	ExternalID        string `json:"externalID,omitempty"`
-	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
 	Name              string `json:"name,omitempty"`
+	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
+	RedundancyGroupID string `json:"redundancyGroupID,omitempty"`
 	Peer              string `json:"peer,omitempty"`
+	TemplateID        string `json:"templateID,omitempty"`
 	Pending           bool   `json:"pending"`
 	PermittedAction   string `json:"permittedAction,omitempty"`
 	Personality       string `json:"personality,omitempty"`
-	RedundancyGroupID string `json:"redundancyGroupID,omitempty"`
-	SystemID          string `json:"systemID,omitempty"`
-	TemplateID        string `json:"templateID,omitempty"`
+	Description       string `json:"description,omitempty"`
+	EnterpriseID      string `json:"enterpriseID,omitempty"`
+	EntityScope       string `json:"entityScope,omitempty"`
 	Vtep              string `json:"vtep,omitempty"`
+	AutoDiscGatewayID string `json:"autoDiscGatewayID,omitempty"`
+	ExternalID        string `json:"externalID,omitempty"`
+	SystemID          string `json:"systemID,omitempty"`
 }
 
 // NewGateway returns a new *Gateway
@@ -111,90 +111,6 @@ func (o *Gateway) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Alarms retrieves the list of child Alarms of the Gateway
-func (o *Gateway) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
-
-	var list AlarmsList
-	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
-	return list, err
-}
-
-// CreateAlarm creates a new child Alarm under the Gateway
-func (o *Gateway) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EnterprisePermissions retrieves the list of child EnterprisePermissions of the Gateway
-func (o *Gateway) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
-
-	var list EnterprisePermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreateEnterprisePermission creates a new child EnterprisePermission under the Gateway
-func (o *Gateway) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the Gateway
-func (o *Gateway) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the Gateway
-func (o *Gateway) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Gateway
-func (o *Gateway) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the Gateway
-func (o *Gateway) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Jobs retrieves the list of child Jobs of the Gateway
-func (o *Gateway) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
-
-	var list JobsList
-	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
-	return list, err
-}
-
-// CreateJob creates a new child Job under the Gateway
-func (o *Gateway) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the Gateway
-func (o *Gateway) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the Gateway
-func (o *Gateway) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // PATNATPools retrieves the list of child PATNATPools of the Gateway
 func (o *Gateway) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *bambou.Error) {
 
@@ -223,6 +139,90 @@ func (o *Gateway) CreatePermission(child *Permission) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// WANServices retrieves the list of child WANServices of the Gateway
+func (o *Gateway) WANServices(info *bambou.FetchingInfo) (WANServicesList, *bambou.Error) {
+
+	var list WANServicesList
+	err := bambou.CurrentSession().FetchChildren(o, WANServiceIdentity, &list, info)
+	return list, err
+}
+
+// CreateWANService creates a new child WANService under the Gateway
+func (o *Gateway) CreateWANService(child *WANService) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Metadatas retrieves the list of child Metadatas of the Gateway
+func (o *Gateway) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the Gateway
+func (o *Gateway) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Alarms retrieves the list of child Alarms of the Gateway
+func (o *Gateway) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
+// CreateAlarm creates a new child Alarm under the Gateway
+func (o *Gateway) CreateAlarm(child *Alarm) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Gateway
+func (o *Gateway) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Gateway
+func (o *Gateway) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EnterprisePermissions retrieves the list of child EnterprisePermissions of the Gateway
+func (o *Gateway) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
+
+	var list EnterprisePermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterprisePermission creates a new child EnterprisePermission under the Gateway
+func (o *Gateway) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Jobs retrieves the list of child Jobs of the Gateway
+func (o *Gateway) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
+
+	var list JobsList
+	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
+	return list, err
+}
+
+// CreateJob creates a new child Job under the Gateway
+func (o *Gateway) CreateJob(child *Job) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Ports retrieves the list of child Ports of the Gateway
 func (o *Gateway) Ports(info *bambou.FetchingInfo) (PortsList, *bambou.Error) {
 
@@ -237,16 +237,16 @@ func (o *Gateway) CreatePort(child *Port) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// WANServices retrieves the list of child WANServices of the Gateway
-func (o *Gateway) WANServices(info *bambou.FetchingInfo) (WANServicesList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the Gateway
+func (o *Gateway) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list WANServicesList
-	err := bambou.CurrentSession().FetchChildren(o, WANServiceIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateWANService creates a new child WANService under the Gateway
-func (o *Gateway) CreateWANService(child *WANService) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the Gateway
+func (o *Gateway) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -50,14 +50,14 @@ type RateLimiter struct {
 	ParentID                 string `json:"parentID,omitempty"`
 	ParentType               string `json:"parentType,omitempty"`
 	Owner                    string `json:"owner,omitempty"`
-	CommittedInformationRate string `json:"committedInformationRate,omitempty"`
-	Description              string `json:"description,omitempty"`
-	EntityScope              string `json:"entityScope,omitempty"`
-	ExternalID               string `json:"externalID,omitempty"`
-	LastUpdatedBy            string `json:"lastUpdatedBy,omitempty"`
 	Name                     string `json:"name,omitempty"`
+	LastUpdatedBy            string `json:"lastUpdatedBy,omitempty"`
 	PeakBurstSize            string `json:"peakBurstSize,omitempty"`
 	PeakInformationRate      string `json:"peakInformationRate,omitempty"`
+	Description              string `json:"description,omitempty"`
+	EntityScope              string `json:"entityScope,omitempty"`
+	CommittedInformationRate string `json:"committedInformationRate,omitempty"`
+	ExternalID               string `json:"externalID,omitempty"`
 }
 
 // NewRateLimiter returns a new *RateLimiter
@@ -102,20 +102,6 @@ func (o *RateLimiter) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the RateLimiter
-func (o *RateLimiter) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the RateLimiter
-func (o *RateLimiter) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the RateLimiter
 func (o *RateLimiter) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -126,6 +112,20 @@ func (o *RateLimiter) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bamb
 
 // CreateMetadata creates a new child Metadata under the RateLimiter
 func (o *RateLimiter) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the RateLimiter
+func (o *RateLimiter) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the RateLimiter
+func (o *RateLimiter) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

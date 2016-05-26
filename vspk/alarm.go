@@ -50,19 +50,19 @@ type Alarm struct {
 	ParentID           string `json:"parentID,omitempty"`
 	ParentType         string `json:"parentType,omitempty"`
 	Owner              string `json:"owner,omitempty"`
+	Name               string `json:"name,omitempty"`
+	TargetObject       string `json:"targetObject,omitempty"`
+	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
 	Acknowledged       bool   `json:"acknowledged"`
+	Reason             string `json:"reason,omitempty"`
 	Description        string `json:"description,omitempty"`
+	Severity           string `json:"severity,omitempty"`
+	Timestamp          int    `json:"timestamp,omitempty"`
 	EnterpriseID       string `json:"enterpriseID,omitempty"`
 	EntityScope        string `json:"entityScope,omitempty"`
 	ErrorCondition     int    `json:"errorCondition,omitempty"`
-	ExternalID         string `json:"externalID,omitempty"`
-	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
-	Name               string `json:"name,omitempty"`
 	NumberOfOccurances int    `json:"numberOfOccurances,omitempty"`
-	Reason             string `json:"reason,omitempty"`
-	Severity           string `json:"severity,omitempty"`
-	TargetObject       string `json:"targetObject,omitempty"`
-	Timestamp          int    `json:"timestamp,omitempty"`
+	ExternalID         string `json:"externalID,omitempty"`
 }
 
 // NewAlarm returns a new *Alarm
@@ -107,20 +107,6 @@ func (o *Alarm) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Alarm
-func (o *Alarm) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the Alarm
-func (o *Alarm) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the Alarm
 func (o *Alarm) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -131,6 +117,20 @@ func (o *Alarm) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Err
 
 // CreateMetadata creates a new child Metadata under the Alarm
 func (o *Alarm) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Alarm
+func (o *Alarm) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Alarm
+func (o *Alarm) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -51,24 +51,24 @@ type Zone struct {
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
 	IPType                          string `json:"IPType,omitempty"`
+	MaintenanceMode                 string `json:"maintenanceMode,omitempty"`
+	Name                            string `json:"name,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Address                         string `json:"address,omitempty"`
+	TemplateID                      string `json:"templateID,omitempty"`
+	Description                     string `json:"description,omitempty"`
+	Netmask                         string `json:"netmask,omitempty"`
+	Encryption                      string `json:"encryption,omitempty"`
+	EntityScope                     string `json:"entityScope,omitempty"`
+	PolicyGroupID                   int    `json:"policyGroupID,omitempty"`
 	AssociatedApplicationID         string `json:"associatedApplicationID,omitempty"`
 	AssociatedApplicationObjectID   string `json:"associatedApplicationObjectID,omitempty"`
 	AssociatedApplicationObjectType string `json:"associatedApplicationObjectType,omitempty"`
 	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
-	Description                     string `json:"description,omitempty"`
-	Encryption                      string `json:"encryption,omitempty"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	MaintenanceMode                 string `json:"maintenanceMode,omitempty"`
-	Multicast                       string `json:"multicast,omitempty"`
-	Name                            string `json:"name,omitempty"`
-	Netmask                         string `json:"netmask,omitempty"`
-	NumberOfHostsInSubnets          int    `json:"numberOfHostsInSubnets,omitempty"`
-	PolicyGroupID                   int    `json:"policyGroupID,omitempty"`
 	PublicZone                      bool   `json:"publicZone"`
-	TemplateID                      string `json:"templateID,omitempty"`
+	Multicast                       string `json:"multicast,omitempty"`
+	NumberOfHostsInSubnets          int    `json:"numberOfHostsInSubnets,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewZone returns a new *Zone
@@ -116,72 +116,16 @@ func (o *Zone) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// DHCPOptions retrieves the list of child DHCPOptions of the Zone
-func (o *Zone) DHCPOptions(info *bambou.FetchingInfo) (DHCPOptionsList, *bambou.Error) {
+// TCAs retrieves the list of child TCAs of the Zone
+func (o *Zone) TCAs(info *bambou.FetchingInfo) (TCAsList, *bambou.Error) {
 
-	var list DHCPOptionsList
-	err := bambou.CurrentSession().FetchChildren(o, DHCPOptionIdentity, &list, info)
+	var list TCAsList
+	err := bambou.CurrentSession().FetchChildren(o, TCAIdentity, &list, info)
 	return list, err
 }
 
-// CreateDHCPOption creates a new child DHCPOption under the Zone
-func (o *Zone) CreateDHCPOption(child *DHCPOption) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the Zone
-func (o *Zone) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the Zone
-func (o *Zone) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Zone
-func (o *Zone) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the Zone
-func (o *Zone) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Groups retrieves the list of child Groups of the Zone
-func (o *Zone) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
-
-	var list GroupsList
-	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
-	return list, err
-}
-
-// CreateGroup creates a new child Group under the Zone
-func (o *Zone) CreateGroup(child *Group) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the Zone
-func (o *Zone) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the Zone
-func (o *Zone) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateTCA creates a new child TCA under the Zone
+func (o *Zone) CreateTCA(child *TCA) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -200,6 +144,76 @@ func (o *Zone) CreatePermission(child *Permission) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Metadatas retrieves the list of child Metadatas of the Zone
+func (o *Zone) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the Zone
+func (o *Zone) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// DHCPOptions retrieves the list of child DHCPOptions of the Zone
+func (o *Zone) DHCPOptions(info *bambou.FetchingInfo) (DHCPOptionsList, *bambou.Error) {
+
+	var list DHCPOptionsList
+	err := bambou.CurrentSession().FetchChildren(o, DHCPOptionIdentity, &list, info)
+	return list, err
+}
+
+// CreateDHCPOption creates a new child DHCPOption under the Zone
+func (o *Zone) CreateDHCPOption(child *DHCPOption) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Zone
+func (o *Zone) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Zone
+func (o *Zone) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VMs retrieves the list of child VMs of the Zone
+func (o *Zone) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
+
+	var list VMsList
+	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
+	return list, err
+}
+
+// CreateVM creates a new child VM under the Zone
+func (o *Zone) CreateVM(child *VM) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VMInterfaces retrieves the list of child VMInterfaces of the Zone
+func (o *Zone) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bambou.Error) {
+
+	var list VMInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, VMInterfaceIdentity, &list, info)
+	return list, err
+}
+
+// CreateVMInterface creates a new child VMInterface under the Zone
+func (o *Zone) CreateVMInterface(child *VMInterface) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // QOSs retrieves the list of child QOSs of the Zone
 func (o *Zone) QOSs(info *bambou.FetchingInfo) (QOSsList, *bambou.Error) {
 
@@ -210,6 +224,20 @@ func (o *Zone) QOSs(info *bambou.FetchingInfo) (QOSsList, *bambou.Error) {
 
 // CreateQOS creates a new child QOS under the Zone
 func (o *Zone) CreateQOS(child *QOS) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Groups retrieves the list of child Groups of the Zone
+func (o *Zone) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
+
+	var list GroupsList
+	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
+	return list, err
+}
+
+// CreateGroup creates a new child Group under the Zone
+func (o *Zone) CreateGroup(child *Group) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -256,44 +284,16 @@ func (o *Zone) CreateSubnet(child *Subnet) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// TCAs retrieves the list of child TCAs of the Zone
-func (o *Zone) TCAs(info *bambou.FetchingInfo) (TCAsList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the Zone
+func (o *Zone) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list TCAsList
-	err := bambou.CurrentSession().FetchChildren(o, TCAIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateTCA creates a new child TCA under the Zone
-func (o *Zone) CreateTCA(child *TCA) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMs retrieves the list of child VMs of the Zone
-func (o *Zone) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
-
-	var list VMsList
-	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
-	return list, err
-}
-
-// CreateVM creates a new child VM under the Zone
-func (o *Zone) CreateVM(child *VM) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMInterfaces retrieves the list of child VMInterfaces of the Zone
-func (o *Zone) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bambou.Error) {
-
-	var list VMInterfacesList
-	err := bambou.CurrentSession().FetchChildren(o, VMInterfaceIdentity, &list, info)
-	return list, err
-}
-
-// CreateVMInterface creates a new child VMInterface under the Zone
-func (o *Zone) CreateVMInterface(child *VMInterface) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the Zone
+func (o *Zone) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

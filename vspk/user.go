@@ -50,19 +50,19 @@ type User struct {
 	ParentID       string `json:"parentID,omitempty"`
 	ParentType     string `json:"parentType,omitempty"`
 	Owner          string `json:"owner,omitempty"`
-	AvatarData     string `json:"avatarData,omitempty"`
-	AvatarType     string `json:"avatarType,omitempty"`
+	ManagementMode string `json:"managementMode,omitempty"`
+	Password       string `json:"password,omitempty"`
+	LastName       string `json:"lastName,omitempty"`
+	LastUpdatedBy  string `json:"lastUpdatedBy,omitempty"`
+	FirstName      string `json:"firstName,omitempty"`
 	Disabled       bool   `json:"disabled"`
 	Email          string `json:"email,omitempty"`
 	EntityScope    string `json:"entityScope,omitempty"`
-	ExternalID     string `json:"externalID,omitempty"`
-	FirstName      string `json:"firstName,omitempty"`
-	LastName       string `json:"lastName,omitempty"`
-	LastUpdatedBy  string `json:"lastUpdatedBy,omitempty"`
-	ManagementMode string `json:"managementMode,omitempty"`
 	MobileNumber   string `json:"mobileNumber,omitempty"`
-	Password       string `json:"password,omitempty"`
 	UserName       string `json:"userName,omitempty"`
+	AvatarData     string `json:"avatarData,omitempty"`
+	AvatarType     string `json:"avatarType,omitempty"`
+	ExternalID     string `json:"externalID,omitempty"`
 }
 
 // NewUser returns a new *User
@@ -107,16 +107,16 @@ func (o *User) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the User
-func (o *User) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the User
+func (o *User) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the User
-func (o *User) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the User
+func (o *User) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -135,6 +135,20 @@ func (o *User) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VMs retrieves the list of child VMs of the User
+func (o *User) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
+
+	var list VMsList
+	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
+	return list, err
+}
+
+// CreateVM creates a new child VM under the User
+func (o *User) CreateVM(child *VM) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Groups retrieves the list of child Groups of the User
 func (o *User) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
 
@@ -149,30 +163,16 @@ func (o *User) CreateGroup(child *Group) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the User
-func (o *User) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the User
+func (o *User) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the User
-func (o *User) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMs retrieves the list of child VMs of the User
-func (o *User) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
-
-	var list VMsList
-	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
-	return list, err
-}
-
-// CreateVM creates a new child VM under the User
-func (o *User) CreateVM(child *VM) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the User
+func (o *User) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

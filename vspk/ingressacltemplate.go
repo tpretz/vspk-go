@@ -50,20 +50,20 @@ type IngressACLTemplate struct {
 	ParentID               string `json:"parentID,omitempty"`
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
+	Name                   string `json:"name,omitempty"`
+	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	Active                 bool   `json:"active"`
-	AllowL2AddressSpoof    bool   `json:"allowL2AddressSpoof"`
-	AssocAclTemplateId     string `json:"assocAclTemplateId,omitempty"`
-	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
 	DefaultAllowIP         bool   `json:"defaultAllowIP"`
 	DefaultAllowNonIP      bool   `json:"defaultAllowNonIP"`
 	Description            string `json:"description,omitempty"`
+	AllowL2AddressSpoof    bool   `json:"allowL2AddressSpoof"`
 	EntityScope            string `json:"entityScope,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	Name                   string `json:"name,omitempty"`
 	PolicyState            string `json:"policyState,omitempty"`
 	Priority               int    `json:"priority,omitempty"`
 	PriorityType           string `json:"priorityType,omitempty"`
+	AssocAclTemplateId     string `json:"assocAclTemplateId,omitempty"`
+	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 }
 
 // NewIngressACLTemplate returns a new *IngressACLTemplate
@@ -108,16 +108,16 @@ func (o *IngressACLTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the IngressACLTemplate
-func (o *IngressACLTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the IngressACLTemplate
+func (o *IngressACLTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the IngressACLTemplate
-func (o *IngressACLTemplate) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the IngressACLTemplate
+func (o *IngressACLTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -132,6 +132,20 @@ func (o *IngressACLTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalM
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the IngressACLTemplate
 func (o *IngressACLTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VMs retrieves the list of child VMs of the IngressACLTemplate
+func (o *IngressACLTemplate) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
+
+	var list VMsList
+	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
+	return list, err
+}
+
+// CreateVM creates a new child VM under the IngressACLTemplate
+func (o *IngressACLTemplate) CreateVM(child *VM) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -164,30 +178,16 @@ func (o *IngressACLTemplate) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the IngressACLTemplate
-func (o *IngressACLTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the IngressACLTemplate
+func (o *IngressACLTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the IngressACLTemplate
-func (o *IngressACLTemplate) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMs retrieves the list of child VMs of the IngressACLTemplate
-func (o *IngressACLTemplate) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
-
-	var list VMsList
-	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
-	return list, err
-}
-
-// CreateVM creates a new child VM under the IngressACLTemplate
-func (o *IngressACLTemplate) CreateVM(child *VM) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the IngressACLTemplate
+func (o *IngressACLTemplate) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

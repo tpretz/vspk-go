@@ -50,13 +50,13 @@ type NSGatewayTemplate struct {
 	ParentID                string `json:"parentID,omitempty"`
 	ParentType              string `json:"parentType,omitempty"`
 	Owner                   string `json:"owner,omitempty"`
+	Name                    string `json:"name,omitempty"`
+	LastUpdatedBy           string `json:"lastUpdatedBy,omitempty"`
 	Description             string `json:"description,omitempty"`
+	InfrastructureProfileID string `json:"infrastructureProfileID,omitempty"`
 	EnterpriseID            string `json:"enterpriseID,omitempty"`
 	EntityScope             string `json:"entityScope,omitempty"`
 	ExternalID              string `json:"externalID,omitempty"`
-	InfrastructureProfileID string `json:"infrastructureProfileID,omitempty"`
-	LastUpdatedBy           string `json:"lastUpdatedBy,omitempty"`
-	Name                    string `json:"name,omitempty"`
 }
 
 // NewNSGatewayTemplate returns a new *NSGatewayTemplate
@@ -101,20 +101,6 @@ func (o *NSGatewayTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSGatewayTemplate
-func (o *NSGatewayTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the NSGatewayTemplate
-func (o *NSGatewayTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the NSGatewayTemplate
 func (o *NSGatewayTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -125,6 +111,20 @@ func (o *NSGatewayTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList,
 
 // CreateMetadata creates a new child Metadata under the NSGatewayTemplate
 func (o *NSGatewayTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSGatewayTemplate
+func (o *NSGatewayTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the NSGatewayTemplate
+func (o *NSGatewayTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

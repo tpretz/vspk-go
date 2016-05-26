@@ -52,22 +52,22 @@ type BridgeInterface struct {
 	Owner                       string `json:"owner,omitempty"`
 	VPortID                     string `json:"VPortID,omitempty"`
 	VPortName                   string `json:"VPortName,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	Gateway                     string `json:"gateway,omitempty"`
+	Netmask                     string `json:"netmask,omitempty"`
+	NetworkName                 string `json:"networkName,omitempty"`
+	TierID                      string `json:"tierID,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	PolicyDecisionID            string `json:"policyDecisionID,omitempty"`
+	DomainID                    string `json:"domainID,omitempty"`
+	DomainName                  string `json:"domainName,omitempty"`
+	ZoneID                      string `json:"zoneID,omitempty"`
+	ZoneName                    string `json:"zoneName,omitempty"`
 	AssociatedFloatingIPAddress string `json:"associatedFloatingIPAddress,omitempty"`
 	AttachedNetworkID           string `json:"attachedNetworkID,omitempty"`
 	AttachedNetworkType         string `json:"attachedNetworkType,omitempty"`
-	DomainID                    string `json:"domainID,omitempty"`
-	DomainName                  string `json:"domainName,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
 	ExternalID                  string `json:"externalID,omitempty"`
-	Gateway                     string `json:"gateway,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	Netmask                     string `json:"netmask,omitempty"`
-	NetworkName                 string `json:"networkName,omitempty"`
-	PolicyDecisionID            string `json:"policyDecisionID,omitempty"`
-	TierID                      string `json:"tierID,omitempty"`
-	ZoneID                      string `json:"zoneID,omitempty"`
-	ZoneName                    string `json:"zoneName,omitempty"`
 }
 
 // NewBridgeInterface returns a new *BridgeInterface
@@ -112,44 +112,30 @@ func (o *BridgeInterface) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// DHCPOptions retrieves the list of child DHCPOptions of the BridgeInterface
-func (o *BridgeInterface) DHCPOptions(info *bambou.FetchingInfo) (DHCPOptionsList, *bambou.Error) {
+// TCAs retrieves the list of child TCAs of the BridgeInterface
+func (o *BridgeInterface) TCAs(info *bambou.FetchingInfo) (TCAsList, *bambou.Error) {
 
-	var list DHCPOptionsList
-	err := bambou.CurrentSession().FetchChildren(o, DHCPOptionIdentity, &list, info)
+	var list TCAsList
+	err := bambou.CurrentSession().FetchChildren(o, TCAIdentity, &list, info)
 	return list, err
 }
 
-// CreateDHCPOption creates a new child DHCPOption under the BridgeInterface
-func (o *BridgeInterface) CreateDHCPOption(child *DHCPOption) *bambou.Error {
+// CreateTCA creates a new child TCA under the BridgeInterface
+func (o *BridgeInterface) CreateTCA(child *TCA) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// EventLogs retrieves the list of child EventLogs of the BridgeInterface
-func (o *BridgeInterface) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// RedirectionTargets retrieves the list of child RedirectionTargets of the BridgeInterface
+func (o *BridgeInterface) RedirectionTargets(info *bambou.FetchingInfo) (RedirectionTargetsList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list RedirectionTargetsList
+	err := bambou.CurrentSession().FetchChildren(o, RedirectionTargetIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the BridgeInterface
-func (o *BridgeInterface) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the BridgeInterface
-func (o *BridgeInterface) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the BridgeInterface
-func (o *BridgeInterface) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreateRedirectionTarget creates a new child RedirectionTarget under the BridgeInterface
+func (o *BridgeInterface) CreateRedirectionTarget(child *RedirectionTarget) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -164,6 +150,34 @@ func (o *BridgeInterface) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *
 
 // CreateMetadata creates a new child Metadata under the BridgeInterface
 func (o *BridgeInterface) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// DHCPOptions retrieves the list of child DHCPOptions of the BridgeInterface
+func (o *BridgeInterface) DHCPOptions(info *bambou.FetchingInfo) (DHCPOptionsList, *bambou.Error) {
+
+	var list DHCPOptionsList
+	err := bambou.CurrentSession().FetchChildren(o, DHCPOptionIdentity, &list, info)
+	return list, err
+}
+
+// CreateDHCPOption creates a new child DHCPOption under the BridgeInterface
+func (o *BridgeInterface) CreateDHCPOption(child *DHCPOption) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the BridgeInterface
+func (o *BridgeInterface) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the BridgeInterface
+func (o *BridgeInterface) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -210,20 +224,6 @@ func (o *BridgeInterface) CreateQOS(child *QOS) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// RedirectionTargets retrieves the list of child RedirectionTargets of the BridgeInterface
-func (o *BridgeInterface) RedirectionTargets(info *bambou.FetchingInfo) (RedirectionTargetsList, *bambou.Error) {
-
-	var list RedirectionTargetsList
-	err := bambou.CurrentSession().FetchChildren(o, RedirectionTargetIdentity, &list, info)
-	return list, err
-}
-
-// CreateRedirectionTarget creates a new child RedirectionTarget under the BridgeInterface
-func (o *BridgeInterface) CreateRedirectionTarget(child *RedirectionTarget) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Statistics retrieves the list of child Statistics of the BridgeInterface
 func (o *BridgeInterface) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
 
@@ -238,16 +238,16 @@ func (o *BridgeInterface) CreateStatistics(child *Statistics) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// TCAs retrieves the list of child TCAs of the BridgeInterface
-func (o *BridgeInterface) TCAs(info *bambou.FetchingInfo) (TCAsList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the BridgeInterface
+func (o *BridgeInterface) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list TCAsList
-	err := bambou.CurrentSession().FetchChildren(o, TCAIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateTCA creates a new child TCA under the BridgeInterface
-func (o *BridgeInterface) CreateTCA(child *TCA) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the BridgeInterface
+func (o *BridgeInterface) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

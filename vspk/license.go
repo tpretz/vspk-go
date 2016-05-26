@@ -50,35 +50,35 @@ type License struct {
 	ParentID          string  `json:"parentID,omitempty"`
 	ParentType        string  `json:"parentType,omitempty"`
 	Owner             string  `json:"owner,omitempty"`
+	MajorRelease      int     `json:"majorRelease,omitempty"`
+	LastUpdatedBy     string  `json:"lastUpdatedBy,omitempty"`
+	Phone             string  `json:"phone,omitempty"`
+	License           string  `json:"license,omitempty"`
+	LicenseEncryption string  `json:"licenseEncryption,omitempty"`
+	LicenseID         int     `json:"licenseID,omitempty"`
+	LicenseType       string  `json:"licenseType,omitempty"`
+	MinorRelease      int     `json:"minorRelease,omitempty"`
+	Zip               string  `json:"zip,omitempty"`
+	City              string  `json:"city,omitempty"`
 	AllowedCPEsCount  int     `json:"allowedCPEsCount,omitempty"`
 	AllowedNICsCount  int     `json:"allowedNICsCount,omitempty"`
 	AllowedVMsCount   int     `json:"allowedVMsCount,omitempty"`
 	AllowedVRSGsCount int     `json:"allowedVRSGsCount,omitempty"`
 	AllowedVRSsCount  int     `json:"allowedVRSsCount,omitempty"`
-	City              string  `json:"city,omitempty"`
-	Company           string  `json:"company,omitempty"`
-	Country           string  `json:"country,omitempty"`
-	CustomerKey       string  `json:"customerKey,omitempty"`
 	Email             string  `json:"email,omitempty"`
 	EncryptionMode    bool    `json:"encryptionMode"`
 	EntityScope       string  `json:"entityScope,omitempty"`
-	ExpirationDate    float64 `json:"expirationDate,omitempty"`
-	ExternalID        string  `json:"externalID,omitempty"`
-	IsClusterLicense  bool    `json:"isClusterLicense"`
-	LastUpdatedBy     string  `json:"lastUpdatedBy,omitempty"`
-	License           string  `json:"license,omitempty"`
-	LicenseEncryption string  `json:"licenseEncryption,omitempty"`
-	LicenseID         int     `json:"licenseID,omitempty"`
-	LicenseType       string  `json:"licenseType,omitempty"`
-	MajorRelease      int     `json:"majorRelease,omitempty"`
-	MinorRelease      int     `json:"minorRelease,omitempty"`
-	Phone             string  `json:"phone,omitempty"`
+	Company           string  `json:"company,omitempty"`
+	Country           string  `json:"country,omitempty"`
 	ProductVersion    string  `json:"productVersion,omitempty"`
 	Provider          string  `json:"provider,omitempty"`
+	IsClusterLicense  bool    `json:"isClusterLicense"`
+	UserName          string  `json:"userName,omitempty"`
 	State             string  `json:"state,omitempty"`
 	Street            string  `json:"street,omitempty"`
-	UserName          string  `json:"userName,omitempty"`
-	Zip               string  `json:"zip,omitempty"`
+	CustomerKey       string  `json:"customerKey,omitempty"`
+	ExpirationDate    float64 `json:"expirationDate,omitempty"`
+	ExternalID        string  `json:"externalID,omitempty"`
 }
 
 // NewLicense returns a new *License
@@ -123,16 +123,16 @@ func (o *License) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the License
-func (o *License) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the License
+func (o *License) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the License
-func (o *License) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the License
+func (o *License) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -151,16 +151,16 @@ func (o *License) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the License
-func (o *License) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the License
+func (o *License) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the License
-func (o *License) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the License
+func (o *License) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

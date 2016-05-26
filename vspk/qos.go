@@ -50,33 +50,33 @@ type QOS struct {
 	ParentID                               string `json:"parentID,omitempty"`
 	ParentType                             string `json:"parentType,omitempty"`
 	Owner                                  string `json:"owner,omitempty"`
-	BUMCommittedBurstSize                  string `json:"BUMCommittedBurstSize,omitempty"`
-	BUMCommittedInformationRate            string `json:"BUMCommittedInformationRate,omitempty"`
-	BUMPeakBurstSize                       string `json:"BUMPeakBurstSize,omitempty"`
-	BUMPeakInformationRate                 string `json:"BUMPeakInformationRate,omitempty"`
-	BUMRateLimitingActive                  bool   `json:"BUMRateLimitingActive"`
 	FIPCommittedBurstSize                  string `json:"FIPCommittedBurstSize,omitempty"`
 	FIPCommittedInformationRate            string `json:"FIPCommittedInformationRate,omitempty"`
 	FIPPeakBurstSize                       string `json:"FIPPeakBurstSize,omitempty"`
 	FIPPeakInformationRate                 string `json:"FIPPeakInformationRate,omitempty"`
 	FIPRateLimitingActive                  bool   `json:"FIPRateLimitingActive"`
+	BUMCommittedBurstSize                  string `json:"BUMCommittedBurstSize,omitempty"`
+	BUMCommittedInformationRate            string `json:"BUMCommittedInformationRate,omitempty"`
+	BUMPeakBurstSize                       string `json:"BUMPeakBurstSize,omitempty"`
+	BUMPeakInformationRate                 string `json:"BUMPeakInformationRate,omitempty"`
+	BUMRateLimitingActive                  bool   `json:"BUMRateLimitingActive"`
+	Name                                   string `json:"name,omitempty"`
+	LastUpdatedBy                          string `json:"lastUpdatedBy,omitempty"`
+	RateLimitingActive                     bool   `json:"rateLimitingActive"`
 	Active                                 bool   `json:"active"`
+	Peak                                   string `json:"peak,omitempty"`
+	ServiceClass                           string `json:"serviceClass,omitempty"`
+	Description                            string `json:"description,omitempty"`
+	RewriteForwardingClass                 bool   `json:"rewriteForwardingClass"`
+	EntityScope                            string `json:"entityScope,omitempty"`
+	CommittedBurstSize                     string `json:"committedBurstSize,omitempty"`
+	CommittedInformationRate               string `json:"committedInformationRate,omitempty"`
+	TrustedForwardingClass                 bool   `json:"trustedForwardingClass"`
 	AssocQosId                             string `json:"assocQosId,omitempty"`
 	AssociatedDSCPForwardingClassTableID   string `json:"associatedDSCPForwardingClassTableID,omitempty"`
 	AssociatedDSCPForwardingClassTableName string `json:"associatedDSCPForwardingClassTableName,omitempty"`
 	Burst                                  string `json:"burst,omitempty"`
-	CommittedBurstSize                     string `json:"committedBurstSize,omitempty"`
-	CommittedInformationRate               string `json:"committedInformationRate,omitempty"`
-	Description                            string `json:"description,omitempty"`
-	EntityScope                            string `json:"entityScope,omitempty"`
 	ExternalID                             string `json:"externalID,omitempty"`
-	LastUpdatedBy                          string `json:"lastUpdatedBy,omitempty"`
-	Name                                   string `json:"name,omitempty"`
-	Peak                                   string `json:"peak,omitempty"`
-	RateLimitingActive                     bool   `json:"rateLimitingActive"`
-	RewriteForwardingClass                 bool   `json:"rewriteForwardingClass"`
-	ServiceClass                           string `json:"serviceClass,omitempty"`
-	TrustedForwardingClass                 bool   `json:"trustedForwardingClass"`
 }
 
 // NewQOS returns a new *QOS
@@ -121,16 +121,16 @@ func (o *QOS) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the QOS
-func (o *QOS) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the QOS
+func (o *QOS) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the QOS
-func (o *QOS) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the QOS
+func (o *QOS) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -149,20 +149,6 @@ func (o *QOS) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the QOS
-func (o *QOS) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the QOS
-func (o *QOS) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // VMs retrieves the list of child VMs of the QOS
 func (o *QOS) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
 
@@ -173,6 +159,20 @@ func (o *QOS) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
 
 // CreateVM creates a new child VM under the QOS
 func (o *QOS) CreateVM(child *VM) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the QOS
+func (o *QOS) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the QOS
+func (o *QOS) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

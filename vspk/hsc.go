@@ -50,30 +50,30 @@ type HSC struct {
 	ParentID                    string        `json:"parentID,omitempty"`
 	ParentType                  string        `json:"parentType,omitempty"`
 	Owner                       string        `json:"owner,omitempty"`
-	Address                     string        `json:"address,omitempty"`
-	AlreadyMarkedForUnavailable bool          `json:"alreadyMarkedForUnavailable"`
-	AverageCPUUsage             float64       `json:"averageCPUUsage,omitempty"`
-	AverageMemoryUsage          float64       `json:"averageMemoryUsage,omitempty"`
-	CurrentCPUUsage             float64       `json:"currentCPUUsage,omitempty"`
-	CurrentMemoryUsage          float64       `json:"currentMemoryUsage,omitempty"`
-	Description                 string        `json:"description,omitempty"`
-	Disks                       []interface{} `json:"disks,omitempty"`
-	EntityScope                 string        `json:"entityScope,omitempty"`
-	ExternalID                  string        `json:"externalID,omitempty"`
+	Name                        string        `json:"name,omitempty"`
+	ManagementIP                string        `json:"managementIP,omitempty"`
 	LastStateChange             int           `json:"lastStateChange,omitempty"`
 	LastUpdatedBy               string        `json:"lastUpdatedBy,omitempty"`
-	Location                    string        `json:"location,omitempty"`
-	ManagementIP                string        `json:"managementIP,omitempty"`
-	Messages                    []interface{} `json:"messages,omitempty"`
-	Model                       string        `json:"model,omitempty"`
-	Name                        string        `json:"name,omitempty"`
+	Address                     string        `json:"address,omitempty"`
 	PeakCPUUsage                float64       `json:"peakCPUUsage,omitempty"`
 	PeakMemoryUsage             float64       `json:"peakMemoryUsage,omitempty"`
-	ProductVersion              string        `json:"productVersion,omitempty"`
-	Status                      string        `json:"status,omitempty"`
-	Type                        string        `json:"type,omitempty"`
+	Description                 string        `json:"description,omitempty"`
+	Messages                    []interface{} `json:"messages,omitempty"`
+	Disks                       []interface{} `json:"disks,omitempty"`
+	AlreadyMarkedForUnavailable bool          `json:"alreadyMarkedForUnavailable"`
 	UnavailableTimestamp        int           `json:"unavailableTimestamp,omitempty"`
+	EntityScope                 string        `json:"entityScope,omitempty"`
+	Location                    string        `json:"location,omitempty"`
+	Model                       string        `json:"model,omitempty"`
+	ProductVersion              string        `json:"productVersion,omitempty"`
 	Vsds                        []interface{} `json:"vsds,omitempty"`
+	Status                      string        `json:"status,omitempty"`
+	CurrentCPUUsage             float64       `json:"currentCPUUsage,omitempty"`
+	CurrentMemoryUsage          float64       `json:"currentMemoryUsage,omitempty"`
+	AverageCPUUsage             float64       `json:"averageCPUUsage,omitempty"`
+	AverageMemoryUsage          float64       `json:"averageMemoryUsage,omitempty"`
+	ExternalID                  string        `json:"externalID,omitempty"`
+	Type                        string        `json:"type,omitempty"`
 }
 
 // NewHSC returns a new *HSC
@@ -118,16 +118,16 @@ func (o *HSC) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Alarms retrieves the list of child Alarms of the HSC
-func (o *HSC) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the HSC
+func (o *HSC) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list AlarmsList
-	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateAlarm creates a new child Alarm under the HSC
-func (o *HSC) CreateAlarm(child *Alarm) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the HSC
+func (o *HSC) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -146,16 +146,16 @@ func (o *HSC) CreateBGPPeer(child *BGPPeer) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// EventLogs retrieves the list of child EventLogs of the HSC
-func (o *HSC) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Alarms retrieves the list of child Alarms of the HSC
+func (o *HSC) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the HSC
-func (o *HSC) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateAlarm creates a new child Alarm under the HSC
+func (o *HSC) CreateAlarm(child *Alarm) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -188,20 +188,6 @@ func (o *HSC) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the HSC
-func (o *HSC) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the HSC
-func (o *HSC) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // MonitoringPorts retrieves the list of child MonitoringPorts of the HSC
 func (o *HSC) MonitoringPorts(info *bambou.FetchingInfo) (MonitoringPortsList, *bambou.Error) {
 
@@ -226,6 +212,20 @@ func (o *HSC) VRSs(info *bambou.FetchingInfo) (VRSsList, *bambou.Error) {
 
 // CreateVRS creates a new child VRS under the HSC
 func (o *HSC) CreateVRS(child *VRS) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the HSC
+func (o *HSC) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the HSC
+func (o *HSC) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

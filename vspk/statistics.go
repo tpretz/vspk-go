@@ -50,11 +50,11 @@ type Statistics struct {
 	ParentID           string      `json:"parentID,omitempty"`
 	ParentType         string      `json:"parentType,omitempty"`
 	Owner              string      `json:"owner,omitempty"`
+	Version            int         `json:"version,omitempty"`
 	EndTime            int         `json:"endTime,omitempty"`
-	NumberOfDataPoints int         `json:"numberOfDataPoints,omitempty"`
 	StartTime          int         `json:"startTime,omitempty"`
 	StatsData          interface{} `json:"statsData,omitempty"`
-	Version            int         `json:"version,omitempty"`
+	NumberOfDataPoints int         `json:"numberOfDataPoints,omitempty"`
 }
 
 // NewStatistics returns a new *Statistics
@@ -99,20 +99,6 @@ func (o *Statistics) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Statistics
-func (o *Statistics) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the Statistics
-func (o *Statistics) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the Statistics
 func (o *Statistics) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -123,6 +109,20 @@ func (o *Statistics) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambo
 
 // CreateMetadata creates a new child Metadata under the Statistics
 func (o *Statistics) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Statistics
+func (o *Statistics) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Statistics
+func (o *Statistics) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

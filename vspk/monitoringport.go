@@ -50,16 +50,16 @@ type MonitoringPort struct {
 	ParentID        string `json:"parentID,omitempty"`
 	ParentType      string `json:"parentType,omitempty"`
 	Owner           string `json:"owner,omitempty"`
+	Name            string `json:"name,omitempty"`
+	LastStateChange int    `json:"lastStateChange,omitempty"`
 	Access          bool   `json:"access"`
 	Description     string `json:"description,omitempty"`
-	EntityScope     string `json:"entityScope,omitempty"`
-	ExternalID      string `json:"externalID,omitempty"`
-	LastStateChange int    `json:"lastStateChange,omitempty"`
-	Name            string `json:"name,omitempty"`
 	ResiliencyState string `json:"resiliencyState,omitempty"`
 	Resilient       bool   `json:"resilient"`
-	State           string `json:"state,omitempty"`
+	EntityScope     string `json:"entityScope,omitempty"`
 	Uplink          bool   `json:"uplink"`
+	State           string `json:"state,omitempty"`
+	ExternalID      string `json:"externalID,omitempty"`
 }
 
 // NewMonitoringPort returns a new *MonitoringPort
@@ -104,20 +104,6 @@ func (o *MonitoringPort) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the MonitoringPort
-func (o *MonitoringPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the MonitoringPort
-func (o *MonitoringPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the MonitoringPort
 func (o *MonitoringPort) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -128,6 +114,20 @@ func (o *MonitoringPort) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *b
 
 // CreateMetadata creates a new child Metadata under the MonitoringPort
 func (o *MonitoringPort) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the MonitoringPort
+func (o *MonitoringPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the MonitoringPort
+func (o *MonitoringPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

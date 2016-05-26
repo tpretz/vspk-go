@@ -51,13 +51,13 @@ type StaticRoute struct {
 	ParentType         string `json:"parentType,omitempty"`
 	Owner              string `json:"owner,omitempty"`
 	IPType             string `json:"IPType,omitempty"`
-	Address            string `json:"address,omitempty"`
-	EntityScope        string `json:"entityScope,omitempty"`
-	ExternalID         string `json:"externalID,omitempty"`
 	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
+	Address            string `json:"address,omitempty"`
 	Netmask            string `json:"netmask,omitempty"`
 	NextHopIp          string `json:"nextHopIp,omitempty"`
+	EntityScope        string `json:"entityScope,omitempty"`
 	RouteDistinguisher string `json:"routeDistinguisher,omitempty"`
+	ExternalID         string `json:"externalID,omitempty"`
 }
 
 // NewStaticRoute returns a new *StaticRoute
@@ -102,16 +102,16 @@ func (o *StaticRoute) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the StaticRoute
-func (o *StaticRoute) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the StaticRoute
+func (o *StaticRoute) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the StaticRoute
-func (o *StaticRoute) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the StaticRoute
+func (o *StaticRoute) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -130,16 +130,16 @@ func (o *StaticRoute) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the StaticRoute
-func (o *StaticRoute) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the StaticRoute
+func (o *StaticRoute) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the StaticRoute
-func (o *StaticRoute) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the StaticRoute
+func (o *StaticRoute) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

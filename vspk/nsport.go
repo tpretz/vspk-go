@@ -51,22 +51,22 @@ type NSPort struct {
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
 	VLANRange                   string `json:"VLANRange,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	TemplateID                  string `json:"templateID,omitempty"`
+	PermittedAction             string `json:"permittedAction,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	PhysicalName                string `json:"physicalName,omitempty"`
+	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	PortType                    string `json:"portType,omitempty"`
+	UseUserMnemonic             bool   `json:"useUserMnemonic"`
+	UserMnemonic                string `json:"userMnemonic,omitempty"`
 	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
 	AssociatedRedundantPortID   string `json:"associatedRedundantPortID,omitempty"`
 	AssociatedVSCProfileID      string `json:"associatedVSCProfileID,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
-	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	PermittedAction             string `json:"permittedAction,omitempty"`
-	PhysicalName                string `json:"physicalName,omitempty"`
-	PortType                    string `json:"portType,omitempty"`
 	Status                      string `json:"status,omitempty"`
-	TemplateID                  string `json:"templateID,omitempty"`
-	UseUserMnemonic             bool   `json:"useUserMnemonic"`
-	UserMnemonic                string `json:"userMnemonic,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewNSPort returns a new *NSPort
@@ -111,58 +111,16 @@ func (o *NSPort) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Alarms retrieves the list of child Alarms of the NSPort
-func (o *NSPort) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+// Permissions retrieves the list of child Permissions of the NSPort
+func (o *NSPort) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
 
-	var list AlarmsList
-	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	var list PermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
 	return list, err
 }
 
-// CreateAlarm creates a new child Alarm under the NSPort
-func (o *NSPort) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EnterprisePermissions retrieves the list of child EnterprisePermissions of the NSPort
-func (o *NSPort) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
-
-	var list EnterprisePermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreateEnterprisePermission creates a new child EnterprisePermission under the NSPort
-func (o *NSPort) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the NSPort
-func (o *NSPort) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the NSPort
-func (o *NSPort) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSPort
-func (o *NSPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the NSPort
-func (o *NSPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreatePermission creates a new child Permission under the NSPort
+func (o *NSPort) CreatePermission(child *Permission) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -181,6 +139,62 @@ func (o *NSPort) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VLANs retrieves the list of child VLANs of the NSPort
+func (o *NSPort) VLANs(info *bambou.FetchingInfo) (VLANsList, *bambou.Error) {
+
+	var list VLANsList
+	err := bambou.CurrentSession().FetchChildren(o, VLANIdentity, &list, info)
+	return list, err
+}
+
+// CreateVLAN creates a new child VLAN under the NSPort
+func (o *NSPort) CreateVLAN(child *VLAN) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Alarms retrieves the list of child Alarms of the NSPort
+func (o *NSPort) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
+// CreateAlarm creates a new child Alarm under the NSPort
+func (o *NSPort) CreateAlarm(child *Alarm) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSPort
+func (o *NSPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the NSPort
+func (o *NSPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EnterprisePermissions retrieves the list of child EnterprisePermissions of the NSPort
+func (o *NSPort) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
+
+	var list EnterprisePermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterprisePermission creates a new child EnterprisePermission under the NSPort
+func (o *NSPort) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // NSPortStaticConfigurations retrieves the list of child NSPortStaticConfigurations of the NSPort
 func (o *NSPort) NSPortStaticConfigurations(info *bambou.FetchingInfo) (NSPortStaticConfigurationsList, *bambou.Error) {
 
@@ -195,30 +209,16 @@ func (o *NSPort) CreateNSPortStaticConfiguration(child *NSPortStaticConfiguratio
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Permissions retrieves the list of child Permissions of the NSPort
-func (o *NSPort) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the NSPort
+func (o *NSPort) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list PermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreatePermission creates a new child Permission under the NSPort
-func (o *NSPort) CreatePermission(child *Permission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VLANs retrieves the list of child VLANs of the NSPort
-func (o *NSPort) VLANs(info *bambou.FetchingInfo) (VLANsList, *bambou.Error) {
-
-	var list VLANsList
-	err := bambou.CurrentSession().FetchChildren(o, VLANIdentity, &list, info)
-	return list, err
-}
-
-// CreateVLAN creates a new child VLAN under the NSPort
-func (o *NSPort) CreateVLAN(child *VLAN) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the NSPort
+func (o *NSPort) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

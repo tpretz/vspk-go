@@ -51,27 +51,27 @@ type NSGateway struct {
 	ParentType                         string `json:"parentType,omitempty"`
 	Owner                              string `json:"owner,omitempty"`
 	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
-	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
-	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
-	AutoDiscGatewayID                  string `json:"autoDiscGatewayID,omitempty"`
-	BootstrapID                        string `json:"bootstrapID,omitempty"`
-	BootstrapStatus                    string `json:"bootstrapStatus,omitempty"`
-	ConfigurationReloadState           string `json:"configurationReloadState,omitempty"`
-	ConfigurationStatus                string `json:"configurationStatus,omitempty"`
-	DatapathID                         string `json:"datapathID,omitempty"`
-	Description                        string `json:"description,omitempty"`
-	EnterpriseID                       string `json:"enterpriseID,omitempty"`
-	EntityScope                        string `json:"entityScope,omitempty"`
-	ExternalID                         string `json:"externalID,omitempty"`
-	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
-	LocationID                         string `json:"locationID,omitempty"`
 	Name                               string `json:"name,omitempty"`
+	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
+	DatapathID                         string `json:"datapathID,omitempty"`
+	RedundancyGroupID                  string `json:"redundancyGroupID,omitempty"`
+	TemplateID                         string `json:"templateID,omitempty"`
 	Pending                            bool   `json:"pending"`
 	PermittedAction                    string `json:"permittedAction,omitempty"`
 	Personality                        string `json:"personality,omitempty"`
-	RedundancyGroupID                  string `json:"redundancyGroupID,omitempty"`
+	Description                        string `json:"description,omitempty"`
+	EnterpriseID                       string `json:"enterpriseID,omitempty"`
+	EntityScope                        string `json:"entityScope,omitempty"`
+	LocationID                         string `json:"locationID,omitempty"`
+	ConfigurationReloadState           string `json:"configurationReloadState,omitempty"`
+	ConfigurationStatus                string `json:"configurationStatus,omitempty"`
+	BootstrapID                        string `json:"bootstrapID,omitempty"`
+	BootstrapStatus                    string `json:"bootstrapStatus,omitempty"`
+	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
+	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
+	AutoDiscGatewayID                  string `json:"autoDiscGatewayID,omitempty"`
+	ExternalID                         string `json:"externalID,omitempty"`
 	SystemID                           string `json:"systemID,omitempty"`
-	TemplateID                         string `json:"templateID,omitempty"`
 }
 
 // NewNSGateway returns a new *NSGateway
@@ -116,6 +116,48 @@ func (o *NSGateway) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// PATNATPools retrieves the list of child PATNATPools of the NSGateway
+func (o *NSGateway) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *bambou.Error) {
+
+	var list PATNATPoolsList
+	err := bambou.CurrentSession().FetchChildren(o, PATNATPoolIdentity, &list, info)
+	return list, err
+}
+
+// CreatePATNATPool creates a new child PATNATPool under the NSGateway
+func (o *NSGateway) CreatePATNATPool(child *PATNATPool) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Permissions retrieves the list of child Permissions of the NSGateway
+func (o *NSGateway) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
+
+	var list PermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreatePermission creates a new child Permission under the NSGateway
+func (o *NSGateway) CreatePermission(child *Permission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Metadatas retrieves the list of child Metadatas of the NSGateway
+func (o *NSGateway) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the NSGateway
+func (o *NSGateway) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Alarms retrieves the list of child Alarms of the NSGateway
 func (o *NSGateway) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
@@ -126,62 +168,6 @@ func (o *NSGateway) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error
 
 // CreateAlarm creates a new child Alarm under the NSGateway
 func (o *NSGateway) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Bootstraps retrieves the list of child Bootstraps of the NSGateway
-func (o *NSGateway) Bootstraps(info *bambou.FetchingInfo) (BootstrapsList, *bambou.Error) {
-
-	var list BootstrapsList
-	err := bambou.CurrentSession().FetchChildren(o, BootstrapIdentity, &list, info)
-	return list, err
-}
-
-// CreateBootstrap creates a new child Bootstrap under the NSGateway
-func (o *NSGateway) CreateBootstrap(child *Bootstrap) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// BootstrapActivations retrieves the list of child BootstrapActivations of the NSGateway
-func (o *NSGateway) BootstrapActivations(info *bambou.FetchingInfo) (BootstrapActivationsList, *bambou.Error) {
-
-	var list BootstrapActivationsList
-	err := bambou.CurrentSession().FetchChildren(o, BootstrapActivationIdentity, &list, info)
-	return list, err
-}
-
-// CreateBootstrapActivation creates a new child BootstrapActivation under the NSGateway
-func (o *NSGateway) CreateBootstrapActivation(child *BootstrapActivation) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EnterprisePermissions retrieves the list of child EnterprisePermissions of the NSGateway
-func (o *NSGateway) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
-
-	var list EnterprisePermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreateEnterprisePermission creates a new child EnterprisePermission under the NSGateway
-func (o *NSGateway) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the NSGateway
-func (o *NSGateway) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the NSGateway
-func (o *NSGateway) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -214,6 +200,20 @@ func (o *NSGateway) CreateInfrastructureConfig(child *InfrastructureConfig) *bam
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// EnterprisePermissions retrieves the list of child EnterprisePermissions of the NSGateway
+func (o *NSGateway) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
+
+	var list EnterprisePermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterprisePermission creates a new child EnterprisePermission under the NSGateway
+func (o *NSGateway) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Jobs retrieves the list of child Jobs of the NSGateway
 func (o *NSGateway) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
 
@@ -242,16 +242,30 @@ func (o *NSGateway) CreateLocation(child *Location) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the NSGateway
-func (o *NSGateway) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// Bootstraps retrieves the list of child Bootstraps of the NSGateway
+func (o *NSGateway) Bootstraps(info *bambou.FetchingInfo) (BootstrapsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list BootstrapsList
+	err := bambou.CurrentSession().FetchChildren(o, BootstrapIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the NSGateway
-func (o *NSGateway) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateBootstrap creates a new child Bootstrap under the NSGateway
+func (o *NSGateway) CreateBootstrap(child *Bootstrap) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// BootstrapActivations retrieves the list of child BootstrapActivations of the NSGateway
+func (o *NSGateway) BootstrapActivations(info *bambou.FetchingInfo) (BootstrapActivationsList, *bambou.Error) {
+
+	var list BootstrapActivationsList
+	err := bambou.CurrentSession().FetchChildren(o, BootstrapActivationIdentity, &list, info)
+	return list, err
+}
+
+// CreateBootstrapActivation creates a new child BootstrapActivation under the NSGateway
+func (o *NSGateway) CreateBootstrapActivation(child *BootstrapActivation) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -270,30 +284,16 @@ func (o *NSGateway) CreateNSPort(child *NSPort) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// PATNATPools retrieves the list of child PATNATPools of the NSGateway
-func (o *NSGateway) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the NSGateway
+func (o *NSGateway) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list PATNATPoolsList
-	err := bambou.CurrentSession().FetchChildren(o, PATNATPoolIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreatePATNATPool creates a new child PATNATPool under the NSGateway
-func (o *NSGateway) CreatePATNATPool(child *PATNATPool) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Permissions retrieves the list of child Permissions of the NSGateway
-func (o *NSGateway) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
-
-	var list PermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreatePermission creates a new child Permission under the NSGateway
-func (o *NSGateway) CreatePermission(child *Permission) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the NSGateway
+func (o *NSGateway) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

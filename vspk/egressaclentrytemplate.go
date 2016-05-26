@@ -51,30 +51,30 @@ type EgressACLEntryTemplate struct {
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
 	DSCP                            string `json:"DSCP,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Action                          string `json:"action,omitempty"`
 	AddressOverride                 string `json:"addressOverride,omitempty"`
+	Reflexive                       bool   `json:"reflexive"`
+	Description                     string `json:"description,omitempty"`
+	DestinationPort                 string `json:"destinationPort,omitempty"`
+	NetworkID                       string `json:"networkID,omitempty"`
+	NetworkType                     string `json:"networkType,omitempty"`
+	FlowLoggingEnabled              bool   `json:"flowLoggingEnabled"`
+	EntityScope                     string `json:"entityScope,omitempty"`
+	LocationID                      string `json:"locationID,omitempty"`
+	LocationType                    string `json:"locationType,omitempty"`
+	PolicyState                     string `json:"policyState,omitempty"`
+	SourcePort                      string `json:"sourcePort,omitempty"`
+	Priority                        int    `json:"priority,omitempty"`
+	Protocol                        string `json:"protocol,omitempty"`
 	AssociatedApplicationID         string `json:"associatedApplicationID,omitempty"`
 	AssociatedApplicationObjectID   string `json:"associatedApplicationObjectID,omitempty"`
 	AssociatedApplicationObjectType string `json:"associatedApplicationObjectType,omitempty"`
 	AssociatedLiveEntityID          string `json:"associatedLiveEntityID,omitempty"`
-	Description                     string `json:"description,omitempty"`
-	DestinationPort                 string `json:"destinationPort,omitempty"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	EtherType                       string `json:"etherType,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
-	FlowLoggingEnabled              bool   `json:"flowLoggingEnabled"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	LocationID                      string `json:"locationID,omitempty"`
-	LocationType                    string `json:"locationType,omitempty"`
-	NetworkID                       string `json:"networkID,omitempty"`
-	NetworkType                     string `json:"networkType,omitempty"`
-	PolicyState                     string `json:"policyState,omitempty"`
-	Priority                        int    `json:"priority,omitempty"`
-	Protocol                        string `json:"protocol,omitempty"`
-	Reflexive                       bool   `json:"reflexive"`
-	SourcePort                      string `json:"sourcePort,omitempty"`
 	StatsID                         string `json:"statsID,omitempty"`
 	StatsLoggingEnabled             bool   `json:"statsLoggingEnabled"`
+	EtherType                       string `json:"etherType,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewEgressACLEntryTemplate returns a new *EgressACLEntryTemplate
@@ -126,6 +126,20 @@ func (o *EgressACLEntryTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the EgressACLEntryTemplate
+func (o *EgressACLEntryTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the EgressACLEntryTemplate
+func (o *EgressACLEntryTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the EgressACLEntryTemplate
 func (o *EgressACLEntryTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -150,20 +164,6 @@ func (o *EgressACLEntryTemplate) Jobs(info *bambou.FetchingInfo) (JobsList, *bam
 
 // CreateJob creates a new child Job under the EgressACLEntryTemplate
 func (o *EgressACLEntryTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the EgressACLEntryTemplate
-func (o *EgressACLEntryTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the EgressACLEntryTemplate
-func (o *EgressACLEntryTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

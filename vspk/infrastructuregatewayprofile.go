@@ -52,28 +52,28 @@ type InfrastructureGatewayProfile struct {
 	Owner                  string `json:"owner,omitempty"`
 	NTPServerKey           string `json:"NTPServerKey,omitempty"`
 	NTPServerKeyID         int    `json:"NTPServerKeyID,omitempty"`
+	Name                   string `json:"name,omitempty"`
+	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	DatapathSyncTimeout    int    `json:"datapathSyncTimeout,omitempty"`
 	DeadTimer              string `json:"deadTimer,omitempty"`
-	Description            string `json:"description,omitempty"`
-	EnterpriseID           string `json:"enterpriseID,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
-	FlowEvictionThreshold  int    `json:"flowEvictionThreshold,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	MetadataUpgradePath    string `json:"metadataUpgradePath,omitempty"`
-	Name                   string `json:"name,omitempty"`
-	ProxyDNSName           string `json:"proxyDNSName,omitempty"`
 	RemoteLogDirPath       string `json:"remoteLogDirPath,omitempty"`
 	RemoteLogMode          string `json:"remoteLogMode,omitempty"`
 	RemoteLogPassword      string `json:"remoteLogPassword,omitempty"`
 	RemoteLogServerAddress string `json:"remoteLogServerAddress,omitempty"`
 	RemoteLogServerPort    int    `json:"remoteLogServerPort,omitempty"`
 	RemoteLogUsername      string `json:"remoteLogUsername,omitempty"`
+	Description            string `json:"description,omitempty"`
+	MetadataUpgradePath    string `json:"metadataUpgradePath,omitempty"`
+	FlowEvictionThreshold  int    `json:"flowEvictionThreshold,omitempty"`
+	EnterpriseID           string `json:"enterpriseID,omitempty"`
+	EntityScope            string `json:"entityScope,omitempty"`
+	UpgradeAction          string `json:"upgradeAction,omitempty"`
+	ProxyDNSName           string `json:"proxyDNSName,omitempty"`
+	UseTwoFactor           bool   `json:"useTwoFactor"`
 	StatsCollectorPort     int    `json:"statsCollectorPort,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 	SystemSyncScheduler    string `json:"systemSyncScheduler,omitempty"`
 	SystemSyncWindow       string `json:"systemSyncWindow,omitempty"`
-	UpgradeAction          string `json:"upgradeAction,omitempty"`
-	UseTwoFactor           bool   `json:"useTwoFactor"`
 }
 
 // NewInfrastructureGatewayProfile returns a new *InfrastructureGatewayProfile
@@ -128,20 +128,6 @@ func (o *InfrastructureGatewayProfile) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the InfrastructureGatewayProfile
-func (o *InfrastructureGatewayProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the InfrastructureGatewayProfile
-func (o *InfrastructureGatewayProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the InfrastructureGatewayProfile
 func (o *InfrastructureGatewayProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -152,6 +138,20 @@ func (o *InfrastructureGatewayProfile) Metadatas(info *bambou.FetchingInfo) (Met
 
 // CreateMetadata creates a new child Metadata under the InfrastructureGatewayProfile
 func (o *InfrastructureGatewayProfile) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the InfrastructureGatewayProfile
+func (o *InfrastructureGatewayProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the InfrastructureGatewayProfile
+func (o *InfrastructureGatewayProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -51,27 +51,16 @@ type SystemConfig struct {
 	ParentType                                        string `json:"parentType,omitempty"`
 	Owner                                             string `json:"owner,omitempty"`
 	ACLAllowOrigin                                    string `json:"ACLAllowOrigin,omitempty"`
-	ADGatewayPurgeTime                                int    `json:"ADGatewayPurgeTime,omitempty"`
-	APIKeyRenewalInterval                             int    `json:"APIKeyRenewalInterval,omitempty"`
-	APIKeyValidity                                    int    `json:"APIKeyValidity,omitempty"`
-	ASNumber                                          int    `json:"ASNumber,omitempty"`
-	DHCPOptionSize                                    int    `json:"DHCPOptionSize,omitempty"`
 	ECMPCount                                         int    `json:"ECMPCount,omitempty"`
-	EVPNBGPCommunityTagASNumber                       int    `json:"EVPNBGPCommunityTagASNumber,omitempty"`
-	EVPNBGPCommunityTagLowerLimit                     int    `json:"EVPNBGPCommunityTagLowerLimit,omitempty"`
-	EVPNBGPCommunityTagUpperLimit                     int    `json:"EVPNBGPCommunityTagUpperLimit,omitempty"`
 	LDAPSyncInterval                                  int    `json:"LDAPSyncInterval,omitempty"`
 	LDAPTrustStoreCertifcate                          string `json:"LDAPTrustStoreCertifcate,omitempty"`
 	LDAPTrustStorePassword                            string `json:"LDAPTrustStorePassword,omitempty"`
-	LRUCacheSizePerSubnet                             int    `json:"LRUCacheSizePerSubnet,omitempty"`
+	ADGatewayPurgeTime                                int    `json:"ADGatewayPurgeTime,omitempty"`
 	RDLowerLimit                                      int    `json:"RDLowerLimit,omitempty"`
 	RDPublicNetworkLowerLimit                         int    `json:"RDPublicNetworkLowerLimit,omitempty"`
 	RDPublicNetworkUpperLimit                         int    `json:"RDPublicNetworkUpperLimit,omitempty"`
 	RDUpperLimit                                      int    `json:"RDUpperLimit,omitempty"`
-	RTLowerLimit                                      int    `json:"RTLowerLimit,omitempty"`
-	RTPublicNetworkLowerLimit                         int    `json:"RTPublicNetworkLowerLimit,omitempty"`
-	RTPublicNetworkUpperLimit                         int    `json:"RTPublicNetworkUpperLimit,omitempty"`
-	RTUpperLimit                                      int    `json:"RTUpperLimit,omitempty"`
+	DHCPOptionSize                                    int    `json:"DHCPOptionSize,omitempty"`
 	VMCacheSize                                       int    `json:"VMCacheSize,omitempty"`
 	VMPurgeTime                                       int    `json:"VMPurgeTime,omitempty"`
 	VMResyncDeletionWaitTime                          int    `json:"VMResyncDeletionWaitTime,omitempty"`
@@ -82,29 +71,41 @@ type SystemConfig struct {
 	VNIDPublicNetworkLowerLimit                       int    `json:"VNIDPublicNetworkLowerLimit,omitempty"`
 	VNIDPublicNetworkUpperLimit                       int    `json:"VNIDPublicNetworkUpperLimit,omitempty"`
 	VNIDUpperLimit                                    int    `json:"VNIDUpperLimit,omitempty"`
+	APIKeyRenewalInterval                             int    `json:"APIKeyRenewalInterval,omitempty"`
+	APIKeyValidity                                    int    `json:"APIKeyValidity,omitempty"`
+	LRUCacheSizePerSubnet                             int    `json:"LRUCacheSizePerSubnet,omitempty"`
 	VSCOnSameVersionAsVSD                             bool   `json:"VSCOnSameVersionAsVSD"`
 	VSDReadOnlyMode                                   bool   `json:"VSDReadOnlyMode"`
 	VSDUpgradeIsComplete                              bool   `json:"VSDUpgradeIsComplete"`
-	AlarmsMaxPerObject                                int    `json:"alarmsMaxPerObject,omitempty"`
-	AvatarBasePath                                    string `json:"avatarBasePath,omitempty"`
-	AvatarBaseURL                                     string `json:"avatarBaseURL,omitempty"`
-	CustomerIDUpperLimit                              int    `json:"customerIDUpperLimit,omitempty"`
-	CustomerKey                                       string `json:"customerKey,omitempty"`
-	DomainTunnelType                                  string `json:"domainTunnelType,omitempty"`
-	DynamicWANServiceDiffTime                         int    `json:"dynamicWANServiceDiffTime,omitempty"`
+	ASNumber                                          int    `json:"ASNumber,omitempty"`
+	RTLowerLimit                                      int    `json:"RTLowerLimit,omitempty"`
+	RTPublicNetworkLowerLimit                         int    `json:"RTPublicNetworkLowerLimit,omitempty"`
+	RTPublicNetworkUpperLimit                         int    `json:"RTPublicNetworkUpperLimit,omitempty"`
+	RTUpperLimit                                      int    `json:"RTUpperLimit,omitempty"`
+	EVPNBGPCommunityTagASNumber                       int    `json:"EVPNBGPCommunityTagASNumber,omitempty"`
+	EVPNBGPCommunityTagLowerLimit                     int    `json:"EVPNBGPCommunityTagLowerLimit,omitempty"`
+	EVPNBGPCommunityTagUpperLimit                     int    `json:"EVPNBGPCommunityTagUpperLimit,omitempty"`
+	PageMaxSize                                       int    `json:"pageMaxSize,omitempty"`
+	PageSize                                          int    `json:"pageSize,omitempty"`
+	LastUpdatedBy                                     string `json:"lastUpdatedBy,omitempty"`
+	MaxFailedLogins                                   int    `json:"maxFailedLogins,omitempty"`
+	MaxResponse                                       int    `json:"maxResponse,omitempty"`
+	ReflexiveACLTimeout                               int    `json:"reflexiveACLTimeout,omitempty"`
+	ServiceIDUpperLimit                               int    `json:"serviceIDUpperLimit,omitempty"`
+	KeyServerMonitorEnabled                           bool   `json:"keyServerMonitorEnabled"`
+	KeyServerVSDDataSynchronizationInterval           int    `json:"keyServerVSDDataSynchronizationInterval,omitempty"`
+	OffsetCustomerID                                  int    `json:"offsetCustomerID,omitempty"`
+	OffsetServiceID                                   int    `json:"offsetServiceID,omitempty"`
 	EjbcaNSGCertificateProfile                        string `json:"ejbcaNSGCertificateProfile,omitempty"`
 	EjbcaNSGEndEntityProfile                          string `json:"ejbcaNSGEndEntityProfile,omitempty"`
 	EjbcaOCSPResponderCN                              string `json:"ejbcaOCSPResponderCN,omitempty"`
 	EjbcaOCSPResponderURI                             string `json:"ejbcaOCSPResponderURI,omitempty"`
 	EjbcaVspRootCa                                    string `json:"ejbcaVspRootCa,omitempty"`
+	AlarmsMaxPerObject                                int    `json:"alarmsMaxPerObject,omitempty"`
+	InactiveTimeout                                   int    `json:"inactiveTimeout,omitempty"`
 	EntityScope                                       string `json:"entityScope,omitempty"`
-	EsiID                                             int    `json:"esiID,omitempty"`
-	EventLogCleanupInterval                           int    `json:"eventLogCleanupInterval,omitempty"`
-	EventLogEntryMaxAge                               int    `json:"eventLogEntryMaxAge,omitempty"`
-	EventProcessorInterval                            int    `json:"eventProcessorInterval,omitempty"`
-	EventProcessorMaxEventsCount                      int    `json:"eventProcessorMaxEventsCount,omitempty"`
-	EventProcessorTimeout                             int    `json:"eventProcessorTimeout,omitempty"`
-	ExternalID                                        string `json:"externalID,omitempty"`
+	DomainTunnelType                                  string `json:"domainTunnelType,omitempty"`
+	PostProcessorThreadsCount                         int    `json:"postProcessorThreadsCount,omitempty"`
 	GroupKeyDefaultSEKGenerationInterval              int    `json:"groupKeyDefaultSEKGenerationInterval,omitempty"`
 	GroupKeyDefaultSEKLifetime                        int    `json:"groupKeyDefaultSEKLifetime,omitempty"`
 	GroupKeyDefaultSEKPayloadEncryptionAlgorithm      string `json:"groupKeyDefaultSEKPayloadEncryptionAlgorithm,omitempty"`
@@ -124,22 +125,10 @@ type SystemConfig struct {
 	GroupKeyMinimumSeedGenerationInterval             int    `json:"groupKeyMinimumSeedGenerationInterval,omitempty"`
 	GroupKeyMinimumSeedLifetime                       int    `json:"groupKeyMinimumSeedLifetime,omitempty"`
 	GroupKeyMinimumTrafficEncryptionKeyLifetime       int    `json:"groupKeyMinimumTrafficEncryptionKeyLifetime,omitempty"`
-	InactiveTimeout                                   int    `json:"inactiveTimeout,omitempty"`
-	KeyServerMonitorEnabled                           bool   `json:"keyServerMonitorEnabled"`
-	KeyServerVSDDataSynchronizationInterval           int    `json:"keyServerVSDDataSynchronizationInterval,omitempty"`
-	LastUpdatedBy                                     string `json:"lastUpdatedBy,omitempty"`
-	MaxFailedLogins                                   int    `json:"maxFailedLogins,omitempty"`
-	MaxResponse                                       int    `json:"maxResponse,omitempty"`
 	NsgBootstrapEndpoint                              string `json:"nsgBootstrapEndpoint,omitempty"`
 	NsgConfigEndpoint                                 string `json:"nsgConfigEndpoint,omitempty"`
 	NsgLocalUiUrl                                     string `json:"nsgLocalUiUrl,omitempty"`
-	OffsetCustomerID                                  int    `json:"offsetCustomerID,omitempty"`
-	OffsetServiceID                                   int    `json:"offsetServiceID,omitempty"`
-	PageMaxSize                                       int    `json:"pageMaxSize,omitempty"`
-	PageSize                                          int    `json:"pageSize,omitempty"`
-	PostProcessorThreadsCount                         int    `json:"postProcessorThreadsCount,omitempty"`
-	ReflexiveACLTimeout                               int    `json:"reflexiveACLTimeout,omitempty"`
-	ServiceIDUpperLimit                               int    `json:"serviceIDUpperLimit,omitempty"`
+	EsiID                                             int    `json:"esiID,omitempty"`
 	StackTraceEnabled                                 bool   `json:"stackTraceEnabled"`
 	StaticWANServicePurgeTime                         int    `json:"staticWANServicePurgeTime,omitempty"`
 	StatsCollectorAddress                             string `json:"statsCollectorAddress,omitempty"`
@@ -151,14 +140,25 @@ type SystemConfig struct {
 	StatsTSDBServerAddress                            string `json:"statsTSDBServerAddress,omitempty"`
 	SubnetResyncInterval                              int    `json:"subnetResyncInterval,omitempty"`
 	SubnetResyncOutstandingInterval                   int    `json:"subnetResyncOutstandingInterval,omitempty"`
+	CustomerIDUpperLimit                              int    `json:"customerIDUpperLimit,omitempty"`
+	CustomerKey                                       string `json:"customerKey,omitempty"`
+	AvatarBasePath                                    string `json:"avatarBasePath,omitempty"`
+	AvatarBaseURL                                     string `json:"avatarBaseURL,omitempty"`
+	EventLogCleanupInterval                           int    `json:"eventLogCleanupInterval,omitempty"`
+	EventLogEntryMaxAge                               int    `json:"eventLogEntryMaxAge,omitempty"`
+	EventProcessorInterval                            int    `json:"eventProcessorInterval,omitempty"`
+	EventProcessorMaxEventsCount                      int    `json:"eventProcessorMaxEventsCount,omitempty"`
+	EventProcessorTimeout                             int    `json:"eventProcessorTimeout,omitempty"`
+	TwoFactorCodeExpiry                               int    `json:"twoFactorCodeExpiry,omitempty"`
+	TwoFactorCodeLength                               int    `json:"twoFactorCodeLength,omitempty"`
+	TwoFactorCodeSeedLength                           int    `json:"twoFactorCodeSeedLength,omitempty"`
+	ExternalID                                        string `json:"externalID,omitempty"`
+	DynamicWANServiceDiffTime                         int    `json:"dynamicWANServiceDiffTime,omitempty"`
 	SyslogDestinationHost                             string `json:"syslogDestinationHost,omitempty"`
 	SyslogDestinationPort                             int    `json:"syslogDestinationPort,omitempty"`
 	SysmonCleanupTaskInterval                         int    `json:"sysmonCleanupTaskInterval,omitempty"`
 	SysmonNodePresenceTimeout                         int    `json:"sysmonNodePresenceTimeout,omitempty"`
 	SysmonProbeResponseTimeout                        int    `json:"sysmonProbeResponseTimeout,omitempty"`
-	TwoFactorCodeExpiry                               int    `json:"twoFactorCodeExpiry,omitempty"`
-	TwoFactorCodeLength                               int    `json:"twoFactorCodeLength,omitempty"`
-	TwoFactorCodeSeedLength                           int    `json:"twoFactorCodeSeedLength,omitempty"`
 }
 
 // NewSystemConfig returns a new *SystemConfig
@@ -203,20 +203,6 @@ func (o *SystemConfig) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the SystemConfig
-func (o *SystemConfig) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the SystemConfig
-func (o *SystemConfig) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the SystemConfig
 func (o *SystemConfig) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -227,6 +213,20 @@ func (o *SystemConfig) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bam
 
 // CreateMetadata creates a new child Metadata under the SystemConfig
 func (o *SystemConfig) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the SystemConfig
+func (o *SystemConfig) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the SystemConfig
+func (o *SystemConfig) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

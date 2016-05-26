@@ -50,17 +50,17 @@ type App struct {
 	ParentID                    string `json:"parentID,omitempty"`
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
 	AssocEgressACLTemplateId    string `json:"assocEgressACLTemplateId,omitempty"`
 	AssocIngressACLTemplateId   string `json:"assocIngressACLTemplateId,omitempty"`
 	AssociatedDomainID          string `json:"associatedDomainID,omitempty"`
 	AssociatedDomainType        string `json:"associatedDomainType,omitempty"`
 	AssociatedNetworkObjectID   string `json:"associatedNetworkObjectID,omitempty"`
 	AssociatedNetworkObjectType string `json:"associatedNetworkObjectType,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
 	ExternalID                  string `json:"externalID,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	Name                        string `json:"name,omitempty"`
 }
 
 // NewApp returns a new *App
@@ -105,62 +105,6 @@ func (o *App) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the App
-func (o *App) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the App
-func (o *App) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Flows retrieves the list of child Flows of the App
-func (o *App) Flows(info *bambou.FetchingInfo) (FlowsList, *bambou.Error) {
-
-	var list FlowsList
-	err := bambou.CurrentSession().FetchChildren(o, FlowIdentity, &list, info)
-	return list, err
-}
-
-// CreateFlow creates a new child Flow under the App
-func (o *App) CreateFlow(child *Flow) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the App
-func (o *App) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the App
-func (o *App) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Jobs retrieves the list of child Jobs of the App
-func (o *App) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
-
-	var list JobsList
-	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
-	return list, err
-}
-
-// CreateJob creates a new child Job under the App
-func (o *App) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the App
 func (o *App) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -185,6 +129,62 @@ func (o *App) Tiers(info *bambou.FetchingInfo) (TiersList, *bambou.Error) {
 
 // CreateTier creates a new child Tier under the App
 func (o *App) CreateTier(child *Tier) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the App
+func (o *App) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the App
+func (o *App) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Flows retrieves the list of child Flows of the App
+func (o *App) Flows(info *bambou.FetchingInfo) (FlowsList, *bambou.Error) {
+
+	var list FlowsList
+	err := bambou.CurrentSession().FetchChildren(o, FlowIdentity, &list, info)
+	return list, err
+}
+
+// CreateFlow creates a new child Flow under the App
+func (o *App) CreateFlow(child *Flow) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Jobs retrieves the list of child Jobs of the App
+func (o *App) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
+
+	var list JobsList
+	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
+	return list, err
+}
+
+// CreateJob creates a new child Job under the App
+func (o *App) CreateJob(child *Job) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the App
+func (o *App) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the App
+func (o *App) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

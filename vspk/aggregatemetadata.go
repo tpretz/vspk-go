@@ -50,14 +50,14 @@ type AggregateMetadata struct {
 	ParentID                    string        `json:"parentID,omitempty"`
 	ParentType                  string        `json:"parentType,omitempty"`
 	Owner                       string        `json:"owner,omitempty"`
-	Blob                        string        `json:"blob,omitempty"`
+	Name                        string        `json:"name,omitempty"`
 	Description                 string        `json:"description,omitempty"`
+	MetadataTagIDs              []interface{} `json:"metadataTagIDs,omitempty"`
+	NetworkNotificationDisabled bool          `json:"networkNotificationDisabled"`
+	Blob                        string        `json:"blob,omitempty"`
+	GlobalMetadata              bool          `json:"globalMetadata"`
 	EntityScope                 string        `json:"entityScope,omitempty"`
 	ExternalID                  string        `json:"externalID,omitempty"`
-	GlobalMetadata              bool          `json:"globalMetadata"`
-	MetadataTagIDs              []interface{} `json:"metadataTagIDs,omitempty"`
-	Name                        string        `json:"name,omitempty"`
-	NetworkNotificationDisabled bool          `json:"networkNotificationDisabled"`
 }
 
 // NewAggregateMetadata returns a new *AggregateMetadata

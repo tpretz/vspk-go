@@ -51,12 +51,12 @@ type VirtualIP struct {
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
 	MAC                    string `json:"MAC,omitempty"`
-	AssociatedFloatingIPID string `json:"associatedFloatingIPID,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
 	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	SubnetID               string `json:"subnetID,omitempty"`
 	VirtualIP              string `json:"virtualIP,omitempty"`
+	EntityScope            string `json:"entityScope,omitempty"`
+	AssociatedFloatingIPID string `json:"associatedFloatingIPID,omitempty"`
+	SubnetID               string `json:"subnetID,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 }
 
 // NewVirtualIP returns a new *VirtualIP
@@ -101,16 +101,16 @@ func (o *VirtualIP) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the VirtualIP
-func (o *VirtualIP) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the VirtualIP
+func (o *VirtualIP) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the VirtualIP
-func (o *VirtualIP) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the VirtualIP
+func (o *VirtualIP) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -129,16 +129,16 @@ func (o *VirtualIP) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the VirtualIP
-func (o *VirtualIP) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the VirtualIP
+func (o *VirtualIP) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the VirtualIP
-func (o *VirtualIP) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the VirtualIP
+func (o *VirtualIP) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -50,11 +50,11 @@ type NetworkMacroGroup struct {
 	ParentID      string `json:"parentID,omitempty"`
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
 	Description   string `json:"description,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Name          string `json:"name,omitempty"`
 }
 
 // NewNetworkMacroGroup returns a new *NetworkMacroGroup
@@ -99,16 +99,16 @@ func (o *NetworkMacroGroup) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EnterpriseNetworks retrieves the list of child EnterpriseNetworks of the NetworkMacroGroup
-func (o *NetworkMacroGroup) EnterpriseNetworks(info *bambou.FetchingInfo) (EnterpriseNetworksList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the NetworkMacroGroup
+func (o *NetworkMacroGroup) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EnterpriseNetworksList
-	err := bambou.CurrentSession().FetchChildren(o, EnterpriseNetworkIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEnterpriseNetwork creates a new child EnterpriseNetwork under the NetworkMacroGroup
-func (o *NetworkMacroGroup) CreateEnterpriseNetwork(child *EnterpriseNetwork) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the NetworkMacroGroup
+func (o *NetworkMacroGroup) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -127,16 +127,16 @@ func (o *NetworkMacroGroup) CreateGlobalMetadata(child *GlobalMetadata) *bambou.
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the NetworkMacroGroup
-func (o *NetworkMacroGroup) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EnterpriseNetworks retrieves the list of child EnterpriseNetworks of the NetworkMacroGroup
+func (o *NetworkMacroGroup) EnterpriseNetworks(info *bambou.FetchingInfo) (EnterpriseNetworksList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EnterpriseNetworksList
+	err := bambou.CurrentSession().FetchChildren(o, EnterpriseNetworkIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the NetworkMacroGroup
-func (o *NetworkMacroGroup) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateEnterpriseNetwork creates a new child EnterpriseNetwork under the NetworkMacroGroup
+func (o *NetworkMacroGroup) CreateEnterpriseNetwork(child *EnterpriseNetwork) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
