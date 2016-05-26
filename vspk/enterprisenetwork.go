@@ -51,12 +51,12 @@ type EnterpriseNetwork struct {
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
 	IPType        string `json:"IPType,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
 	Address       string `json:"address,omitempty"`
+	Netmask       string `json:"netmask,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Name          string `json:"name,omitempty"`
-	Netmask       string `json:"netmask,omitempty"`
 }
 
 // NewEnterpriseNetwork returns a new *EnterpriseNetwork
@@ -103,34 +103,6 @@ func (o *EnterpriseNetwork) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the EnterpriseNetwork
-func (o *EnterpriseNetwork) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the EnterpriseNetwork
-func (o *EnterpriseNetwork) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EnterpriseNetwork
-func (o *EnterpriseNetwork) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the EnterpriseNetwork
-func (o *EnterpriseNetwork) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the EnterpriseNetwork
 func (o *EnterpriseNetwork) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -162,4 +134,32 @@ func (o *EnterpriseNetwork) AssignNetworkMacroGroups(children NetworkMacroGroups
 	}
 
 	return bambou.CurrentSession().AssignChildren(o, list, NetworkMacroGroupIdentity)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EnterpriseNetwork
+func (o *EnterpriseNetwork) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the EnterpriseNetwork
+func (o *EnterpriseNetwork) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the EnterpriseNetwork
+func (o *EnterpriseNetwork) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the EnterpriseNetwork
+func (o *EnterpriseNetwork) CreateEventLog(child *EventLog) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }

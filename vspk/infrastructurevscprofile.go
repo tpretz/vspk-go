@@ -50,15 +50,15 @@ type InfrastructureVscProfile struct {
 	ParentID         string `json:"parentID,omitempty"`
 	ParentType       string `json:"parentType,omitempty"`
 	Owner            string `json:"owner,omitempty"`
+	Name             string `json:"name,omitempty"`
+	LastUpdatedBy    string `json:"lastUpdatedBy,omitempty"`
+	SecondController string `json:"secondController,omitempty"`
 	Description      string `json:"description,omitempty"`
+	FirstController  string `json:"firstController,omitempty"`
 	EnterpriseID     string `json:"enterpriseID,omitempty"`
 	EntityScope      string `json:"entityScope,omitempty"`
-	ExternalID       string `json:"externalID,omitempty"`
-	FirstController  string `json:"firstController,omitempty"`
-	LastUpdatedBy    string `json:"lastUpdatedBy,omitempty"`
-	Name             string `json:"name,omitempty"`
 	ProbeInterval    int    `json:"probeInterval,omitempty"`
-	SecondController string `json:"secondController,omitempty"`
+	ExternalID       string `json:"externalID,omitempty"`
 }
 
 // NewInfrastructureVscProfile returns a new *InfrastructureVscProfile
@@ -103,20 +103,6 @@ func (o *InfrastructureVscProfile) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the InfrastructureVscProfile
-func (o *InfrastructureVscProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the InfrastructureVscProfile
-func (o *InfrastructureVscProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the InfrastructureVscProfile
 func (o *InfrastructureVscProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -127,6 +113,20 @@ func (o *InfrastructureVscProfile) Metadatas(info *bambou.FetchingInfo) (Metadat
 
 // CreateMetadata creates a new child Metadata under the InfrastructureVscProfile
 func (o *InfrastructureVscProfile) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the InfrastructureVscProfile
+func (o *InfrastructureVscProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the InfrastructureVscProfile
+func (o *InfrastructureVscProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

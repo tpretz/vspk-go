@@ -58,10 +58,10 @@ type EventLog struct {
 	EntityParentType  string        `json:"entityParentType,omitempty"`
 	EntityScope       string        `json:"entityScope,omitempty"`
 	EntityType        string        `json:"entityType,omitempty"`
+	User              string        `json:"user,omitempty"`
 	EventReceivedTime float64       `json:"eventReceivedTime,omitempty"`
 	ExternalID        string        `json:"externalID,omitempty"`
 	Type              string        `json:"type,omitempty"`
-	User              string        `json:"user,omitempty"`
 }
 
 // NewEventLog returns a new *EventLog
@@ -106,20 +106,6 @@ func (o *EventLog) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EventLog
-func (o *EventLog) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the EventLog
-func (o *EventLog) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the EventLog
 func (o *EventLog) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -130,6 +116,20 @@ func (o *EventLog) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.
 
 // CreateMetadata creates a new child Metadata under the EventLog
 func (o *EventLog) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EventLog
+func (o *EventLog) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the EventLog
+func (o *EventLog) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

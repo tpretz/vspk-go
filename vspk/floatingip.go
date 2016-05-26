@@ -50,14 +50,14 @@ type FloatingIp struct {
 	ParentID                          string `json:"parentID,omitempty"`
 	ParentType                        string `json:"parentType,omitempty"`
 	Owner                             string `json:"owner,omitempty"`
+	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
 	AccessControl                     bool   `json:"accessControl"`
 	Address                           string `json:"address,omitempty"`
+	EntityScope                       string `json:"entityScope,omitempty"`
 	Assigned                          bool   `json:"assigned"`
 	AssignedToObjectType              string `json:"assignedToObjectType,omitempty"`
 	AssociatedSharedNetworkResourceID string `json:"associatedSharedNetworkResourceID,omitempty"`
-	EntityScope                       string `json:"entityScope,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`
-	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
 }
 
 // NewFloatingIp returns a new *FloatingIp
@@ -102,16 +102,16 @@ func (o *FloatingIp) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the FloatingIp
-func (o *FloatingIp) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the FloatingIp
+func (o *FloatingIp) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the FloatingIp
-func (o *FloatingIp) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the FloatingIp
+func (o *FloatingIp) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -130,20 +130,6 @@ func (o *FloatingIp) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the FloatingIp
-func (o *FloatingIp) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the FloatingIp
-func (o *FloatingIp) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // VPorts retrieves the list of child VPorts of the FloatingIp
 func (o *FloatingIp) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error) {
 
@@ -154,6 +140,20 @@ func (o *FloatingIp) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Erro
 
 // CreateVPort creates a new child VPort under the FloatingIp
 func (o *FloatingIp) CreateVPort(child *VPort) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the FloatingIp
+func (o *FloatingIp) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the FloatingIp
+func (o *FloatingIp) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

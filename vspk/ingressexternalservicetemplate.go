@@ -50,15 +50,15 @@ type IngressExternalServiceTemplate struct {
 	ParentID               string `json:"parentID,omitempty"`
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
+	Name                   string `json:"name,omitempty"`
 	Active                 bool   `json:"active"`
-	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
 	Description            string `json:"description,omitempty"`
 	EntityScope            string `json:"entityScope,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
-	Name                   string `json:"name,omitempty"`
 	PolicyState            string `json:"policyState,omitempty"`
 	Priority               int    `json:"priority,omitempty"`
 	PriorityType           string `json:"priorityType,omitempty"`
+	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 }
 
 // NewIngressExternalServiceTemplate returns a new *IngressExternalServiceTemplate
@@ -103,6 +103,20 @@ func (o *IngressExternalServiceTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the IngressExternalServiceTemplate
+func (o *IngressExternalServiceTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the IngressExternalServiceTemplate
+func (o *IngressExternalServiceTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the IngressExternalServiceTemplate
 func (o *IngressExternalServiceTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -141,20 +155,6 @@ func (o *IngressExternalServiceTemplate) Jobs(info *bambou.FetchingInfo) (JobsLi
 
 // CreateJob creates a new child Job under the IngressExternalServiceTemplate
 func (o *IngressExternalServiceTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the IngressExternalServiceTemplate
-func (o *IngressExternalServiceTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the IngressExternalServiceTemplate
-func (o *IngressExternalServiceTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

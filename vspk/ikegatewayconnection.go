@@ -53,20 +53,20 @@ type IKEGatewayConnection struct {
 	NSGIdentifier                    string `json:"NSGIdentifier,omitempty"`
 	NSGIdentifierType                string `json:"NSGIdentifierType,omitempty"`
 	NSGRole                          string `json:"NSGRole,omitempty"`
+	Name                             string `json:"name,omitempty"`
+	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
+	Sequence                         int    `json:"sequence,omitempty"`
 	AllowAnySubnet                   bool   `json:"allowAnySubnet"`
+	UnencryptedPSK                   string `json:"unencryptedPSK,omitempty"`
+	EntityScope                      string `json:"entityScope,omitempty"`
+	PortVLANName                     string `json:"portVLANName,omitempty"`
+	Priority                         int    `json:"priority,omitempty"`
 	AssociatedIKEAuthenticationID    string `json:"associatedIKEAuthenticationID,omitempty"`
 	AssociatedIKEAuthenticationType  string `json:"associatedIKEAuthenticationType,omitempty"`
 	AssociatedIKEEncryptionProfileID string `json:"associatedIKEEncryptionProfileID,omitempty"`
 	AssociatedIKEGatewayProfileID    string `json:"associatedIKEGatewayProfileID,omitempty"`
 	AssociatedVLANID                 string `json:"associatedVLANID,omitempty"`
-	EntityScope                      string `json:"entityScope,omitempty"`
 	ExternalID                       string `json:"externalID,omitempty"`
-	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
-	Name                             string `json:"name,omitempty"`
-	PortVLANName                     string `json:"portVLANName,omitempty"`
-	Priority                         int    `json:"priority,omitempty"`
-	Sequence                         int    `json:"sequence,omitempty"`
-	UnencryptedPSK                   string `json:"unencryptedPSK,omitempty"`
 }
 
 // NewIKEGatewayConnection returns a new *IKEGatewayConnection
@@ -111,20 +111,6 @@ func (o *IKEGatewayConnection) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKEGatewayConnection
-func (o *IKEGatewayConnection) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the IKEGatewayConnection
-func (o *IKEGatewayConnection) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the IKEGatewayConnection
 func (o *IKEGatewayConnection) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -135,6 +121,20 @@ func (o *IKEGatewayConnection) Metadatas(info *bambou.FetchingInfo) (MetadatasLi
 
 // CreateMetadata creates a new child Metadata under the IKEGatewayConnection
 func (o *IKEGatewayConnection) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKEGatewayConnection
+func (o *IKEGatewayConnection) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the IKEGatewayConnection
+func (o *IKEGatewayConnection) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

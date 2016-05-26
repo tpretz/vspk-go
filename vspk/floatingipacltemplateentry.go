@@ -50,35 +50,35 @@ type FloatingIPACLTemplateEntry struct {
 	ParentID                        string `json:"parentID,omitempty"`
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
-	DSCP                            string `json:"DSCP,omitempty"`
 	ICMPCode                        string `json:"ICMPCode,omitempty"`
 	ICMPType                        string `json:"ICMPType,omitempty"`
+	DSCP                            string `json:"DSCP,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Action                          string `json:"action,omitempty"`
 	AddressOverride                 string `json:"addressOverride,omitempty"`
+	Reflexive                       bool   `json:"reflexive"`
+	Description                     string `json:"description,omitempty"`
+	DestinationPort                 string `json:"destinationPort,omitempty"`
+	NetworkID                       string `json:"networkID,omitempty"`
+	NetworkType                     string `json:"networkType,omitempty"`
+	MirrorDestinationID             string `json:"mirrorDestinationID,omitempty"`
+	FlowLoggingEnabled              bool   `json:"flowLoggingEnabled"`
+	EntityScope                     string `json:"entityScope,omitempty"`
+	LocationID                      string `json:"locationID,omitempty"`
+	LocationType                    string `json:"locationType,omitempty"`
+	PolicyState                     string `json:"policyState,omitempty"`
+	SourcePort                      string `json:"sourcePort,omitempty"`
+	Priority                        int    `json:"priority,omitempty"`
+	Protocol                        string `json:"protocol,omitempty"`
 	AssociatedApplicationID         string `json:"associatedApplicationID,omitempty"`
 	AssociatedApplicationObjectID   string `json:"associatedApplicationObjectID,omitempty"`
 	AssociatedApplicationObjectType string `json:"associatedApplicationObjectType,omitempty"`
 	AssociatedLiveEntityID          string `json:"associatedLiveEntityID,omitempty"`
-	Description                     string `json:"description,omitempty"`
-	DestinationPort                 string `json:"destinationPort,omitempty"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	EtherType                       string `json:"etherType,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
-	FlowLoggingEnabled              bool   `json:"flowLoggingEnabled"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	LocationID                      string `json:"locationID,omitempty"`
-	LocationType                    string `json:"locationType,omitempty"`
-	MirrorDestinationID             string `json:"mirrorDestinationID,omitempty"`
-	NetworkID                       string `json:"networkID,omitempty"`
-	NetworkType                     string `json:"networkType,omitempty"`
-	PolicyState                     string `json:"policyState,omitempty"`
-	Priority                        int    `json:"priority,omitempty"`
-	Protocol                        string `json:"protocol,omitempty"`
-	Reflexive                       bool   `json:"reflexive"`
-	SourcePort                      string `json:"sourcePort,omitempty"`
 	Stateful                        bool   `json:"stateful"`
 	StatsID                         string `json:"statsID,omitempty"`
 	StatsLoggingEnabled             bool   `json:"statsLoggingEnabled"`
+	EtherType                       string `json:"etherType,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewFloatingIPACLTemplateEntry returns a new *FloatingIPACLTemplateEntry
@@ -123,20 +123,6 @@ func (o *FloatingIPACLTemplateEntry) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the FloatingIPACLTemplateEntry
-func (o *FloatingIPACLTemplateEntry) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the FloatingIPACLTemplateEntry
-func (o *FloatingIPACLTemplateEntry) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the FloatingIPACLTemplateEntry
 func (o *FloatingIPACLTemplateEntry) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -147,6 +133,20 @@ func (o *FloatingIPACLTemplateEntry) Metadatas(info *bambou.FetchingInfo) (Metad
 
 // CreateMetadata creates a new child Metadata under the FloatingIPACLTemplateEntry
 func (o *FloatingIPACLTemplateEntry) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the FloatingIPACLTemplateEntry
+func (o *FloatingIPACLTemplateEntry) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the FloatingIPACLTemplateEntry
+func (o *FloatingIPACLTemplateEntry) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

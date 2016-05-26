@@ -50,14 +50,14 @@ type AddressMap struct {
 	ParentID               string `json:"parentID,omitempty"`
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
-	AssociatedPATNATPoolID string `json:"associatedPATNATPoolID,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
 	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
+	EntityScope            string `json:"entityScope,omitempty"`
 	PrivateIP              string `json:"privateIP,omitempty"`
 	PrivatePort            string `json:"privatePort,omitempty"`
+	AssociatedPATNATPoolID string `json:"associatedPATNATPoolID,omitempty"`
 	PublicIP               string `json:"publicIP,omitempty"`
 	PublicPort             string `json:"publicPort,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 	Type                   string `json:"type,omitempty"`
 }
 
@@ -103,20 +103,6 @@ func (o *AddressMap) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the AddressMap
-func (o *AddressMap) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the AddressMap
-func (o *AddressMap) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the AddressMap
 func (o *AddressMap) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -127,6 +113,20 @@ func (o *AddressMap) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambo
 
 // CreateMetadata creates a new child Metadata under the AddressMap
 func (o *AddressMap) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the AddressMap
+func (o *AddressMap) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the AddressMap
+func (o *AddressMap) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

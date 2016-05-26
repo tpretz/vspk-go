@@ -51,14 +51,14 @@ type PortTemplate struct {
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
 	VLANRange                   string `json:"VLANRange,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
 	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	Description                 string `json:"description,omitempty"`
 	PhysicalName                string `json:"physicalName,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
 	PortType                    string `json:"portType,omitempty"`
+	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewPortTemplate returns a new *PortTemplate
@@ -103,20 +103,6 @@ func (o *PortTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the PortTemplate
-func (o *PortTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the PortTemplate
-func (o *PortTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the PortTemplate
 func (o *PortTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -141,6 +127,20 @@ func (o *PortTemplate) VLANTemplates(info *bambou.FetchingInfo) (VLANTemplatesLi
 
 // CreateVLANTemplate creates a new child VLANTemplate under the PortTemplate
 func (o *PortTemplate) CreateVLANTemplate(child *VLANTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the PortTemplate
+func (o *PortTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the PortTemplate
+func (o *PortTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

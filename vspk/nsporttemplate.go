@@ -51,16 +51,16 @@ type NSPortTemplate struct {
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
 	VLANRange                   string `json:"VLANRange,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	PhysicalName                string `json:"physicalName,omitempty"`
+	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	PortType                    string `json:"portType,omitempty"`
 	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
 	AssociatedVSCProfileID      string `json:"associatedVSCProfileID,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
 	ExternalID                  string `json:"externalID,omitempty"`
-	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	PhysicalName                string `json:"physicalName,omitempty"`
-	PortType                    string `json:"portType,omitempty"`
 }
 
 // NewNSPortTemplate returns a new *NSPortTemplate
@@ -105,20 +105,6 @@ func (o *NSPortTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSPortTemplate
-func (o *NSPortTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the NSPortTemplate
-func (o *NSPortTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the NSPortTemplate
 func (o *NSPortTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -143,6 +129,20 @@ func (o *NSPortTemplate) VLANTemplates(info *bambou.FetchingInfo) (VLANTemplates
 
 // CreateVLANTemplate creates a new child VLANTemplate under the NSPortTemplate
 func (o *NSPortTemplate) CreateVLANTemplate(child *VLANTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSPortTemplate
+func (o *NSPortTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the NSPortTemplate
+func (o *NSPortTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -50,10 +50,10 @@ type MultiNICVPort struct {
 	ParentID      string `json:"parentID,omitempty"`
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Name          string `json:"name,omitempty"`
 }
 
 // NewMultiNICVPort returns a new *MultiNICVPort
@@ -98,20 +98,6 @@ func (o *MultiNICVPort) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the MultiNICVPort
-func (o *MultiNICVPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the MultiNICVPort
-func (o *MultiNICVPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the MultiNICVPort
 func (o *MultiNICVPort) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -122,6 +108,20 @@ func (o *MultiNICVPort) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *ba
 
 // CreateMetadata creates a new child Metadata under the MultiNICVPort
 func (o *MultiNICVPort) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the MultiNICVPort
+func (o *MultiNICVPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the MultiNICVPort
+func (o *MultiNICVPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

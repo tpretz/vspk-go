@@ -51,22 +51,22 @@ type RedundantPort struct {
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
 	VLANRange                   string `json:"VLANRange,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
-	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
 	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
 	PermittedAction             string `json:"permittedAction,omitempty"`
+	Description                 string `json:"description,omitempty"`
 	PhysicalName                string `json:"physicalName,omitempty"`
+	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
 	PortPeer1ID                 string `json:"portPeer1ID,omitempty"`
 	PortPeer2ID                 string `json:"portPeer2ID,omitempty"`
 	PortType                    string `json:"portType,omitempty"`
-	Status                      string `json:"status,omitempty"`
 	UseUntaggedHeartbeatVlan    bool   `json:"useUntaggedHeartbeatVlan"`
 	UseUserMnemonic             bool   `json:"useUserMnemonic"`
 	UserMnemonic                string `json:"userMnemonic,omitempty"`
+	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
+	Status                      string `json:"status,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewRedundantPort returns a new *RedundantPort
@@ -111,20 +111,6 @@ func (o *RedundantPort) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the RedundantPort
-func (o *RedundantPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the RedundantPort
-func (o *RedundantPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the RedundantPort
 func (o *RedundantPort) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -139,20 +125,6 @@ func (o *RedundantPort) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// NSPorts retrieves the list of child NSPorts of the RedundantPort
-func (o *RedundantPort) NSPorts(info *bambou.FetchingInfo) (NSPortsList, *bambou.Error) {
-
-	var list NSPortsList
-	err := bambou.CurrentSession().FetchChildren(o, NSPortIdentity, &list, info)
-	return list, err
-}
-
-// CreateNSPort creates a new child NSPort under the RedundantPort
-func (o *RedundantPort) CreateNSPort(child *NSPort) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // VLANs retrieves the list of child VLANs of the RedundantPort
 func (o *RedundantPort) VLANs(info *bambou.FetchingInfo) (VLANsList, *bambou.Error) {
 
@@ -163,6 +135,34 @@ func (o *RedundantPort) VLANs(info *bambou.FetchingInfo) (VLANsList, *bambou.Err
 
 // CreateVLAN creates a new child VLAN under the RedundantPort
 func (o *RedundantPort) CreateVLAN(child *VLAN) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the RedundantPort
+func (o *RedundantPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the RedundantPort
+func (o *RedundantPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// NSPorts retrieves the list of child NSPorts of the RedundantPort
+func (o *RedundantPort) NSPorts(info *bambou.FetchingInfo) (NSPortsList, *bambou.Error) {
+
+	var list NSPortsList
+	err := bambou.CurrentSession().FetchChildren(o, NSPortIdentity, &list, info)
+	return list, err
+}
+
+// CreateNSPort creates a new child NSPort under the RedundantPort
+func (o *RedundantPort) CreateNSPort(child *NSPort) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

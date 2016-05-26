@@ -50,11 +50,11 @@ type DSCPForwardingClassTable struct {
 	ParentID      string `json:"parentID,omitempty"`
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
 	Description   string `json:"description,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Name          string `json:"name,omitempty"`
 }
 
 // NewDSCPForwardingClassTable returns a new *DSCPForwardingClassTable
@@ -99,16 +99,16 @@ func (o *DSCPForwardingClassTable) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// DSCPForwardingClassMappings retrieves the list of child DSCPForwardingClassMappings of the DSCPForwardingClassTable
-func (o *DSCPForwardingClassTable) DSCPForwardingClassMappings(info *bambou.FetchingInfo) (DSCPForwardingClassMappingsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the DSCPForwardingClassTable
+func (o *DSCPForwardingClassTable) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list DSCPForwardingClassMappingsList
-	err := bambou.CurrentSession().FetchChildren(o, DSCPForwardingClassMappingIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateDSCPForwardingClassMapping creates a new child DSCPForwardingClassMapping under the DSCPForwardingClassTable
-func (o *DSCPForwardingClassTable) CreateDSCPForwardingClassMapping(child *DSCPForwardingClassMapping) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the DSCPForwardingClassTable
+func (o *DSCPForwardingClassTable) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -127,16 +127,16 @@ func (o *DSCPForwardingClassTable) CreateGlobalMetadata(child *GlobalMetadata) *
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the DSCPForwardingClassTable
-func (o *DSCPForwardingClassTable) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// DSCPForwardingClassMappings retrieves the list of child DSCPForwardingClassMappings of the DSCPForwardingClassTable
+func (o *DSCPForwardingClassTable) DSCPForwardingClassMappings(info *bambou.FetchingInfo) (DSCPForwardingClassMappingsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list DSCPForwardingClassMappingsList
+	err := bambou.CurrentSession().FetchChildren(o, DSCPForwardingClassMappingIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the DSCPForwardingClassTable
-func (o *DSCPForwardingClassTable) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateDSCPForwardingClassMapping creates a new child DSCPForwardingClassMapping under the DSCPForwardingClassTable
+func (o *DSCPForwardingClassTable) CreateDSCPForwardingClassMapping(child *DSCPForwardingClassMapping) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -50,8 +50,7 @@ type BGPProfile struct {
 	ParentID                        string `json:"parentID,omitempty"`
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
-	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
-	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
+	Name                            string `json:"name,omitempty"`
 	DampeningHalfLife               int    `json:"dampeningHalfLife,omitempty"`
 	DampeningMaxSuppress            int    `json:"dampeningMaxSuppress,omitempty"`
 	DampeningName                   string `json:"dampeningName,omitempty"`
@@ -59,8 +58,9 @@ type BGPProfile struct {
 	DampeningSuppress               int    `json:"dampeningSuppress,omitempty"`
 	Description                     string `json:"description,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
+	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
+	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
 	ExternalID                      string `json:"externalID,omitempty"`
-	Name                            string `json:"name,omitempty"`
 }
 
 // NewBGPProfile returns a new *BGPProfile
@@ -105,20 +105,6 @@ func (o *BGPProfile) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the BGPProfile
-func (o *BGPProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the BGPProfile
-func (o *BGPProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the BGPProfile
 func (o *BGPProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -129,6 +115,20 @@ func (o *BGPProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambo
 
 // CreateMetadata creates a new child Metadata under the BGPProfile
 func (o *BGPProfile) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the BGPProfile
+func (o *BGPProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the BGPProfile
+func (o *BGPProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

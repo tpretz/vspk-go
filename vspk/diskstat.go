@@ -50,13 +50,13 @@ type DiskStat struct {
 	ParentID    string  `json:"parentID,omitempty"`
 	ParentType  string  `json:"parentType,omitempty"`
 	Owner       string  `json:"owner,omitempty"`
-	Available   float64 `json:"available,omitempty"`
-	EntityScope string  `json:"entityScope,omitempty"`
-	ExternalID  string  `json:"externalID,omitempty"`
 	Name        string  `json:"name,omitempty"`
 	Size        float64 `json:"size,omitempty"`
 	Unit        string  `json:"unit,omitempty"`
+	EntityScope string  `json:"entityScope,omitempty"`
 	Used        float64 `json:"used,omitempty"`
+	Available   float64 `json:"available,omitempty"`
+	ExternalID  string  `json:"externalID,omitempty"`
 }
 
 // NewDiskStat returns a new *DiskStat

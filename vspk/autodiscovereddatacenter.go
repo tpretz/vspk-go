@@ -50,9 +50,9 @@ type Autodiscovereddatacenter struct {
 	ParentID        string `json:"parentID,omitempty"`
 	ParentType      string `json:"parentType,omitempty"`
 	Owner           string `json:"owner,omitempty"`
-	AssocVCenterId  string `json:"assocVCenterId,omitempty"`
-	ManagedObjectID string `json:"managedObjectID,omitempty"`
 	Name            string `json:"name,omitempty"`
+	ManagedObjectID string `json:"managedObjectID,omitempty"`
+	AssocVCenterId  string `json:"assocVCenterId,omitempty"`
 }
 
 // NewAutodiscovereddatacenter returns a new *Autodiscovereddatacenter

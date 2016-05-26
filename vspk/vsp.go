@@ -50,13 +50,13 @@ type VSP struct {
 	ParentID       string `json:"parentID,omitempty"`
 	ParentType     string `json:"parentType,omitempty"`
 	Owner          string `json:"owner,omitempty"`
+	Name           string `json:"name,omitempty"`
+	LastUpdatedBy  string `json:"lastUpdatedBy,omitempty"`
 	Description    string `json:"description,omitempty"`
 	EntityScope    string `json:"entityScope,omitempty"`
-	ExternalID     string `json:"externalID,omitempty"`
-	LastUpdatedBy  string `json:"lastUpdatedBy,omitempty"`
 	Location       string `json:"location,omitempty"`
-	Name           string `json:"name,omitempty"`
 	ProductVersion string `json:"productVersion,omitempty"`
+	ExternalID     string `json:"externalID,omitempty"`
 }
 
 // NewVSP returns a new *VSP
@@ -101,16 +101,16 @@ func (o *VSP) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the VSP
-func (o *VSP) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the VSP
+func (o *VSP) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the VSP
-func (o *VSP) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the VSP
+func (o *VSP) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -143,20 +143,6 @@ func (o *VSP) CreateHSC(child *HSC) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the VSP
-func (o *VSP) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the VSP
-func (o *VSP) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // VSCs retrieves the list of child VSCs of the VSP
 func (o *VSP) VSCs(info *bambou.FetchingInfo) (VSCsList, *bambou.Error) {
 
@@ -181,6 +167,20 @@ func (o *VSP) VSDs(info *bambou.FetchingInfo) (VSDsList, *bambou.Error) {
 
 // CreateVSD creates a new child VSD under the VSP
 func (o *VSP) CreateVSD(child *VSD) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the VSP
+func (o *VSP) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the VSP
+func (o *VSP) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

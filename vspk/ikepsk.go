@@ -50,18 +50,18 @@ type IKEPSK struct {
 	ParentID                          string `json:"parentID,omitempty"`
 	ParentType                        string `json:"parentType,omitempty"`
 	Owner                             string `json:"owner,omitempty"`
-	AssociatedEnterpriseID            string `json:"associatedEnterpriseID,omitempty"`
-	AutoCreated                       bool   `json:"autoCreated"`
-	Description                       string `json:"description,omitempty"`
-	EncryptedPSK                      string `json:"encryptedPSK,omitempty"`
-	EncryptingCertificateSerialNumber int    `json:"encryptingCertificateSerialNumber,omitempty"`
-	EntityScope                       string `json:"entityScope,omitempty"`
-	ExternalID                        string `json:"externalID,omitempty"`
-	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
 	Name                              string `json:"name,omitempty"`
+	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
+	Description                       string `json:"description,omitempty"`
 	Signature                         string `json:"signature,omitempty"`
 	SigningCertificateSerialNumber    int    `json:"signingCertificateSerialNumber,omitempty"`
+	EncryptedPSK                      string `json:"encryptedPSK,omitempty"`
+	EncryptingCertificateSerialNumber int    `json:"encryptingCertificateSerialNumber,omitempty"`
 	UnencryptedPSK                    string `json:"unencryptedPSK,omitempty"`
+	EntityScope                       string `json:"entityScope,omitempty"`
+	AssociatedEnterpriseID            string `json:"associatedEnterpriseID,omitempty"`
+	AutoCreated                       bool   `json:"autoCreated"`
+	ExternalID                        string `json:"externalID,omitempty"`
 }
 
 // NewIKEPSK returns a new *IKEPSK
@@ -106,20 +106,6 @@ func (o *IKEPSK) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKEPSK
-func (o *IKEPSK) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the IKEPSK
-func (o *IKEPSK) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the IKEPSK
 func (o *IKEPSK) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -130,6 +116,20 @@ func (o *IKEPSK) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Er
 
 // CreateMetadata creates a new child Metadata under the IKEPSK
 func (o *IKEPSK) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKEPSK
+func (o *IKEPSK) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the IKEPSK
+func (o *IKEPSK) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

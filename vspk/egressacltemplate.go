@@ -50,19 +50,19 @@ type EgressACLTemplate struct {
 	ParentID                       string `json:"parentID,omitempty"`
 	ParentType                     string `json:"parentType,omitempty"`
 	Owner                          string `json:"owner,omitempty"`
+	Name                           string `json:"name,omitempty"`
+	LastUpdatedBy                  string `json:"lastUpdatedBy,omitempty"`
 	Active                         bool   `json:"active"`
-	AssociatedLiveEntityID         string `json:"associatedLiveEntityID,omitempty"`
 	DefaultAllowIP                 bool   `json:"defaultAllowIP"`
 	DefaultAllowNonIP              bool   `json:"defaultAllowNonIP"`
 	DefaultInstallACLImplicitRules bool   `json:"defaultInstallACLImplicitRules"`
 	Description                    string `json:"description,omitempty"`
 	EntityScope                    string `json:"entityScope,omitempty"`
-	ExternalID                     string `json:"externalID,omitempty"`
-	LastUpdatedBy                  string `json:"lastUpdatedBy,omitempty"`
-	Name                           string `json:"name,omitempty"`
 	PolicyState                    string `json:"policyState,omitempty"`
 	Priority                       int    `json:"priority,omitempty"`
 	PriorityType                   string `json:"priorityType,omitempty"`
+	AssociatedLiveEntityID         string `json:"associatedLiveEntityID,omitempty"`
+	ExternalID                     string `json:"externalID,omitempty"`
 }
 
 // NewEgressACLTemplate returns a new *EgressACLTemplate
@@ -107,6 +107,20 @@ func (o *EgressACLTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the EgressACLTemplate
+func (o *EgressACLTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the EgressACLTemplate
+func (o *EgressACLTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // EgressACLEntryTemplates retrieves the list of child EgressACLEntryTemplates of the EgressACLTemplate
 func (o *EgressACLTemplate) EgressACLEntryTemplates(info *bambou.FetchingInfo) (EgressACLEntryTemplatesList, *bambou.Error) {
 
@@ -117,20 +131,6 @@ func (o *EgressACLTemplate) EgressACLEntryTemplates(info *bambou.FetchingInfo) (
 
 // CreateEgressACLEntryTemplate creates a new child EgressACLEntryTemplate under the EgressACLTemplate
 func (o *EgressACLTemplate) CreateEgressACLEntryTemplate(child *EgressACLEntryTemplate) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the EgressACLTemplate
-func (o *EgressACLTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the EgressACLTemplate
-func (o *EgressACLTemplate) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -149,6 +149,20 @@ func (o *EgressACLTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VMs retrieves the list of child VMs of the EgressACLTemplate
+func (o *EgressACLTemplate) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
+
+	var list VMsList
+	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
+	return list, err
+}
+
+// CreateVM creates a new child VM under the EgressACLTemplate
+func (o *EgressACLTemplate) CreateVM(child *VM) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Jobs retrieves the list of child Jobs of the EgressACLTemplate
 func (o *EgressACLTemplate) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
 
@@ -163,30 +177,16 @@ func (o *EgressACLTemplate) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the EgressACLTemplate
-func (o *EgressACLTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the EgressACLTemplate
+func (o *EgressACLTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the EgressACLTemplate
-func (o *EgressACLTemplate) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMs retrieves the list of child VMs of the EgressACLTemplate
-func (o *EgressACLTemplate) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
-
-	var list VMsList
-	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
-	return list, err
-}
-
-// CreateVM creates a new child VM under the EgressACLTemplate
-func (o *EgressACLTemplate) CreateVM(child *VM) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the EgressACLTemplate
+func (o *EgressACLTemplate) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

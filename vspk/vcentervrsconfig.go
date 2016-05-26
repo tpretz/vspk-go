@@ -50,27 +50,54 @@ type VCenterVRSConfig struct {
 	ParentID                         string `json:"parentID,omitempty"`
 	ParentType                       string `json:"parentType,omitempty"`
 	Owner                            string `json:"owner,omitempty"`
-	AllowDataDHCP                    bool   `json:"allowDataDHCP"`
-	AllowMgmtDHCP                    bool   `json:"allowMgmtDHCP"`
-	CustomizedScriptURL              string `json:"customizedScriptURL,omitempty"`
+	VRequireNuageMetadata            bool   `json:"vRequireNuageMetadata"`
+	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
 	DataDNS1                         string `json:"dataDNS1,omitempty"`
 	DataDNS2                         string `json:"dataDNS2,omitempty"`
 	DataGateway                      string `json:"dataGateway,omitempty"`
 	DataNetworkPortgroup             string `json:"dataNetworkPortgroup,omitempty"`
 	DatapathSyncTimeout              int    `json:"datapathSyncTimeout,omitempty"`
-	DhcpRelayServer                  string `json:"dhcpRelayServer,omitempty"`
-	EntityScope                      string `json:"entityScope,omitempty"`
-	ExternalID                       string `json:"externalID,omitempty"`
-	FlowEvictionThreshold            int    `json:"flowEvictionThreshold,omitempty"`
-	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
+	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
+	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
+	Personality                      string `json:"personality,omitempty"`
 	MetadataServerIP                 string `json:"metadataServerIP,omitempty"`
 	MetadataServerListenPort         int    `json:"metadataServerListenPort,omitempty"`
 	MetadataServerPort               int    `json:"metadataServerPort,omitempty"`
 	MetadataServiceEnabled           bool   `json:"metadataServiceEnabled"`
+	NetworkUplinkInterface           string `json:"networkUplinkInterface,omitempty"`
+	NetworkUplinkInterfaceGateway    string `json:"networkUplinkInterfaceGateway,omitempty"`
+	NetworkUplinkInterfaceIp         string `json:"networkUplinkInterfaceIp,omitempty"`
+	NetworkUplinkInterfaceNetmask    string `json:"networkUplinkInterfaceNetmask,omitempty"`
+	NfsLogServer                     string `json:"nfsLogServer,omitempty"`
+	NfsMountPath                     string `json:"nfsMountPath,omitempty"`
 	MgmtDNS1                         string `json:"mgmtDNS1,omitempty"`
 	MgmtDNS2                         string `json:"mgmtDNS2,omitempty"`
 	MgmtGateway                      string `json:"mgmtGateway,omitempty"`
 	MgmtNetworkPortgroup             string `json:"mgmtNetworkPortgroup,omitempty"`
+	DhcpRelayServer                  string `json:"dhcpRelayServer,omitempty"`
+	SiteId                           string `json:"siteId,omitempty"`
+	AllowDataDHCP                    bool   `json:"allowDataDHCP"`
+	AllowMgmtDHCP                    bool   `json:"allowMgmtDHCP"`
+	FlowEvictionThreshold            int    `json:"flowEvictionThreshold,omitempty"`
+	VmNetworkPortgroup               string `json:"vmNetworkPortgroup,omitempty"`
+	EntityScope                      string `json:"entityScope,omitempty"`
+	PortgroupMetadata                bool   `json:"portgroupMetadata"`
+	NovaClientVersion                int    `json:"novaClientVersion,omitempty"`
+	NovaMetadataServiceAuthUrl       string `json:"novaMetadataServiceAuthUrl,omitempty"`
+	NovaMetadataServiceEndpoint      string `json:"novaMetadataServiceEndpoint,omitempty"`
+	NovaMetadataServicePassword      string `json:"novaMetadataServicePassword,omitempty"`
+	NovaMetadataServiceTenant        string `json:"novaMetadataServiceTenant,omitempty"`
+	NovaMetadataServiceUsername      string `json:"novaMetadataServiceUsername,omitempty"`
+	NovaMetadataSharedSecret         string `json:"novaMetadataSharedSecret,omitempty"`
+	NovaRegionName                   string `json:"novaRegionName,omitempty"`
+	PrimaryNuageController           string `json:"primaryNuageController,omitempty"`
+	VrsPassword                      string `json:"vrsPassword,omitempty"`
+	VrsUserName                      string `json:"vrsUserName,omitempty"`
+	StaticRoute                      string `json:"staticRoute,omitempty"`
+	StaticRouteGateway               string `json:"staticRouteGateway,omitempty"`
+	StaticRouteNetmask               string `json:"staticRouteNetmask,omitempty"`
+	NtpServer1                       string `json:"ntpServer1,omitempty"`
+	NtpServer2                       string `json:"ntpServer2,omitempty"`
 	Mtu                              int    `json:"mtu,omitempty"`
 	MultiVMSsupport                  bool   `json:"multiVMSsupport"`
 	MulticastReceiveInterface        string `json:"multicastReceiveInterface,omitempty"`
@@ -81,35 +108,8 @@ type VCenterVRSConfig struct {
 	MulticastSendInterfaceIP         string `json:"multicastSendInterfaceIP,omitempty"`
 	MulticastSendInterfaceNetmask    string `json:"multicastSendInterfaceNetmask,omitempty"`
 	MulticastSourcePortgroup         string `json:"multicastSourcePortgroup,omitempty"`
-	NetworkUplinkInterface           string `json:"networkUplinkInterface,omitempty"`
-	NetworkUplinkInterfaceGateway    string `json:"networkUplinkInterfaceGateway,omitempty"`
-	NetworkUplinkInterfaceIp         string `json:"networkUplinkInterfaceIp,omitempty"`
-	NetworkUplinkInterfaceNetmask    string `json:"networkUplinkInterfaceNetmask,omitempty"`
-	NfsLogServer                     string `json:"nfsLogServer,omitempty"`
-	NfsMountPath                     string `json:"nfsMountPath,omitempty"`
-	NovaClientVersion                int    `json:"novaClientVersion,omitempty"`
-	NovaMetadataServiceAuthUrl       string `json:"novaMetadataServiceAuthUrl,omitempty"`
-	NovaMetadataServiceEndpoint      string `json:"novaMetadataServiceEndpoint,omitempty"`
-	NovaMetadataServicePassword      string `json:"novaMetadataServicePassword,omitempty"`
-	NovaMetadataServiceTenant        string `json:"novaMetadataServiceTenant,omitempty"`
-	NovaMetadataServiceUsername      string `json:"novaMetadataServiceUsername,omitempty"`
-	NovaMetadataSharedSecret         string `json:"novaMetadataSharedSecret,omitempty"`
-	NovaRegionName                   string `json:"novaRegionName,omitempty"`
-	NtpServer1                       string `json:"ntpServer1,omitempty"`
-	NtpServer2                       string `json:"ntpServer2,omitempty"`
-	Personality                      string `json:"personality,omitempty"`
-	PortgroupMetadata                bool   `json:"portgroupMetadata"`
-	PrimaryNuageController           string `json:"primaryNuageController,omitempty"`
-	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
-	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
-	SiteId                           string `json:"siteId,omitempty"`
-	StaticRoute                      string `json:"staticRoute,omitempty"`
-	StaticRouteGateway               string `json:"staticRouteGateway,omitempty"`
-	StaticRouteNetmask               string `json:"staticRouteNetmask,omitempty"`
-	VRequireNuageMetadata            bool   `json:"vRequireNuageMetadata"`
-	VmNetworkPortgroup               string `json:"vmNetworkPortgroup,omitempty"`
-	VrsPassword                      string `json:"vrsPassword,omitempty"`
-	VrsUserName                      string `json:"vrsUserName,omitempty"`
+	CustomizedScriptURL              string `json:"customizedScriptURL,omitempty"`
+	ExternalID                       string `json:"externalID,omitempty"`
 }
 
 // NewVCenterVRSConfig returns a new *VCenterVRSConfig
@@ -154,20 +154,6 @@ func (o *VCenterVRSConfig) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VCenterVRSConfig
-func (o *VCenterVRSConfig) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the VCenterVRSConfig
-func (o *VCenterVRSConfig) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the VCenterVRSConfig
 func (o *VCenterVRSConfig) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -178,6 +164,20 @@ func (o *VCenterVRSConfig) Metadatas(info *bambou.FetchingInfo) (MetadatasList, 
 
 // CreateMetadata creates a new child Metadata under the VCenterVRSConfig
 func (o *VCenterVRSConfig) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VCenterVRSConfig
+func (o *VCenterVRSConfig) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the VCenterVRSConfig
+func (o *VCenterVRSConfig) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

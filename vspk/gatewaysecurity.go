@@ -50,11 +50,11 @@ type GatewaySecurity struct {
 	ParentID      string `json:"parentID,omitempty"`
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	GatewayID     string `json:"gatewayID,omitempty"`
+	Revision      int    `json:"revision,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
-	GatewayID     string `json:"gatewayID,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Revision      int    `json:"revision,omitempty"`
 }
 
 // NewGatewaySecurity returns a new *GatewaySecurity
@@ -113,20 +113,6 @@ func (o *GatewaySecurity) CreateGatewaySecuredData(child *GatewaySecuredData) *b
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the GatewaySecurity
-func (o *GatewaySecurity) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the GatewaySecurity
-func (o *GatewaySecurity) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the GatewaySecurity
 func (o *GatewaySecurity) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -137,6 +123,20 @@ func (o *GatewaySecurity) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *
 
 // CreateMetadata creates a new child Metadata under the GatewaySecurity
 func (o *GatewaySecurity) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the GatewaySecurity
+func (o *GatewaySecurity) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the GatewaySecurity
+func (o *GatewaySecurity) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

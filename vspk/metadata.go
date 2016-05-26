@@ -50,14 +50,14 @@ type Metadata struct {
 	ParentID                    string        `json:"parentID,omitempty"`
 	ParentType                  string        `json:"parentType,omitempty"`
 	Owner                       string        `json:"owner,omitempty"`
-	Blob                        string        `json:"blob,omitempty"`
+	Name                        string        `json:"name,omitempty"`
 	Description                 string        `json:"description,omitempty"`
+	MetadataTagIDs              []interface{} `json:"metadataTagIDs,omitempty"`
+	NetworkNotificationDisabled bool          `json:"networkNotificationDisabled"`
+	Blob                        string        `json:"blob,omitempty"`
+	GlobalMetadata              bool          `json:"globalMetadata"`
 	EntityScope                 string        `json:"entityScope,omitempty"`
 	ExternalID                  string        `json:"externalID,omitempty"`
-	GlobalMetadata              bool          `json:"globalMetadata"`
-	MetadataTagIDs              []interface{} `json:"metadataTagIDs,omitempty"`
-	Name                        string        `json:"name,omitempty"`
-	NetworkNotificationDisabled bool          `json:"networkNotificationDisabled"`
 }
 
 // NewMetadata returns a new *Metadata
@@ -102,20 +102,6 @@ func (o *Metadata) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the Metadata
-func (o *Metadata) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the Metadata
-func (o *Metadata) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // MetadataTags retrieves the list of child MetadataTags of the Metadata
 func (o *Metadata) MetadataTags(info *bambou.FetchingInfo) (MetadataTagsList, *bambou.Error) {
 
@@ -133,4 +119,18 @@ func (o *Metadata) AssignMetadataTags(children MetadataTagsList) *bambou.Error {
 	}
 
 	return bambou.CurrentSession().AssignChildren(o, list, MetadataTagIdentity)
+}
+
+// EventLogs retrieves the list of child EventLogs of the Metadata
+func (o *Metadata) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the Metadata
+func (o *Metadata) CreateEventLog(child *EventLog) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }

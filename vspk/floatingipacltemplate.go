@@ -50,18 +50,18 @@ type FloatingIPACLTemplate struct {
 	ParentID               string `json:"parentID,omitempty"`
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
+	Name                   string `json:"name,omitempty"`
+	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	Active                 bool   `json:"active"`
-	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
 	DefaultAllowIP         bool   `json:"defaultAllowIP"`
 	DefaultAllowNonIP      bool   `json:"defaultAllowNonIP"`
 	Description            string `json:"description,omitempty"`
 	EntityScope            string `json:"entityScope,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	Name                   string `json:"name,omitempty"`
 	PolicyState            string `json:"policyState,omitempty"`
 	Priority               int    `json:"priority,omitempty"`
 	PriorityType           string `json:"priorityType,omitempty"`
+	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 }
 
 // NewFloatingIPACLTemplate returns a new *FloatingIPACLTemplate
@@ -106,6 +106,20 @@ func (o *FloatingIPACLTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the FloatingIPACLTemplate
+func (o *FloatingIPACLTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the FloatingIPACLTemplate
+func (o *FloatingIPACLTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // FloatingIPACLTemplateEntries retrieves the list of child FloatingIPACLTemplateEntries of the FloatingIPACLTemplate
 func (o *FloatingIPACLTemplate) FloatingIPACLTemplateEntries(info *bambou.FetchingInfo) (FloatingIPACLTemplateEntriesList, *bambou.Error) {
 
@@ -130,20 +144,6 @@ func (o *FloatingIPACLTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (Glob
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the FloatingIPACLTemplate
 func (o *FloatingIPACLTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the FloatingIPACLTemplate
-func (o *FloatingIPACLTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the FloatingIPACLTemplate
-func (o *FloatingIPACLTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

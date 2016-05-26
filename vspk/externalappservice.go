@@ -50,25 +50,25 @@ type ExternalAppService struct {
 	ParentID                           string `json:"parentID,omitempty"`
 	ParentType                         string `json:"parentType,omitempty"`
 	Owner                              string `json:"owner,omitempty"`
-	AssociatedServiceEgressGroupID     string `json:"associatedServiceEgressGroupID,omitempty"`
-	AssociatedServiceEgressRedirectID  string `json:"associatedServiceEgressRedirectID,omitempty"`
-	AssociatedServiceIngressGroupID    string `json:"associatedServiceIngressGroupID,omitempty"`
-	AssociatedServiceIngressRedirectID string `json:"associatedServiceIngressRedirectID,omitempty"`
+	Name                               string `json:"name,omitempty"`
+	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
 	Description                        string `json:"description,omitempty"`
 	DestinationNATAddress              string `json:"destinationNATAddress,omitempty"`
 	DestinationNATEnabled              bool   `json:"destinationNATEnabled"`
 	DestinationNATMask                 string `json:"destinationNATMask,omitempty"`
-	EgressType                         string `json:"egressType,omitempty"`
-	EntityScope                        string `json:"entityScope,omitempty"`
-	ExternalID                         string `json:"externalID,omitempty"`
-	IngressType                        string `json:"ingressType,omitempty"`
-	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
 	Metadata                           string `json:"metadata,omitempty"`
-	Name                               string `json:"name,omitempty"`
-	SourceNATAddress                   string `json:"sourceNATAddress,omitempty"`
-	SourceNATEnabled                   bool   `json:"sourceNATEnabled"`
+	EgressType                         string `json:"egressType,omitempty"`
 	VirtualIP                          string `json:"virtualIP,omitempty"`
 	VirtualIPRequired                  bool   `json:"virtualIPRequired"`
+	IngressType                        string `json:"ingressType,omitempty"`
+	EntityScope                        string `json:"entityScope,omitempty"`
+	SourceNATAddress                   string `json:"sourceNATAddress,omitempty"`
+	SourceNATEnabled                   bool   `json:"sourceNATEnabled"`
+	AssociatedServiceEgressGroupID     string `json:"associatedServiceEgressGroupID,omitempty"`
+	AssociatedServiceEgressRedirectID  string `json:"associatedServiceEgressRedirectID,omitempty"`
+	AssociatedServiceIngressGroupID    string `json:"associatedServiceIngressGroupID,omitempty"`
+	AssociatedServiceIngressRedirectID string `json:"associatedServiceIngressRedirectID,omitempty"`
+	ExternalID                         string `json:"externalID,omitempty"`
 }
 
 // NewExternalAppService returns a new *ExternalAppService
@@ -113,20 +113,6 @@ func (o *ExternalAppService) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the ExternalAppService
-func (o *ExternalAppService) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the ExternalAppService
-func (o *ExternalAppService) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the ExternalAppService
 func (o *ExternalAppService) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -137,6 +123,20 @@ func (o *ExternalAppService) Metadatas(info *bambou.FetchingInfo) (MetadatasList
 
 // CreateMetadata creates a new child Metadata under the ExternalAppService
 func (o *ExternalAppService) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the ExternalAppService
+func (o *ExternalAppService) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the ExternalAppService
+func (o *ExternalAppService) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

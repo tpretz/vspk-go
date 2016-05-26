@@ -51,19 +51,19 @@ type SubnetTemplate struct {
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
 	IPType                          string `json:"IPType,omitempty"`
+	Name                            string `json:"name,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
+	Gateway                         string `json:"gateway,omitempty"`
 	Address                         string `json:"address,omitempty"`
-	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
 	Description                     string `json:"description,omitempty"`
+	Netmask                         string `json:"netmask,omitempty"`
 	Encryption                      string `json:"encryption,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
-	Gateway                         string `json:"gateway,omitempty"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	Multicast                       string `json:"multicast,omitempty"`
-	Name                            string `json:"name,omitempty"`
-	Netmask                         string `json:"netmask,omitempty"`
-	ProxyARP                        bool   `json:"proxyARP"`
 	SplitSubnet                     bool   `json:"splitSubnet"`
+	ProxyARP                        bool   `json:"proxyARP"`
+	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
+	Multicast                       string `json:"multicast,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewSubnetTemplate returns a new *SubnetTemplate
@@ -125,16 +125,16 @@ func (o *SubnetTemplate) CreateAddressRange(child *AddressRange) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// EventLogs retrieves the list of child EventLogs of the SubnetTemplate
-func (o *SubnetTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the SubnetTemplate
+func (o *SubnetTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the SubnetTemplate
-func (o *SubnetTemplate) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the SubnetTemplate
+func (o *SubnetTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -149,20 +149,6 @@ func (o *SubnetTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetad
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the SubnetTemplate
 func (o *SubnetTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the SubnetTemplate
-func (o *SubnetTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the SubnetTemplate
-func (o *SubnetTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -191,6 +177,20 @@ func (o *SubnetTemplate) Subnets(info *bambou.FetchingInfo) (SubnetsList, *bambo
 
 // CreateSubnet creates a new child Subnet under the SubnetTemplate
 func (o *SubnetTemplate) CreateSubnet(child *Subnet) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the SubnetTemplate
+func (o *SubnetTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the SubnetTemplate
+func (o *SubnetTemplate) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

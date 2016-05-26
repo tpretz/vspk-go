@@ -66,13 +66,13 @@ type IKEEncryptionprofile struct {
 	ISAKMPEncryptionAlgorithm         string `json:"ISAKMPEncryptionAlgorithm,omitempty"`
 	ISAKMPEncryptionKeyLifetime       int    `json:"ISAKMPEncryptionKeyLifetime,omitempty"`
 	ISAKMPHashAlgorithm               string `json:"ISAKMPHashAlgorithm,omitempty"`
-	AssociatedEnterpriseID            string `json:"associatedEnterpriseID,omitempty"`
+	Name                              string `json:"name,omitempty"`
+	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
+	Sequence                          int    `json:"sequence,omitempty"`
 	Description                       string `json:"description,omitempty"`
 	EntityScope                       string `json:"entityScope,omitempty"`
+	AssociatedEnterpriseID            string `json:"associatedEnterpriseID,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`
-	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
-	Name                              string `json:"name,omitempty"`
-	Sequence                          int    `json:"sequence,omitempty"`
 }
 
 // NewIKEEncryptionprofile returns a new *IKEEncryptionprofile
@@ -117,20 +117,6 @@ func (o *IKEEncryptionprofile) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKEEncryptionprofile
-func (o *IKEEncryptionprofile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the IKEEncryptionprofile
-func (o *IKEEncryptionprofile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the IKEEncryptionprofile
 func (o *IKEEncryptionprofile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -141,6 +127,20 @@ func (o *IKEEncryptionprofile) Metadatas(info *bambou.FetchingInfo) (MetadatasLi
 
 // CreateMetadata creates a new child Metadata under the IKEEncryptionprofile
 func (o *IKEEncryptionprofile) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKEEncryptionprofile
+func (o *IKEEncryptionprofile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the IKEEncryptionprofile
+func (o *IKEEncryptionprofile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

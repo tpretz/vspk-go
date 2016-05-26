@@ -51,10 +51,10 @@ type KeyServerNotification struct {
 	ParentType       string      `json:"parentType,omitempty"`
 	Owner            string      `json:"owner,omitempty"`
 	Base64JSONString string      `json:"base64JSONString,omitempty"`
-	EntityScope      string      `json:"entityScope,omitempty"`
-	ExternalID       string      `json:"externalID,omitempty"`
 	Message          interface{} `json:"message,omitempty"`
+	EntityScope      string      `json:"entityScope,omitempty"`
 	NotificationType string      `json:"notificationType,omitempty"`
+	ExternalID       string      `json:"externalID,omitempty"`
 }
 
 // NewKeyServerNotification returns a new *KeyServerNotification
@@ -99,20 +99,6 @@ func (o *KeyServerNotification) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the KeyServerNotification
-func (o *KeyServerNotification) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the KeyServerNotification
-func (o *KeyServerNotification) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the KeyServerNotification
 func (o *KeyServerNotification) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -123,6 +109,20 @@ func (o *KeyServerNotification) Metadatas(info *bambou.FetchingInfo) (MetadatasL
 
 // CreateMetadata creates a new child Metadata under the KeyServerNotification
 func (o *KeyServerNotification) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the KeyServerNotification
+func (o *KeyServerNotification) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the KeyServerNotification
+func (o *KeyServerNotification) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

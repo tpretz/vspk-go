@@ -50,16 +50,16 @@ type BGPNeighbor struct {
 	ParentID                        string `json:"parentID,omitempty"`
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
-	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
-	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
-	DampeningEnabled                bool   `json:"dampeningEnabled"`
-	Description                     string `json:"description,omitempty"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
 	Name                            string `json:"name,omitempty"`
+	DampeningEnabled                bool   `json:"dampeningEnabled"`
 	PeerAS                          int    `json:"peerAS,omitempty"`
 	PeerIP                          string `json:"peerIP,omitempty"`
+	Description                     string `json:"description,omitempty"`
 	Session                         string `json:"session,omitempty"`
+	EntityScope                     string `json:"entityScope,omitempty"`
+	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
+	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewBGPNeighbor returns a new *BGPNeighbor
@@ -104,20 +104,6 @@ func (o *BGPNeighbor) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the BGPNeighbor
-func (o *BGPNeighbor) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the BGPNeighbor
-func (o *BGPNeighbor) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the BGPNeighbor
 func (o *BGPNeighbor) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -128,6 +114,20 @@ func (o *BGPNeighbor) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bamb
 
 // CreateMetadata creates a new child Metadata under the BGPNeighbor
 func (o *BGPNeighbor) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the BGPNeighbor
+func (o *BGPNeighbor) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the BGPNeighbor
+func (o *BGPNeighbor) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -51,15 +51,15 @@ type TCA struct {
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
 	URLEndPoint   string `json:"URLEndPoint,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	Scope         string `json:"scope,omitempty"`
+	Period        int    `json:"period,omitempty"`
 	Description   string `json:"description,omitempty"`
+	Metric        string `json:"metric,omitempty"`
+	Threshold     int    `json:"threshold,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Metric        string `json:"metric,omitempty"`
-	Name          string `json:"name,omitempty"`
-	Period        int    `json:"period,omitempty"`
-	Scope         string `json:"scope,omitempty"`
-	Threshold     int    `json:"threshold,omitempty"`
 	Type          string `json:"type,omitempty"`
 }
 
@@ -109,6 +109,20 @@ func (o *TCA) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the TCA
+func (o *TCA) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the TCA
+func (o *TCA) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Alarms retrieves the list of child Alarms of the TCA
 func (o *TCA) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
@@ -119,20 +133,6 @@ func (o *TCA) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
 // CreateAlarm creates a new child Alarm under the TCA
 func (o *TCA) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the TCA
-func (o *TCA) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the TCA
-func (o *TCA) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -151,16 +151,16 @@ func (o *TCA) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the TCA
-func (o *TCA) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the TCA
+func (o *TCA) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the TCA
-func (o *TCA) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the TCA
+func (o *TCA) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

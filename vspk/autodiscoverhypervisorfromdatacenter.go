@@ -50,9 +50,9 @@ type AutoDiscoverHypervisorFromDatacenter struct {
 	ParentID                 string        `json:"parentID,omitempty"`
 	ParentType               string        `json:"parentType,omitempty"`
 	Owner                    string        `json:"owner,omitempty"`
+	NetworkList              []interface{} `json:"networkList,omitempty"`
 	AssocVCenterDataCenterId string        `json:"assocVCenterDataCenterId,omitempty"`
 	HypervisorIP             string        `json:"hypervisorIP,omitempty"`
-	NetworkList              []interface{} `json:"networkList,omitempty"`
 }
 
 // NewAutoDiscoverHypervisorFromDatacenter returns a new *AutoDiscoverHypervisorFromDatacenter

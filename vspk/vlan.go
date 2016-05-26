@@ -50,22 +50,22 @@ type VLAN struct {
 	ParentID                    string `json:"parentID,omitempty"`
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
-	AssociatedBGPProfileID      string `json:"associatedBGPProfileID,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
-	GatewayID                   string `json:"gatewayID,omitempty"`
+	Value                       int    `json:"value,omitempty"`
 	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	PermittedAction             string `json:"permittedAction,omitempty"`
+	GatewayID                   string `json:"gatewayID,omitempty"`
 	Readonly                    bool   `json:"readonly"`
-	Restricted                  bool   `json:"restricted"`
-	Status                      string `json:"status,omitempty"`
 	TemplateID                  string `json:"templateID,omitempty"`
+	PermittedAction             string `json:"permittedAction,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	Restricted                  bool   `json:"restricted"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	VportID                     string `json:"vportID,omitempty"`
 	UseUserMnemonic             bool   `json:"useUserMnemonic"`
 	UserMnemonic                string `json:"userMnemonic,omitempty"`
-	Value                       int    `json:"value,omitempty"`
-	VportID                     string `json:"vportID,omitempty"`
+	AssociatedBGPProfileID      string `json:"associatedBGPProfileID,omitempty"`
+	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
+	Status                      string `json:"status,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewVLAN returns a new *VLAN
@@ -110,104 +110,6 @@ func (o *VLAN) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Alarms retrieves the list of child Alarms of the VLAN
-func (o *VLAN) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
-
-	var list AlarmsList
-	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
-	return list, err
-}
-
-// CreateAlarm creates a new child Alarm under the VLAN
-func (o *VLAN) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// BGPNeighbors retrieves the list of child BGPNeighbors of the VLAN
-func (o *VLAN) BGPNeighbors(info *bambou.FetchingInfo) (BGPNeighborsList, *bambou.Error) {
-
-	var list BGPNeighborsList
-	err := bambou.CurrentSession().FetchChildren(o, BGPNeighborIdentity, &list, info)
-	return list, err
-}
-
-// CreateBGPNeighbor creates a new child BGPNeighbor under the VLAN
-func (o *VLAN) CreateBGPNeighbor(child *BGPNeighbor) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EnterprisePermissions retrieves the list of child EnterprisePermissions of the VLAN
-func (o *VLAN) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
-
-	var list EnterprisePermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreateEnterprisePermission creates a new child EnterprisePermission under the VLAN
-func (o *VLAN) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the VLAN
-func (o *VLAN) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the VLAN
-func (o *VLAN) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VLAN
-func (o *VLAN) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the VLAN
-func (o *VLAN) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// IKEGatewayConnections retrieves the list of child IKEGatewayConnections of the VLAN
-func (o *VLAN) IKEGatewayConnections(info *bambou.FetchingInfo) (IKEGatewayConnectionsList, *bambou.Error) {
-
-	var list IKEGatewayConnectionsList
-	err := bambou.CurrentSession().FetchChildren(o, IKEGatewayConnectionIdentity, &list, info)
-	return list, err
-}
-
-// CreateIKEGatewayConnection creates a new child IKEGatewayConnection under the VLAN
-func (o *VLAN) CreateIKEGatewayConnection(child *IKEGatewayConnection) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the VLAN
-func (o *VLAN) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the VLAN
-func (o *VLAN) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // PATNATPools retrieves the list of child PATNATPools of the VLAN
 func (o *VLAN) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *bambou.Error) {
 
@@ -237,6 +139,104 @@ func (o *VLAN) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.
 
 // CreatePermission creates a new child Permission under the VLAN
 func (o *VLAN) CreatePermission(child *Permission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Metadatas retrieves the list of child Metadatas of the VLAN
+func (o *VLAN) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the VLAN
+func (o *VLAN) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// BGPNeighbors retrieves the list of child BGPNeighbors of the VLAN
+func (o *VLAN) BGPNeighbors(info *bambou.FetchingInfo) (BGPNeighborsList, *bambou.Error) {
+
+	var list BGPNeighborsList
+	err := bambou.CurrentSession().FetchChildren(o, BGPNeighborIdentity, &list, info)
+	return list, err
+}
+
+// CreateBGPNeighbor creates a new child BGPNeighbor under the VLAN
+func (o *VLAN) CreateBGPNeighbor(child *BGPNeighbor) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// IKEGatewayConnections retrieves the list of child IKEGatewayConnections of the VLAN
+func (o *VLAN) IKEGatewayConnections(info *bambou.FetchingInfo) (IKEGatewayConnectionsList, *bambou.Error) {
+
+	var list IKEGatewayConnectionsList
+	err := bambou.CurrentSession().FetchChildren(o, IKEGatewayConnectionIdentity, &list, info)
+	return list, err
+}
+
+// CreateIKEGatewayConnection creates a new child IKEGatewayConnection under the VLAN
+func (o *VLAN) CreateIKEGatewayConnection(child *IKEGatewayConnection) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Alarms retrieves the list of child Alarms of the VLAN
+func (o *VLAN) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
+// CreateAlarm creates a new child Alarm under the VLAN
+func (o *VLAN) CreateAlarm(child *Alarm) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VLAN
+func (o *VLAN) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the VLAN
+func (o *VLAN) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EnterprisePermissions retrieves the list of child EnterprisePermissions of the VLAN
+func (o *VLAN) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
+
+	var list EnterprisePermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterprisePermission creates a new child EnterprisePermission under the VLAN
+func (o *VLAN) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the VLAN
+func (o *VLAN) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the VLAN
+func (o *VLAN) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

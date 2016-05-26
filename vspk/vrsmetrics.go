@@ -54,11 +54,11 @@ type VrsMetrics struct {
 	CPUUtilization           float64 `json:"CPUUtilization,omitempty"`
 	VRSProcess               bool    `json:"VRSProcess"`
 	VRSVSCStatus             bool    `json:"VRSVSCStatus"`
+	ReceivingMetrics         bool    `json:"receivingMetrics"`
+	MemoryUtilization        float64 `json:"memoryUtilization,omitempty"`
+	JesxmonProcess           bool    `json:"jesxmonProcess"`
 	AgentName                string  `json:"agentName,omitempty"`
 	AssocVCenterHypervisorID string  `json:"assocVCenterHypervisorID,omitempty"`
-	JesxmonProcess           bool    `json:"jesxmonProcess"`
-	MemoryUtilization        float64 `json:"memoryUtilization,omitempty"`
-	ReceivingMetrics         bool    `json:"receivingMetrics"`
 }
 
 // NewVrsMetrics returns a new *VrsMetrics

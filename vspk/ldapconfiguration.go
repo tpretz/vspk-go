@@ -51,19 +51,19 @@ type LDAPConfiguration struct {
 	ParentType            string `json:"parentType,omitempty"`
 	Owner                 string `json:"owner,omitempty"`
 	SSLEnabled            bool   `json:"SSLEnabled"`
+	Password              string `json:"password,omitempty"`
+	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
 	AcceptAllCertificates bool   `json:"acceptAllCertificates"`
-	AuthorizationEnabled  bool   `json:"authorizationEnabled"`
-	AuthorizingUserDN     string `json:"authorizingUserDN,omitempty"`
 	Certificate           string `json:"certificate,omitempty"`
+	Server                string `json:"server,omitempty"`
 	Enabled               bool   `json:"enabled"`
 	EntityScope           string `json:"entityScope,omitempty"`
-	ExternalID            string `json:"externalID,omitempty"`
-	GroupDN               string `json:"groupDN,omitempty"`
-	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
-	Password              string `json:"password,omitempty"`
 	Port                  string `json:"port,omitempty"`
-	Server                string `json:"server,omitempty"`
+	GroupDN               string `json:"groupDN,omitempty"`
 	UserDNTemplate        string `json:"userDNTemplate,omitempty"`
+	AuthorizationEnabled  bool   `json:"authorizationEnabled"`
+	AuthorizingUserDN     string `json:"authorizingUserDN,omitempty"`
+	ExternalID            string `json:"externalID,omitempty"`
 }
 
 // NewLDAPConfiguration returns a new *LDAPConfiguration
@@ -108,20 +108,6 @@ func (o *LDAPConfiguration) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the LDAPConfiguration
-func (o *LDAPConfiguration) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the LDAPConfiguration
-func (o *LDAPConfiguration) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the LDAPConfiguration
 func (o *LDAPConfiguration) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -132,6 +118,20 @@ func (o *LDAPConfiguration) Metadatas(info *bambou.FetchingInfo) (MetadatasList,
 
 // CreateMetadata creates a new child Metadata under the LDAPConfiguration
 func (o *LDAPConfiguration) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the LDAPConfiguration
+func (o *LDAPConfiguration) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the LDAPConfiguration
+func (o *LDAPConfiguration) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

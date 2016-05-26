@@ -51,24 +51,24 @@ type VPort struct {
 	ParentType                          string `json:"parentType,omitempty"`
 	Owner                               string `json:"owner,omitempty"`
 	VLANID                              string `json:"VLANID,omitempty"`
+	Name                                string `json:"name,omitempty"`
+	HasAttachedInterfaces               bool   `json:"hasAttachedInterfaces"`
+	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
 	Active                              bool   `json:"active"`
 	AddressSpoofing                     string `json:"addressSpoofing,omitempty"`
+	Description                         string `json:"description,omitempty"`
+	EntityScope                         string `json:"entityScope,omitempty"`
+	DomainID                            string `json:"domainID,omitempty"`
+	ZoneID                              string `json:"zoneID,omitempty"`
+	OperationalState                    string `json:"operationalState,omitempty"`
 	AssociatedFloatingIPID              string `json:"associatedFloatingIPID,omitempty"`
 	AssociatedMulticastChannelMapID     string `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedSendMulticastChannelMapID string `json:"associatedSendMulticastChannelMapID,omitempty"`
-	Description                         string `json:"description,omitempty"`
-	DomainID                            string `json:"domainID,omitempty"`
-	EntityScope                         string `json:"entityScope,omitempty"`
-	ExternalID                          string `json:"externalID,omitempty"`
-	HasAttachedInterfaces               bool   `json:"hasAttachedInterfaces"`
-	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
 	MultiNICVPortID                     string `json:"multiNICVPortID,omitempty"`
 	Multicast                           string `json:"multicast,omitempty"`
-	Name                                string `json:"name,omitempty"`
-	OperationalState                    string `json:"operationalState,omitempty"`
-	SystemType                          string `json:"systemType,omitempty"`
+	ExternalID                          string `json:"externalID,omitempty"`
 	Type                                string `json:"type,omitempty"`
-	ZoneID                              string `json:"zoneID,omitempty"`
+	SystemType                          string `json:"systemType,omitempty"`
 }
 
 // NewVPort returns a new *VPort
@@ -118,6 +118,53 @@ func (o *VPort) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// TCAs retrieves the list of child TCAs of the VPort
+func (o *VPort) TCAs(info *bambou.FetchingInfo) (TCAsList, *bambou.Error) {
+
+	var list TCAsList
+	err := bambou.CurrentSession().FetchChildren(o, TCAIdentity, &list, info)
+	return list, err
+}
+
+// CreateTCA creates a new child TCA under the VPort
+func (o *VPort) CreateTCA(child *TCA) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// RedirectionTargets retrieves the list of child RedirectionTargets of the VPort
+func (o *VPort) RedirectionTargets(info *bambou.FetchingInfo) (RedirectionTargetsList, *bambou.Error) {
+
+	var list RedirectionTargetsList
+	err := bambou.CurrentSession().FetchChildren(o, RedirectionTargetIdentity, &list, info)
+	return list, err
+}
+
+// AssignRedirectionTargets assigns the list of RedirectionTargets to the VPort
+func (o *VPort) AssignRedirectionTargets(children RedirectionTargetsList) *bambou.Error {
+
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, RedirectionTargetIdentity)
+}
+
+// Metadatas retrieves the list of child Metadatas of the VPort
+func (o *VPort) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the VPort
+func (o *VPort) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // AggregateMetadatas retrieves the list of child AggregateMetadatas of the VPort
 func (o *VPort) AggregateMetadatas(info *bambou.FetchingInfo) (AggregateMetadatasList, *bambou.Error) {
 
@@ -128,20 +175,6 @@ func (o *VPort) AggregateMetadatas(info *bambou.FetchingInfo) (AggregateMetadata
 
 // CreateAggregateMetadata creates a new child AggregateMetadata under the VPort
 func (o *VPort) CreateAggregateMetadata(child *AggregateMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Alarms retrieves the list of child Alarms of the VPort
-func (o *VPort) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
-
-	var list AlarmsList
-	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
-	return list, err
-}
-
-// CreateAlarm creates a new child Alarm under the VPort
-func (o *VPort) CreateAlarm(child *Alarm) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -160,20 +193,6 @@ func (o *VPort) CreateBGPNeighbor(child *BGPNeighbor) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// BridgeInterfaces retrieves the list of child BridgeInterfaces of the VPort
-func (o *VPort) BridgeInterfaces(info *bambou.FetchingInfo) (BridgeInterfacesList, *bambou.Error) {
-
-	var list BridgeInterfacesList
-	err := bambou.CurrentSession().FetchChildren(o, BridgeInterfaceIdentity, &list, info)
-	return list, err
-}
-
-// CreateBridgeInterface creates a new child BridgeInterface under the VPort
-func (o *VPort) CreateBridgeInterface(child *BridgeInterface) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // DHCPOptions retrieves the list of child DHCPOptions of the VPort
 func (o *VPort) DHCPOptions(info *bambou.FetchingInfo) (DHCPOptionsList, *bambou.Error) {
 
@@ -188,16 +207,30 @@ func (o *VPort) CreateDHCPOption(child *DHCPOption) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// EventLogs retrieves the list of child EventLogs of the VPort
-func (o *VPort) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// VirtualIPs retrieves the list of child VirtualIPs of the VPort
+func (o *VPort) VirtualIPs(info *bambou.FetchingInfo) (VirtualIPsList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list VirtualIPsList
+	err := bambou.CurrentSession().FetchChildren(o, VirtualIPIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the VPort
-func (o *VPort) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateVirtualIP creates a new child VirtualIP under the VPort
+func (o *VPort) CreateVirtualIP(child *VirtualIP) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Alarms retrieves the list of child Alarms of the VPort
+func (o *VPort) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
+// CreateAlarm creates a new child Alarm under the VPort
+func (o *VPort) CreateAlarm(child *Alarm) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -216,30 +249,30 @@ func (o *VPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// HostInterfaces retrieves the list of child HostInterfaces of the VPort
-func (o *VPort) HostInterfaces(info *bambou.FetchingInfo) (HostInterfacesList, *bambou.Error) {
+// VMs retrieves the list of child VMs of the VPort
+func (o *VPort) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
 
-	var list HostInterfacesList
-	err := bambou.CurrentSession().FetchChildren(o, HostInterfaceIdentity, &list, info)
+	var list VMsList
+	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
 	return list, err
 }
 
-// CreateHostInterface creates a new child HostInterface under the VPort
-func (o *VPort) CreateHostInterface(child *HostInterface) *bambou.Error {
+// CreateVM creates a new child VM under the VPort
+func (o *VPort) CreateVM(child *VM) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the VPort
-func (o *VPort) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// VMInterfaces retrieves the list of child VMInterfaces of the VPort
+func (o *VPort) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list VMInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, VMInterfaceIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the VPort
-func (o *VPort) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateVMInterface creates a new child VMInterface under the VPort
+func (o *VPort) CreateVMInterface(child *VMInterface) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -277,23 +310,60 @@ func (o *VPort) CreateQOS(child *QOS) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// RedirectionTargets retrieves the list of child RedirectionTargets of the VPort
-func (o *VPort) RedirectionTargets(info *bambou.FetchingInfo) (RedirectionTargetsList, *bambou.Error) {
+// HostInterfaces retrieves the list of child HostInterfaces of the VPort
+func (o *VPort) HostInterfaces(info *bambou.FetchingInfo) (HostInterfacesList, *bambou.Error) {
 
-	var list RedirectionTargetsList
-	err := bambou.CurrentSession().FetchChildren(o, RedirectionTargetIdentity, &list, info)
+	var list HostInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, HostInterfaceIdentity, &list, info)
 	return list, err
 }
 
-// AssignRedirectionTargets assigns the list of RedirectionTargets to the VPort
-func (o *VPort) AssignRedirectionTargets(children RedirectionTargetsList) *bambou.Error {
+// CreateHostInterface creates a new child HostInterface under the VPort
+func (o *VPort) CreateHostInterface(child *HostInterface) *bambou.Error {
 
-	list := []bambou.Identifiable{}
-	for _, c := range children {
-		list = append(list, c)
-	}
+	return bambou.CurrentSession().CreateChild(o, child)
+}
 
-	return bambou.CurrentSession().AssignChildren(o, list, RedirectionTargetIdentity)
+// VPortMirrors retrieves the list of child VPortMirrors of the VPort
+func (o *VPort) VPortMirrors(info *bambou.FetchingInfo) (VPortMirrorsList, *bambou.Error) {
+
+	var list VPortMirrorsList
+	err := bambou.CurrentSession().FetchChildren(o, VPortMirrorIdentity, &list, info)
+	return list, err
+}
+
+// CreateVPortMirror creates a new child VPortMirror under the VPort
+func (o *VPort) CreateVPortMirror(child *VPortMirror) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// BridgeInterfaces retrieves the list of child BridgeInterfaces of the VPort
+func (o *VPort) BridgeInterfaces(info *bambou.FetchingInfo) (BridgeInterfacesList, *bambou.Error) {
+
+	var list BridgeInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, BridgeInterfaceIdentity, &list, info)
+	return list, err
+}
+
+// CreateBridgeInterface creates a new child BridgeInterface under the VPort
+func (o *VPort) CreateBridgeInterface(child *BridgeInterface) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VRSs retrieves the list of child VRSs of the VPort
+func (o *VPort) VRSs(info *bambou.FetchingInfo) (VRSsList, *bambou.Error) {
+
+	var list VRSsList
+	err := bambou.CurrentSession().FetchChildren(o, VRSIdentity, &list, info)
+	return list, err
+}
+
+// CreateVRS creates a new child VRS under the VPort
+func (o *VPort) CreateVRS(child *VRS) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // Statistics retrieves the list of child Statistics of the VPort
@@ -324,86 +394,16 @@ func (o *VPort) CreateStatisticsPolicy(child *StatisticsPolicy) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// TCAs retrieves the list of child TCAs of the VPort
-func (o *VPort) TCAs(info *bambou.FetchingInfo) (TCAsList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the VPort
+func (o *VPort) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list TCAsList
-	err := bambou.CurrentSession().FetchChildren(o, TCAIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateTCA creates a new child TCA under the VPort
-func (o *VPort) CreateTCA(child *TCA) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VirtualIPs retrieves the list of child VirtualIPs of the VPort
-func (o *VPort) VirtualIPs(info *bambou.FetchingInfo) (VirtualIPsList, *bambou.Error) {
-
-	var list VirtualIPsList
-	err := bambou.CurrentSession().FetchChildren(o, VirtualIPIdentity, &list, info)
-	return list, err
-}
-
-// CreateVirtualIP creates a new child VirtualIP under the VPort
-func (o *VPort) CreateVirtualIP(child *VirtualIP) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMs retrieves the list of child VMs of the VPort
-func (o *VPort) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
-
-	var list VMsList
-	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
-	return list, err
-}
-
-// CreateVM creates a new child VM under the VPort
-func (o *VPort) CreateVM(child *VM) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMInterfaces retrieves the list of child VMInterfaces of the VPort
-func (o *VPort) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bambou.Error) {
-
-	var list VMInterfacesList
-	err := bambou.CurrentSession().FetchChildren(o, VMInterfaceIdentity, &list, info)
-	return list, err
-}
-
-// CreateVMInterface creates a new child VMInterface under the VPort
-func (o *VPort) CreateVMInterface(child *VMInterface) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VPortMirrors retrieves the list of child VPortMirrors of the VPort
-func (o *VPort) VPortMirrors(info *bambou.FetchingInfo) (VPortMirrorsList, *bambou.Error) {
-
-	var list VPortMirrorsList
-	err := bambou.CurrentSession().FetchChildren(o, VPortMirrorIdentity, &list, info)
-	return list, err
-}
-
-// CreateVPortMirror creates a new child VPortMirror under the VPort
-func (o *VPort) CreateVPortMirror(child *VPortMirror) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VRSs retrieves the list of child VRSs of the VPort
-func (o *VPort) VRSs(info *bambou.FetchingInfo) (VRSsList, *bambou.Error) {
-
-	var list VRSsList
-	err := bambou.CurrentSession().FetchChildren(o, VRSIdentity, &list, info)
-	return list, err
-}
-
-// CreateVRS creates a new child VRS under the VPort
-func (o *VPort) CreateVRS(child *VRS) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the VPort
+func (o *VPort) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

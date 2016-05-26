@@ -50,14 +50,14 @@ type EnterpriseSecuredData struct {
 	ParentID                  string `json:"parentID,omitempty"`
 	ParentType                string `json:"parentType,omitempty"`
 	Owner                     string `json:"owner,omitempty"`
+	Hash                      string `json:"hash,omitempty"`
+	LastUpdatedBy             string `json:"lastUpdatedBy,omitempty"`
 	Data                      string `json:"data,omitempty"`
+	SekId                     int    `json:"sekId,omitempty"`
+	KeyserverCertSerialNumber string `json:"keyserverCertSerialNumber,omitempty"`
+	SignedHash                string `json:"signedHash,omitempty"`
 	EntityScope               string `json:"entityScope,omitempty"`
 	ExternalID                string `json:"externalID,omitempty"`
-	Hash                      string `json:"hash,omitempty"`
-	KeyserverCertSerialNumber string `json:"keyserverCertSerialNumber,omitempty"`
-	LastUpdatedBy             string `json:"lastUpdatedBy,omitempty"`
-	SekId                     int    `json:"sekId,omitempty"`
-	SignedHash                string `json:"signedHash,omitempty"`
 }
 
 // NewEnterpriseSecuredData returns a new *EnterpriseSecuredData
@@ -102,20 +102,6 @@ func (o *EnterpriseSecuredData) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EnterpriseSecuredData
-func (o *EnterpriseSecuredData) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the EnterpriseSecuredData
-func (o *EnterpriseSecuredData) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the EnterpriseSecuredData
 func (o *EnterpriseSecuredData) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -126,6 +112,20 @@ func (o *EnterpriseSecuredData) Metadatas(info *bambou.FetchingInfo) (MetadatasL
 
 // CreateMetadata creates a new child Metadata under the EnterpriseSecuredData
 func (o *EnterpriseSecuredData) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EnterpriseSecuredData
+func (o *EnterpriseSecuredData) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the EnterpriseSecuredData
+func (o *EnterpriseSecuredData) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

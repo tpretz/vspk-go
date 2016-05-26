@@ -52,18 +52,18 @@ type IKEGatewayProfile struct {
 	Owner                            string `json:"owner,omitempty"`
 	IKEGatewayIdentifier             string `json:"IKEGatewayIdentifier,omitempty"`
 	IKEGatewayIdentifierType         string `json:"IKEGatewayIdentifierType,omitempty"`
+	Name                             string `json:"name,omitempty"`
+	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
+	ServiceClass                     string `json:"serviceClass,omitempty"`
+	Description                      string `json:"description,omitempty"`
 	AntiReplayCheck                  bool   `json:"antiReplayCheck"`
+	EntityScope                      string `json:"entityScope,omitempty"`
 	AssociatedEnterpriseID           string `json:"associatedEnterpriseID,omitempty"`
 	AssociatedIKEAuthenticationID    string `json:"associatedIKEAuthenticationID,omitempty"`
 	AssociatedIKEAuthenticationType  string `json:"associatedIKEAuthenticationType,omitempty"`
 	AssociatedIKEEncryptionProfileID string `json:"associatedIKEEncryptionProfileID,omitempty"`
 	AssociatedIKEGatewayID           string `json:"associatedIKEGatewayID,omitempty"`
-	Description                      string `json:"description,omitempty"`
-	EntityScope                      string `json:"entityScope,omitempty"`
 	ExternalID                       string `json:"externalID,omitempty"`
-	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
-	Name                             string `json:"name,omitempty"`
-	ServiceClass                     string `json:"serviceClass,omitempty"`
 }
 
 // NewIKEGatewayProfile returns a new *IKEGatewayProfile
@@ -108,20 +108,6 @@ func (o *IKEGatewayProfile) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKEGatewayProfile
-func (o *IKEGatewayProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the IKEGatewayProfile
-func (o *IKEGatewayProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the IKEGatewayProfile
 func (o *IKEGatewayProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -132,6 +118,20 @@ func (o *IKEGatewayProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList,
 
 // CreateMetadata creates a new child Metadata under the IKEGatewayProfile
 func (o *IKEGatewayProfile) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKEGatewayProfile
+func (o *IKEGatewayProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the IKEGatewayProfile
+func (o *IKEGatewayProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

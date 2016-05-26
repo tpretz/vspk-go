@@ -50,32 +50,32 @@ type Enterprise struct {
 	ParentID                              string        `json:"parentID,omitempty"`
 	ParentType                            string        `json:"parentType,omitempty"`
 	Owner                                 string        `json:"owner,omitempty"`
-	BGPEnabled                            bool          `json:"BGPEnabled"`
-	DHCPLeaseInterval                     int           `json:"DHCPLeaseInterval,omitempty"`
 	LDAPAuthorizationEnabled              bool          `json:"LDAPAuthorizationEnabled"`
 	LDAPEnabled                           bool          `json:"LDAPEnabled"`
+	BGPEnabled                            bool          `json:"BGPEnabled"`
+	DHCPLeaseInterval                     int           `json:"DHCPLeaseInterval,omitempty"`
+	Name                                  string        `json:"name,omitempty"`
+	LastUpdatedBy                         string        `json:"lastUpdatedBy,omitempty"`
+	ReceiveMultiCastListID                string        `json:"receiveMultiCastListID,omitempty"`
+	SendMultiCastListID                   string        `json:"sendMultiCastListID,omitempty"`
+	Description                           string        `json:"description,omitempty"`
 	AllowAdvancedQOSConfiguration         bool          `json:"allowAdvancedQOSConfiguration"`
 	AllowGatewayManagement                bool          `json:"allowGatewayManagement"`
 	AllowTrustedForwardingClass           bool          `json:"allowTrustedForwardingClass"`
 	AllowedForwardingClasses              []interface{} `json:"allowedForwardingClasses,omitempty"`
-	AssociatedEnterpriseSecurityID        string        `json:"associatedEnterpriseSecurityID,omitempty"`
-	AssociatedGroupKeyEncryptionProfileID string        `json:"associatedGroupKeyEncryptionProfileID,omitempty"`
-	AssociatedKeyServerMonitorID          string        `json:"associatedKeyServerMonitorID,omitempty"`
-	AvatarData                            string        `json:"avatarData,omitempty"`
-	AvatarType                            string        `json:"avatarType,omitempty"`
-	CustomerID                            int           `json:"customerID,omitempty"`
-	Description                           string        `json:"description,omitempty"`
+	FloatingIPsQuota                      int           `json:"floatingIPsQuota,omitempty"`
+	FloatingIPsUsed                       int           `json:"floatingIPsUsed,omitempty"`
 	EncryptionManagementMode              string        `json:"encryptionManagementMode,omitempty"`
 	EnterpriseProfileID                   string        `json:"enterpriseProfileID,omitempty"`
 	EntityScope                           string        `json:"entityScope,omitempty"`
-	ExternalID                            string        `json:"externalID,omitempty"`
-	FloatingIPsQuota                      int           `json:"floatingIPsQuota,omitempty"`
-	FloatingIPsUsed                       int           `json:"floatingIPsUsed,omitempty"`
-	LastUpdatedBy                         string        `json:"lastUpdatedBy,omitempty"`
 	LocalAS                               int           `json:"localAS,omitempty"`
-	Name                                  string        `json:"name,omitempty"`
-	ReceiveMultiCastListID                string        `json:"receiveMultiCastListID,omitempty"`
-	SendMultiCastListID                   string        `json:"sendMultiCastListID,omitempty"`
+	AssociatedEnterpriseSecurityID        string        `json:"associatedEnterpriseSecurityID,omitempty"`
+	AssociatedGroupKeyEncryptionProfileID string        `json:"associatedGroupKeyEncryptionProfileID,omitempty"`
+	AssociatedKeyServerMonitorID          string        `json:"associatedKeyServerMonitorID,omitempty"`
+	CustomerID                            int           `json:"customerID,omitempty"`
+	AvatarData                            string        `json:"avatarData,omitempty"`
+	AvatarType                            string        `json:"avatarType,omitempty"`
+	ExternalID                            string        `json:"externalID,omitempty"`
 }
 
 // NewEnterprise returns a new *Enterprise
@@ -120,184 +120,44 @@ func (o *Enterprise) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Alarms retrieves the list of child Alarms of the Enterprise
-func (o *Enterprise) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+// L2Domains retrieves the list of child L2Domains of the Enterprise
+func (o *Enterprise) L2Domains(info *bambou.FetchingInfo) (L2DomainsList, *bambou.Error) {
 
-	var list AlarmsList
-	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	var list L2DomainsList
+	err := bambou.CurrentSession().FetchChildren(o, L2DomainIdentity, &list, info)
 	return list, err
 }
 
-// CreateAlarm creates a new child Alarm under the Enterprise
-func (o *Enterprise) CreateAlarm(child *Alarm) *bambou.Error {
+// CreateL2Domain creates a new child L2Domain under the Enterprise
+func (o *Enterprise) CreateL2Domain(child *L2Domain) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Apps retrieves the list of child Apps of the Enterprise
-func (o *Enterprise) Apps(info *bambou.FetchingInfo) (AppsList, *bambou.Error) {
+// L2DomainTemplates retrieves the list of child L2DomainTemplates of the Enterprise
+func (o *Enterprise) L2DomainTemplates(info *bambou.FetchingInfo) (L2DomainTemplatesList, *bambou.Error) {
 
-	var list AppsList
-	err := bambou.CurrentSession().FetchChildren(o, AppIdentity, &list, info)
+	var list L2DomainTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, L2DomainTemplateIdentity, &list, info)
 	return list, err
 }
 
-// CreateApp creates a new child App under the Enterprise
-func (o *Enterprise) CreateApp(child *App) *bambou.Error {
+// CreateL2DomainTemplate creates a new child L2DomainTemplate under the Enterprise
+func (o *Enterprise) CreateL2DomainTemplate(child *L2DomainTemplate) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// ApplicationServices retrieves the list of child ApplicationServices of the Enterprise
-func (o *Enterprise) ApplicationServices(info *bambou.FetchingInfo) (ApplicationServicesList, *bambou.Error) {
+// RateLimiters retrieves the list of child RateLimiters of the Enterprise
+func (o *Enterprise) RateLimiters(info *bambou.FetchingInfo) (RateLimitersList, *bambou.Error) {
 
-	var list ApplicationServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ApplicationServiceIdentity, &list, info)
+	var list RateLimitersList
+	err := bambou.CurrentSession().FetchChildren(o, RateLimiterIdentity, &list, info)
 	return list, err
 }
 
-// CreateApplicationService creates a new child ApplicationService under the Enterprise
-func (o *Enterprise) CreateApplicationService(child *ApplicationService) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// BGPProfiles retrieves the list of child BGPProfiles of the Enterprise
-func (o *Enterprise) BGPProfiles(info *bambou.FetchingInfo) (BGPProfilesList, *bambou.Error) {
-
-	var list BGPProfilesList
-	err := bambou.CurrentSession().FetchChildren(o, BGPProfileIdentity, &list, info)
-	return list, err
-}
-
-// CreateBGPProfile creates a new child BGPProfile under the Enterprise
-func (o *Enterprise) CreateBGPProfile(child *BGPProfile) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Domains retrieves the list of child Domains of the Enterprise
-func (o *Enterprise) Domains(info *bambou.FetchingInfo) (DomainsList, *bambou.Error) {
-
-	var list DomainsList
-	err := bambou.CurrentSession().FetchChildren(o, DomainIdentity, &list, info)
-	return list, err
-}
-
-// CreateDomain creates a new child Domain under the Enterprise
-func (o *Enterprise) CreateDomain(child *Domain) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// DomainTemplates retrieves the list of child DomainTemplates of the Enterprise
-func (o *Enterprise) DomainTemplates(info *bambou.FetchingInfo) (DomainTemplatesList, *bambou.Error) {
-
-	var list DomainTemplatesList
-	err := bambou.CurrentSession().FetchChildren(o, DomainTemplateIdentity, &list, info)
-	return list, err
-}
-
-// CreateDomainTemplate creates a new child DomainTemplate under the Enterprise
-func (o *Enterprise) CreateDomainTemplate(child *DomainTemplate) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// DSCPForwardingClassTables retrieves the list of child DSCPForwardingClassTables of the Enterprise
-func (o *Enterprise) DSCPForwardingClassTables(info *bambou.FetchingInfo) (DSCPForwardingClassTablesList, *bambou.Error) {
-
-	var list DSCPForwardingClassTablesList
-	err := bambou.CurrentSession().FetchChildren(o, DSCPForwardingClassTableIdentity, &list, info)
-	return list, err
-}
-
-// CreateDSCPForwardingClassTable creates a new child DSCPForwardingClassTable under the Enterprise
-func (o *Enterprise) CreateDSCPForwardingClassTable(child *DSCPForwardingClassTable) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EgressQOSPolicies retrieves the list of child EgressQOSPolicies of the Enterprise
-func (o *Enterprise) EgressQOSPolicies(info *bambou.FetchingInfo) (EgressQOSPoliciesList, *bambou.Error) {
-
-	var list EgressQOSPoliciesList
-	err := bambou.CurrentSession().FetchChildren(o, EgressQOSPolicyIdentity, &list, info)
-	return list, err
-}
-
-// CreateEgressQOSPolicy creates a new child EgressQOSPolicy under the Enterprise
-func (o *Enterprise) CreateEgressQOSPolicy(child *EgressQOSPolicy) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EnterpriseNetworks retrieves the list of child EnterpriseNetworks of the Enterprise
-func (o *Enterprise) EnterpriseNetworks(info *bambou.FetchingInfo) (EnterpriseNetworksList, *bambou.Error) {
-
-	var list EnterpriseNetworksList
-	err := bambou.CurrentSession().FetchChildren(o, EnterpriseNetworkIdentity, &list, info)
-	return list, err
-}
-
-// CreateEnterpriseNetwork creates a new child EnterpriseNetwork under the Enterprise
-func (o *Enterprise) CreateEnterpriseNetwork(child *EnterpriseNetwork) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EnterpriseSecurities retrieves the list of child EnterpriseSecurities of the Enterprise
-func (o *Enterprise) EnterpriseSecurities(info *bambou.FetchingInfo) (EnterpriseSecuritiesList, *bambou.Error) {
-
-	var list EnterpriseSecuritiesList
-	err := bambou.CurrentSession().FetchChildren(o, EnterpriseSecurityIdentity, &list, info)
-	return list, err
-}
-
-// CreateEnterpriseSecurity creates a new child EnterpriseSecurity under the Enterprise
-func (o *Enterprise) CreateEnterpriseSecurity(child *EnterpriseSecurity) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the Enterprise
-func (o *Enterprise) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the Enterprise
-func (o *Enterprise) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// ExternalAppServices retrieves the list of child ExternalAppServices of the Enterprise
-func (o *Enterprise) ExternalAppServices(info *bambou.FetchingInfo) (ExternalAppServicesList, *bambou.Error) {
-
-	var list ExternalAppServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ExternalAppServiceIdentity, &list, info)
-	return list, err
-}
-
-// CreateExternalAppService creates a new child ExternalAppService under the Enterprise
-func (o *Enterprise) CreateExternalAppService(child *ExternalAppService) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// ExternalServices retrieves the list of child ExternalServices of the Enterprise
-func (o *Enterprise) ExternalServices(info *bambou.FetchingInfo) (ExternalServicesList, *bambou.Error) {
-
-	var list ExternalServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ExternalServiceIdentity, &list, info)
-	return list, err
-}
-
-// CreateExternalService creates a new child ExternalService under the Enterprise
-func (o *Enterprise) CreateExternalService(child *ExternalService) *bambou.Error {
+// CreateRateLimiter creates a new child RateLimiter under the Enterprise
+func (o *Enterprise) CreateRateLimiter(child *RateLimiter) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -330,44 +190,142 @@ func (o *Enterprise) CreateGatewayTemplate(child *GatewayTemplate) *bambou.Error
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Enterprise
-func (o *Enterprise) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+// PATNATPools retrieves the list of child PATNATPools of the Enterprise
+func (o *Enterprise) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *bambou.Error) {
 
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	var list PATNATPoolsList
+	err := bambou.CurrentSession().FetchChildren(o, PATNATPoolIdentity, &list, info)
 	return list, err
 }
 
-// CreateGlobalMetadata creates a new child GlobalMetadata under the Enterprise
-func (o *Enterprise) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreatePATNATPool creates a new child PATNATPool under the Enterprise
+func (o *Enterprise) CreatePATNATPool(child *PATNATPool) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Groups retrieves the list of child Groups of the Enterprise
-func (o *Enterprise) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
+// LDAPConfigurations retrieves the list of child LDAPConfigurations of the Enterprise
+func (o *Enterprise) LDAPConfigurations(info *bambou.FetchingInfo) (LDAPConfigurationsList, *bambou.Error) {
 
-	var list GroupsList
-	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
+	var list LDAPConfigurationsList
+	err := bambou.CurrentSession().FetchChildren(o, LDAPConfigurationIdentity, &list, info)
 	return list, err
 }
 
-// CreateGroup creates a new child Group under the Enterprise
-func (o *Enterprise) CreateGroup(child *Group) *bambou.Error {
+// CreateLDAPConfiguration creates a new child LDAPConfiguration under the Enterprise
+func (o *Enterprise) CreateLDAPConfiguration(child *LDAPConfiguration) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// GroupKeyEncryptionProfiles retrieves the list of child GroupKeyEncryptionProfiles of the Enterprise
-func (o *Enterprise) GroupKeyEncryptionProfiles(info *bambou.FetchingInfo) (GroupKeyEncryptionProfilesList, *bambou.Error) {
+// RedundancyGroups retrieves the list of child RedundancyGroups of the Enterprise
+func (o *Enterprise) RedundancyGroups(info *bambou.FetchingInfo) (RedundancyGroupsList, *bambou.Error) {
 
-	var list GroupKeyEncryptionProfilesList
-	err := bambou.CurrentSession().FetchChildren(o, GroupKeyEncryptionProfileIdentity, &list, info)
+	var list RedundancyGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, RedundancyGroupIdentity, &list, info)
 	return list, err
 }
 
-// CreateGroupKeyEncryptionProfile creates a new child GroupKeyEncryptionProfile under the Enterprise
-func (o *Enterprise) CreateGroupKeyEncryptionProfile(child *GroupKeyEncryptionProfile) *bambou.Error {
+// CreateRedundancyGroup creates a new child RedundancyGroup under the Enterprise
+func (o *Enterprise) CreateRedundancyGroup(child *RedundancyGroup) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Metadatas retrieves the list of child Metadatas of the Enterprise
+func (o *Enterprise) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the Enterprise
+func (o *Enterprise) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// MetadataTags retrieves the list of child MetadataTags of the Enterprise
+func (o *Enterprise) MetadataTags(info *bambou.FetchingInfo) (MetadataTagsList, *bambou.Error) {
+
+	var list MetadataTagsList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataTagIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadataTag creates a new child MetadataTag under the Enterprise
+func (o *Enterprise) CreateMetadataTag(child *MetadataTag) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// NetworkMacroGroups retrieves the list of child NetworkMacroGroups of the Enterprise
+func (o *Enterprise) NetworkMacroGroups(info *bambou.FetchingInfo) (NetworkMacroGroupsList, *bambou.Error) {
+
+	var list NetworkMacroGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, NetworkMacroGroupIdentity, &list, info)
+	return list, err
+}
+
+// CreateNetworkMacroGroup creates a new child NetworkMacroGroup under the Enterprise
+func (o *Enterprise) CreateNetworkMacroGroup(child *NetworkMacroGroup) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// KeyServerMonitors retrieves the list of child KeyServerMonitors of the Enterprise
+func (o *Enterprise) KeyServerMonitors(info *bambou.FetchingInfo) (KeyServerMonitorsList, *bambou.Error) {
+
+	var list KeyServerMonitorsList
+	err := bambou.CurrentSession().FetchChildren(o, KeyServerMonitorIdentity, &list, info)
+	return list, err
+}
+
+// CreateKeyServerMonitor creates a new child KeyServerMonitor under the Enterprise
+func (o *Enterprise) CreateKeyServerMonitor(child *KeyServerMonitor) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// BGPProfiles retrieves the list of child BGPProfiles of the Enterprise
+func (o *Enterprise) BGPProfiles(info *bambou.FetchingInfo) (BGPProfilesList, *bambou.Error) {
+
+	var list BGPProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, BGPProfileIdentity, &list, info)
+	return list, err
+}
+
+// CreateBGPProfile creates a new child BGPProfile under the Enterprise
+func (o *Enterprise) CreateBGPProfile(child *BGPProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EgressQOSPolicies retrieves the list of child EgressQOSPolicies of the Enterprise
+func (o *Enterprise) EgressQOSPolicies(info *bambou.FetchingInfo) (EgressQOSPoliciesList, *bambou.Error) {
+
+	var list EgressQOSPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, EgressQOSPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateEgressQOSPolicy creates a new child EgressQOSPolicy under the Enterprise
+func (o *Enterprise) CreateEgressQOSPolicy(child *EgressQOSPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// SharedNetworkResources retrieves the list of child SharedNetworkResources of the Enterprise
+func (o *Enterprise) SharedNetworkResources(info *bambou.FetchingInfo) (SharedNetworkResourcesList, *bambou.Error) {
+
+	var list SharedNetworkResourcesList
+	err := bambou.CurrentSession().FetchChildren(o, SharedNetworkResourceIdentity, &list, info)
+	return list, err
+}
+
+// CreateSharedNetworkResource creates a new child SharedNetworkResource under the Enterprise
+func (o *Enterprise) CreateSharedNetworkResource(child *SharedNetworkResource) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -442,6 +400,48 @@ func (o *Enterprise) CreateIKEPSK(child *IKEPSK) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Alarms retrieves the list of child Alarms of the Enterprise
+func (o *Enterprise) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
+// CreateAlarm creates a new child Alarm under the Enterprise
+func (o *Enterprise) CreateAlarm(child *Alarm) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Enterprise
+func (o *Enterprise) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Enterprise
+func (o *Enterprise) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VMs retrieves the list of child VMs of the Enterprise
+func (o *Enterprise) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
+
+	var list VMsList
+	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
+	return list, err
+}
+
+// CreateVM creates a new child VM under the Enterprise
+func (o *Enterprise) CreateVM(child *VM) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // InfrastructurePortProfiles retrieves the list of child InfrastructurePortProfiles of the Enterprise
 func (o *Enterprise) InfrastructurePortProfiles(info *bambou.FetchingInfo) (InfrastructurePortProfilesList, *bambou.Error) {
 
@@ -452,6 +452,34 @@ func (o *Enterprise) InfrastructurePortProfiles(info *bambou.FetchingInfo) (Infr
 
 // CreateInfrastructurePortProfile creates a new child InfrastructurePortProfile under the Enterprise
 func (o *Enterprise) CreateInfrastructurePortProfile(child *InfrastructurePortProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EnterpriseNetworks retrieves the list of child EnterpriseNetworks of the Enterprise
+func (o *Enterprise) EnterpriseNetworks(info *bambou.FetchingInfo) (EnterpriseNetworksList, *bambou.Error) {
+
+	var list EnterpriseNetworksList
+	err := bambou.CurrentSession().FetchChildren(o, EnterpriseNetworkIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterpriseNetwork creates a new child EnterpriseNetwork under the Enterprise
+func (o *Enterprise) CreateEnterpriseNetwork(child *EnterpriseNetwork) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EnterpriseSecurities retrieves the list of child EnterpriseSecurities of the Enterprise
+func (o *Enterprise) EnterpriseSecurities(info *bambou.FetchingInfo) (EnterpriseSecuritiesList, *bambou.Error) {
+
+	var list EnterpriseSecuritiesList
+	err := bambou.CurrentSession().FetchChildren(o, EnterpriseSecurityIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterpriseSecurity creates a new child EnterpriseSecurity under the Enterprise
+func (o *Enterprise) CreateEnterpriseSecurity(child *EnterpriseSecurity) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -470,114 +498,128 @@ func (o *Enterprise) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// KeyServerMonitors retrieves the list of child KeyServerMonitors of the Enterprise
-func (o *Enterprise) KeyServerMonitors(info *bambou.FetchingInfo) (KeyServerMonitorsList, *bambou.Error) {
+// Domains retrieves the list of child Domains of the Enterprise
+func (o *Enterprise) Domains(info *bambou.FetchingInfo) (DomainsList, *bambou.Error) {
 
-	var list KeyServerMonitorsList
-	err := bambou.CurrentSession().FetchChildren(o, KeyServerMonitorIdentity, &list, info)
+	var list DomainsList
+	err := bambou.CurrentSession().FetchChildren(o, DomainIdentity, &list, info)
 	return list, err
 }
 
-// CreateKeyServerMonitor creates a new child KeyServerMonitor under the Enterprise
-func (o *Enterprise) CreateKeyServerMonitor(child *KeyServerMonitor) *bambou.Error {
+// CreateDomain creates a new child Domain under the Enterprise
+func (o *Enterprise) CreateDomain(child *Domain) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// L2Domains retrieves the list of child L2Domains of the Enterprise
-func (o *Enterprise) L2Domains(info *bambou.FetchingInfo) (L2DomainsList, *bambou.Error) {
+// DomainTemplates retrieves the list of child DomainTemplates of the Enterprise
+func (o *Enterprise) DomainTemplates(info *bambou.FetchingInfo) (DomainTemplatesList, *bambou.Error) {
 
-	var list L2DomainsList
-	err := bambou.CurrentSession().FetchChildren(o, L2DomainIdentity, &list, info)
+	var list DomainTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, DomainTemplateIdentity, &list, info)
 	return list, err
 }
 
-// CreateL2Domain creates a new child L2Domain under the Enterprise
-func (o *Enterprise) CreateL2Domain(child *L2Domain) *bambou.Error {
+// CreateDomainTemplate creates a new child DomainTemplate under the Enterprise
+func (o *Enterprise) CreateDomainTemplate(child *DomainTemplate) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// L2DomainTemplates retrieves the list of child L2DomainTemplates of the Enterprise
-func (o *Enterprise) L2DomainTemplates(info *bambou.FetchingInfo) (L2DomainTemplatesList, *bambou.Error) {
+// RoutingPolicies retrieves the list of child RoutingPolicies of the Enterprise
+func (o *Enterprise) RoutingPolicies(info *bambou.FetchingInfo) (RoutingPoliciesList, *bambou.Error) {
 
-	var list L2DomainTemplatesList
-	err := bambou.CurrentSession().FetchChildren(o, L2DomainTemplateIdentity, &list, info)
+	var list RoutingPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, RoutingPolicyIdentity, &list, info)
 	return list, err
 }
 
-// CreateL2DomainTemplate creates a new child L2DomainTemplate under the Enterprise
-func (o *Enterprise) CreateL2DomainTemplate(child *L2DomainTemplate) *bambou.Error {
+// CreateRoutingPolicy creates a new child RoutingPolicy under the Enterprise
+func (o *Enterprise) CreateRoutingPolicy(child *RoutingPolicy) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// LDAPConfigurations retrieves the list of child LDAPConfigurations of the Enterprise
-func (o *Enterprise) LDAPConfigurations(info *bambou.FetchingInfo) (LDAPConfigurationsList, *bambou.Error) {
+// Apps retrieves the list of child Apps of the Enterprise
+func (o *Enterprise) Apps(info *bambou.FetchingInfo) (AppsList, *bambou.Error) {
 
-	var list LDAPConfigurationsList
-	err := bambou.CurrentSession().FetchChildren(o, LDAPConfigurationIdentity, &list, info)
+	var list AppsList
+	err := bambou.CurrentSession().FetchChildren(o, AppIdentity, &list, info)
 	return list, err
 }
 
-// CreateLDAPConfiguration creates a new child LDAPConfiguration under the Enterprise
-func (o *Enterprise) CreateLDAPConfiguration(child *LDAPConfiguration) *bambou.Error {
+// CreateApp creates a new child App under the Enterprise
+func (o *Enterprise) CreateApp(child *App) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the Enterprise
-func (o *Enterprise) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// ApplicationServices retrieves the list of child ApplicationServices of the Enterprise
+func (o *Enterprise) ApplicationServices(info *bambou.FetchingInfo) (ApplicationServicesList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list ApplicationServicesList
+	err := bambou.CurrentSession().FetchChildren(o, ApplicationServiceIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the Enterprise
-func (o *Enterprise) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateApplicationService creates a new child ApplicationService under the Enterprise
+func (o *Enterprise) CreateApplicationService(child *ApplicationService) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// MetadataTags retrieves the list of child MetadataTags of the Enterprise
-func (o *Enterprise) MetadataTags(info *bambou.FetchingInfo) (MetadataTagsList, *bambou.Error) {
+// Groups retrieves the list of child Groups of the Enterprise
+func (o *Enterprise) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
 
-	var list MetadataTagsList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataTagIdentity, &list, info)
+	var list GroupsList
+	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadataTag creates a new child MetadataTag under the Enterprise
-func (o *Enterprise) CreateMetadataTag(child *MetadataTag) *bambou.Error {
+// CreateGroup creates a new child Group under the Enterprise
+func (o *Enterprise) CreateGroup(child *Group) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// MultiCastLists retrieves the list of child MultiCastLists of the Enterprise
-func (o *Enterprise) MultiCastLists(info *bambou.FetchingInfo) (MultiCastListsList, *bambou.Error) {
+// GroupKeyEncryptionProfiles retrieves the list of child GroupKeyEncryptionProfiles of the Enterprise
+func (o *Enterprise) GroupKeyEncryptionProfiles(info *bambou.FetchingInfo) (GroupKeyEncryptionProfilesList, *bambou.Error) {
 
-	var list MultiCastListsList
-	err := bambou.CurrentSession().FetchChildren(o, MultiCastListIdentity, &list, info)
+	var list GroupKeyEncryptionProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, GroupKeyEncryptionProfileIdentity, &list, info)
 	return list, err
 }
 
-// CreateMultiCastList creates a new child MultiCastList under the Enterprise
-func (o *Enterprise) CreateMultiCastList(child *MultiCastList) *bambou.Error {
+// CreateGroupKeyEncryptionProfile creates a new child GroupKeyEncryptionProfile under the Enterprise
+func (o *Enterprise) CreateGroupKeyEncryptionProfile(child *GroupKeyEncryptionProfile) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// NetworkMacroGroups retrieves the list of child NetworkMacroGroups of the Enterprise
-func (o *Enterprise) NetworkMacroGroups(info *bambou.FetchingInfo) (NetworkMacroGroupsList, *bambou.Error) {
+// DSCPForwardingClassTables retrieves the list of child DSCPForwardingClassTables of the Enterprise
+func (o *Enterprise) DSCPForwardingClassTables(info *bambou.FetchingInfo) (DSCPForwardingClassTablesList, *bambou.Error) {
 
-	var list NetworkMacroGroupsList
-	err := bambou.CurrentSession().FetchChildren(o, NetworkMacroGroupIdentity, &list, info)
+	var list DSCPForwardingClassTablesList
+	err := bambou.CurrentSession().FetchChildren(o, DSCPForwardingClassTableIdentity, &list, info)
 	return list, err
 }
 
-// CreateNetworkMacroGroup creates a new child NetworkMacroGroup under the Enterprise
-func (o *Enterprise) CreateNetworkMacroGroup(child *NetworkMacroGroup) *bambou.Error {
+// CreateDSCPForwardingClassTable creates a new child DSCPForwardingClassTable under the Enterprise
+func (o *Enterprise) CreateDSCPForwardingClassTable(child *DSCPForwardingClassTable) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Users retrieves the list of child Users of the Enterprise
+func (o *Enterprise) Users(info *bambou.FetchingInfo) (UsersList, *bambou.Error) {
+
+	var list UsersList
+	err := bambou.CurrentSession().FetchChildren(o, UserIdentity, &list, info)
+	return list, err
+}
+
+// CreateUser creates a new child User under the Enterprise
+func (o *Enterprise) CreateUser(child *User) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -624,20 +666,6 @@ func (o *Enterprise) CreateNSRedundantGatewayGroup(child *NSRedundantGatewayGrou
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// PATNATPools retrieves the list of child PATNATPools of the Enterprise
-func (o *Enterprise) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *bambou.Error) {
-
-	var list PATNATPoolsList
-	err := bambou.CurrentSession().FetchChildren(o, PATNATPoolIdentity, &list, info)
-	return list, err
-}
-
-// CreatePATNATPool creates a new child PATNATPool under the Enterprise
-func (o *Enterprise) CreatePATNATPool(child *PATNATPool) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // PublicNetworkMacros retrieves the list of child PublicNetworkMacros of the Enterprise
 func (o *Enterprise) PublicNetworkMacros(info *bambou.FetchingInfo) (PublicNetworkMacrosList, *bambou.Error) {
 
@@ -652,86 +680,58 @@ func (o *Enterprise) CreatePublicNetworkMacro(child *PublicNetworkMacro) *bambou
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// RateLimiters retrieves the list of child RateLimiters of the Enterprise
-func (o *Enterprise) RateLimiters(info *bambou.FetchingInfo) (RateLimitersList, *bambou.Error) {
+// MultiCastLists retrieves the list of child MultiCastLists of the Enterprise
+func (o *Enterprise) MultiCastLists(info *bambou.FetchingInfo) (MultiCastListsList, *bambou.Error) {
 
-	var list RateLimitersList
-	err := bambou.CurrentSession().FetchChildren(o, RateLimiterIdentity, &list, info)
+	var list MultiCastListsList
+	err := bambou.CurrentSession().FetchChildren(o, MultiCastListIdentity, &list, info)
 	return list, err
 }
 
-// CreateRateLimiter creates a new child RateLimiter under the Enterprise
-func (o *Enterprise) CreateRateLimiter(child *RateLimiter) *bambou.Error {
+// CreateMultiCastList creates a new child MultiCastList under the Enterprise
+func (o *Enterprise) CreateMultiCastList(child *MultiCastList) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// RedundancyGroups retrieves the list of child RedundancyGroups of the Enterprise
-func (o *Enterprise) RedundancyGroups(info *bambou.FetchingInfo) (RedundancyGroupsList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the Enterprise
+func (o *Enterprise) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list RedundancyGroupsList
-	err := bambou.CurrentSession().FetchChildren(o, RedundancyGroupIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateRedundancyGroup creates a new child RedundancyGroup under the Enterprise
-func (o *Enterprise) CreateRedundancyGroup(child *RedundancyGroup) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the Enterprise
+func (o *Enterprise) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// RoutingPolicies retrieves the list of child RoutingPolicies of the Enterprise
-func (o *Enterprise) RoutingPolicies(info *bambou.FetchingInfo) (RoutingPoliciesList, *bambou.Error) {
+// ExternalAppServices retrieves the list of child ExternalAppServices of the Enterprise
+func (o *Enterprise) ExternalAppServices(info *bambou.FetchingInfo) (ExternalAppServicesList, *bambou.Error) {
 
-	var list RoutingPoliciesList
-	err := bambou.CurrentSession().FetchChildren(o, RoutingPolicyIdentity, &list, info)
+	var list ExternalAppServicesList
+	err := bambou.CurrentSession().FetchChildren(o, ExternalAppServiceIdentity, &list, info)
 	return list, err
 }
 
-// CreateRoutingPolicy creates a new child RoutingPolicy under the Enterprise
-func (o *Enterprise) CreateRoutingPolicy(child *RoutingPolicy) *bambou.Error {
+// CreateExternalAppService creates a new child ExternalAppService under the Enterprise
+func (o *Enterprise) CreateExternalAppService(child *ExternalAppService) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// SharedNetworkResources retrieves the list of child SharedNetworkResources of the Enterprise
-func (o *Enterprise) SharedNetworkResources(info *bambou.FetchingInfo) (SharedNetworkResourcesList, *bambou.Error) {
+// ExternalServices retrieves the list of child ExternalServices of the Enterprise
+func (o *Enterprise) ExternalServices(info *bambou.FetchingInfo) (ExternalServicesList, *bambou.Error) {
 
-	var list SharedNetworkResourcesList
-	err := bambou.CurrentSession().FetchChildren(o, SharedNetworkResourceIdentity, &list, info)
+	var list ExternalServicesList
+	err := bambou.CurrentSession().FetchChildren(o, ExternalServiceIdentity, &list, info)
 	return list, err
 }
 
-// CreateSharedNetworkResource creates a new child SharedNetworkResource under the Enterprise
-func (o *Enterprise) CreateSharedNetworkResource(child *SharedNetworkResource) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Users retrieves the list of child Users of the Enterprise
-func (o *Enterprise) Users(info *bambou.FetchingInfo) (UsersList, *bambou.Error) {
-
-	var list UsersList
-	err := bambou.CurrentSession().FetchChildren(o, UserIdentity, &list, info)
-	return list, err
-}
-
-// CreateUser creates a new child User under the Enterprise
-func (o *Enterprise) CreateUser(child *User) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMs retrieves the list of child VMs of the Enterprise
-func (o *Enterprise) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
-
-	var list VMsList
-	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
-	return list, err
-}
-
-// CreateVM creates a new child VM under the Enterprise
-func (o *Enterprise) CreateVM(child *VM) *bambou.Error {
+// CreateExternalService creates a new child ExternalService under the Enterprise
+func (o *Enterprise) CreateExternalService(child *ExternalService) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

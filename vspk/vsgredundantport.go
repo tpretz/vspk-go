@@ -51,20 +51,20 @@ type VsgRedundantPort struct {
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
 	VLANRange                   string `json:"VLANRange,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
 	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
 	PermittedAction             string `json:"permittedAction,omitempty"`
+	Description                 string `json:"description,omitempty"`
 	PhysicalName                string `json:"physicalName,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
 	PortPeer1ID                 string `json:"portPeer1ID,omitempty"`
 	PortPeer2ID                 string `json:"portPeer2ID,omitempty"`
 	PortType                    string `json:"portType,omitempty"`
-	Status                      string `json:"status,omitempty"`
 	UseUserMnemonic             bool   `json:"useUserMnemonic"`
 	UserMnemonic                string `json:"userMnemonic,omitempty"`
+	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
+	Status                      string `json:"status,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewVsgRedundantPort returns a new *VsgRedundantPort
@@ -109,44 +109,16 @@ func (o *VsgRedundantPort) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Alarms retrieves the list of child Alarms of the VsgRedundantPort
-func (o *VsgRedundantPort) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+// Permissions retrieves the list of child Permissions of the VsgRedundantPort
+func (o *VsgRedundantPort) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
 
-	var list AlarmsList
-	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	var list PermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
 	return list, err
 }
 
-// CreateAlarm creates a new child Alarm under the VsgRedundantPort
-func (o *VsgRedundantPort) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EnterprisePermissions retrieves the list of child EnterprisePermissions of the VsgRedundantPort
-func (o *VsgRedundantPort) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
-
-	var list EnterprisePermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreateEnterprisePermission creates a new child EnterprisePermission under the VsgRedundantPort
-func (o *VsgRedundantPort) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VsgRedundantPort
-func (o *VsgRedundantPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the VsgRedundantPort
-func (o *VsgRedundantPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreatePermission creates a new child Permission under the VsgRedundantPort
+func (o *VsgRedundantPort) CreatePermission(child *Permission) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -165,20 +137,6 @@ func (o *VsgRedundantPort) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Permissions retrieves the list of child Permissions of the VsgRedundantPort
-func (o *VsgRedundantPort) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
-
-	var list PermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreatePermission creates a new child Permission under the VsgRedundantPort
-func (o *VsgRedundantPort) CreatePermission(child *Permission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // VLANs retrieves the list of child VLANs of the VsgRedundantPort
 func (o *VsgRedundantPort) VLANs(info *bambou.FetchingInfo) (VLANsList, *bambou.Error) {
 
@@ -189,6 +147,48 @@ func (o *VsgRedundantPort) VLANs(info *bambou.FetchingInfo) (VLANsList, *bambou.
 
 // CreateVLAN creates a new child VLAN under the VsgRedundantPort
 func (o *VsgRedundantPort) CreateVLAN(child *VLAN) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Alarms retrieves the list of child Alarms of the VsgRedundantPort
+func (o *VsgRedundantPort) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
+// CreateAlarm creates a new child Alarm under the VsgRedundantPort
+func (o *VsgRedundantPort) CreateAlarm(child *Alarm) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VsgRedundantPort
+func (o *VsgRedundantPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the VsgRedundantPort
+func (o *VsgRedundantPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EnterprisePermissions retrieves the list of child EnterprisePermissions of the VsgRedundantPort
+func (o *VsgRedundantPort) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
+
+	var list EnterprisePermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterprisePermission creates a new child EnterprisePermission under the VsgRedundantPort
+func (o *VsgRedundantPort) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

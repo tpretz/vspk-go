@@ -56,12 +56,8 @@ type GroupKeyEncryptionProfile struct {
 	SEKPayloadEncryptionBCAlgorithm      string `json:"SEKPayloadEncryptionBCAlgorithm,omitempty"`
 	SEKPayloadEncryptionKeyLength        int    `json:"SEKPayloadEncryptionKeyLength,omitempty"`
 	SEKPayloadSigningAlgorithm           string `json:"SEKPayloadSigningAlgorithm,omitempty"`
-	AssociatedEnterpriseID               string `json:"associatedEnterpriseID,omitempty"`
-	Description                          string `json:"description,omitempty"`
-	EntityScope                          string `json:"entityScope,omitempty"`
-	ExternalID                           string `json:"externalID,omitempty"`
-	LastUpdatedBy                        string `json:"lastUpdatedBy,omitempty"`
 	Name                                 string `json:"name,omitempty"`
+	LastUpdatedBy                        string `json:"lastUpdatedBy,omitempty"`
 	SeedGenerationInterval               int    `json:"seedGenerationInterval,omitempty"`
 	SeedLifetime                         int    `json:"seedLifetime,omitempty"`
 	SeedPayloadAuthenticationAlgorithm   string `json:"seedPayloadAuthenticationAlgorithm,omitempty"`
@@ -71,9 +67,13 @@ type GroupKeyEncryptionProfile struct {
 	SeedPayloadEncryptionBCAlgorithm     string `json:"seedPayloadEncryptionBCAlgorithm,omitempty"`
 	SeedPayloadEncryptionKeyLength       int    `json:"seedPayloadEncryptionKeyLength,omitempty"`
 	SeedPayloadSigningAlgorithm          string `json:"seedPayloadSigningAlgorithm,omitempty"`
+	Description                          string `json:"description,omitempty"`
+	EntityScope                          string `json:"entityScope,omitempty"`
 	TrafficAuthenticationAlgorithm       string `json:"trafficAuthenticationAlgorithm,omitempty"`
 	TrafficEncryptionAlgorithm           string `json:"trafficEncryptionAlgorithm,omitempty"`
 	TrafficEncryptionKeyLifetime         int    `json:"trafficEncryptionKeyLifetime,omitempty"`
+	AssociatedEnterpriseID               string `json:"associatedEnterpriseID,omitempty"`
+	ExternalID                           string `json:"externalID,omitempty"`
 }
 
 // NewGroupKeyEncryptionProfile returns a new *GroupKeyEncryptionProfile
@@ -118,20 +118,6 @@ func (o *GroupKeyEncryptionProfile) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the GroupKeyEncryptionProfile
-func (o *GroupKeyEncryptionProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the GroupKeyEncryptionProfile
-func (o *GroupKeyEncryptionProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the GroupKeyEncryptionProfile
 func (o *GroupKeyEncryptionProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -142,6 +128,20 @@ func (o *GroupKeyEncryptionProfile) Metadatas(info *bambou.FetchingInfo) (Metada
 
 // CreateMetadata creates a new child Metadata under the GroupKeyEncryptionProfile
 func (o *GroupKeyEncryptionProfile) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the GroupKeyEncryptionProfile
+func (o *GroupKeyEncryptionProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the GroupKeyEncryptionProfile
+func (o *GroupKeyEncryptionProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -50,17 +50,17 @@ type DomainTemplate struct {
 	ParentID                        string `json:"parentID,omitempty"`
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
-	AssociatedBGPProfileID          string `json:"associatedBGPProfileID,omitempty"`
-	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
-	AssociatedPATMapperID           string `json:"associatedPATMapperID,omitempty"`
+	Name                            string `json:"name,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Description                     string `json:"description,omitempty"`
 	Encryption                      string `json:"encryption,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	Multicast                       string `json:"multicast,omitempty"`
-	Name                            string `json:"name,omitempty"`
 	PolicyChangeStatus              string `json:"policyChangeStatus,omitempty"`
+	AssociatedBGPProfileID          string `json:"associatedBGPProfileID,omitempty"`
+	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
+	AssociatedPATMapperID           string `json:"associatedPATMapperID,omitempty"`
+	Multicast                       string `json:"multicast,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewDomainTemplate returns a new *DomainTemplate
@@ -105,23 +105,46 @@ func (o *DomainTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Domains retrieves the list of child Domains of the DomainTemplate
-func (o *DomainTemplate) Domains(info *bambou.FetchingInfo) (DomainsList, *bambou.Error) {
+// RedirectionTargetTemplates retrieves the list of child RedirectionTargetTemplates of the DomainTemplate
+func (o *DomainTemplate) RedirectionTargetTemplates(info *bambou.FetchingInfo) (RedirectionTargetTemplatesList, *bambou.Error) {
 
-	var list DomainsList
-	err := bambou.CurrentSession().FetchChildren(o, DomainIdentity, &list, info)
+	var list RedirectionTargetTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, RedirectionTargetTemplateIdentity, &list, info)
 	return list, err
 }
 
-// AssignDomains assigns the list of Domains to the DomainTemplate
-func (o *DomainTemplate) AssignDomains(children DomainsList) *bambou.Error {
+// CreateRedirectionTargetTemplate creates a new child RedirectionTargetTemplate under the DomainTemplate
+func (o *DomainTemplate) CreateRedirectionTargetTemplate(child *RedirectionTargetTemplate) *bambou.Error {
 
-	list := []bambou.Identifiable{}
-	for _, c := range children {
-		list = append(list, c)
-	}
+	return bambou.CurrentSession().CreateChild(o, child)
+}
 
-	return bambou.CurrentSession().AssignChildren(o, list, DomainIdentity)
+// Permissions retrieves the list of child Permissions of the DomainTemplate
+func (o *DomainTemplate) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
+
+	var list PermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreatePermission creates a new child Permission under the DomainTemplate
+func (o *DomainTemplate) CreatePermission(child *Permission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Metadatas retrieves the list of child Metadatas of the DomainTemplate
+func (o *DomainTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the DomainTemplate
+func (o *DomainTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // EgressACLTemplates retrieves the list of child EgressACLTemplates of the DomainTemplate
@@ -166,20 +189,6 @@ func (o *DomainTemplate) CreateFloatingIPACLTemplate(child *FloatingIPACLTemplat
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// EventLogs retrieves the list of child EventLogs of the DomainTemplate
-func (o *DomainTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the DomainTemplate
-func (o *DomainTemplate) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the DomainTemplate
 func (o *DomainTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -190,20 +199,6 @@ func (o *DomainTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetad
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the DomainTemplate
 func (o *DomainTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Groups retrieves the list of child Groups of the DomainTemplate
-func (o *DomainTemplate) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
-
-	var list GroupsList
-	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
-	return list, err
-}
-
-// CreateGroup creates a new child Group under the DomainTemplate
-func (o *DomainTemplate) CreateGroup(child *Group) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -264,34 +259,6 @@ func (o *DomainTemplate) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the DomainTemplate
-func (o *DomainTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the DomainTemplate
-func (o *DomainTemplate) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Permissions retrieves the list of child Permissions of the DomainTemplate
-func (o *DomainTemplate) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
-
-	var list PermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreatePermission creates a new child Permission under the DomainTemplate
-func (o *DomainTemplate) CreatePermission(child *Permission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // PolicyGroupTemplates retrieves the list of child PolicyGroupTemplates of the DomainTemplate
 func (o *DomainTemplate) PolicyGroupTemplates(info *bambou.FetchingInfo) (PolicyGroupTemplatesList, *bambou.Error) {
 
@@ -302,6 +269,39 @@ func (o *DomainTemplate) PolicyGroupTemplates(info *bambou.FetchingInfo) (Policy
 
 // CreatePolicyGroupTemplate creates a new child PolicyGroupTemplate under the DomainTemplate
 func (o *DomainTemplate) CreatePolicyGroupTemplate(child *PolicyGroupTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Domains retrieves the list of child Domains of the DomainTemplate
+func (o *DomainTemplate) Domains(info *bambou.FetchingInfo) (DomainsList, *bambou.Error) {
+
+	var list DomainsList
+	err := bambou.CurrentSession().FetchChildren(o, DomainIdentity, &list, info)
+	return list, err
+}
+
+// AssignDomains assigns the list of Domains to the DomainTemplate
+func (o *DomainTemplate) AssignDomains(children DomainsList) *bambou.Error {
+
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, DomainIdentity)
+}
+
+// ZoneTemplates retrieves the list of child ZoneTemplates of the DomainTemplate
+func (o *DomainTemplate) ZoneTemplates(info *bambou.FetchingInfo) (ZoneTemplatesList, *bambou.Error) {
+
+	var list ZoneTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, ZoneTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateZoneTemplate creates a new child ZoneTemplate under the DomainTemplate
+func (o *DomainTemplate) CreateZoneTemplate(child *ZoneTemplate) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -320,16 +320,16 @@ func (o *DomainTemplate) CreateQOS(child *QOS) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// RedirectionTargetTemplates retrieves the list of child RedirectionTargetTemplates of the DomainTemplate
-func (o *DomainTemplate) RedirectionTargetTemplates(info *bambou.FetchingInfo) (RedirectionTargetTemplatesList, *bambou.Error) {
+// Groups retrieves the list of child Groups of the DomainTemplate
+func (o *DomainTemplate) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
 
-	var list RedirectionTargetTemplatesList
-	err := bambou.CurrentSession().FetchChildren(o, RedirectionTargetTemplateIdentity, &list, info)
+	var list GroupsList
+	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
 	return list, err
 }
 
-// CreateRedirectionTargetTemplate creates a new child RedirectionTargetTemplate under the DomainTemplate
-func (o *DomainTemplate) CreateRedirectionTargetTemplate(child *RedirectionTargetTemplate) *bambou.Error {
+// CreateGroup creates a new child Group under the DomainTemplate
+func (o *DomainTemplate) CreateGroup(child *Group) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -348,16 +348,16 @@ func (o *DomainTemplate) CreateSubnetTemplate(child *SubnetTemplate) *bambou.Err
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// ZoneTemplates retrieves the list of child ZoneTemplates of the DomainTemplate
-func (o *DomainTemplate) ZoneTemplates(info *bambou.FetchingInfo) (ZoneTemplatesList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the DomainTemplate
+func (o *DomainTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list ZoneTemplatesList
-	err := bambou.CurrentSession().FetchChildren(o, ZoneTemplateIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateZoneTemplate creates a new child ZoneTemplate under the DomainTemplate
-func (o *DomainTemplate) CreateZoneTemplate(child *ZoneTemplate) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the DomainTemplate
+func (o *DomainTemplate) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

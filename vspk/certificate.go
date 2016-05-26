@@ -50,13 +50,13 @@ type Certificate struct {
 	ParentID     string `json:"parentID,omitempty"`
 	ParentType   string `json:"parentType,omitempty"`
 	Owner        string `json:"owner,omitempty"`
-	EntityScope  string `json:"entityScope,omitempty"`
-	ExternalID   string `json:"externalID,omitempty"`
-	IssuerDN     string `json:"issuerDN,omitempty"`
 	PemEncoded   string `json:"pemEncoded,omitempty"`
-	PublicKey    string `json:"publicKey,omitempty"`
 	SerialNumber int    `json:"serialNumber,omitempty"`
+	EntityScope  string `json:"entityScope,omitempty"`
+	IssuerDN     string `json:"issuerDN,omitempty"`
 	SubjectDN    string `json:"subjectDN,omitempty"`
+	PublicKey    string `json:"publicKey,omitempty"`
+	ExternalID   string `json:"externalID,omitempty"`
 }
 
 // NewCertificate returns a new *Certificate
@@ -101,20 +101,6 @@ func (o *Certificate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Certificate
-func (o *Certificate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the Certificate
-func (o *Certificate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the Certificate
 func (o *Certificate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -125,6 +111,20 @@ func (o *Certificate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bamb
 
 // CreateMetadata creates a new child Metadata under the Certificate
 func (o *Certificate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Certificate
+func (o *Certificate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Certificate
+func (o *Certificate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

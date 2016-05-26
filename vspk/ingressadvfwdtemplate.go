@@ -50,16 +50,16 @@ type IngressAdvFwdTemplate struct {
 	ParentID               string `json:"parentID,omitempty"`
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
+	Name                   string `json:"name,omitempty"`
+	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	Active                 bool   `json:"active"`
-	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
 	Description            string `json:"description,omitempty"`
 	EntityScope            string `json:"entityScope,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	Name                   string `json:"name,omitempty"`
 	PolicyState            string `json:"policyState,omitempty"`
 	Priority               int    `json:"priority,omitempty"`
 	PriorityType           string `json:"priorityType,omitempty"`
+	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 }
 
 // NewIngressAdvFwdTemplate returns a new *IngressAdvFwdTemplate
@@ -104,6 +104,20 @@ func (o *IngressAdvFwdTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the IngressAdvFwdTemplate
+func (o *IngressAdvFwdTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the IngressAdvFwdTemplate
+func (o *IngressAdvFwdTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the IngressAdvFwdTemplate
 func (o *IngressAdvFwdTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -142,20 +156,6 @@ func (o *IngressAdvFwdTemplate) Jobs(info *bambou.FetchingInfo) (JobsList, *bamb
 
 // CreateJob creates a new child Job under the IngressAdvFwdTemplate
 func (o *IngressAdvFwdTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the IngressAdvFwdTemplate
-func (o *IngressAdvFwdTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the IngressAdvFwdTemplate
-func (o *IngressAdvFwdTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

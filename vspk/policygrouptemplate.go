@@ -51,12 +51,12 @@ type PolicyGroupTemplate struct {
 	ParentType       string `json:"parentType,omitempty"`
 	Owner            string `json:"owner,omitempty"`
 	EVPNCommunityTag string `json:"EVPNCommunityTag,omitempty"`
+	Name             string `json:"name,omitempty"`
+	LastUpdatedBy    string `json:"lastUpdatedBy,omitempty"`
 	Description      string `json:"description,omitempty"`
 	EntityScope      string `json:"entityScope,omitempty"`
 	External         bool   `json:"external"`
 	ExternalID       string `json:"externalID,omitempty"`
-	LastUpdatedBy    string `json:"lastUpdatedBy,omitempty"`
-	Name             string `json:"name,omitempty"`
 	Type             string `json:"type,omitempty"`
 }
 
@@ -104,16 +104,16 @@ func (o *PolicyGroupTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// EventLogs retrieves the list of child EventLogs of the PolicyGroupTemplate
-func (o *PolicyGroupTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the PolicyGroupTemplate
+func (o *PolicyGroupTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the PolicyGroupTemplate
-func (o *PolicyGroupTemplate) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the PolicyGroupTemplate
+func (o *PolicyGroupTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -146,16 +146,16 @@ func (o *PolicyGroupTemplate) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the PolicyGroupTemplate
-func (o *PolicyGroupTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the PolicyGroupTemplate
+func (o *PolicyGroupTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the PolicyGroupTemplate
-func (o *PolicyGroupTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the PolicyGroupTemplate
+func (o *PolicyGroupTemplate) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -51,52 +51,52 @@ type VRS struct {
 	ParentType                string        `json:"parentType,omitempty"`
 	Owner                     string        `json:"owner,omitempty"`
 	JSONRPCConnectionState    string        `json:"JSONRPCConnectionState,omitempty"`
-	Address                   string        `json:"address,omitempty"`
-	AverageCPUUsage           float64       `json:"averageCPUUsage,omitempty"`
-	AverageMemoryUsage        float64       `json:"averageMemoryUsage,omitempty"`
-	ClusterNodeRole           string        `json:"clusterNodeRole,omitempty"`
-	CurrentCPUUsage           float64       `json:"currentCPUUsage,omitempty"`
-	CurrentMemoryUsage        float64       `json:"currentMemoryUsage,omitempty"`
-	DbSynced                  bool          `json:"dbSynced"`
-	Description               string        `json:"description,omitempty"`
-	Disks                     []interface{} `json:"disks,omitempty"`
-	Dynamic                   bool          `json:"dynamic"`
-	EntityScope               string        `json:"entityScope,omitempty"`
-	ExternalID                string        `json:"externalID,omitempty"`
-	HypervisorConnectionState string        `json:"hypervisorConnectionState,omitempty"`
-	HypervisorIdentifier      string        `json:"hypervisorIdentifier,omitempty"`
-	HypervisorName            string        `json:"hypervisorName,omitempty"`
-	HypervisorType            string        `json:"hypervisorType,omitempty"`
-	IsResilient               bool          `json:"isResilient"`
+	Name                      string        `json:"name,omitempty"`
+	ManagementIP              string        `json:"managementIP,omitempty"`
+	ParentIDs                 []interface{} `json:"parentIDs,omitempty"`
 	LastEventName             string        `json:"lastEventName,omitempty"`
 	LastEventObject           string        `json:"lastEventObject,omitempty"`
 	LastEventTimestamp        int           `json:"lastEventTimestamp,omitempty"`
 	LastStateChange           int           `json:"lastStateChange,omitempty"`
 	LastUpdatedBy             string        `json:"lastUpdatedBy,omitempty"`
-	Location                  string        `json:"location,omitempty"`
-	ManagementIP              string        `json:"managementIP,omitempty"`
-	Messages                  []interface{} `json:"messages,omitempty"`
-	MultiNICVPortEnabled      bool          `json:"multiNICVPortEnabled"`
-	Name                      string        `json:"name,omitempty"`
-	NumberOfBridgeInterfaces  int           `json:"numberOfBridgeInterfaces,omitempty"`
-	NumberOfHostInterfaces    int           `json:"numberOfHostInterfaces,omitempty"`
-	NumberOfVirtualMachines   int           `json:"numberOfVirtualMachines,omitempty"`
-	ParentIDs                 []interface{} `json:"parentIDs,omitempty"`
+	DbSynced                  bool          `json:"dbSynced"`
+	Address                   string        `json:"address,omitempty"`
 	PeakCPUUsage              float64       `json:"peakCPUUsage,omitempty"`
 	PeakMemoryUsage           float64       `json:"peakMemoryUsage,omitempty"`
 	Peer                      string        `json:"peer,omitempty"`
 	Personality               string        `json:"personality,omitempty"`
-	PrimaryVSCConnectionLost  bool          `json:"primaryVSCConnectionLost"`
-	ProductVersion            string        `json:"productVersion,omitempty"`
+	Description               string        `json:"description,omitempty"`
+	Messages                  []interface{} `json:"messages,omitempty"`
 	RevertBehaviorEnabled     bool          `json:"revertBehaviorEnabled"`
 	RevertCompleted           bool          `json:"revertCompleted"`
 	RevertCount               int           `json:"revertCount,omitempty"`
 	RevertFailedCount         int           `json:"revertFailedCount,omitempty"`
+	Disks                     []interface{} `json:"disks,omitempty"`
+	ClusterNodeRole           string        `json:"clusterNodeRole,omitempty"`
+	EntityScope               string        `json:"entityScope,omitempty"`
+	Location                  string        `json:"location,omitempty"`
 	Role                      string        `json:"role,omitempty"`
-	Status                    string        `json:"status,omitempty"`
 	Uptime                    int           `json:"uptime,omitempty"`
+	PrimaryVSCConnectionLost  bool          `json:"primaryVSCConnectionLost"`
+	ProductVersion            string        `json:"productVersion,omitempty"`
+	IsResilient               bool          `json:"isResilient"`
 	VscConfigState            string        `json:"vscConfigState,omitempty"`
 	VscCurrentState           string        `json:"vscCurrentState,omitempty"`
+	Status                    string        `json:"status,omitempty"`
+	MultiNICVPortEnabled      bool          `json:"multiNICVPortEnabled"`
+	NumberOfBridgeInterfaces  int           `json:"numberOfBridgeInterfaces,omitempty"`
+	NumberOfHostInterfaces    int           `json:"numberOfHostInterfaces,omitempty"`
+	NumberOfVirtualMachines   int           `json:"numberOfVirtualMachines,omitempty"`
+	CurrentCPUUsage           float64       `json:"currentCPUUsage,omitempty"`
+	CurrentMemoryUsage        float64       `json:"currentMemoryUsage,omitempty"`
+	AverageCPUUsage           float64       `json:"averageCPUUsage,omitempty"`
+	AverageMemoryUsage        float64       `json:"averageMemoryUsage,omitempty"`
+	ExternalID                string        `json:"externalID,omitempty"`
+	Dynamic                   bool          `json:"dynamic"`
+	HypervisorConnectionState string        `json:"hypervisorConnectionState,omitempty"`
+	HypervisorIdentifier      string        `json:"hypervisorIdentifier,omitempty"`
+	HypervisorName            string        `json:"hypervisorName,omitempty"`
+	HypervisorType            string        `json:"hypervisorType,omitempty"`
 }
 
 // NewVRS returns a new *VRS
@@ -141,6 +141,20 @@ func (o *VRS) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the VRS
+func (o *VRS) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the VRS
+func (o *VRS) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Alarms retrieves the list of child Alarms of the VRS
 func (o *VRS) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
@@ -151,20 +165,6 @@ func (o *VRS) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
 // CreateAlarm creates a new child Alarm under the VRS
 func (o *VRS) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// EventLogs retrieves the list of child EventLogs of the VRS
-func (o *VRS) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the VRS
-func (o *VRS) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -183,16 +183,16 @@ func (o *VRS) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// HSCs retrieves the list of child HSCs of the VRS
-func (o *VRS) HSCs(info *bambou.FetchingInfo) (HSCsList, *bambou.Error) {
+// VMs retrieves the list of child VMs of the VRS
+func (o *VRS) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
 
-	var list HSCsList
-	err := bambou.CurrentSession().FetchChildren(o, HSCIdentity, &list, info)
+	var list VMsList
+	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
 	return list, err
 }
 
-// CreateHSC creates a new child HSC under the VRS
-func (o *VRS) CreateHSC(child *HSC) *bambou.Error {
+// CreateVM creates a new child VM under the VRS
+func (o *VRS) CreateVM(child *VM) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -211,20 +211,6 @@ func (o *VRS) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the VRS
-func (o *VRS) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the VRS
-func (o *VRS) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // MonitoringPorts retrieves the list of child MonitoringPorts of the VRS
 func (o *VRS) MonitoringPorts(info *bambou.FetchingInfo) (MonitoringPortsList, *bambou.Error) {
 
@@ -235,34 +221,6 @@ func (o *VRS) MonitoringPorts(info *bambou.FetchingInfo) (MonitoringPortsList, *
 
 // CreateMonitoringPort creates a new child MonitoringPort under the VRS
 func (o *VRS) CreateMonitoringPort(child *MonitoringPort) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// MultiNICVPorts retrieves the list of child MultiNICVPorts of the VRS
-func (o *VRS) MultiNICVPorts(info *bambou.FetchingInfo) (MultiNICVPortsList, *bambou.Error) {
-
-	var list MultiNICVPortsList
-	err := bambou.CurrentSession().FetchChildren(o, MultiNICVPortIdentity, &list, info)
-	return list, err
-}
-
-// CreateMultiNICVPort creates a new child MultiNICVPort under the VRS
-func (o *VRS) CreateMultiNICVPort(child *MultiNICVPort) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// VMs retrieves the list of child VMs of the VRS
-func (o *VRS) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
-
-	var list VMsList
-	err := bambou.CurrentSession().FetchChildren(o, VMIdentity, &list, info)
-	return list, err
-}
-
-// CreateVM creates a new child VM under the VRS
-func (o *VRS) CreateVM(child *VM) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -281,6 +239,20 @@ func (o *VRS) CreateVPort(child *VPort) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// HSCs retrieves the list of child HSCs of the VRS
+func (o *VRS) HSCs(info *bambou.FetchingInfo) (HSCsList, *bambou.Error) {
+
+	var list HSCsList
+	err := bambou.CurrentSession().FetchChildren(o, HSCIdentity, &list, info)
+	return list, err
+}
+
+// CreateHSC creates a new child HSC under the VRS
+func (o *VRS) CreateHSC(child *HSC) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // VSCs retrieves the list of child VSCs of the VRS
 func (o *VRS) VSCs(info *bambou.FetchingInfo) (VSCsList, *bambou.Error) {
 
@@ -291,6 +263,34 @@ func (o *VRS) VSCs(info *bambou.FetchingInfo) (VSCsList, *bambou.Error) {
 
 // CreateVSC creates a new child VSC under the VRS
 func (o *VRS) CreateVSC(child *VSC) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// MultiNICVPorts retrieves the list of child MultiNICVPorts of the VRS
+func (o *VRS) MultiNICVPorts(info *bambou.FetchingInfo) (MultiNICVPortsList, *bambou.Error) {
+
+	var list MultiNICVPortsList
+	err := bambou.CurrentSession().FetchChildren(o, MultiNICVPortIdentity, &list, info)
+	return list, err
+}
+
+// CreateMultiNICVPort creates a new child MultiNICVPort under the VRS
+func (o *VRS) CreateMultiNICVPort(child *MultiNICVPort) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the VRS
+func (o *VRS) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the VRS
+func (o *VRS) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

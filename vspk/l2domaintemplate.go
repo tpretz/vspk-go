@@ -52,18 +52,18 @@ type L2DomainTemplate struct {
 	Owner                           string `json:"owner,omitempty"`
 	DHCPManaged                     bool   `json:"DHCPManaged"`
 	IPType                          string `json:"IPType,omitempty"`
+	Name                            string `json:"name,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
+	Gateway                         string `json:"gateway,omitempty"`
 	Address                         string `json:"address,omitempty"`
-	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
 	Description                     string `json:"description,omitempty"`
+	Netmask                         string `json:"netmask,omitempty"`
 	Encryption                      string `json:"encryption,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
-	Gateway                         string `json:"gateway,omitempty"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	Multicast                       string `json:"multicast,omitempty"`
-	Name                            string `json:"name,omitempty"`
-	Netmask                         string `json:"netmask,omitempty"`
 	PolicyChangeStatus              string `json:"policyChangeStatus,omitempty"`
+	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
+	Multicast                       string `json:"multicast,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewL2DomainTemplate returns a new *L2DomainTemplate
@@ -108,6 +108,20 @@ func (o *L2DomainTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// L2Domains retrieves the list of child L2Domains of the L2DomainTemplate
+func (o *L2DomainTemplate) L2Domains(info *bambou.FetchingInfo) (L2DomainsList, *bambou.Error) {
+
+	var list L2DomainsList
+	err := bambou.CurrentSession().FetchChildren(o, L2DomainIdentity, &list, info)
+	return list, err
+}
+
+// CreateL2Domain creates a new child L2Domain under the L2DomainTemplate
+func (o *L2DomainTemplate) CreateL2Domain(child *L2Domain) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // AddressRanges retrieves the list of child AddressRanges of the L2DomainTemplate
 func (o *L2DomainTemplate) AddressRanges(info *bambou.FetchingInfo) (AddressRangesList, *bambou.Error) {
 
@@ -118,6 +132,48 @@ func (o *L2DomainTemplate) AddressRanges(info *bambou.FetchingInfo) (AddressRang
 
 // CreateAddressRange creates a new child AddressRange under the L2DomainTemplate
 func (o *L2DomainTemplate) CreateAddressRange(child *AddressRange) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// RedirectionTargetTemplates retrieves the list of child RedirectionTargetTemplates of the L2DomainTemplate
+func (o *L2DomainTemplate) RedirectionTargetTemplates(info *bambou.FetchingInfo) (RedirectionTargetTemplatesList, *bambou.Error) {
+
+	var list RedirectionTargetTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, RedirectionTargetTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateRedirectionTargetTemplate creates a new child RedirectionTargetTemplate under the L2DomainTemplate
+func (o *L2DomainTemplate) CreateRedirectionTargetTemplate(child *RedirectionTargetTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Permissions retrieves the list of child Permissions of the L2DomainTemplate
+func (o *L2DomainTemplate) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
+
+	var list PermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreatePermission creates a new child Permission under the L2DomainTemplate
+func (o *L2DomainTemplate) CreatePermission(child *Permission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Metadatas retrieves the list of child Metadatas of the L2DomainTemplate
+func (o *L2DomainTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the L2DomainTemplate
+func (o *L2DomainTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -136,20 +192,6 @@ func (o *L2DomainTemplate) CreateEgressACLTemplate(child *EgressACLTemplate) *ba
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// EventLogs retrieves the list of child EventLogs of the L2DomainTemplate
-func (o *L2DomainTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the L2DomainTemplate
-func (o *L2DomainTemplate) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the L2DomainTemplate
 func (o *L2DomainTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -160,20 +202,6 @@ func (o *L2DomainTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMet
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the L2DomainTemplate
 func (o *L2DomainTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Groups retrieves the list of child Groups of the L2DomainTemplate
-func (o *L2DomainTemplate) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
-
-	var list GroupsList
-	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
-	return list, err
-}
-
-// CreateGroup creates a new child Group under the L2DomainTemplate
-func (o *L2DomainTemplate) CreateGroup(child *Group) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -234,48 +262,6 @@ func (o *L2DomainTemplate) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// L2Domains retrieves the list of child L2Domains of the L2DomainTemplate
-func (o *L2DomainTemplate) L2Domains(info *bambou.FetchingInfo) (L2DomainsList, *bambou.Error) {
-
-	var list L2DomainsList
-	err := bambou.CurrentSession().FetchChildren(o, L2DomainIdentity, &list, info)
-	return list, err
-}
-
-// CreateL2Domain creates a new child L2Domain under the L2DomainTemplate
-func (o *L2DomainTemplate) CreateL2Domain(child *L2Domain) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the L2DomainTemplate
-func (o *L2DomainTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the L2DomainTemplate
-func (o *L2DomainTemplate) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Permissions retrieves the list of child Permissions of the L2DomainTemplate
-func (o *L2DomainTemplate) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
-
-	var list PermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreatePermission creates a new child Permission under the L2DomainTemplate
-func (o *L2DomainTemplate) CreatePermission(child *Permission) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // PolicyGroupTemplates retrieves the list of child PolicyGroupTemplates of the L2DomainTemplate
 func (o *L2DomainTemplate) PolicyGroupTemplates(info *bambou.FetchingInfo) (PolicyGroupTemplatesList, *bambou.Error) {
 
@@ -304,16 +290,30 @@ func (o *L2DomainTemplate) CreateQOS(child *QOS) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// RedirectionTargetTemplates retrieves the list of child RedirectionTargetTemplates of the L2DomainTemplate
-func (o *L2DomainTemplate) RedirectionTargetTemplates(info *bambou.FetchingInfo) (RedirectionTargetTemplatesList, *bambou.Error) {
+// Groups retrieves the list of child Groups of the L2DomainTemplate
+func (o *L2DomainTemplate) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
 
-	var list RedirectionTargetTemplatesList
-	err := bambou.CurrentSession().FetchChildren(o, RedirectionTargetTemplateIdentity, &list, info)
+	var list GroupsList
+	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
 	return list, err
 }
 
-// CreateRedirectionTargetTemplate creates a new child RedirectionTargetTemplate under the L2DomainTemplate
-func (o *L2DomainTemplate) CreateRedirectionTargetTemplate(child *RedirectionTargetTemplate) *bambou.Error {
+// CreateGroup creates a new child Group under the L2DomainTemplate
+func (o *L2DomainTemplate) CreateGroup(child *Group) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EventLogs retrieves the list of child EventLogs of the L2DomainTemplate
+func (o *L2DomainTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+
+	var list EventLogsList
+	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
+	return list, err
+}
+
+// CreateEventLog creates a new child EventLog under the L2DomainTemplate
+func (o *L2DomainTemplate) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

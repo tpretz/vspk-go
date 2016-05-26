@@ -50,19 +50,19 @@ type DomainFIPAclTemplate struct {
 	ParentID               string        `json:"parentID,omitempty"`
 	ParentType             string        `json:"parentType,omitempty"`
 	Owner                  string        `json:"owner,omitempty"`
+	Name                   string        `json:"name,omitempty"`
+	LastUpdatedBy          string        `json:"lastUpdatedBy,omitempty"`
 	Active                 bool          `json:"active"`
-	AssociatedLiveEntityID string        `json:"associatedLiveEntityID,omitempty"`
 	DefaultAllowIP         bool          `json:"defaultAllowIP"`
 	DefaultAllowNonIP      bool          `json:"defaultAllowNonIP"`
 	Description            string        `json:"description,omitempty"`
 	EntityScope            string        `json:"entityScope,omitempty"`
 	Entries                []interface{} `json:"entries,omitempty"`
-	ExternalID             string        `json:"externalID,omitempty"`
-	LastUpdatedBy          string        `json:"lastUpdatedBy,omitempty"`
-	Name                   string        `json:"name,omitempty"`
 	PolicyState            string        `json:"policyState,omitempty"`
 	Priority               int           `json:"priority,omitempty"`
 	PriorityType           string        `json:"priorityType,omitempty"`
+	AssociatedLiveEntityID string        `json:"associatedLiveEntityID,omitempty"`
+	ExternalID             string        `json:"externalID,omitempty"`
 }
 
 // NewDomainFIPAclTemplate returns a new *DomainFIPAclTemplate
@@ -107,6 +107,20 @@ func (o *DomainFIPAclTemplate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the DomainFIPAclTemplate
+func (o *DomainFIPAclTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the DomainFIPAclTemplate
+func (o *DomainFIPAclTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // DomainFIPAclTemplateEntries retrieves the list of child DomainFIPAclTemplateEntries of the DomainFIPAclTemplate
 func (o *DomainFIPAclTemplate) DomainFIPAclTemplateEntries(info *bambou.FetchingInfo) (DomainFIPAclTemplateEntriesList, *bambou.Error) {
 
@@ -131,20 +145,6 @@ func (o *DomainFIPAclTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (Globa
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the DomainFIPAclTemplate
 func (o *DomainFIPAclTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the DomainFIPAclTemplate
-func (o *DomainFIPAclTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the DomainFIPAclTemplate
-func (o *DomainFIPAclTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

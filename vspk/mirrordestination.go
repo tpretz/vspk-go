@@ -50,12 +50,12 @@ type MirrorDestination struct {
 	ParentID      string `json:"parentID,omitempty"`
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	ServiceId     int    `json:"serviceId,omitempty"`
 	DestinationIp string `json:"destinationIp,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Name          string `json:"name,omitempty"`
-	ServiceId     int    `json:"serviceId,omitempty"`
 }
 
 // NewMirrorDestination returns a new *MirrorDestination
@@ -98,6 +98,20 @@ func (o *MirrorDestination) Save() *bambou.Error {
 func (o *MirrorDestination) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// Metadatas retrieves the list of child Metadatas of the MirrorDestination
+func (o *MirrorDestination) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the MirrorDestination
+func (o *MirrorDestination) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // EgressACLEntryTemplates retrieves the list of child EgressACLEntryTemplates of the MirrorDestination
@@ -152,20 +166,6 @@ func (o *MirrorDestination) IngressAdvFwdEntryTemplates(info *bambou.FetchingInf
 
 // CreateIngressAdvFwdEntryTemplate creates a new child IngressAdvFwdEntryTemplate under the MirrorDestination
 func (o *MirrorDestination) CreateIngressAdvFwdEntryTemplate(child *IngressAdvFwdEntryTemplate) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the MirrorDestination
-func (o *MirrorDestination) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the MirrorDestination
-func (o *MirrorDestination) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

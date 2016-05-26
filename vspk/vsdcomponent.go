@@ -50,15 +50,15 @@ type VSDComponent struct {
 	ParentID       string `json:"parentID,omitempty"`
 	ParentType     string `json:"parentType,omitempty"`
 	Owner          string `json:"owner,omitempty"`
+	Name           string `json:"name,omitempty"`
+	ManagementIP   string `json:"managementIP,omitempty"`
 	Address        string `json:"address,omitempty"`
 	Description    string `json:"description,omitempty"`
 	EntityScope    string `json:"entityScope,omitempty"`
-	ExternalID     string `json:"externalID,omitempty"`
 	Location       string `json:"location,omitempty"`
-	ManagementIP   string `json:"managementIP,omitempty"`
-	Name           string `json:"name,omitempty"`
 	ProductVersion string `json:"productVersion,omitempty"`
 	Status         string `json:"status,omitempty"`
+	ExternalID     string `json:"externalID,omitempty"`
 	Type           string `json:"type,omitempty"`
 }
 
@@ -104,20 +104,6 @@ func (o *VSDComponent) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VSDComponent
-func (o *VSDComponent) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the VSDComponent
-func (o *VSDComponent) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the VSDComponent
 func (o *VSDComponent) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -128,6 +114,20 @@ func (o *VSDComponent) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bam
 
 // CreateMetadata creates a new child Metadata under the VSDComponent
 func (o *VSDComponent) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VSDComponent
+func (o *VSDComponent) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the VSDComponent
+func (o *VSDComponent) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

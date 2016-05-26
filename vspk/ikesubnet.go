@@ -50,11 +50,11 @@ type IKESubnet struct {
 	ParentID               string `json:"parentID,omitempty"`
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
-	AssociatedIKEGatewayID string `json:"associatedIKEGatewayID,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
 	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
+	EntityScope            string `json:"entityScope,omitempty"`
 	Prefix                 string `json:"prefix,omitempty"`
+	AssociatedIKEGatewayID string `json:"associatedIKEGatewayID,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 }
 
 // NewIKESubnet returns a new *IKESubnet
@@ -99,20 +99,6 @@ func (o *IKESubnet) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKESubnet
-func (o *IKESubnet) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the IKESubnet
-func (o *IKESubnet) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the IKESubnet
 func (o *IKESubnet) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -123,6 +109,20 @@ func (o *IKESubnet) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou
 
 // CreateMetadata creates a new child Metadata under the IKESubnet
 func (o *IKESubnet) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKESubnet
+func (o *IKESubnet) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the IKESubnet
+func (o *IKESubnet) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -52,19 +52,19 @@ type EnterpriseProfile struct {
 	Owner                         string        `json:"owner,omitempty"`
 	BGPEnabled                    bool          `json:"BGPEnabled"`
 	DHCPLeaseInterval             int           `json:"DHCPLeaseInterval,omitempty"`
+	Name                          string        `json:"name,omitempty"`
+	LastUpdatedBy                 string        `json:"lastUpdatedBy,omitempty"`
+	ReceiveMultiCastListID        string        `json:"receiveMultiCastListID,omitempty"`
+	SendMultiCastListID           string        `json:"sendMultiCastListID,omitempty"`
+	Description                   string        `json:"description,omitempty"`
 	AllowAdvancedQOSConfiguration bool          `json:"allowAdvancedQOSConfiguration"`
 	AllowGatewayManagement        bool          `json:"allowGatewayManagement"`
 	AllowTrustedForwardingClass   bool          `json:"allowTrustedForwardingClass"`
 	AllowedForwardingClasses      []interface{} `json:"allowedForwardingClasses,omitempty"`
-	Description                   string        `json:"description,omitempty"`
+	FloatingIPsQuota              int           `json:"floatingIPsQuota,omitempty"`
 	EncryptionManagementMode      string        `json:"encryptionManagementMode,omitempty"`
 	EntityScope                   string        `json:"entityScope,omitempty"`
 	ExternalID                    string        `json:"externalID,omitempty"`
-	FloatingIPsQuota              int           `json:"floatingIPsQuota,omitempty"`
-	LastUpdatedBy                 string        `json:"lastUpdatedBy,omitempty"`
-	Name                          string        `json:"name,omitempty"`
-	ReceiveMultiCastListID        string        `json:"receiveMultiCastListID,omitempty"`
-	SendMultiCastListID           string        `json:"sendMultiCastListID,omitempty"`
 }
 
 // NewEnterpriseProfile returns a new *EnterpriseProfile
@@ -112,6 +112,34 @@ func (o *EnterpriseProfile) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Metadatas retrieves the list of child Metadatas of the EnterpriseProfile
+func (o *EnterpriseProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the EnterpriseProfile
+func (o *EnterpriseProfile) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EnterpriseProfile
+func (o *EnterpriseProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the EnterpriseProfile
+func (o *EnterpriseProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Enterprises retrieves the list of child Enterprises of the EnterpriseProfile
 func (o *EnterpriseProfile) Enterprises(info *bambou.FetchingInfo) (EnterprisesList, *bambou.Error) {
 
@@ -129,6 +157,20 @@ func (o *EnterpriseProfile) AssignEnterprises(children EnterprisesList) *bambou.
 	}
 
 	return bambou.CurrentSession().AssignChildren(o, list, EnterpriseIdentity)
+}
+
+// MultiCastLists retrieves the list of child MultiCastLists of the EnterpriseProfile
+func (o *EnterpriseProfile) MultiCastLists(info *bambou.FetchingInfo) (MultiCastListsList, *bambou.Error) {
+
+	var list MultiCastListsList
+	err := bambou.CurrentSession().FetchChildren(o, MultiCastListIdentity, &list, info)
+	return list, err
+}
+
+// CreateMultiCastList creates a new child MultiCastList under the EnterpriseProfile
+func (o *EnterpriseProfile) CreateMultiCastList(child *MultiCastList) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // EventLogs retrieves the list of child EventLogs of the EnterpriseProfile
@@ -162,46 +204,4 @@ func (o *EnterpriseProfile) AssignExternalServices(children ExternalServicesList
 	}
 
 	return bambou.CurrentSession().AssignChildren(o, list, ExternalServiceIdentity)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EnterpriseProfile
-func (o *EnterpriseProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the EnterpriseProfile
-func (o *EnterpriseProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the EnterpriseProfile
-func (o *EnterpriseProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the EnterpriseProfile
-func (o *EnterpriseProfile) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// MultiCastLists retrieves the list of child MultiCastLists of the EnterpriseProfile
-func (o *EnterpriseProfile) MultiCastLists(info *bambou.FetchingInfo) (MultiCastListsList, *bambou.Error) {
-
-	var list MultiCastListsList
-	err := bambou.CurrentSession().FetchChildren(o, MultiCastListIdentity, &list, info)
-	return list, err
-}
-
-// CreateMultiCastList creates a new child MultiCastList under the EnterpriseProfile
-func (o *EnterpriseProfile) CreateMultiCastList(child *MultiCastList) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }

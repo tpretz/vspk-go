@@ -50,27 +50,27 @@ type WANService struct {
 	ParentID               string `json:"parentID,omitempty"`
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
-	IRBEnabled             bool   `json:"IRBEnabled"`
 	WANServiceIdentifier   string `json:"WANServiceIdentifier,omitempty"`
-	AssociatedDomainID     string `json:"associatedDomainID,omitempty"`
-	AssociatedVPNConnectID string `json:"associatedVPNConnectID,omitempty"`
-	ConfigType             string `json:"configType,omitempty"`
-	Description            string `json:"description,omitempty"`
-	DomainName             string `json:"domainName,omitempty"`
-	EnterpriseName         string `json:"enterpriseName,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
-	ExternalRouteTarget    string `json:"externalRouteTarget,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
+	IRBEnabled             bool   `json:"IRBEnabled"`
 	Name                   string `json:"name,omitempty"`
-	Orphan                 bool   `json:"orphan"`
+	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	PermittedAction        string `json:"permittedAction,omitempty"`
 	ServicePolicy          string `json:"servicePolicy,omitempty"`
 	ServiceType            string `json:"serviceType,omitempty"`
-	TunnelType             string `json:"tunnelType,omitempty"`
+	Description            string `json:"description,omitempty"`
+	VnId                   int    `json:"vnId,omitempty"`
+	EnterpriseName         string `json:"enterpriseName,omitempty"`
+	EntityScope            string `json:"entityScope,omitempty"`
+	DomainName             string `json:"domainName,omitempty"`
+	ConfigType             string `json:"configType,omitempty"`
+	Orphan                 bool   `json:"orphan"`
 	UseUserMnemonic        bool   `json:"useUserMnemonic"`
 	UserMnemonic           string `json:"userMnemonic,omitempty"`
-	VnId                   int    `json:"vnId,omitempty"`
+	AssociatedDomainID     string `json:"associatedDomainID,omitempty"`
+	AssociatedVPNConnectID string `json:"associatedVPNConnectID,omitempty"`
+	TunnelType             string `json:"tunnelType,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
+	ExternalRouteTarget    string `json:"externalRouteTarget,omitempty"`
 }
 
 // NewWANService returns a new *WANService
@@ -118,6 +118,34 @@ func (o *WANService) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Permissions retrieves the list of child Permissions of the WANService
+func (o *WANService) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
+
+	var list PermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreatePermission creates a new child Permission under the WANService
+func (o *WANService) CreatePermission(child *Permission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Metadatas retrieves the list of child Metadatas of the WANService
+func (o *WANService) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the WANService
+func (o *WANService) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Alarms retrieves the list of child Alarms of the WANService
 func (o *WANService) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
@@ -128,6 +156,20 @@ func (o *WANService) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Erro
 
 // CreateAlarm creates a new child Alarm under the WANService
 func (o *WANService) CreateAlarm(child *Alarm) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the WANService
+func (o *WANService) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the WANService
+func (o *WANService) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -156,48 +198,6 @@ func (o *WANService) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambo
 
 // CreateEventLog creates a new child EventLog under the WANService
 func (o *WANService) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the WANService
-func (o *WANService) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the WANService
-func (o *WANService) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the WANService
-func (o *WANService) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
-
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadata creates a new child Metadata under the WANService
-func (o *WANService) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Permissions retrieves the list of child Permissions of the WANService
-func (o *WANService) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
-
-	var list PermissionsList
-	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
-	return list, err
-}
-
-// CreatePermission creates a new child Permission under the WANService
-func (o *WANService) CreatePermission(child *Permission) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

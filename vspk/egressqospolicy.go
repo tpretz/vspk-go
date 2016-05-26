@@ -50,13 +50,12 @@ type EgressQOSPolicy struct {
 	ParentID                           string        `json:"parentID,omitempty"`
 	ParentType                         string        `json:"parentType,omitempty"`
 	Owner                              string        `json:"owner,omitempty"`
-	AssocEgressQosId                   string        `json:"assocEgressQosId,omitempty"`
-	Description                        string        `json:"description,omitempty"`
-	EntityScope                        string        `json:"entityScope,omitempty"`
-	ExternalID                         string        `json:"externalID,omitempty"`
-	LastUpdatedBy                      string        `json:"lastUpdatedBy,omitempty"`
 	Name                               string        `json:"name,omitempty"`
 	ParentQueueAssociatedRateLimiterID string        `json:"parentQueueAssociatedRateLimiterID,omitempty"`
+	LastUpdatedBy                      string        `json:"lastUpdatedBy,omitempty"`
+	Description                        string        `json:"description,omitempty"`
+	EntityScope                        string        `json:"entityScope,omitempty"`
+	AssocEgressQosId                   string        `json:"assocEgressQosId,omitempty"`
 	Queue1AssociatedRateLimiterID      string        `json:"queue1AssociatedRateLimiterID,omitempty"`
 	Queue1ForwardingClasses            []interface{} `json:"queue1ForwardingClasses,omitempty"`
 	Queue2AssociatedRateLimiterID      string        `json:"queue2AssociatedRateLimiterID,omitempty"`
@@ -65,6 +64,7 @@ type EgressQOSPolicy struct {
 	Queue3ForwardingClasses            []interface{} `json:"queue3ForwardingClasses,omitempty"`
 	Queue4AssociatedRateLimiterID      string        `json:"queue4AssociatedRateLimiterID,omitempty"`
 	Queue4ForwardingClasses            []interface{} `json:"queue4ForwardingClasses,omitempty"`
+	ExternalID                         string        `json:"externalID,omitempty"`
 }
 
 // NewEgressQOSPolicy returns a new *EgressQOSPolicy
@@ -109,20 +109,6 @@ func (o *EgressQOSPolicy) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EgressQOSPolicy
-func (o *EgressQOSPolicy) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the EgressQOSPolicy
-func (o *EgressQOSPolicy) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the EgressQOSPolicy
 func (o *EgressQOSPolicy) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -133,6 +119,20 @@ func (o *EgressQOSPolicy) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *
 
 // CreateMetadata creates a new child Metadata under the EgressQOSPolicy
 func (o *EgressQOSPolicy) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EgressQOSPolicy
+func (o *EgressQOSPolicy) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the EgressQOSPolicy
+func (o *EgressQOSPolicy) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

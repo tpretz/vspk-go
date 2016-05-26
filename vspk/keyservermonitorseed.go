@@ -50,15 +50,15 @@ type KeyServerMonitorSeed struct {
 	ParentID                           string `json:"parentID,omitempty"`
 	ParentType                         string `json:"parentType,omitempty"`
 	Owner                              string `json:"owner,omitempty"`
-	CreationTime                       int    `json:"creationTime,omitempty"`
-	EntityScope                        string `json:"entityScope,omitempty"`
-	ExternalID                         string `json:"externalID,omitempty"`
 	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
-	Lifetime                           int    `json:"lifetime,omitempty"`
 	SeedTrafficAuthenticationAlgorithm string `json:"seedTrafficAuthenticationAlgorithm,omitempty"`
 	SeedTrafficEncryptionAlgorithm     string `json:"seedTrafficEncryptionAlgorithm,omitempty"`
 	SeedTrafficEncryptionKeyLifetime   int    `json:"seedTrafficEncryptionKeyLifetime,omitempty"`
+	Lifetime                           int    `json:"lifetime,omitempty"`
+	EntityScope                        string `json:"entityScope,omitempty"`
+	CreationTime                       int    `json:"creationTime,omitempty"`
 	StartTime                          int    `json:"startTime,omitempty"`
+	ExternalID                         string `json:"externalID,omitempty"`
 }
 
 // NewKeyServerMonitorSeed returns a new *KeyServerMonitorSeed
@@ -103,16 +103,16 @@ func (o *KeyServerMonitorSeed) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the KeyServerMonitorSeed
-func (o *KeyServerMonitorSeed) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the KeyServerMonitorSeed
+func (o *KeyServerMonitorSeed) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateGlobalMetadata creates a new child GlobalMetadata under the KeyServerMonitorSeed
-func (o *KeyServerMonitorSeed) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the KeyServerMonitorSeed
+func (o *KeyServerMonitorSeed) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -131,16 +131,16 @@ func (o *KeyServerMonitorSeed) CreateKeyServerMonitorEncryptedSeed(child *KeySer
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Metadatas retrieves the list of child Metadatas of the KeyServerMonitorSeed
-func (o *KeyServerMonitorSeed) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the KeyServerMonitorSeed
+func (o *KeyServerMonitorSeed) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
-	var list MetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the KeyServerMonitorSeed
-func (o *KeyServerMonitorSeed) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateGlobalMetadata creates a new child GlobalMetadata under the KeyServerMonitorSeed
+func (o *KeyServerMonitorSeed) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

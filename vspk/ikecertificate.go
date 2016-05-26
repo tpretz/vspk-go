@@ -51,17 +51,17 @@ type IKECertificate struct {
 	ParentType             string  `json:"parentType,omitempty"`
 	Owner                  string  `json:"owner,omitempty"`
 	PEMEncoded             string  `json:"PEMEncoded,omitempty"`
-	AssociatedEnterpriseID string  `json:"associatedEnterpriseID,omitempty"`
+	Name                   string  `json:"name,omitempty"`
+	LastUpdatedBy          string  `json:"lastUpdatedBy,omitempty"`
+	SerialNumber           int     `json:"serialNumber,omitempty"`
 	Description            string  `json:"description,omitempty"`
 	EntityScope            string  `json:"entityScope,omitempty"`
-	ExternalID             string  `json:"externalID,omitempty"`
-	IssuerDN               string  `json:"issuerDN,omitempty"`
-	LastUpdatedBy          string  `json:"lastUpdatedBy,omitempty"`
-	Name                   string  `json:"name,omitempty"`
 	NotAfter               float64 `json:"notAfter,omitempty"`
 	NotBefore              float64 `json:"notBefore,omitempty"`
-	SerialNumber           int     `json:"serialNumber,omitempty"`
+	AssociatedEnterpriseID string  `json:"associatedEnterpriseID,omitempty"`
+	IssuerDN               string  `json:"issuerDN,omitempty"`
 	SubjectDN              string  `json:"subjectDN,omitempty"`
+	ExternalID             string  `json:"externalID,omitempty"`
 }
 
 // NewIKECertificate returns a new *IKECertificate
@@ -106,20 +106,6 @@ func (o *IKECertificate) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKECertificate
-func (o *IKECertificate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the IKECertificate
-func (o *IKECertificate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the IKECertificate
 func (o *IKECertificate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -130,6 +116,20 @@ func (o *IKECertificate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *b
 
 // CreateMetadata creates a new child Metadata under the IKECertificate
 func (o *IKECertificate) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IKECertificate
+func (o *IKECertificate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the IKECertificate
+func (o *IKECertificate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

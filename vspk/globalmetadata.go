@@ -50,15 +50,15 @@ type GlobalMetadata struct {
 	ParentID                    string        `json:"parentID,omitempty"`
 	ParentType                  string        `json:"parentType,omitempty"`
 	Owner                       string        `json:"owner,omitempty"`
-	Blob                        string        `json:"blob,omitempty"`
+	Name                        string        `json:"name,omitempty"`
+	LastUpdatedBy               string        `json:"lastUpdatedBy,omitempty"`
 	Description                 string        `json:"description,omitempty"`
+	MetadataTagIDs              []interface{} `json:"metadataTagIDs,omitempty"`
+	NetworkNotificationDisabled bool          `json:"networkNotificationDisabled"`
+	Blob                        string        `json:"blob,omitempty"`
+	GlobalMetadata              bool          `json:"globalMetadata"`
 	EntityScope                 string        `json:"entityScope,omitempty"`
 	ExternalID                  string        `json:"externalID,omitempty"`
-	GlobalMetadata              bool          `json:"globalMetadata"`
-	LastUpdatedBy               string        `json:"lastUpdatedBy,omitempty"`
-	MetadataTagIDs              []interface{} `json:"metadataTagIDs,omitempty"`
-	Name                        string        `json:"name,omitempty"`
-	NetworkNotificationDisabled bool          `json:"networkNotificationDisabled"`
 }
 
 // NewGlobalMetadata returns a new *GlobalMetadata
@@ -103,20 +103,6 @@ func (o *GlobalMetadata) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the GlobalMetadata
-func (o *GlobalMetadata) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
-
-	var list GlobalMetadatasList
-	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
-	return list, err
-}
-
-// CreateGlobalMetadata creates a new child GlobalMetadata under the GlobalMetadata
-func (o *GlobalMetadata) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Metadatas retrieves the list of child Metadatas of the GlobalMetadata
 func (o *GlobalMetadata) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -141,6 +127,20 @@ func (o *GlobalMetadata) MetadataTags(info *bambou.FetchingInfo) (MetadataTagsLi
 
 // CreateMetadataTag creates a new child MetadataTag under the GlobalMetadata
 func (o *GlobalMetadata) CreateMetadataTag(child *MetadataTag) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the GlobalMetadata
+func (o *GlobalMetadata) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the GlobalMetadata
+func (o *GlobalMetadata) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
