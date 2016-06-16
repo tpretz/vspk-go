@@ -56,6 +56,7 @@ type NSRedundantGatewayGroup struct {
 	GatewayPeer1ID                      string        `json:"gatewayPeer1ID,omitempty"`
 	GatewayPeer1Name                    string        `json:"gatewayPeer1Name,omitempty"`
 	GatewayPeer2AutodiscoveredGatewayID string        `json:"gatewayPeer2AutodiscoveredGatewayID,omitempty"`
+	GatewayPeer2ID                      string        `json:"gatewayPeer2ID,omitempty"`
 	GatewayPeer2Name                    string        `json:"gatewayPeer2Name,omitempty"`
 	HeartbeatInterval                   int           `json:"heartbeatInterval,omitempty"`
 	HeartbeatVLANID                     int           `json:"heartbeatVLANID,omitempty"`

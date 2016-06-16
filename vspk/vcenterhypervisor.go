@@ -66,6 +66,7 @@ type VCenterHypervisor struct {
 	DatapathSyncTimeout              int           `json:"datapathSyncTimeout,omitempty"`
 	Scope                            bool          `json:"scope"`
 	SecondaryNuageController         string        `json:"secondaryNuageController,omitempty"`
+	GenericSplitActivation           bool          `json:"genericSplitActivation"`
 	SeparateDataNetwork              bool          `json:"separateDataNetwork"`
 	Personality                      string        `json:"personality,omitempty"`
 	Description                      string        `json:"description,omitempty"`

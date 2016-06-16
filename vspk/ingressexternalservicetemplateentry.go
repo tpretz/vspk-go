@@ -53,6 +53,7 @@ type IngressExternalServiceTemplateEntry struct {
 	ICMPCode                          string `json:"ICMPCode,omitempty"`
 	ICMPType                          string `json:"ICMPType,omitempty"`
 	DSCP                              string `json:"DSCP,omitempty"`
+	Name                              string `json:"name,omitempty"`
 	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
 	Action                            string `json:"action,omitempty"`
 	AddressOverride                   string `json:"addressOverride,omitempty"`
