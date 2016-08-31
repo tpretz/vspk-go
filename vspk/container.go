@@ -29,23 +29,23 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// VMIdentity represents the Identity of the object
-var VMIdentity = bambou.Identity{
-	Name:     "vm",
-	Category: "vms",
+// ContainerIdentity represents the Identity of the object
+var ContainerIdentity = bambou.Identity{
+	Name:     "container",
+	Category: "containers",
 }
 
-// VMsList represents a list of VMs
-type VMsList []*VM
+// ContainersList represents a list of Containers
+type ContainersList []*Container
 
-// VMsAncestor is the interface of an ancestor of a VM must implement.
-type VMsAncestor interface {
-	VMs(*bambou.FetchingInfo) (VMsList, *bambou.Error)
-	CreateVMs(*VM) *bambou.Error
+// ContainersAncestor is the interface of an ancestor of a Container must implement.
+type ContainersAncestor interface {
+	Containers(*bambou.FetchingInfo) (ContainersList, *bambou.Error)
+	CreateContainers(*Container) *bambou.Error
 }
 
-// VM represents the model of a vm
-type VM struct {
+// Container represents the model of a container
+type Container struct {
 	ID              string        `json:"ID,omitempty"`
 	ParentID        string        `json:"parentID,omitempty"`
 	ParentType      string        `json:"parentType,omitempty"`
@@ -60,6 +60,8 @@ type VM struct {
 	DeleteMode      string        `json:"deleteMode,omitempty"`
 	ResyncInfo      interface{}   `json:"resyncInfo,omitempty"`
 	SiteIdentifier  string        `json:"siteIdentifier,omitempty"`
+	ImageID         string        `json:"imageID,omitempty"`
+	ImageName       string        `json:"imageName,omitempty"`
 	Interfaces      []interface{} `json:"interfaces,omitempty"`
 	EnterpriseID    string        `json:"enterpriseID,omitempty"`
 	EnterpriseName  string        `json:"enterpriseName,omitempty"`
@@ -75,142 +77,142 @@ type VM struct {
 	HypervisorIP    string        `json:"hypervisorIP,omitempty"`
 }
 
-// NewVM returns a new *VM
-func NewVM() *VM {
+// NewContainer returns a new *Container
+func NewContainer() *Container {
 
-	return &VM{}
+	return &Container{}
 }
 
 // Identity returns the Identity of the object.
-func (o *VM) Identity() bambou.Identity {
+func (o *Container) Identity() bambou.Identity {
 
-	return VMIdentity
+	return ContainerIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *VM) Identifier() string {
+func (o *Container) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *VM) SetIdentifier(ID string) {
+func (o *Container) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the VM from the server
-func (o *VM) Fetch() *bambou.Error {
+// Fetch retrieves the Container from the server
+func (o *Container) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the VM into the server
-func (o *VM) Save() *bambou.Error {
+// Save saves the Container into the server
+func (o *Container) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the VM from the server
-func (o *VM) Delete() *bambou.Error {
+// Delete deletes the Container from the server
+func (o *Container) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// VMResyncs retrieves the list of child VMResyncs of the VM
-func (o *VM) VMResyncs(info *bambou.FetchingInfo) (VMResyncsList, *bambou.Error) {
-
-	var list VMResyncsList
-	err := bambou.CurrentSession().FetchChildren(o, VMResyncIdentity, &list, info)
-	return list, err
-}
-
-// CreateVMResync creates a new child VMResync under the VM
-func (o *VM) CreateVMResync(child *VMResync) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Metadatas retrieves the list of child Metadatas of the VM
-func (o *VM) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the Container
+func (o *Container) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
 	var list MetadatasList
 	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the VM
-func (o *VM) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the Container
+func (o *Container) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Alarms retrieves the list of child Alarms of the VM
-func (o *VM) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+// Alarms retrieves the list of child Alarms of the Container
+func (o *Container) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
 
 	var list AlarmsList
 	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
 	return list, err
 }
 
-// CreateAlarm creates a new child Alarm under the VM
-func (o *VM) CreateAlarm(child *Alarm) *bambou.Error {
+// CreateAlarm creates a new child Alarm under the Container
+func (o *Container) CreateAlarm(child *Alarm) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the VM
-func (o *VM) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Container
+func (o *Container) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
 	var list GlobalMetadatasList
 	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateGlobalMetadata creates a new child GlobalMetadata under the VM
-func (o *VM) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Container
+func (o *Container) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// VMInterfaces retrieves the list of child VMInterfaces of the VM
-func (o *VM) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bambou.Error) {
+// ContainerInterfaces retrieves the list of child ContainerInterfaces of the Container
+func (o *Container) ContainerInterfaces(info *bambou.FetchingInfo) (ContainerInterfacesList, *bambou.Error) {
 
-	var list VMInterfacesList
-	err := bambou.CurrentSession().FetchChildren(o, VMInterfaceIdentity, &list, info)
+	var list ContainerInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerInterfaceIdentity, &list, info)
 	return list, err
 }
 
-// CreateVMInterface creates a new child VMInterface under the VM
-func (o *VM) CreateVMInterface(child *VMInterface) *bambou.Error {
+// CreateContainerInterface creates a new child ContainerInterface under the Container
+func (o *Container) CreateContainerInterface(child *ContainerInterface) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// VRSs retrieves the list of child VRSs of the VM
-func (o *VM) VRSs(info *bambou.FetchingInfo) (VRSsList, *bambou.Error) {
+// ContainerResyncs retrieves the list of child ContainerResyncs of the Container
+func (o *Container) ContainerResyncs(info *bambou.FetchingInfo) (ContainerResyncsList, *bambou.Error) {
+
+	var list ContainerResyncsList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerResyncIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainerResync creates a new child ContainerResync under the Container
+func (o *Container) CreateContainerResync(child *ContainerResync) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VRSs retrieves the list of child VRSs of the Container
+func (o *Container) VRSs(info *bambou.FetchingInfo) (VRSsList, *bambou.Error) {
 
 	var list VRSsList
 	err := bambou.CurrentSession().FetchChildren(o, VRSIdentity, &list, info)
 	return list, err
 }
 
-// CreateVRS creates a new child VRS under the VM
-func (o *VM) CreateVRS(child *VRS) *bambou.Error {
+// CreateVRS creates a new child VRS under the Container
+func (o *Container) CreateVRS(child *VRS) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// EventLogs retrieves the list of child EventLogs of the VM
-func (o *VM) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
+// EventLogs retrieves the list of child EventLogs of the Container
+func (o *Container) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 
 	var list EventLogsList
 	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the VM
-func (o *VM) CreateEventLog(child *EventLog) *bambou.Error {
+// CreateEventLog creates a new child EventLog under the Container
+func (o *Container) CreateEventLog(child *EventLog) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

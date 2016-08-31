@@ -64,6 +64,7 @@ type BootstrapActivation struct {
 	VsdTime          int    `json:"vsdTime,omitempty"`
 	Csr              string `json:"csr,omitempty"`
 	Status           string `json:"status,omitempty"`
+	AutoBootstrap    bool   `json:"autoBootstrap"`
 	ExternalID       string `json:"externalID,omitempty"`
 }
 

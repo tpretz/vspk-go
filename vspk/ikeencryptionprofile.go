@@ -52,15 +52,14 @@ type IKEEncryptionprofile struct {
 	Owner                             string `json:"owner,omitempty"`
 	DPDInterval                       int    `json:"DPDInterval,omitempty"`
 	DPDMode                           string `json:"DPDMode,omitempty"`
-	DPDRetryInterval                  int    `json:"DPDRetryInterval,omitempty"`
 	DPDTimeout                        int    `json:"DPDTimeout,omitempty"`
-	IPSecAuthenticationAlgorithm      string `json:"IPSecAuthenticationAlgorithm,omitempty"`
-	IPSecDontFragment                 bool   `json:"IPSecDontFragment"`
-	IPSecEnablePFS                    bool   `json:"IPSecEnablePFS"`
-	IPSecEncryptionAlgorithm          string `json:"IPSecEncryptionAlgorithm,omitempty"`
-	IPSecPreFragment                  bool   `json:"IPSecPreFragment"`
-	IPSecSALifetime                   int    `json:"IPSecSALifetime,omitempty"`
-	IPSecSAReplayWindowSize           string `json:"IPSecSAReplayWindowSize,omitempty"`
+	IPsecAuthenticationAlgorithm      string `json:"IPsecAuthenticationAlgorithm,omitempty"`
+	IPsecDontFragment                 bool   `json:"IPsecDontFragment"`
+	IPsecEnablePFS                    bool   `json:"IPsecEnablePFS"`
+	IPsecEncryptionAlgorithm          string `json:"IPsecEncryptionAlgorithm,omitempty"`
+	IPsecPreFragment                  bool   `json:"IPsecPreFragment"`
+	IPsecSALifetime                   int    `json:"IPsecSALifetime,omitempty"`
+	IPsecSAReplayWindowSize           string `json:"IPsecSAReplayWindowSize,omitempty"`
 	ISAKMPAuthenticationMode          string `json:"ISAKMPAuthenticationMode,omitempty"`
 	ISAKMPDiffieHelmanGroupIdentifier string `json:"ISAKMPDiffieHelmanGroupIdentifier,omitempty"`
 	ISAKMPEncryptionAlgorithm         string `json:"ISAKMPEncryptionAlgorithm,omitempty"`

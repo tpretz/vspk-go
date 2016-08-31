@@ -288,6 +288,20 @@ func (o *Enterprise) CreateKeyServerMonitor(child *KeyServerMonitor) *bambou.Err
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// ZFBRequests retrieves the list of child ZFBRequests of the Enterprise
+func (o *Enterprise) ZFBRequests(info *bambou.FetchingInfo) (ZFBRequestsList, *bambou.Error) {
+
+	var list ZFBRequestsList
+	err := bambou.CurrentSession().FetchChildren(o, ZFBRequestIdentity, &list, info)
+	return list, err
+}
+
+// CreateZFBRequest creates a new child ZFBRequest under the Enterprise
+func (o *Enterprise) CreateZFBRequest(child *ZFBRequest) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // BGPProfiles retrieves the list of child BGPProfiles of the Enterprise
 func (o *Enterprise) BGPProfiles(info *bambou.FetchingInfo) (BGPProfilesList, *bambou.Error) {
 
@@ -414,6 +428,20 @@ func (o *Enterprise) CreateAlarm(child *Alarm) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Alarms retrieves the list of child Alarms of the Enterprise
+func (o *Enterprise) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
+// CreateAlarm creates a new child Alarm under the Enterprise
+func (o *Enterprise) CreateAlarm(child *Alarm) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the Enterprise
 func (o *Enterprise) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -522,6 +550,20 @@ func (o *Enterprise) DomainTemplates(info *bambou.FetchingInfo) (DomainTemplates
 
 // CreateDomainTemplate creates a new child DomainTemplate under the Enterprise
 func (o *Enterprise) CreateDomainTemplate(child *DomainTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Containers retrieves the list of child Containers of the Enterprise
+func (o *Enterprise) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the Enterprise
+func (o *Enterprise) CreateContainer(child *Container) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -690,6 +732,20 @@ func (o *Enterprise) MultiCastLists(info *bambou.FetchingInfo) (MultiCastListsLi
 
 // CreateMultiCastList creates a new child MultiCastList under the Enterprise
 func (o *Enterprise) CreateMultiCastList(child *MultiCastList) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Avatars retrieves the list of child Avatars of the Enterprise
+func (o *Enterprise) Avatars(info *bambou.FetchingInfo) (AvatarsList, *bambou.Error) {
+
+	var list AvatarsList
+	err := bambou.CurrentSession().FetchChildren(o, AvatarIdentity, &list, info)
+	return list, err
+}
+
+// CreateAvatar creates a new child Avatar under the Enterprise
+func (o *Enterprise) CreateAvatar(child *Avatar) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

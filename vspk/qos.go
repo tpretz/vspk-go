@@ -163,6 +163,20 @@ func (o *QOS) CreateVM(child *VM) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Containers retrieves the list of child Containers of the QOS
+func (o *QOS) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the QOS
+func (o *QOS) CreateContainer(child *Container) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // EventLogs retrieves the list of child EventLogs of the QOS
 func (o *QOS) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 

@@ -29,76 +29,79 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// VrsMetricsIdentity represents the Identity of the object
-var VrsMetricsIdentity = bambou.Identity{
+// VRSMetricsIdentity represents the Identity of the object
+var VRSMetricsIdentity = bambou.Identity{
 	Name:     "vrsmetrics",
 	Category: "vrsmetrics",
 }
 
-// VrsMetricsList represents a list of VrsMetrics
-type VrsMetricsList []*VrsMetrics
+// VRSMetricsList represents a list of VRSMetrics
+type VRSMetricsList []*VRSMetrics
 
-// VrsMetricsAncestor is the interface of an ancestor of a VrsMetrics must implement.
-type VrsMetricsAncestor interface {
-	VrsMetrics(*bambou.FetchingInfo) (VrsMetricsList, *bambou.Error)
-	CreateVrsMetrics(*VrsMetrics) *bambou.Error
+// VRSMetricsAncestor is the interface of an ancestor of a VRSMetrics must implement.
+type VRSMetricsAncestor interface {
+	VRSMetrics(*bambou.FetchingInfo) (VRSMetricsList, *bambou.Error)
+	CreateVRSMetrics(*VRSMetrics) *bambou.Error
 }
 
-// VrsMetrics represents the model of a vrsmetrics
-type VrsMetrics struct {
-	ID                       string  `json:"ID,omitempty"`
-	ParentID                 string  `json:"parentID,omitempty"`
-	ParentType               string  `json:"parentType,omitempty"`
-	Owner                    string  `json:"owner,omitempty"`
-	ALUbr0Status             bool    `json:"ALUbr0Status"`
-	CPUUtilization           float64 `json:"CPUUtilization,omitempty"`
-	VRSProcess               bool    `json:"VRSProcess"`
-	VRSVSCStatus             bool    `json:"VRSVSCStatus"`
-	ReceivingMetrics         bool    `json:"receivingMetrics"`
-	MemoryUtilization        float64 `json:"memoryUtilization,omitempty"`
-	JesxmonProcess           bool    `json:"jesxmonProcess"`
-	AgentName                string  `json:"agentName,omitempty"`
-	AssocVCenterHypervisorID string  `json:"assocVCenterHypervisorID,omitempty"`
+// VRSMetrics represents the model of a vrsmetrics
+type VRSMetrics struct {
+	ID                            string  `json:"ID,omitempty"`
+	ParentID                      string  `json:"parentID,omitempty"`
+	ParentType                    string  `json:"parentType,omitempty"`
+	Owner                         string  `json:"owner,omitempty"`
+	ALUbr0Status                  bool    `json:"ALUbr0Status"`
+	CPUUtilization                float64 `json:"CPUUtilization,omitempty"`
+	VRSProcess                    bool    `json:"VRSProcess"`
+	VRSVSCStatus                  bool    `json:"VRSVSCStatus"`
+	LastUpdatedBy                 string  `json:"lastUpdatedBy,omitempty"`
+	ReceivingMetrics              bool    `json:"receivingMetrics"`
+	MemoryUtilization             float64 `json:"memoryUtilization,omitempty"`
+	JesxmonProcess                bool    `json:"jesxmonProcess"`
+	AgentName                     string  `json:"agentName,omitempty"`
+	EntityScope                   string  `json:"entityScope,omitempty"`
+	AssociatedVCenterHypervisorID string  `json:"associatedVCenterHypervisorID,omitempty"`
+	ExternalID                    string  `json:"externalID,omitempty"`
 }
 
-// NewVrsMetrics returns a new *VrsMetrics
-func NewVrsMetrics() *VrsMetrics {
+// NewVRSMetrics returns a new *VRSMetrics
+func NewVRSMetrics() *VRSMetrics {
 
-	return &VrsMetrics{}
+	return &VRSMetrics{}
 }
 
 // Identity returns the Identity of the object.
-func (o *VrsMetrics) Identity() bambou.Identity {
+func (o *VRSMetrics) Identity() bambou.Identity {
 
-	return VrsMetricsIdentity
+	return VRSMetricsIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *VrsMetrics) Identifier() string {
+func (o *VRSMetrics) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *VrsMetrics) SetIdentifier(ID string) {
+func (o *VRSMetrics) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the VrsMetrics from the server
-func (o *VrsMetrics) Fetch() *bambou.Error {
+// Fetch retrieves the VRSMetrics from the server
+func (o *VRSMetrics) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the VrsMetrics into the server
-func (o *VrsMetrics) Save() *bambou.Error {
+// Save saves the VRSMetrics into the server
+func (o *VRSMetrics) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the VrsMetrics from the server
-func (o *VrsMetrics) Delete() *bambou.Error {
+// Delete deletes the VRSMetrics from the server
+func (o *VRSMetrics) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }

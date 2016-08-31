@@ -53,10 +53,10 @@ type AddressMap struct {
 	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	EntityScope            string `json:"entityScope,omitempty"`
 	PrivateIP              string `json:"privateIP,omitempty"`
-	PrivatePort            string `json:"privatePort,omitempty"`
+	PrivatePort            int    `json:"privatePort,omitempty"`
 	AssociatedPATNATPoolID string `json:"associatedPATNATPoolID,omitempty"`
 	PublicIP               string `json:"publicIP,omitempty"`
-	PublicPort             string `json:"publicPort,omitempty"`
+	PublicPort             int    `json:"publicPort,omitempty"`
 	ExternalID             string `json:"externalID,omitempty"`
 	Type                   string `json:"type,omitempty"`
 }
@@ -127,6 +127,34 @@ func (o *AddressMap) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatas
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the AddressMap
 func (o *AddressMap) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Statistics retrieves the list of child Statistics of the AddressMap
+func (o *AddressMap) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
+
+	var list StatisticsList
+	err := bambou.CurrentSession().FetchChildren(o, StatisticsIdentity, &list, info)
+	return list, err
+}
+
+// CreateStatistics creates a new child Statistics under the AddressMap
+func (o *AddressMap) CreateStatistics(child *Statistics) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// StatisticsPolicies retrieves the list of child StatisticsPolicies of the AddressMap
+func (o *AddressMap) StatisticsPolicies(info *bambou.FetchingInfo) (StatisticsPoliciesList, *bambou.Error) {
+
+	var list StatisticsPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, StatisticsPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateStatisticsPolicy creates a new child StatisticsPolicy under the AddressMap
+func (o *AddressMap) CreateStatisticsPolicy(child *StatisticsPolicy) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

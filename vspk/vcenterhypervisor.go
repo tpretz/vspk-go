@@ -57,6 +57,7 @@ type VCenterHypervisor struct {
 	VRequireNuageMetadata            bool          `json:"vRequireNuageMetadata"`
 	Name                             string        `json:"name,omitempty"`
 	LastUpdatedBy                    string        `json:"lastUpdatedBy,omitempty"`
+	LastVRSDeployedDate              float64       `json:"lastVRSDeployedDate,omitempty"`
 	DataDNS1                         string        `json:"dataDNS1,omitempty"`
 	DataDNS2                         string        `json:"dataDNS2,omitempty"`
 	DataGateway                      string        `json:"dataGateway,omitempty"`
@@ -68,6 +69,7 @@ type VCenterHypervisor struct {
 	SecondaryNuageController         string        `json:"secondaryNuageController,omitempty"`
 	GenericSplitActivation           bool          `json:"genericSplitActivation"`
 	SeparateDataNetwork              bool          `json:"separateDataNetwork"`
+	DeploymentCount                  int           `json:"deploymentCount,omitempty"`
 	Personality                      string        `json:"personality,omitempty"`
 	Description                      string        `json:"description,omitempty"`
 	MetadataServerIP                 string        `json:"metadataServerIP,omitempty"`
@@ -109,7 +111,6 @@ type VCenterHypervisor struct {
 	NovaRegionName                   string        `json:"novaRegionName,omitempty"`
 	PrimaryNuageController           string        `json:"primaryNuageController,omitempty"`
 	VrsId                            string        `json:"vrsId,omitempty"`
-	VrsMetricsID                     string        `json:"vrsMetricsID,omitempty"`
 	VrsPassword                      string        `json:"vrsPassword,omitempty"`
 	VrsUserName                      string        `json:"vrsUserName,omitempty"`
 	StaticRoute                      string        `json:"staticRoute,omitempty"`
@@ -229,6 +230,34 @@ func (o *VCenterHypervisor) VRSAddressRanges(info *bambou.FetchingInfo) (VRSAddr
 
 // CreateVRSAddressRange creates a new child VRSAddressRange under the VCenterHypervisor
 func (o *VCenterHypervisor) CreateVRSAddressRange(child *VRSAddressRange) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VRSMetrics retrieves the list of child VRSMetrics of the VCenterHypervisor
+func (o *VCenterHypervisor) VRSMetrics(info *bambou.FetchingInfo) (VRSMetricsList, *bambou.Error) {
+
+	var list VRSMetricsList
+	err := bambou.CurrentSession().FetchChildren(o, VRSMetricsIdentity, &list, info)
+	return list, err
+}
+
+// CreateVRSMetrics creates a new child VRSMetrics under the VCenterHypervisor
+func (o *VCenterHypervisor) CreateVRSMetrics(child *VRSMetrics) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VRSRedeploymentpolicies retrieves the list of child VRSRedeploymentpolicies of the VCenterHypervisor
+func (o *VCenterHypervisor) VRSRedeploymentpolicies(info *bambou.FetchingInfo) (VRSRedeploymentpoliciesList, *bambou.Error) {
+
+	var list VRSRedeploymentpoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VRSRedeploymentpolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVRSRedeploymentpolicy creates a new child VRSRedeploymentpolicy under the VCenterHypervisor
+func (o *VCenterHypervisor) CreateVRSRedeploymentpolicy(child *VRSRedeploymentpolicy) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

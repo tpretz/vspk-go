@@ -71,6 +71,7 @@ type VRS struct {
 	RevertCompleted           bool          `json:"revertCompleted"`
 	RevertCount               int           `json:"revertCount,omitempty"`
 	RevertFailedCount         int           `json:"revertFailedCount,omitempty"`
+	LicensedState             string        `json:"licensedState,omitempty"`
 	Disks                     []interface{} `json:"disks,omitempty"`
 	ClusterNodeRole           string        `json:"clusterNodeRole,omitempty"`
 	EntityScope               string        `json:"entityScope,omitempty"`
@@ -85,6 +86,7 @@ type VRS struct {
 	Status                    string        `json:"status,omitempty"`
 	MultiNICVPortEnabled      bool          `json:"multiNICVPortEnabled"`
 	NumberOfBridgeInterfaces  int           `json:"numberOfBridgeInterfaces,omitempty"`
+	NumberOfContainers        int           `json:"numberOfContainers,omitempty"`
 	NumberOfHostInterfaces    int           `json:"numberOfHostInterfaces,omitempty"`
 	NumberOfVirtualMachines   int           `json:"numberOfVirtualMachines,omitempty"`
 	CurrentCPUUsage           float64       `json:"currentCPUUsage,omitempty"`
@@ -221,6 +223,20 @@ func (o *VRS) MonitoringPorts(info *bambou.FetchingInfo) (MonitoringPortsList, *
 
 // CreateMonitoringPort creates a new child MonitoringPort under the VRS
 func (o *VRS) CreateMonitoringPort(child *MonitoringPort) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Containers retrieves the list of child Containers of the VRS
+func (o *VRS) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the VRS
+func (o *VRS) CreateContainer(child *Container) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

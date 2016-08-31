@@ -59,9 +59,10 @@ type PATNATPool struct {
 	EndAddressRange       string `json:"endAddressRange,omitempty"`
 	EndSourceAddress      string `json:"endSourceAddress,omitempty"`
 	EntityScope           string `json:"entityScope,omitempty"`
-	TranslationTimeout    int    `json:"translationTimeout,omitempty"`
 	AssociatedGatewayId   string `json:"associatedGatewayId,omitempty"`
 	AssociatedGatewayType string `json:"associatedGatewayType,omitempty"`
+	AssociatedSubnetId    string `json:"associatedSubnetId,omitempty"`
+	AssociatedVlanId      string `json:"associatedVlanId,omitempty"`
 	StartAddressRange     string `json:"startAddressRange,omitempty"`
 	StartSourceAddress    string `json:"startSourceAddress,omitempty"`
 	ExternalID            string `json:"externalID,omitempty"`
@@ -176,6 +177,48 @@ func (o *PATNATPool) EnterprisePermissions(info *bambou.FetchingInfo) (Enterpris
 
 // CreateEnterprisePermission creates a new child EnterprisePermission under the PATNATPool
 func (o *PATNATPool) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Statistics retrieves the list of child Statistics of the PATNATPool
+func (o *PATNATPool) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
+
+	var list StatisticsList
+	err := bambou.CurrentSession().FetchChildren(o, StatisticsIdentity, &list, info)
+	return list, err
+}
+
+// CreateStatistics creates a new child Statistics under the PATNATPool
+func (o *PATNATPool) CreateStatistics(child *Statistics) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// StatisticsPolicies retrieves the list of child StatisticsPolicies of the PATNATPool
+func (o *PATNATPool) StatisticsPolicies(info *bambou.FetchingInfo) (StatisticsPoliciesList, *bambou.Error) {
+
+	var list StatisticsPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, StatisticsPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateStatisticsPolicy creates a new child StatisticsPolicy under the PATNATPool
+func (o *PATNATPool) CreateStatisticsPolicy(child *StatisticsPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// BulkStatistics retrieves the list of child BulkStatistics of the PATNATPool
+func (o *PATNATPool) BulkStatistics(info *bambou.FetchingInfo) (BulkStatisticsList, *bambou.Error) {
+
+	var list BulkStatisticsList
+	err := bambou.CurrentSession().FetchChildren(o, BulkStatisticsIdentity, &list, info)
+	return list, err
+}
+
+// CreateBulkStatistics creates a new child BulkStatistics under the PATNATPool
+func (o *PATNATPool) CreateBulkStatistics(child *BulkStatistics) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

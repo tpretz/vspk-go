@@ -148,15 +148,10 @@ func (o *EnterpriseProfile) Enterprises(info *bambou.FetchingInfo) (EnterprisesL
 	return list, err
 }
 
-// AssignEnterprises assigns the list of Enterprises to the EnterpriseProfile
-func (o *EnterpriseProfile) AssignEnterprises(children EnterprisesList) *bambou.Error {
+// CreateEnterprise creates a new child Enterprise under the EnterpriseProfile
+func (o *EnterpriseProfile) CreateEnterprise(child *Enterprise) *bambou.Error {
 
-	list := []bambou.Identifiable{}
-	for _, c := range children {
-		list = append(list, c)
-	}
-
-	return bambou.CurrentSession().AssignChildren(o, list, EnterpriseIdentity)
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // MultiCastLists retrieves the list of child MultiCastLists of the EnterpriseProfile

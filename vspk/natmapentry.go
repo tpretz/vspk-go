@@ -53,9 +53,12 @@ type NATMapEntry struct {
 	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	EntityScope            string `json:"entityScope,omitempty"`
 	PrivateIP              string `json:"privateIP,omitempty"`
+	PrivatePort            int    `json:"privatePort,omitempty"`
 	AssociatedPATNATPoolID string `json:"associatedPATNATPoolID,omitempty"`
 	PublicIP               string `json:"publicIP,omitempty"`
+	PublicPort             int    `json:"publicPort,omitempty"`
 	ExternalID             string `json:"externalID,omitempty"`
+	Type                   string `json:"type,omitempty"`
 }
 
 // NewNATMapEntry returns a new *NATMapEntry

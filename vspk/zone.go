@@ -214,6 +214,34 @@ func (o *Zone) CreateVMInterface(child *VMInterface) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Containers retrieves the list of child Containers of the Zone
+func (o *Zone) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the Zone
+func (o *Zone) CreateContainer(child *Container) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ContainerInterfaces retrieves the list of child ContainerInterfaces of the Zone
+func (o *Zone) ContainerInterfaces(info *bambou.FetchingInfo) (ContainerInterfacesList, *bambou.Error) {
+
+	var list ContainerInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerInterfaceIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainerInterface creates a new child ContainerInterface under the Zone
+func (o *Zone) CreateContainerInterface(child *ContainerInterface) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // QOSs retrieves the list of child QOSs of the Zone
 func (o *Zone) QOSs(info *bambou.FetchingInfo) (QOSsList, *bambou.Error) {
 

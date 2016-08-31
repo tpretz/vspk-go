@@ -264,6 +264,20 @@ func (o *Domain) CreateDHCPOption(child *DHCPOption) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Links retrieves the list of child Links of the Domain
+func (o *Domain) Links(info *bambou.FetchingInfo) (LinksList, *bambou.Error) {
+
+	var list LinksList
+	err := bambou.CurrentSession().FetchChildren(o, LinkIdentity, &list, info)
+	return list, err
+}
+
+// CreateLink creates a new child Link under the Domain
+func (o *Domain) CreateLink(child *Link) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // FloatingIps retrieves the list of child FloatingIps of the Domain
 func (o *Domain) FloatingIps(info *bambou.FetchingInfo) (FloatingIpsList, *bambou.Error) {
 
@@ -447,6 +461,34 @@ func (o *Domain) Zones(info *bambou.FetchingInfo) (ZonesList, *bambou.Error) {
 
 // CreateZone creates a new child Zone under the Domain
 func (o *Domain) CreateZone(child *Zone) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Containers retrieves the list of child Containers of the Domain
+func (o *Domain) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the Domain
+func (o *Domain) CreateContainer(child *Container) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ContainerInterfaces retrieves the list of child ContainerInterfaces of the Domain
+func (o *Domain) ContainerInterfaces(info *bambou.FetchingInfo) (ContainerInterfacesList, *bambou.Error) {
+
+	var list ContainerInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerInterfaceIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainerInterface creates a new child ContainerInterface under the Domain
+func (o *Domain) CreateContainerInterface(child *ContainerInterface) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

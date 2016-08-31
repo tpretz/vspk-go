@@ -61,6 +61,7 @@ type VCenterCluster struct {
 	DatapathSyncTimeout              int    `json:"datapathSyncTimeout,omitempty"`
 	Scope                            bool   `json:"scope"`
 	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
+	GenericSplitActivation           bool   `json:"genericSplitActivation"`
 	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
 	Personality                      string `json:"personality,omitempty"`
 	Description                      string `json:"description,omitempty"`
@@ -226,6 +227,20 @@ func (o *VCenterCluster) VRSAddressRanges(info *bambou.FetchingInfo) (VRSAddress
 
 // CreateVRSAddressRange creates a new child VRSAddressRange under the VCenterCluster
 func (o *VCenterCluster) CreateVRSAddressRange(child *VRSAddressRange) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VRSRedeploymentpolicies retrieves the list of child VRSRedeploymentpolicies of the VCenterCluster
+func (o *VCenterCluster) VRSRedeploymentpolicies(info *bambou.FetchingInfo) (VRSRedeploymentpoliciesList, *bambou.Error) {
+
+	var list VRSRedeploymentpoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VRSRedeploymentpolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVRSRedeploymentpolicy creates a new child VRSRedeploymentpolicy under the VCenterCluster
+func (o *VCenterCluster) CreateVRSRedeploymentpolicy(child *VRSRedeploymentpolicy) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

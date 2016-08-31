@@ -179,6 +179,20 @@ func (o *IngressACLTemplate) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Containers retrieves the list of child Containers of the IngressACLTemplate
+func (o *IngressACLTemplate) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the IngressACLTemplate
+func (o *IngressACLTemplate) CreateContainer(child *Container) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // EventLogs retrieves the list of child EventLogs of the IngressACLTemplate
 func (o *IngressACLTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 

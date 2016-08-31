@@ -179,20 +179,6 @@ func (o *VPort) CreateAggregateMetadata(child *AggregateMetadata) *bambou.Error 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// BGPNeighbors retrieves the list of child BGPNeighbors of the VPort
-func (o *VPort) BGPNeighbors(info *bambou.FetchingInfo) (BGPNeighborsList, *bambou.Error) {
-
-	var list BGPNeighborsList
-	err := bambou.CurrentSession().FetchChildren(o, BGPNeighborIdentity, &list, info)
-	return list, err
-}
-
-// CreateBGPNeighbor creates a new child BGPNeighbor under the VPort
-func (o *VPort) CreateBGPNeighbor(child *BGPNeighbor) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // DHCPOptions retrieves the list of child DHCPOptions of the VPort
 func (o *VPort) DHCPOptions(info *bambou.FetchingInfo) (DHCPOptionsList, *bambou.Error) {
 
@@ -294,6 +280,48 @@ func (o *VPort) AssignPolicyGroups(children PolicyGroupsList) *bambou.Error {
 	}
 
 	return bambou.CurrentSession().AssignChildren(o, list, PolicyGroupIdentity)
+}
+
+// Containers retrieves the list of child Containers of the VPort
+func (o *VPort) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the VPort
+func (o *VPort) CreateContainer(child *Container) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ContainerInterfaces retrieves the list of child ContainerInterfaces of the VPort
+func (o *VPort) ContainerInterfaces(info *bambou.FetchingInfo) (ContainerInterfacesList, *bambou.Error) {
+
+	var list ContainerInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerInterfaceIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainerInterface creates a new child ContainerInterface under the VPort
+func (o *VPort) CreateContainerInterface(child *ContainerInterface) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// PortMappings retrieves the list of child PortMappings of the VPort
+func (o *VPort) PortMappings(info *bambou.FetchingInfo) (PortMappingsList, *bambou.Error) {
+
+	var list PortMappingsList
+	err := bambou.CurrentSession().FetchChildren(o, PortMappingIdentity, &list, info)
+	return list, err
+}
+
+// CreatePortMapping creates a new child PortMapping under the VPort
+func (o *VPort) CreatePortMapping(child *PortMapping) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // QOSs retrieves the list of child QOSs of the VPort

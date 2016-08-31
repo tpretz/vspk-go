@@ -60,6 +60,7 @@ type VCenterDataCenter struct {
 	DataNetworkPortgroup             string `json:"dataNetworkPortgroup,omitempty"`
 	DatapathSyncTimeout              int    `json:"datapathSyncTimeout,omitempty"`
 	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
+	GenericSplitActivation           bool   `json:"genericSplitActivation"`
 	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
 	Personality                      string `json:"personality,omitempty"`
 	Description                      string `json:"description,omitempty"`
@@ -228,16 +229,44 @@ func (o *VCenterDataCenter) CreateVRSAddressRange(child *VRSAddressRange) *bambo
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VRSRedeploymentpolicies retrieves the list of child VRSRedeploymentpolicies of the VCenterDataCenter
+func (o *VCenterDataCenter) VRSRedeploymentpolicies(info *bambou.FetchingInfo) (VRSRedeploymentpoliciesList, *bambou.Error) {
+
+	var list VRSRedeploymentpoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VRSRedeploymentpolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVRSRedeploymentpolicy creates a new child VRSRedeploymentpolicy under the VCenterDataCenter
+func (o *VCenterDataCenter) CreateVRSRedeploymentpolicy(child *VRSRedeploymentpolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // AutoDiscoverClusters retrieves the list of child AutoDiscoverClusters of the VCenterDataCenter
 func (o *VCenterDataCenter) AutoDiscoverClusters(info *bambou.FetchingInfo) (AutoDiscoverClustersList, *bambou.Error) {
 
 	var list AutoDiscoverClustersList
-	err := bambou.CurrentSession().FetchChildren(o, AutoDiscoverClusterIdentity, &list, info)
+	err := bambou.CurrentSession().FetchChildren(o, AutoDiscoverClustersIdentity, &list, info)
 	return list, err
 }
 
-// CreateAutoDiscoverCluster creates a new child AutoDiscoverCluster under the VCenterDataCenter
-func (o *VCenterDataCenter) CreateAutoDiscoverCluster(child *AutoDiscoverCluster) *bambou.Error {
+// CreateAutoDiscoverClusters creates a new child AutoDiscoverClusters under the VCenterDataCenter
+func (o *VCenterDataCenter) CreateAutoDiscoverClusters(child *AutoDiscoverClusters) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// AutoDiscoverHypervisorFromClusters retrieves the list of child AutoDiscoverHypervisorFromClusters of the VCenterDataCenter
+func (o *VCenterDataCenter) AutoDiscoverHypervisorFromClusters(info *bambou.FetchingInfo) (AutoDiscoverHypervisorFromClustersList, *bambou.Error) {
+
+	var list AutoDiscoverHypervisorFromClustersList
+	err := bambou.CurrentSession().FetchChildren(o, AutoDiscoverHypervisorFromClusterIdentity, &list, info)
+	return list, err
+}
+
+// CreateAutoDiscoverHypervisorFromCluster creates a new child AutoDiscoverHypervisorFromCluster under the VCenterDataCenter
+func (o *VCenterDataCenter) CreateAutoDiscoverHypervisorFromCluster(child *AutoDiscoverHypervisorFromCluster) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

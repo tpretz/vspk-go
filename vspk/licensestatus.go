@@ -50,16 +50,18 @@ type LicenseStatus struct {
 	ParentID                    string `json:"parentID,omitempty"`
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
-	TotalLicensedNICsCount      string `json:"totalLicensedNICsCount,omitempty"`
-	TotalLicensedNSGsCount      string `json:"totalLicensedNSGsCount,omitempty"`
-	TotalLicensedUsedNICsCount  string `json:"totalLicensedUsedNICsCount,omitempty"`
-	TotalLicensedUsedNSGsCount  string `json:"totalLicensedUsedNSGsCount,omitempty"`
-	TotalLicensedUsedVMsCount   string `json:"totalLicensedUsedVMsCount,omitempty"`
-	TotalLicensedUsedVRSGsCount string `json:"totalLicensedUsedVRSGsCount,omitempty"`
-	TotalLicensedUsedVRSsCount  string `json:"totalLicensedUsedVRSsCount,omitempty"`
-	TotalLicensedVMsCount       string `json:"totalLicensedVMsCount,omitempty"`
-	TotalLicensedVRSGsCount     string `json:"totalLicensedVRSGsCount,omitempty"`
-	TotalLicensedVRSsCount      string `json:"totalLicensedVRSsCount,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	TotalLicensedNICsCount      int    `json:"totalLicensedNICsCount,omitempty"`
+	TotalLicensedNSGsCount      int    `json:"totalLicensedNSGsCount,omitempty"`
+	TotalLicensedUsedNICsCount  int    `json:"totalLicensedUsedNICsCount,omitempty"`
+	TotalLicensedUsedNSGsCount  int    `json:"totalLicensedUsedNSGsCount,omitempty"`
+	TotalLicensedUsedVMsCount   int    `json:"totalLicensedUsedVMsCount,omitempty"`
+	TotalLicensedUsedVRSGsCount int    `json:"totalLicensedUsedVRSGsCount,omitempty"`
+	TotalLicensedUsedVRSsCount  int    `json:"totalLicensedUsedVRSsCount,omitempty"`
+	TotalLicensedVMsCount       int    `json:"totalLicensedVMsCount,omitempty"`
+	TotalLicensedVRSGsCount     int    `json:"totalLicensedVRSGsCount,omitempty"`
+	TotalLicensedVRSsCount      int    `json:"totalLicensedVRSsCount,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewLicenseStatus returns a new *LicenseStatus

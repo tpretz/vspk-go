@@ -149,6 +149,20 @@ func (o *User) CreateVM(child *VM) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Containers retrieves the list of child Containers of the User
+func (o *User) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the User
+func (o *User) CreateContainer(child *Container) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Groups retrieves the list of child Groups of the User
 func (o *User) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
 
@@ -159,6 +173,20 @@ func (o *User) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
 
 // CreateGroup creates a new child Group under the User
 func (o *User) CreateGroup(child *Group) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Avatars retrieves the list of child Avatars of the User
+func (o *User) Avatars(info *bambou.FetchingInfo) (AvatarsList, *bambou.Error) {
+
+	var list AvatarsList
+	err := bambou.CurrentSession().FetchChildren(o, AvatarIdentity, &list, info)
+	return list, err
+}
+
+// CreateAvatar creates a new child Avatar under the User
+func (o *User) CreateAvatar(child *Avatar) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

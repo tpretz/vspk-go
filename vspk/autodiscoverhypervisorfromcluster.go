@@ -46,13 +46,16 @@ type AutoDiscoverHypervisorFromClustersAncestor interface {
 
 // AutoDiscoverHypervisorFromCluster represents the model of a autodiscoveredhypervisor
 type AutoDiscoverHypervisorFromCluster struct {
-	ID             string        `json:"ID,omitempty"`
-	ParentID       string        `json:"parentID,omitempty"`
-	ParentType     string        `json:"parentType,omitempty"`
-	Owner          string        `json:"owner,omitempty"`
-	NetworkList    []interface{} `json:"networkList,omitempty"`
-	AssocClusterId string        `json:"assocClusterId,omitempty"`
-	HypervisorIP   string        `json:"hypervisorIP,omitempty"`
+	ID            string        `json:"ID,omitempty"`
+	ParentID      string        `json:"parentID,omitempty"`
+	ParentType    string        `json:"parentType,omitempty"`
+	Owner         string        `json:"owner,omitempty"`
+	LastUpdatedBy string        `json:"lastUpdatedBy,omitempty"`
+	NetworkList   []interface{} `json:"networkList,omitempty"`
+	EntityScope   string        `json:"entityScope,omitempty"`
+	AssocEntityID string        `json:"assocEntityID,omitempty"`
+	ExternalID    string        `json:"externalID,omitempty"`
+	HypervisorIP  string        `json:"hypervisorIP,omitempty"`
 }
 
 // NewAutoDiscoverHypervisorFromCluster returns a new *AutoDiscoverHypervisorFromCluster

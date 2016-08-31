@@ -60,6 +60,9 @@ type SystemConfig struct {
 	RDPublicNetworkLowerLimit                         int    `json:"RDPublicNetworkLowerLimit,omitempty"`
 	RDPublicNetworkUpperLimit                         int    `json:"RDPublicNetworkUpperLimit,omitempty"`
 	RDUpperLimit                                      int    `json:"RDUpperLimit,omitempty"`
+	ZFBBootstrapEnabled                               bool   `json:"ZFBBootstrapEnabled"`
+	ZFBRequestRetryTimer                              int    `json:"ZFBRequestRetryTimer,omitempty"`
+	ZFBSchedulerStaleRequestTimeout                   int    `json:"ZFBSchedulerStaleRequestTimeout,omitempty"`
 	DHCPOptionSize                                    int    `json:"DHCPOptionSize,omitempty"`
 	VMCacheSize                                       int    `json:"VMCacheSize,omitempty"`
 	VMPurgeTime                                       int    `json:"VMPurgeTime,omitempty"`
@@ -102,6 +105,7 @@ type SystemConfig struct {
 	EjbcaOCSPResponderURI                             string `json:"ejbcaOCSPResponderURI,omitempty"`
 	EjbcaVspRootCa                                    string `json:"ejbcaVspRootCa,omitempty"`
 	AlarmsMaxPerObject                                int    `json:"alarmsMaxPerObject,omitempty"`
+	ElasticClusterName                                string `json:"elasticClusterName,omitempty"`
 	AllowEnterpriseAvatarOnNSG                        bool   `json:"allowEnterpriseAvatarOnNSG"`
 	InactiveTimeout                                   int    `json:"inactiveTimeout,omitempty"`
 	EntityScope                                       string `json:"entityScope,omitempty"`
@@ -134,6 +138,7 @@ type SystemConfig struct {
 	StatefulACLNonTCPTimeout                          int    `json:"statefulACLNonTCPTimeout,omitempty"`
 	StatefulACLTCPTimeout                             int    `json:"statefulACLTCPTimeout,omitempty"`
 	StaticWANServicePurgeTime                         int    `json:"staticWANServicePurgeTime,omitempty"`
+	StatisticsEnabled                                 bool   `json:"statisticsEnabled"`
 	StatsCollectorAddress                             string `json:"statsCollectorAddress,omitempty"`
 	StatsCollectorPort                                string `json:"statsCollectorPort,omitempty"`
 	StatsCollectorProtoBufPort                        string `json:"statsCollectorProtoBufPort,omitempty"`

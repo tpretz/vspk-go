@@ -50,15 +50,22 @@ type NSGateway struct {
 	ParentID                           string `json:"parentID,omitempty"`
 	ParentType                         string `json:"parentType,omitempty"`
 	Owner                              string `json:"owner,omitempty"`
+	MACAddress                         string `json:"MACAddress,omitempty"`
 	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
+	SKU                                string `json:"SKU,omitempty"`
 	TPMStatus                          string `json:"TPMStatus,omitempty"`
+	CPUType                            string `json:"CPUType,omitempty"`
+	NSGVersion                         string `json:"NSGVersion,omitempty"`
+	UUID                               string `json:"UUID,omitempty"`
 	Name                               string `json:"name,omitempty"`
+	Family                             string `json:"family,omitempty"`
 	LastConfigurationReloadTimestamp   int    `json:"lastConfigurationReloadTimestamp,omitempty"`
 	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
 	DatapathID                         string `json:"datapathID,omitempty"`
 	RedundancyGroupID                  string `json:"redundancyGroupID,omitempty"`
 	TemplateID                         string `json:"templateID,omitempty"`
 	Pending                            bool   `json:"pending"`
+	SerialNumber                       string `json:"serialNumber,omitempty"`
 	PermittedAction                    string `json:"permittedAction,omitempty"`
 	Personality                        string `json:"personality,omitempty"`
 	Description                        string `json:"description,omitempty"`
@@ -71,6 +78,7 @@ type NSGateway struct {
 	BootstrapStatus                    string `json:"bootstrapStatus,omitempty"`
 	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
 	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
+	AssociatedNSGInfoID                string `json:"associatedNSGInfoID,omitempty"`
 	AutoDiscGatewayID                  string `json:"autoDiscGatewayID,omitempty"`
 	ExternalID                         string `json:"externalID,omitempty"`
 	SystemID                           string `json:"systemID,omitempty"`
@@ -287,6 +295,20 @@ func (o *NSGateway) BootstrapActivations(info *bambou.FetchingInfo) (BootstrapAc
 
 // CreateBootstrapActivation creates a new child BootstrapActivation under the NSGateway
 func (o *NSGateway) CreateBootstrapActivation(child *BootstrapActivation) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// NSGInfos retrieves the list of child NSGInfos of the NSGateway
+func (o *NSGateway) NSGInfos(info *bambou.FetchingInfo) (NSGInfosList, *bambou.Error) {
+
+	var list NSGInfosList
+	err := bambou.CurrentSession().FetchChildren(o, NSGInfoIdentity, &list, info)
+	return list, err
+}
+
+// CreateNSGInfo creates a new child NSGInfo under the NSGateway
+func (o *NSGateway) CreateNSGInfo(child *NSGInfo) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

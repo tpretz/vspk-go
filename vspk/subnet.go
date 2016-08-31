@@ -185,6 +185,20 @@ func (o *Subnet) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// BGPNeighbors retrieves the list of child BGPNeighbors of the Subnet
+func (o *Subnet) BGPNeighbors(info *bambou.FetchingInfo) (BGPNeighborsList, *bambou.Error) {
+
+	var list BGPNeighborsList
+	err := bambou.CurrentSession().FetchChildren(o, BGPNeighborIdentity, &list, info)
+	return list, err
+}
+
+// CreateBGPNeighbor creates a new child BGPNeighbor under the Subnet
+func (o *Subnet) CreateBGPNeighbor(child *BGPNeighbor) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // DHCPOptions retrieves the list of child DHCPOptions of the Subnet
 func (o *Subnet) DHCPOptions(info *bambou.FetchingInfo) (DHCPOptionsList, *bambou.Error) {
 
@@ -270,6 +284,48 @@ func (o *Subnet) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bam
 
 // CreateVMInterface creates a new child VMInterface under the Subnet
 func (o *Subnet) CreateVMInterface(child *VMInterface) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Containers retrieves the list of child Containers of the Subnet
+func (o *Subnet) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the Subnet
+func (o *Subnet) CreateContainer(child *Container) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ContainerInterfaces retrieves the list of child ContainerInterfaces of the Subnet
+func (o *Subnet) ContainerInterfaces(info *bambou.FetchingInfo) (ContainerInterfacesList, *bambou.Error) {
+
+	var list ContainerInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerInterfaceIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainerInterface creates a new child ContainerInterface under the Subnet
+func (o *Subnet) CreateContainerInterface(child *ContainerInterface) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ContainerResyncs retrieves the list of child ContainerResyncs of the Subnet
+func (o *Subnet) ContainerResyncs(info *bambou.FetchingInfo) (ContainerResyncsList, *bambou.Error) {
+
+	var list ContainerResyncsList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerResyncIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainerResync creates a new child ContainerResync under the Subnet
+func (o *Subnet) CreateContainerResync(child *ContainerResync) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

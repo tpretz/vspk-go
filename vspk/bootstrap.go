@@ -46,15 +46,18 @@ type BootstrapsAncestor interface {
 
 // Bootstrap represents the model of a bootstrap
 type Bootstrap struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	InstallerID   string `json:"installerID,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	Status        string `json:"status,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID                string `json:"ID,omitempty"`
+	ParentID          string `json:"parentID,omitempty"`
+	ParentType        string `json:"parentType,omitempty"`
+	Owner             string `json:"owner,omitempty"`
+	ZFBInfo           string `json:"ZFBInfo,omitempty"`
+	ZFBMatchAttribute string `json:"ZFBMatchAttribute,omitempty"`
+	ZFBMatchValue     string `json:"ZFBMatchValue,omitempty"`
+	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
+	InstallerID       string `json:"installerID,omitempty"`
+	EntityScope       string `json:"entityScope,omitempty"`
+	Status            string `json:"status,omitempty"`
+	ExternalID        string `json:"externalID,omitempty"`
 }
 
 // NewBootstrap returns a new *Bootstrap

@@ -124,6 +124,20 @@ func (o *SharedNetworkResource) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// PATIPEntries retrieves the list of child PATIPEntries of the SharedNetworkResource
+func (o *SharedNetworkResource) PATIPEntries(info *bambou.FetchingInfo) (PATIPEntriesList, *bambou.Error) {
+
+	var list PATIPEntriesList
+	err := bambou.CurrentSession().FetchChildren(o, PATIPEntryIdentity, &list, info)
+	return list, err
+}
+
+// CreatePATIPEntry creates a new child PATIPEntry under the SharedNetworkResource
+func (o *SharedNetworkResource) CreatePATIPEntry(child *PATIPEntry) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // AddressRanges retrieves the list of child AddressRanges of the SharedNetworkResource
 func (o *SharedNetworkResource) AddressRanges(info *bambou.FetchingInfo) (AddressRangesList, *bambou.Error) {
 

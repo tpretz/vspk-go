@@ -50,6 +50,7 @@ type IngressAdvFwdEntryTemplate struct {
 	ParentID                        string `json:"parentID,omitempty"`
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
+	ACLTemplateName                 string `json:"ACLTemplateName,omitempty"`
 	ICMPCode                        string `json:"ICMPCode,omitempty"`
 	ICMPType                        string `json:"ICMPType,omitempty"`
 	FCOverride                      string `json:"FCOverride,omitempty"`
@@ -65,10 +66,12 @@ type IngressAdvFwdEntryTemplate struct {
 	NetworkType                     string `json:"networkType,omitempty"`
 	MirrorDestinationID             string `json:"mirrorDestinationID,omitempty"`
 	FlowLoggingEnabled              bool   `json:"flowLoggingEnabled"`
+	EnterpriseName                  string `json:"enterpriseName,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
 	LocationID                      string `json:"locationID,omitempty"`
 	LocationType                    string `json:"locationType,omitempty"`
 	PolicyState                     string `json:"policyState,omitempty"`
+	DomainName                      string `json:"domainName,omitempty"`
 	SourcePort                      string `json:"sourcePort,omitempty"`
 	UplinkPreference                string `json:"uplinkPreference,omitempty"`
 	Priority                        int    `json:"priority,omitempty"`

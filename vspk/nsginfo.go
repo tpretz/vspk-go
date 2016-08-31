@@ -29,70 +29,78 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// AutoDiscoverClusterIdentity represents the Identity of the object
-var AutoDiscoverClusterIdentity = bambou.Identity{
-	Name:     "autodiscoveredcluster",
-	Category: "autodiscoveredclusters",
+// NSGInfoIdentity represents the Identity of the object
+var NSGInfoIdentity = bambou.Identity{
+	Name:     "nsginfo",
+	Category: "nsginfos",
 }
 
-// AutoDiscoverClustersList represents a list of AutoDiscoverClusters
-type AutoDiscoverClustersList []*AutoDiscoverCluster
+// NSGInfosList represents a list of NSGInfos
+type NSGInfosList []*NSGInfo
 
-// AutoDiscoverClustersAncestor is the interface of an ancestor of a AutoDiscoverCluster must implement.
-type AutoDiscoverClustersAncestor interface {
-	AutoDiscoverClusters(*bambou.FetchingInfo) (AutoDiscoverClustersList, *bambou.Error)
-	CreateAutoDiscoverClusters(*AutoDiscoverCluster) *bambou.Error
+// NSGInfosAncestor is the interface of an ancestor of a NSGInfo must implement.
+type NSGInfosAncestor interface {
+	NSGInfos(*bambou.FetchingInfo) (NSGInfosList, *bambou.Error)
+	CreateNSGInfos(*NSGInfo) *bambou.Error
 }
 
-// AutoDiscoverCluster represents the model of a autodiscoveredcluster
-type AutoDiscoverCluster struct {
-	ID                       string `json:"ID,omitempty"`
-	ParentID                 string `json:"parentID,omitempty"`
-	ParentType               string `json:"parentType,omitempty"`
-	Owner                    string `json:"owner,omitempty"`
-	Name                     string `json:"name,omitempty"`
-	ManagedObjectID          string `json:"managedObjectID,omitempty"`
-	AssocVCenterDataCenterId string `json:"assocVCenterDataCenterId,omitempty"`
+// NSGInfo represents the model of a nsginfo
+type NSGInfo struct {
+	ID                    string `json:"ID,omitempty"`
+	ParentID              string `json:"parentID,omitempty"`
+	ParentType            string `json:"parentType,omitempty"`
+	Owner                 string `json:"owner,omitempty"`
+	MACAddress            string `json:"MACAddress,omitempty"`
+	SKU                   string `json:"SKU,omitempty"`
+	TPMStatus             string `json:"TPMStatus,omitempty"`
+	CPUType               string `json:"CPUType,omitempty"`
+	NSGVersion            string `json:"NSGVersion,omitempty"`
+	UUID                  string `json:"UUID,omitempty"`
+	Family                string `json:"family,omitempty"`
+	SerialNumber          string `json:"serialNumber,omitempty"`
+	EntityScope           string `json:"entityScope,omitempty"`
+	AssociatedNSGatewayID string `json:"associatedNSGatewayID,omitempty"`
+	ExternalID            string `json:"externalID,omitempty"`
 }
 
-// NewAutoDiscoverCluster returns a new *AutoDiscoverCluster
-func NewAutoDiscoverCluster() *AutoDiscoverCluster {
+// NewNSGInfo returns a new *NSGInfo
+func NewNSGInfo() *NSGInfo {
 
-	return &AutoDiscoverCluster{}
+	return &NSGInfo{}
 }
 
 // Identity returns the Identity of the object.
-func (o *AutoDiscoverCluster) Identity() bambou.Identity {
+func (o *NSGInfo) Identity() bambou.Identity {
 
-	return AutoDiscoverClusterIdentity
+	return NSGInfoIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *AutoDiscoverCluster) Identifier() string {
+func (o *NSGInfo) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *AutoDiscoverCluster) SetIdentifier(ID string) {
+func (o *NSGInfo) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the AutoDiscoverCluster from the server
-func (o *AutoDiscoverCluster) Fetch() *bambou.Error {
+// Fetch retrieves the NSGInfo from the server
+func (o *NSGInfo) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the AutoDiscoverCluster into the server
-func (o *AutoDiscoverCluster) Save() *bambou.Error {
+// Save saves the NSGInfo into the server
+func (o *NSGInfo) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the AutoDiscoverCluster from the server
-func (o *AutoDiscoverCluster) Delete() *bambou.Error {
+// Delete deletes the NSGInfo from the server
+func (o *NSGInfo) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }

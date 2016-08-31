@@ -185,6 +185,20 @@ func (o *Me) CreateGatewayTemplate(child *GatewayTemplate) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// PATMappers retrieves the list of child PATMappers of the Me
+func (o *Me) PATMappers(info *bambou.FetchingInfo) (PATMappersList, *bambou.Error) {
+
+	var list PATMappersList
+	err := bambou.CurrentSession().FetchChildren(o, PATMapperIdentity, &list, info)
+	return list, err
+}
+
+// CreatePATMapper creates a new child PATMapper under the Me
+func (o *Me) CreatePATMapper(child *PATMapper) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // PATNATPools retrieves the list of child PATNATPools of the Me
 func (o *Me) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *bambou.Error) {
 
@@ -321,6 +335,48 @@ func (o *Me) NetworkLayouts(info *bambou.FetchingInfo) (NetworkLayoutsList, *bam
 
 // CreateNetworkLayout creates a new child NetworkLayout under the Me
 func (o *Me) CreateNetworkLayout(child *NetworkLayout) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// KeyServerMembers retrieves the list of child KeyServerMembers of the Me
+func (o *Me) KeyServerMembers(info *bambou.FetchingInfo) (KeyServerMembersList, *bambou.Error) {
+
+	var list KeyServerMembersList
+	err := bambou.CurrentSession().FetchChildren(o, KeyServerMemberIdentity, &list, info)
+	return list, err
+}
+
+// CreateKeyServerMember creates a new child KeyServerMember under the Me
+func (o *Me) CreateKeyServerMember(child *KeyServerMember) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ZFBAutoAssignments retrieves the list of child ZFBAutoAssignments of the Me
+func (o *Me) ZFBAutoAssignments(info *bambou.FetchingInfo) (ZFBAutoAssignmentsList, *bambou.Error) {
+
+	var list ZFBAutoAssignmentsList
+	err := bambou.CurrentSession().FetchChildren(o, ZFBAutoAssignmentIdentity, &list, info)
+	return list, err
+}
+
+// CreateZFBAutoAssignment creates a new child ZFBAutoAssignment under the Me
+func (o *Me) CreateZFBAutoAssignment(child *ZFBAutoAssignment) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ZFBRequests retrieves the list of child ZFBRequests of the Me
+func (o *Me) ZFBRequests(info *bambou.FetchingInfo) (ZFBRequestsList, *bambou.Error) {
+
+	var list ZFBRequestsList
+	err := bambou.CurrentSession().FetchChildren(o, ZFBRequestIdentity, &list, info)
+	return list, err
+}
+
+// CreateZFBRequest creates a new child ZFBRequest under the Me
+func (o *Me) CreateZFBRequest(child *ZFBRequest) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -727,6 +783,34 @@ func (o *Me) Zones(info *bambou.FetchingInfo) (ZonesList, *bambou.Error) {
 
 // CreateZone creates a new child Zone under the Me
 func (o *Me) CreateZone(child *Zone) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Containers retrieves the list of child Containers of the Me
+func (o *Me) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the Me
+func (o *Me) CreateContainer(child *Container) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ContainerInterfaces retrieves the list of child ContainerInterfaces of the Me
+func (o *Me) ContainerInterfaces(info *bambou.FetchingInfo) (ContainerInterfacesList, *bambou.Error) {
+
+	var list ContainerInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerInterfaceIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainerInterface creates a new child ContainerInterface under the Me
+func (o *Me) CreateContainerInterface(child *ContainerInterface) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -116,6 +116,25 @@ func (o *IKEGateway) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// IKEGatewayConfigs retrieves the list of child IKEGatewayConfigs of the IKEGateway
+func (o *IKEGateway) IKEGatewayConfigs(info *bambou.FetchingInfo) (IKEGatewayConfigsList, *bambou.Error) {
+
+	var list IKEGatewayConfigsList
+	err := bambou.CurrentSession().FetchChildren(o, IKEGatewayConfigIdentity, &list, info)
+	return list, err
+}
+
+// AssignIKEGatewayConfigs assigns the list of IKEGatewayConfigs to the IKEGateway
+func (o *IKEGateway) AssignIKEGatewayConfigs(children IKEGatewayConfigsList) *bambou.Error {
+
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, IKEGatewayConfigIdentity)
+}
+
 // IKESubnets retrieves the list of child IKESubnets of the IKEGateway
 func (o *IKEGateway) IKESubnets(info *bambou.FetchingInfo) (IKESubnetsList, *bambou.Error) {
 

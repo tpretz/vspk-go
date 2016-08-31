@@ -29,100 +29,99 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// GatewaySecurityProfileIdentity represents the Identity of the object
-var GatewaySecurityProfileIdentity = bambou.Identity{
-	Name:     "gatewaysecurityprofile",
-	Category: "gatewaysecurityprofiles",
+// AvatarIdentity represents the Identity of the object
+var AvatarIdentity = bambou.Identity{
+	Name:     "avatar",
+	Category: "avatars",
 }
 
-// GatewaySecurityProfilesList represents a list of GatewaySecurityProfiles
-type GatewaySecurityProfilesList []*GatewaySecurityProfile
+// AvatarsList represents a list of Avatars
+type AvatarsList []*Avatar
 
-// GatewaySecurityProfilesAncestor is the interface of an ancestor of a GatewaySecurityProfile must implement.
-type GatewaySecurityProfilesAncestor interface {
-	GatewaySecurityProfiles(*bambou.FetchingInfo) (GatewaySecurityProfilesList, *bambou.Error)
-	CreateGatewaySecurityProfiles(*GatewaySecurityProfile) *bambou.Error
+// AvatarsAncestor is the interface of an ancestor of a Avatar must implement.
+type AvatarsAncestor interface {
+	Avatars(*bambou.FetchingInfo) (AvatarsList, *bambou.Error)
+	CreateAvatars(*Avatar) *bambou.Error
 }
 
-// GatewaySecurityProfile represents the model of a gatewaysecurityprofile
-type GatewaySecurityProfile struct {
+// Avatar represents the model of a avatar
+type Avatar struct {
 	ID            string `json:"ID,omitempty"`
 	ParentID      string `json:"parentID,omitempty"`
 	ParentType    string `json:"parentType,omitempty"`
 	Owner         string `json:"owner,omitempty"`
 	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	GatewayID     string `json:"gatewayID,omitempty"`
-	Revision      int    `json:"revision,omitempty"`
 	EntityScope   string `json:"entityScope,omitempty"`
 	ExternalID    string `json:"externalID,omitempty"`
+	Type          string `json:"type,omitempty"`
 }
 
-// NewGatewaySecurityProfile returns a new *GatewaySecurityProfile
-func NewGatewaySecurityProfile() *GatewaySecurityProfile {
+// NewAvatar returns a new *Avatar
+func NewAvatar() *Avatar {
 
-	return &GatewaySecurityProfile{}
+	return &Avatar{}
 }
 
 // Identity returns the Identity of the object.
-func (o *GatewaySecurityProfile) Identity() bambou.Identity {
+func (o *Avatar) Identity() bambou.Identity {
 
-	return GatewaySecurityProfileIdentity
+	return AvatarIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *GatewaySecurityProfile) Identifier() string {
+func (o *Avatar) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *GatewaySecurityProfile) SetIdentifier(ID string) {
+func (o *Avatar) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the GatewaySecurityProfile from the server
-func (o *GatewaySecurityProfile) Fetch() *bambou.Error {
+// Fetch retrieves the Avatar from the server
+func (o *Avatar) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the GatewaySecurityProfile into the server
-func (o *GatewaySecurityProfile) Save() *bambou.Error {
+// Save saves the Avatar into the server
+func (o *Avatar) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the GatewaySecurityProfile from the server
-func (o *GatewaySecurityProfile) Delete() *bambou.Error {
+// Delete deletes the Avatar from the server
+func (o *Avatar) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Metadatas retrieves the list of child Metadatas of the GatewaySecurityProfile
-func (o *GatewaySecurityProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the Avatar
+func (o *Avatar) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
 	var list MetadatasList
 	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the GatewaySecurityProfile
-func (o *GatewaySecurityProfile) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the Avatar
+func (o *Avatar) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the GatewaySecurityProfile
-func (o *GatewaySecurityProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Avatar
+func (o *Avatar) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
 	var list GlobalMetadatasList
 	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateGlobalMetadata creates a new child GlobalMetadata under the GatewaySecurityProfile
-func (o *GatewaySecurityProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Avatar
+func (o *Avatar) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -167,6 +167,20 @@ func (o *Tier) CreateVM(child *VM) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Containers retrieves the list of child Containers of the Tier
+func (o *Tier) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
+
+	var list ContainersList
+	err := bambou.CurrentSession().FetchChildren(o, ContainerIdentity, &list, info)
+	return list, err
+}
+
+// CreateContainer creates a new child Container under the Tier
+func (o *Tier) CreateContainer(child *Container) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // VPorts retrieves the list of child VPorts of the Tier
 func (o *Tier) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error) {
 
