@@ -282,34 +282,6 @@ func (o *Domain) CreateLink(child *Link) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Links retrieves the list of child Links of the Domain
-func (o *Domain) Links(info *bambou.FetchingInfo) (LinksList, *bambou.Error) {
-
-	var list LinksList
-	err := bambou.CurrentSession().FetchChildren(o, LinkIdentity, &list, info)
-	return list, err
-}
-
-// CreateLink creates a new child Link under the Domain
-func (o *Domain) CreateLink(child *Link) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Links retrieves the list of child Links of the Domain
-func (o *Domain) Links(info *bambou.FetchingInfo) (LinksList, *bambou.Error) {
-
-	var list LinksList
-	err := bambou.CurrentSession().FetchChildren(o, LinkIdentity, &list, info)
-	return list, err
-}
-
-// CreateLink creates a new child Link under the Domain
-func (o *Domain) CreateLink(child *Link) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // FloatingIps retrieves the list of child FloatingIps of the Domain
 func (o *Domain) FloatingIps(info *bambou.FetchingInfo) (FloatingIpsList, *bambou.Error) {
 
