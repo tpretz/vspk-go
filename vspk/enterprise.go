@@ -458,16 +458,16 @@ func (o *Enterprise) CreateAlarm(child *Alarm) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Alarms retrieves the list of child Alarms of the Enterprise
-func (o *Enterprise) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+// AllAlarms retrieves the list of child AllAlarms of the Enterprise
+func (o *Enterprise) AllAlarms(info *bambou.FetchingInfo) (AllAlarmsList, *bambou.Error) {
 
-	var list AlarmsList
-	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	var list AllAlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AllAlarmIdentity, &list, info)
 	return list, err
 }
 
-// CreateAlarm creates a new child Alarm under the Enterprise
-func (o *Enterprise) CreateAlarm(child *Alarm) *bambou.Error {
+// CreateAllAlarm creates a new child AllAlarm under the Enterprise
+func (o *Enterprise) CreateAllAlarm(child *AllAlarm) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
