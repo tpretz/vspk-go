@@ -51,7 +51,7 @@ type L2DomainTemplate struct {
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
 	DHCPManaged                     bool   `json:"DHCPManaged"`
-	DPI                             bool   `json:"DPI"`
+	DPI                             string `json:"DPI,omitempty"`
 	IPType                          string `json:"IPType,omitempty"`
 	Name                            string `json:"name,omitempty"`
 	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
