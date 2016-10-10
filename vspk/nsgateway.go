@@ -56,6 +56,7 @@ type NSGateway struct {
 	TPMStatus                          string `json:"TPMStatus,omitempty"`
 	CPUType                            string `json:"CPUType,omitempty"`
 	NSGVersion                         string `json:"NSGVersion,omitempty"`
+	SSHService                         string `json:"SSHService,omitempty"`
 	UUID                               string `json:"UUID,omitempty"`
 	Name                               string `json:"name,omitempty"`
 	Family                             string `json:"family,omitempty"`
@@ -70,6 +71,7 @@ type NSGateway struct {
 	Personality                        string `json:"personality,omitempty"`
 	Description                        string `json:"description,omitempty"`
 	Libraries                          string `json:"libraries,omitempty"`
+	InheritedSSHServiceState           string `json:"inheritedSSHServiceState,omitempty"`
 	EnterpriseID                       string `json:"enterpriseID,omitempty"`
 	EntityScope                        string `json:"entityScope,omitempty"`
 	LocationID                         string `json:"locationID,omitempty"`

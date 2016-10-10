@@ -69,6 +69,7 @@ type Application struct {
 	Protocol                           string  `json:"protocol,omitempty"`
 	AssociatedL7ApplicationSignatureID string  `json:"associatedL7ApplicationSignatureID,omitempty"`
 	EtherType                          string  `json:"etherType,omitempty"`
+	Symmetry                           bool    `json:"symmetry"`
 }
 
 // NewApplication returns a new *Application

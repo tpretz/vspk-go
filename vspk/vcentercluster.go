@@ -61,10 +61,12 @@ type VCenterCluster struct {
 	DatapathSyncTimeout              int    `json:"datapathSyncTimeout,omitempty"`
 	Scope                            bool   `json:"scope"`
 	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
+	DeletedFromVCenterDataCenter     bool   `json:"deletedFromVCenterDataCenter"`
 	GenericSplitActivation           bool   `json:"genericSplitActivation"`
 	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
 	Personality                      string `json:"personality,omitempty"`
 	Description                      string `json:"description,omitempty"`
+	DestinationMirrorPort            string `json:"destinationMirrorPort,omitempty"`
 	MetadataServerIP                 string `json:"metadataServerIP,omitempty"`
 	MetadataServerListenPort         int    `json:"metadataServerListenPort,omitempty"`
 	MetadataServerPort               int    `json:"metadataServerPort,omitempty"`
@@ -80,6 +82,7 @@ type VCenterCluster struct {
 	MgmtGateway                      string `json:"mgmtGateway,omitempty"`
 	MgmtNetworkPortgroup             string `json:"mgmtNetworkPortgroup,omitempty"`
 	DhcpRelayServer                  string `json:"dhcpRelayServer,omitempty"`
+	MirrorNetworkPortgroup           string `json:"mirrorNetworkPortgroup,omitempty"`
 	SiteId                           string `json:"siteId,omitempty"`
 	AllowDataDHCP                    bool   `json:"allowDataDHCP"`
 	AllowMgmtDHCP                    bool   `json:"allowMgmtDHCP"`

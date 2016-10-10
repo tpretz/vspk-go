@@ -304,6 +304,20 @@ func (o *Enterprise) CreateNetworkMacroGroup(child *NetworkMacroGroup) *bambou.E
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NetworkPerformanceMeasurements retrieves the list of child NetworkPerformanceMeasurements of the Enterprise
+func (o *Enterprise) NetworkPerformanceMeasurements(info *bambou.FetchingInfo) (NetworkPerformanceMeasurementsList, *bambou.Error) {
+
+	var list NetworkPerformanceMeasurementsList
+	err := bambou.CurrentSession().FetchChildren(o, NetworkPerformanceMeasurementIdentity, &list, info)
+	return list, err
+}
+
+// CreateNetworkPerformanceMeasurement creates a new child NetworkPerformanceMeasurement under the Enterprise
+func (o *Enterprise) CreateNetworkPerformanceMeasurement(child *NetworkPerformanceMeasurement) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // KeyServerMonitors retrieves the list of child KeyServerMonitors of the Enterprise
 func (o *Enterprise) KeyServerMonitors(info *bambou.FetchingInfo) (KeyServerMonitorsList, *bambou.Error) {
 

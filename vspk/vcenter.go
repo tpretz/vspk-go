@@ -64,6 +64,7 @@ type VCenter struct {
 	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
 	Personality                      string `json:"personality,omitempty"`
 	Description                      string `json:"description,omitempty"`
+	DestinationMirrorPort            string `json:"destinationMirrorPort,omitempty"`
 	MetadataServerIP                 string `json:"metadataServerIP,omitempty"`
 	MetadataServerListenPort         int    `json:"metadataServerListenPort,omitempty"`
 	MetadataServerPort               int    `json:"metadataServerPort,omitempty"`
@@ -79,6 +80,7 @@ type VCenter struct {
 	MgmtGateway                      string `json:"mgmtGateway,omitempty"`
 	MgmtNetworkPortgroup             string `json:"mgmtNetworkPortgroup,omitempty"`
 	DhcpRelayServer                  string `json:"dhcpRelayServer,omitempty"`
+	MirrorNetworkPortgroup           string `json:"mirrorNetworkPortgroup,omitempty"`
 	SiteId                           string `json:"siteId,omitempty"`
 	AllowDataDHCP                    bool   `json:"allowDataDHCP"`
 	AllowMgmtDHCP                    bool   `json:"allowMgmtDHCP"`

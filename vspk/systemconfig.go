@@ -137,6 +137,7 @@ type SystemConfig struct {
 	NsgConfigEndpoint                                 string `json:"nsgConfigEndpoint,omitempty"`
 	NsgLocalUiUrl                                     string `json:"nsgLocalUiUrl,omitempty"`
 	EsiID                                             int    `json:"esiID,omitempty"`
+	CsprootAuthenticationMethod                       string `json:"csprootAuthenticationMethod,omitempty"`
 	StackTraceEnabled                                 bool   `json:"stackTraceEnabled"`
 	StatefulACLNonTCPTimeout                          int    `json:"statefulACLNonTCPTimeout,omitempty"`
 	StatefulACLTCPTimeout                             int    `json:"statefulACLTCPTimeout,omitempty"`
@@ -149,6 +150,7 @@ type SystemConfig struct {
 	StatsMinDuration                                  int    `json:"statsMinDuration,omitempty"`
 	StatsNumberOfDataPoints                           int    `json:"statsNumberOfDataPoints,omitempty"`
 	StatsTSDBServerAddress                            string `json:"statsTSDBServerAddress,omitempty"`
+	StickyECMPIdleTimeout                             int    `json:"stickyECMPIdleTimeout,omitempty"`
 	SubnetResyncInterval                              int    `json:"subnetResyncInterval,omitempty"`
 	SubnetResyncOutstandingInterval                   int    `json:"subnetResyncOutstandingInterval,omitempty"`
 	CustomerIDUpperLimit                              int    `json:"customerIDUpperLimit,omitempty"`

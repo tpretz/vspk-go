@@ -52,6 +52,7 @@ type PerformanceMonitor struct {
 	Owner           string `json:"owner,omitempty"`
 	Name            string `json:"name,omitempty"`
 	PayloadSize     int    `json:"payloadSize,omitempty"`
+	ReadOnly        bool   `json:"readOnly"`
 	ServiceClass    string `json:"serviceClass,omitempty"`
 	Description     string `json:"description,omitempty"`
 	Interval        int    `json:"interval,omitempty"`

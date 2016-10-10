@@ -67,11 +67,13 @@ type VCenterHypervisor struct {
 	DatapathSyncTimeout              int           `json:"datapathSyncTimeout,omitempty"`
 	Scope                            bool          `json:"scope"`
 	SecondaryNuageController         string        `json:"secondaryNuageController,omitempty"`
+	RemovedFromVCenterInventory      bool          `json:"removedFromVCenterInventory"`
 	GenericSplitActivation           bool          `json:"genericSplitActivation"`
 	SeparateDataNetwork              bool          `json:"separateDataNetwork"`
 	DeploymentCount                  int           `json:"deploymentCount,omitempty"`
 	Personality                      string        `json:"personality,omitempty"`
 	Description                      string        `json:"description,omitempty"`
+	DestinationMirrorPort            string        `json:"destinationMirrorPort,omitempty"`
 	MetadataServerIP                 string        `json:"metadataServerIP,omitempty"`
 	MetadataServerListenPort         int           `json:"metadataServerListenPort,omitempty"`
 	MetadataServerPort               int           `json:"metadataServerPort,omitempty"`
@@ -89,6 +91,7 @@ type VCenterHypervisor struct {
 	MgmtNetmask                      string        `json:"mgmtNetmask,omitempty"`
 	MgmtNetworkPortgroup             string        `json:"mgmtNetworkPortgroup,omitempty"`
 	DhcpRelayServer                  string        `json:"dhcpRelayServer,omitempty"`
+	MirrorNetworkPortgroup           string        `json:"mirrorNetworkPortgroup,omitempty"`
 	SiteId                           string        `json:"siteId,omitempty"`
 	AllowDataDHCP                    bool          `json:"allowDataDHCP"`
 	AllowMgmtDHCP                    bool          `json:"allowMgmtDHCP"`
