@@ -67,6 +67,7 @@ type VLAN struct {
 	AssociatedUplinkConnectionID string `json:"associatedUplinkConnectionID,omitempty"`
 	AssociatedVSCProfileID       string `json:"associatedVSCProfileID,omitempty"`
 	Status                       string `json:"status,omitempty"`
+	DucVlan                      bool   `json:"ducVlan"`
 	ExternalID                   string `json:"externalID,omitempty"`
 }
 

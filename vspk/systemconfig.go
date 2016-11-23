@@ -110,6 +110,7 @@ type SystemConfig struct {
 	ElasticSearchUIAddress                            string `json:"elasticSearchUIAddress,omitempty"`
 	AllowEnterpriseAvatarOnNSG                        bool   `json:"allowEnterpriseAvatarOnNSG"`
 	GlobalMACAddress                                  string `json:"globalMACAddress,omitempty"`
+	FlowCollectionEnabled                             bool   `json:"flowCollectionEnabled"`
 	InactiveTimeout                                   int    `json:"inactiveTimeout,omitempty"`
 	EntityScope                                       string `json:"entityScope,omitempty"`
 	DomainTunnelType                                  string `json:"domainTunnelType,omitempty"`

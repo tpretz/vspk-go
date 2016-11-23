@@ -67,6 +67,7 @@ type NSGateway struct {
 	TemplateID                         string `json:"templateID,omitempty"`
 	Pending                            bool   `json:"pending"`
 	SerialNumber                       string `json:"serialNumber,omitempty"`
+	DerivedSSHServiceState             string `json:"derivedSSHServiceState,omitempty"`
 	PermittedAction                    string `json:"permittedAction,omitempty"`
 	Personality                        string `json:"personality,omitempty"`
 	Description                        string `json:"description,omitempty"`

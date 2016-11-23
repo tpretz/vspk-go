@@ -738,6 +738,20 @@ func (o *Enterprise) CreateNSGatewayTemplate(child *NSGatewayTemplate) *bambou.E
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NSGGroups retrieves the list of child NSGGroups of the Enterprise
+func (o *Enterprise) NSGGroups(info *bambou.FetchingInfo) (NSGGroupsList, *bambou.Error) {
+
+	var list NSGGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, NSGGroupIdentity, &list, info)
+	return list, err
+}
+
+// CreateNSGGroup creates a new child NSGGroup under the Enterprise
+func (o *Enterprise) CreateNSGGroup(child *NSGGroup) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // NSRedundantGatewayGroups retrieves the list of child NSRedundantGatewayGroups of the Enterprise
 func (o *Enterprise) NSRedundantGatewayGroups(info *bambou.FetchingInfo) (NSRedundantGatewayGroupsList, *bambou.Error) {
 

@@ -56,6 +56,7 @@ type VLANTemplate struct {
 	EntityScope                 string `json:"entityScope,omitempty"`
 	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
 	AssociatedVSCProfileID      string `json:"associatedVSCProfileID,omitempty"`
+	DucVlan                     bool   `json:"ducVlan"`
 	ExternalID                  string `json:"externalID,omitempty"`
 }
 

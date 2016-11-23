@@ -29,74 +29,71 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// BRConnectionIdentity represents the Identity of the object
-var BRConnectionIdentity = bambou.Identity{
-	Name:     "brconnections",
-	Category: "brconnections",
+// SSHKeyIdentity represents the Identity of the object
+var SSHKeyIdentity = bambou.Identity{
+	Name:     "sshkey",
+	Category: "sshkeys",
 }
 
-// BRConnectionsList represents a list of BRConnections
-type BRConnectionsList []*BRConnection
+// SSHKeysList represents a list of SSHKeys
+type SSHKeysList []*SSHKey
 
-// BRConnectionsAncestor is the interface of an ancestor of a BRConnection must implement.
-type BRConnectionsAncestor interface {
-	BRConnections(*bambou.FetchingInfo) (BRConnectionsList, *bambou.Error)
-	CreateBRConnections(*BRConnection) *bambou.Error
+// SSHKeysAncestor is the interface of an ancestor of a SSHKey must implement.
+type SSHKeysAncestor interface {
+	SSHKeys(*bambou.FetchingInfo) (SSHKeysList, *bambou.Error)
+	CreateSSHKeys(*SSHKey) *bambou.Error
 }
 
-// BRConnection represents the model of a brconnections
-type BRConnection struct {
-	ID                    string `json:"ID,omitempty"`
-	ParentID              string `json:"parentID,omitempty"`
-	ParentType            string `json:"parentType,omitempty"`
-	Owner                 string `json:"owner,omitempty"`
-	DNSAddress            string `json:"DNSAddress,omitempty"`
-	Gateway               string `json:"gateway,omitempty"`
-	Address               string `json:"address,omitempty"`
-	AdvertisementCriteria string `json:"advertisementCriteria,omitempty"`
-	Netmask               string `json:"netmask,omitempty"`
-	Mode                  string `json:"mode,omitempty"`
-	UplinkID              int    `json:"uplinkID,omitempty"`
+// SSHKey represents the model of a sshkey
+type SSHKey struct {
+	ID          string `json:"ID,omitempty"`
+	ParentID    string `json:"parentID,omitempty"`
+	ParentType  string `json:"parentType,omitempty"`
+	Owner       string `json:"owner,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+	KeyType     string `json:"keyType,omitempty"`
+	PublicKey   string `json:"publicKey,omitempty"`
 }
 
-// NewBRConnection returns a new *BRConnection
-func NewBRConnection() *BRConnection {
+// NewSSHKey returns a new *SSHKey
+func NewSSHKey() *SSHKey {
 
-	return &BRConnection{}
+	return &SSHKey{}
 }
 
 // Identity returns the Identity of the object.
-func (o *BRConnection) Identity() bambou.Identity {
+func (o *SSHKey) Identity() bambou.Identity {
 
-	return BRConnectionIdentity
+	return SSHKeyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *BRConnection) Identifier() string {
+func (o *SSHKey) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *BRConnection) SetIdentifier(ID string) {
+func (o *SSHKey) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the BRConnection from the server
-func (o *BRConnection) Fetch() *bambou.Error {
+// Fetch retrieves the SSHKey from the server
+func (o *SSHKey) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the BRConnection into the server
-func (o *BRConnection) Save() *bambou.Error {
+// Save saves the SSHKey into the server
+func (o *SSHKey) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the BRConnection from the server
-func (o *BRConnection) Delete() *bambou.Error {
+// Delete deletes the SSHKey from the server
+func (o *SSHKey) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }

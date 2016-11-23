@@ -53,9 +53,12 @@ type VCenterHypervisor struct {
 	VCenterIP                        string        `json:"vCenterIP,omitempty"`
 	VCenterPassword                  string        `json:"vCenterPassword,omitempty"`
 	VCenterUser                      string        `json:"vCenterUser,omitempty"`
+	VRSConfigurationTime             int           `json:"VRSConfigurationTime,omitempty"`
 	VRSMetricsID                     string        `json:"VRSMetricsID,omitempty"`
+	VRSState                         string        `json:"VRSState,omitempty"`
 	VRequireNuageMetadata            bool          `json:"vRequireNuageMetadata"`
 	Name                             string        `json:"name,omitempty"`
+	ManagedObjectID                  string        `json:"managedObjectID,omitempty"`
 	LastUpdatedBy                    string        `json:"lastUpdatedBy,omitempty"`
 	LastVRSDeployedDate              float64       `json:"lastVRSDeployedDate,omitempty"`
 	DataDNS1                         string        `json:"dataDNS1,omitempty"`
@@ -133,6 +136,7 @@ type VCenterHypervisor struct {
 	MulticastSourcePortgroup         string        `json:"multicastSourcePortgroup,omitempty"`
 	CustomizedScriptURL              string        `json:"customizedScriptURL,omitempty"`
 	AvailableNetworks                []interface{} `json:"availableNetworks,omitempty"`
+	OvfURL                           string        `json:"ovfURL,omitempty"`
 	ExternalID                       string        `json:"externalID,omitempty"`
 	HypervisorIP                     string        `json:"hypervisorIP,omitempty"`
 	HypervisorPassword               string        `json:"hypervisorPassword,omitempty"`

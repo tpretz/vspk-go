@@ -29,74 +29,71 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// BRConnectionIdentity represents the Identity of the object
-var BRConnectionIdentity = bambou.Identity{
-	Name:     "brconnections",
-	Category: "brconnections",
+// DUCGroupBindingIdentity represents the Identity of the object
+var DUCGroupBindingIdentity = bambou.Identity{
+	Name:     "ducgroupbinding",
+	Category: "ducgroupbindings",
 }
 
-// BRConnectionsList represents a list of BRConnections
-type BRConnectionsList []*BRConnection
+// DUCGroupBindingsList represents a list of DUCGroupBindings
+type DUCGroupBindingsList []*DUCGroupBinding
 
-// BRConnectionsAncestor is the interface of an ancestor of a BRConnection must implement.
-type BRConnectionsAncestor interface {
-	BRConnections(*bambou.FetchingInfo) (BRConnectionsList, *bambou.Error)
-	CreateBRConnections(*BRConnection) *bambou.Error
+// DUCGroupBindingsAncestor is the interface of an ancestor of a DUCGroupBinding must implement.
+type DUCGroupBindingsAncestor interface {
+	DUCGroupBindings(*bambou.FetchingInfo) (DUCGroupBindingsList, *bambou.Error)
+	CreateDUCGroupBindings(*DUCGroupBinding) *bambou.Error
 }
 
-// BRConnection represents the model of a brconnections
-type BRConnection struct {
-	ID                    string `json:"ID,omitempty"`
-	ParentID              string `json:"parentID,omitempty"`
-	ParentType            string `json:"parentType,omitempty"`
-	Owner                 string `json:"owner,omitempty"`
-	DNSAddress            string `json:"DNSAddress,omitempty"`
-	Gateway               string `json:"gateway,omitempty"`
-	Address               string `json:"address,omitempty"`
-	AdvertisementCriteria string `json:"advertisementCriteria,omitempty"`
-	Netmask               string `json:"netmask,omitempty"`
-	Mode                  string `json:"mode,omitempty"`
-	UplinkID              int    `json:"uplinkID,omitempty"`
+// DUCGroupBinding represents the model of a ducgroupbinding
+type DUCGroupBinding struct {
+	ID                   string `json:"ID,omitempty"`
+	ParentID             string `json:"parentID,omitempty"`
+	ParentType           string `json:"parentType,omitempty"`
+	Owner                string `json:"owner,omitempty"`
+	Id                   string `json:"id,omitempty"`
+	OneWayDelay          int    `json:"oneWayDelay,omitempty"`
+	Priority             int    `json:"priority,omitempty"`
+	AssociatedDUCGroupID string `json:"associatedDUCGroupID,omitempty"`
 }
 
-// NewBRConnection returns a new *BRConnection
-func NewBRConnection() *BRConnection {
+// NewDUCGroupBinding returns a new *DUCGroupBinding
+func NewDUCGroupBinding() *DUCGroupBinding {
 
-	return &BRConnection{}
+	return &DUCGroupBinding{}
 }
 
 // Identity returns the Identity of the object.
-func (o *BRConnection) Identity() bambou.Identity {
+func (o *DUCGroupBinding) Identity() bambou.Identity {
 
-	return BRConnectionIdentity
+	return DUCGroupBindingIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *BRConnection) Identifier() string {
+func (o *DUCGroupBinding) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *BRConnection) SetIdentifier(ID string) {
+func (o *DUCGroupBinding) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the BRConnection from the server
-func (o *BRConnection) Fetch() *bambou.Error {
+// Fetch retrieves the DUCGroupBinding from the server
+func (o *DUCGroupBinding) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the BRConnection into the server
-func (o *BRConnection) Save() *bambou.Error {
+// Save saves the DUCGroupBinding into the server
+func (o *DUCGroupBinding) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the BRConnection from the server
-func (o *BRConnection) Delete() *bambou.Error {
+// Delete deletes the DUCGroupBinding from the server
+func (o *DUCGroupBinding) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }

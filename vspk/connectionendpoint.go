@@ -29,74 +29,72 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// BRConnectionIdentity represents the Identity of the object
-var BRConnectionIdentity = bambou.Identity{
-	Name:     "brconnections",
-	Category: "brconnections",
+// ConnectionendpointIdentity represents the Identity of the object
+var ConnectionendpointIdentity = bambou.Identity{
+	Name:     "connectionendpoint",
+	Category: "connectionendpoints",
 }
 
-// BRConnectionsList represents a list of BRConnections
-type BRConnectionsList []*BRConnection
+// ConnectionendpointsList represents a list of Connectionendpoints
+type ConnectionendpointsList []*Connectionendpoint
 
-// BRConnectionsAncestor is the interface of an ancestor of a BRConnection must implement.
-type BRConnectionsAncestor interface {
-	BRConnections(*bambou.FetchingInfo) (BRConnectionsList, *bambou.Error)
-	CreateBRConnections(*BRConnection) *bambou.Error
+// ConnectionendpointsAncestor is the interface of an ancestor of a Connectionendpoint must implement.
+type ConnectionendpointsAncestor interface {
+	Connectionendpoints(*bambou.FetchingInfo) (ConnectionendpointsList, *bambou.Error)
+	CreateConnectionendpoints(*Connectionendpoint) *bambou.Error
 }
 
-// BRConnection represents the model of a brconnections
-type BRConnection struct {
-	ID                    string `json:"ID,omitempty"`
-	ParentID              string `json:"parentID,omitempty"`
-	ParentType            string `json:"parentType,omitempty"`
-	Owner                 string `json:"owner,omitempty"`
-	DNSAddress            string `json:"DNSAddress,omitempty"`
-	Gateway               string `json:"gateway,omitempty"`
-	Address               string `json:"address,omitempty"`
-	AdvertisementCriteria string `json:"advertisementCriteria,omitempty"`
-	Netmask               string `json:"netmask,omitempty"`
-	Mode                  string `json:"mode,omitempty"`
-	UplinkID              int    `json:"uplinkID,omitempty"`
+// Connectionendpoint represents the model of a connectionendpoint
+type Connectionendpoint struct {
+	ID           string `json:"ID,omitempty"`
+	ParentID     string `json:"parentID,omitempty"`
+	ParentType   string `json:"parentType,omitempty"`
+	Owner        string `json:"owner,omitempty"`
+	IPAddress    string `json:"IPAddress,omitempty"`
+	IPType       string `json:"IPType,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Description  string `json:"description,omitempty"`
+	EndPointType string `json:"endPointType,omitempty"`
 }
 
-// NewBRConnection returns a new *BRConnection
-func NewBRConnection() *BRConnection {
+// NewConnectionendpoint returns a new *Connectionendpoint
+func NewConnectionendpoint() *Connectionendpoint {
 
-	return &BRConnection{}
+	return &Connectionendpoint{}
 }
 
 // Identity returns the Identity of the object.
-func (o *BRConnection) Identity() bambou.Identity {
+func (o *Connectionendpoint) Identity() bambou.Identity {
 
-	return BRConnectionIdentity
+	return ConnectionendpointIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *BRConnection) Identifier() string {
+func (o *Connectionendpoint) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *BRConnection) SetIdentifier(ID string) {
+func (o *Connectionendpoint) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the BRConnection from the server
-func (o *BRConnection) Fetch() *bambou.Error {
+// Fetch retrieves the Connectionendpoint from the server
+func (o *Connectionendpoint) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the BRConnection into the server
-func (o *BRConnection) Save() *bambou.Error {
+// Save saves the Connectionendpoint into the server
+func (o *Connectionendpoint) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the BRConnection from the server
-func (o *BRConnection) Delete() *bambou.Error {
+// Delete deletes the Connectionendpoint from the server
+func (o *Connectionendpoint) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }

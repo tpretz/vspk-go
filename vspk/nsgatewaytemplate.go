@@ -53,6 +53,7 @@ type NSGatewayTemplate struct {
 	SSHService                    string `json:"SSHService,omitempty"`
 	Name                          string `json:"name,omitempty"`
 	LastUpdatedBy                 string `json:"lastUpdatedBy,omitempty"`
+	Personality                   string `json:"personality,omitempty"`
 	Description                   string `json:"description,omitempty"`
 	InfrastructureAccessProfileID string `json:"infrastructureAccessProfileID,omitempty"`
 	InfrastructureProfileID       string `json:"infrastructureProfileID,omitempty"`

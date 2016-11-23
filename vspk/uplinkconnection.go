@@ -52,11 +52,15 @@ type UplinkConnection struct {
 	Owner                  string `json:"owner,omitempty"`
 	DNSAddress             string `json:"DNSAddress,omitempty"`
 	Password               string `json:"password,omitempty"`
+	Gateway                string `json:"gateway,omitempty"`
 	Address                string `json:"address,omitempty"`
+	AdvertisementCriteria  string `json:"advertisementCriteria,omitempty"`
 	Netmask                string `json:"netmask,omitempty"`
 	Mode                   string `json:"mode,omitempty"`
 	Role                   string `json:"role,omitempty"`
+	UplinkID               string `json:"uplinkID,omitempty"`
 	Username               string `json:"username,omitempty"`
+	AssocUnderlayID        string `json:"assocUnderlayID,omitempty"`
 	AssociatedVSCProfileID string `json:"associatedVSCProfileID,omitempty"`
 }
 
@@ -100,4 +104,18 @@ func (o *UplinkConnection) Save() *bambou.Error {
 func (o *UplinkConnection) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// Underlays retrieves the list of child Underlays of the UplinkConnection
+func (o *UplinkConnection) Underlays(info *bambou.FetchingInfo) (UnderlaysList, *bambou.Error) {
+
+	var list UnderlaysList
+	err := bambou.CurrentSession().FetchChildren(o, UnderlayIdentity, &list, info)
+	return list, err
+}
+
+// CreateUnderlay creates a new child Underlay under the UplinkConnection
+func (o *UplinkConnection) CreateUnderlay(child *Underlay) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }

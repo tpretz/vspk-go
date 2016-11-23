@@ -284,6 +284,20 @@ func (o *Me) CreateRedundancyGroup(child *RedundancyGroup) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// PerformanceMonitors retrieves the list of child PerformanceMonitors of the Me
+func (o *Me) PerformanceMonitors(info *bambou.FetchingInfo) (PerformanceMonitorsList, *bambou.Error) {
+
+	var list PerformanceMonitorsList
+	err := bambou.CurrentSession().FetchChildren(o, PerformanceMonitorIdentity, &list, info)
+	return list, err
+}
+
+// CreatePerformanceMonitor creates a new child PerformanceMonitor under the Me
+func (o *Me) CreatePerformanceMonitor(child *PerformanceMonitor) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Certificates retrieves the list of child Certificates of the Me
 func (o *Me) Certificates(info *bambou.FetchingInfo) (CertificatesList, *bambou.Error) {
 
@@ -620,6 +634,20 @@ func (o *Me) CreateCloudMgmtSystem(child *CloudMgmtSystem) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Underlays retrieves the list of child Underlays of the Me
+func (o *Me) Underlays(info *bambou.FetchingInfo) (UnderlaysList, *bambou.Error) {
+
+	var list UnderlaysList
+	err := bambou.CurrentSession().FetchChildren(o, UnderlayIdentity, &list, info)
+	return list, err
+}
+
+// CreateUnderlay creates a new child Underlay under the Me
+func (o *Me) CreateUnderlay(child *Underlay) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // InfrastructureGatewayProfiles retrieves the list of child InfrastructureGatewayProfiles of the Me
 func (o *Me) InfrastructureGatewayProfiles(info *bambou.FetchingInfo) (InfrastructureGatewayProfilesList, *bambou.Error) {
 
@@ -914,6 +942,20 @@ func (o *Me) CreateNSGatewayTemplate(child *NSGatewayTemplate) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NSGGroups retrieves the list of child NSGGroups of the Me
+func (o *Me) NSGGroups(info *bambou.FetchingInfo) (NSGGroupsList, *bambou.Error) {
+
+	var list NSGGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, NSGGroupIdentity, &list, info)
+	return list, err
+}
+
+// CreateNSGGroup creates a new child NSGGroup under the Me
+func (o *Me) CreateNSGGroup(child *NSGGroup) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // NSRedundantGatewayGroups retrieves the list of child NSRedundantGatewayGroups of the Me
 func (o *Me) NSRedundantGatewayGroups(info *bambou.FetchingInfo) (NSRedundantGatewayGroupsList, *bambou.Error) {
 
@@ -980,6 +1022,20 @@ func (o *Me) Subnets(info *bambou.FetchingInfo) (SubnetsList, *bambou.Error) {
 
 // CreateSubnet creates a new child Subnet under the Me
 func (o *Me) CreateSubnet(child *Subnet) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// DUCGroups retrieves the list of child DUCGroups of the Me
+func (o *Me) DUCGroups(info *bambou.FetchingInfo) (DUCGroupsList, *bambou.Error) {
+
+	var list DUCGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, DUCGroupIdentity, &list, info)
+	return list, err
+}
+
+// CreateDUCGroup creates a new child DUCGroup under the Me
+func (o *Me) CreateDUCGroup(child *DUCGroup) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
