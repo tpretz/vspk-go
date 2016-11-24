@@ -68,6 +68,10 @@ type QOS struct {
 	ServiceClass                           string `json:"serviceClass,omitempty"`
 	Description                            string `json:"description,omitempty"`
 	RewriteForwardingClass                 bool   `json:"rewriteForwardingClass"`
+	EgressFIPCommittedBurstSize            string `json:"EgressFIPCommittedBurstSize,omitempty"`
+	EgressFIPCommittedInformationRate      string `json:"EgressFIPCommittedInformationRate,omitempty"`
+	EgressFIPPeakBurstSize                 string `json:"EgressFIPPeakBurstSize,omitempty"`
+	EgressFIPPeakInformationRate           string `json:"EgressFIPPeakInformationRate,omitempty"`
 	EntityScope                            string `json:"entityScope,omitempty"`
 	CommittedBurstSize                     string `json:"committedBurstSize,omitempty"`
 	CommittedInformationRate               string `json:"committedInformationRate,omitempty"`

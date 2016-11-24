@@ -50,7 +50,7 @@ type VCenter struct {
 	ParentID                         string `json:"parentID,omitempty"`
 	ParentType                       string `json:"parentType,omitempty"`
 	Owner                            string `json:"owner,omitempty"`
-	VRSConfigurationTime             int    `json:"VRSConfigurationTime,omitempty"`
+	VRSConfigurationTimeLimit        int    `json:"VRSConfigurationTimeLimit,omitempty"`
 	VRequireNuageMetadata            bool   `json:"vRequireNuageMetadata"`
 	Name                             string `json:"name,omitempty"`
 	Password                         string `json:"password,omitempty"`
@@ -83,6 +83,7 @@ type VCenter struct {
 	DhcpRelayServer                  string `json:"dhcpRelayServer,omitempty"`
 	MirrorNetworkPortgroup           string `json:"mirrorNetworkPortgroup,omitempty"`
 	SiteId                           string `json:"siteId,omitempty"`
+	OldAgencyName                    string `json:"oldAgencyName,omitempty"`
 	AllowDataDHCP                    bool   `json:"allowDataDHCP"`
 	AllowMgmtDHCP                    bool   `json:"allowMgmtDHCP"`
 	FlowEvictionThreshold            int    `json:"flowEvictionThreshold,omitempty"`

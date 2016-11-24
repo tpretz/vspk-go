@@ -94,6 +94,7 @@ type SystemConfig struct {
 	LastUpdatedBy                                     string `json:"lastUpdatedBy,omitempty"`
 	MaxFailedLogins                                   int    `json:"maxFailedLogins,omitempty"`
 	MaxResponse                                       int    `json:"maxResponse,omitempty"`
+	AccumulateLicensesEnabled                         bool   `json:"accumulateLicensesEnabled "`
 	PerformancePathSelectionVNID                      int    `json:"performancePathSelectionVNID,omitempty"`
 	ServiceIDUpperLimit                               int    `json:"serviceIDUpperLimit,omitempty"`
 	KeyServerMonitorEnabled                           bool   `json:"keyServerMonitorEnabled"`

@@ -53,7 +53,7 @@ type VCenterHypervisor struct {
 	VCenterIP                        string        `json:"vCenterIP,omitempty"`
 	VCenterPassword                  string        `json:"vCenterPassword,omitempty"`
 	VCenterUser                      string        `json:"vCenterUser,omitempty"`
-	VRSConfigurationTime             int           `json:"VRSConfigurationTime,omitempty"`
+	VRSConfigurationTimeLimit        int           `json:"VRSConfigurationTimeLimit,omitempty"`
 	VRSMetricsID                     string        `json:"VRSMetricsID,omitempty"`
 	VRSState                         string        `json:"VRSState,omitempty"`
 	VRequireNuageMetadata            bool          `json:"vRequireNuageMetadata"`

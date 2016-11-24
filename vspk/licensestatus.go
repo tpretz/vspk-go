@@ -50,6 +50,8 @@ type LicenseStatus struct {
 	ParentID                    string `json:"parentID,omitempty"`
 	ParentType                  string `json:"parentType,omitempty"`
 	Owner                       string `json:"owner,omitempty"`
+	AccumulateLicensesEnabled   string `json:"accumulateLicensesEnabled,omitempty"`
+	TotalLicensedGatewaysCount  int    `json:"totalLicensedGatewaysCount ,omitempty"`
 	TotalLicensedNICsCount      int    `json:"totalLicensedNICsCount,omitempty"`
 	TotalLicensedNSGsCount      int    `json:"totalLicensedNSGsCount,omitempty"`
 	TotalLicensedUsedNICsCount  int    `json:"totalLicensedUsedNICsCount,omitempty"`
@@ -60,6 +62,7 @@ type LicenseStatus struct {
 	TotalLicensedVMsCount       int    `json:"totalLicensedVMsCount,omitempty"`
 	TotalLicensedVRSGsCount     int    `json:"totalLicensedVRSGsCount,omitempty"`
 	TotalLicensedVRSsCount      int    `json:"totalLicensedVRSsCount,omitempty"`
+	TotalUsedGatewaysCount      int    `json:"totalUsedGatewaysCount ,omitempty"`
 }
 
 // NewLicenseStatus returns a new *LicenseStatus

@@ -50,7 +50,7 @@ type VCenterCluster struct {
 	ParentID                         string `json:"parentID,omitempty"`
 	ParentType                       string `json:"parentType,omitempty"`
 	Owner                            string `json:"owner,omitempty"`
-	VRSConfigurationTime             int    `json:"VRSConfigurationTime,omitempty"`
+	VRSConfigurationTimeLimit        int    `json:"VRSConfigurationTimeLimit,omitempty"`
 	VRequireNuageMetadata            bool   `json:"vRequireNuageMetadata"`
 	Name                             string `json:"name,omitempty"`
 	ManagedObjectID                  string `json:"managedObjectID,omitempty"`
