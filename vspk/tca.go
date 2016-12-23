@@ -73,7 +73,6 @@ type TCA struct {
 func NewTCA() *TCA {
 
 	return &TCA{
-		Scope:  "LOCAL",
 		Metric: "BYTES_IN",
 		Type:   "ROLLING_AVERAGE",
 	}

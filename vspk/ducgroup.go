@@ -51,8 +51,7 @@ type DUCGroup struct {
 	ParentType                     string        `json:"parentType,omitempty"`
 	Owner                          string        `json:"owner,omitempty"`
 	Name                           string        `json:"name,omitempty"`
-	Id                             string        `json:"id,omitempty"`
-	Description                    string        `json:"Description ,omitempty"`
+	Description                    string        `json:"description,omitempty"`
 	AssociatedDUCs                 []interface{} `json:"associatedDUCs,omitempty"`
 	AssociatedPerformanceMonitorID string        `json:"associatedPerformanceMonitorID,omitempty"`
 }

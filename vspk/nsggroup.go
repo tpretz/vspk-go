@@ -51,8 +51,7 @@ type NSGGroup struct {
 	ParentType     string        `json:"parentType,omitempty"`
 	Owner          string        `json:"owner,omitempty"`
 	Name           string        `json:"name,omitempty"`
-	Id             string        `json:"id,omitempty"`
-	Description    string        `json:"description ,omitempty"`
+	Description    string        `json:"description,omitempty"`
 	AssociatedNSGs []interface{} `json:"associatedNSGs,omitempty"`
 }
 

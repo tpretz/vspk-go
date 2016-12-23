@@ -46,14 +46,16 @@ type MonitorscopesAncestor interface {
 
 // Monitorscope represents the model of a monitorscope
 type Monitorscope struct {
-	ID              string        `json:"ID,omitempty"`
-	ParentID        string        `json:"parentID,omitempty"`
-	ParentType      string        `json:"parentType,omitempty"`
-	Owner           string        `json:"owner,omitempty"`
-	Name            string        `json:"name,omitempty"`
-	ReadOnly        bool          `json:"readOnly"`
-	DestinationNSGs []interface{} `json:"destinationNSGs,omitempty"`
-	SourceNSGs      []interface{} `json:"sourceNSGs,omitempty"`
+	ID                      string        `json:"ID,omitempty"`
+	ParentID                string        `json:"parentID,omitempty"`
+	ParentType              string        `json:"parentType,omitempty"`
+	Owner                   string        `json:"owner,omitempty"`
+	Name                    string        `json:"name,omitempty"`
+	ReadOnly                bool          `json:"readOnly"`
+	DestinationNSGs         []interface{} `json:"destinationNSGs,omitempty"`
+	AllowAllDestinationNSGs bool          `json:"allowAllDestinationNSGs"`
+	AllowAllSourceNSGs      bool          `json:"allowAllSourceNSGs"`
+	SourceNSGs              []interface{} `json:"sourceNSGs,omitempty"`
 }
 
 // NewMonitorscope returns a new *Monitorscope

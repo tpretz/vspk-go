@@ -47,6 +47,7 @@ type Me struct {
 	FirstName              string `json:"firstName,omitempty"`
 	Disabled               bool   `json:"disabled"`
 	ElasticSearchUIAddress string `json:"elasticSearchUIAddress,omitempty"`
+	FlowCollectionEnabled  bool   `json:"flowCollectionEnabled"`
 	Email                  string `json:"email,omitempty"`
 	EnterpriseID           string `json:"enterpriseID,omitempty"`
 	EnterpriseName         string `json:"enterpriseName,omitempty"`
@@ -54,6 +55,7 @@ type Me struct {
 	MobileNumber           string `json:"mobileNumber,omitempty"`
 	Role                   string `json:"role,omitempty"`
 	UserName               string `json:"userName,omitempty"`
+	StatisticsEnabled      bool   `json:"statisticsEnabled"`
 	AvatarData             string `json:"avatarData,omitempty"`
 	AvatarType             string `json:"avatarType,omitempty"`
 	ExternalID             string `json:"externalID,omitempty"`

@@ -388,6 +388,34 @@ func (o *Enterprise) CreateSharedNetworkResource(child *SharedNetworkResource) *
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// FirewallAcls retrieves the list of child FirewallAcls of the Enterprise
+func (o *Enterprise) FirewallAcls(info *bambou.FetchingInfo) (FirewallAclsList, *bambou.Error) {
+
+	var list FirewallAclsList
+	err := bambou.CurrentSession().FetchChildren(o, FirewallAclIdentity, &list, info)
+	return list, err
+}
+
+// CreateFirewallAcl creates a new child FirewallAcl under the Enterprise
+func (o *Enterprise) CreateFirewallAcl(child *FirewallAcl) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// FirewallRules retrieves the list of child FirewallRules of the Enterprise
+func (o *Enterprise) FirewallRules(info *bambou.FetchingInfo) (FirewallRulesList, *bambou.Error) {
+
+	var list FirewallRulesList
+	err := bambou.CurrentSession().FetchChildren(o, FirewallRuleIdentity, &list, info)
+	return list, err
+}
+
+// CreateFirewallRule creates a new child FirewallRule under the Enterprise
+func (o *Enterprise) CreateFirewallRule(child *FirewallRule) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // IKECertificates retrieves the list of child IKECertificates of the Enterprise
 func (o *Enterprise) IKECertificates(info *bambou.FetchingInfo) (IKECertificatesList, *bambou.Error) {
 

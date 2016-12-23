@@ -282,6 +282,20 @@ func (o *Domain) CreateLink(child *Link) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// FirewallAcls retrieves the list of child FirewallAcls of the Domain
+func (o *Domain) FirewallAcls(info *bambou.FetchingInfo) (FirewallAclsList, *bambou.Error) {
+
+	var list FirewallAclsList
+	err := bambou.CurrentSession().FetchChildren(o, FirewallAclIdentity, &list, info)
+	return list, err
+}
+
+// CreateFirewallAcl creates a new child FirewallAcl under the Domain
+func (o *Domain) CreateFirewallAcl(child *FirewallAcl) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // FloatingIps retrieves the list of child FloatingIps of the Domain
 func (o *Domain) FloatingIps(info *bambou.FetchingInfo) (FloatingIpsList, *bambou.Error) {
 
