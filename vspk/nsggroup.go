@@ -38,10 +38,19 @@ var NSGGroupIdentity = bambou.Identity{
 // NSGGroupsList represents a list of NSGGroups
 type NSGGroupsList []*NSGGroup
 
-// NSGGroupsAncestor is the interface of an ancestor of a NSGGroup must implement.
+// NSGGroupsAncestor is the interface that an ancestor of a NSGGroup must implement.
+// An Ancestor is defined as an entity that has NSGGroup as a descendant.
+// An Ancestor can get a list of its child NSGGroups, but not necessarily create one.
 type NSGGroupsAncestor interface {
 	NSGGroups(*bambou.FetchingInfo) (NSGGroupsList, *bambou.Error)
-	CreateNSGGroups(*NSGGroup) *bambou.Error
+}
+
+// NSGGroupsParent is the interface that a parent of a NSGGroup must implement.
+// A Parent is defined as an entity that has NSGGroup as a child.
+// A Parent is an Ancestor which can create a NSGGroup.
+type NSGGroupsParent interface {
+	NSGGroupsAncestor
+	CreateNSGGroup(*NSGGroup) *bambou.Error
 }
 
 // NSGGroup represents the model of a nsggroup

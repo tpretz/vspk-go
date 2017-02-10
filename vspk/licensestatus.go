@@ -38,9 +38,18 @@ var LicenseStatusIdentity = bambou.Identity{
 // LicenseStatusList represents a list of LicenseStatus
 type LicenseStatusList []*LicenseStatus
 
-// LicenseStatusAncestor is the interface of an ancestor of a LicenseStatus must implement.
+// LicenseStatusAncestor is the interface that an ancestor of a LicenseStatus must implement.
+// An Ancestor is defined as an entity that has LicenseStatus as a descendant.
+// An Ancestor can get a list of its child LicenseStatus, but not necessarily create one.
 type LicenseStatusAncestor interface {
 	LicenseStatus(*bambou.FetchingInfo) (LicenseStatusList, *bambou.Error)
+}
+
+// LicenseStatusParent is the interface that a parent of a LicenseStatus must implement.
+// A Parent is defined as an entity that has LicenseStatus as a child.
+// A Parent is an Ancestor which can create a LicenseStatus.
+type LicenseStatusParent interface {
+	LicenseStatusAncestor
 	CreateLicenseStatus(*LicenseStatus) *bambou.Error
 }
 
@@ -68,7 +77,9 @@ type LicenseStatus struct {
 // NewLicenseStatus returns a new *LicenseStatus
 func NewLicenseStatus() *LicenseStatus {
 
-	return &LicenseStatus{}
+	return &LicenseStatus{
+		AccumulateLicensesEnabled: "false",
+	}
 }
 
 // Identity returns the Identity of the object.

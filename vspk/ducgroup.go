@@ -38,10 +38,19 @@ var DUCGroupIdentity = bambou.Identity{
 // DUCGroupsList represents a list of DUCGroups
 type DUCGroupsList []*DUCGroup
 
-// DUCGroupsAncestor is the interface of an ancestor of a DUCGroup must implement.
+// DUCGroupsAncestor is the interface that an ancestor of a DUCGroup must implement.
+// An Ancestor is defined as an entity that has DUCGroup as a descendant.
+// An Ancestor can get a list of its child DUCGroups, but not necessarily create one.
 type DUCGroupsAncestor interface {
 	DUCGroups(*bambou.FetchingInfo) (DUCGroupsList, *bambou.Error)
-	CreateDUCGroups(*DUCGroup) *bambou.Error
+}
+
+// DUCGroupsParent is the interface that a parent of a DUCGroup must implement.
+// A Parent is defined as an entity that has DUCGroup as a child.
+// A Parent is an Ancestor which can create a DUCGroup.
+type DUCGroupsParent interface {
+	DUCGroupsAncestor
+	CreateDUCGroup(*DUCGroup) *bambou.Error
 }
 
 // DUCGroup represents the model of a ducgroup

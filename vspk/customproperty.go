@@ -29,77 +29,78 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// ViaIdentity represents the Identity of the object
-var ViaIdentity = bambou.Identity{
-	Name:     "via",
-	Category: "vias",
+// CustomPropertyIdentity represents the Identity of the object
+var CustomPropertyIdentity = bambou.Identity{
+	Name:     "customproperty",
+	Category: "customproperties",
 }
 
-// ViasList represents a list of Vias
-type ViasList []*Via
+// CustomPropertiesList represents a list of CustomProperties
+type CustomPropertiesList []*CustomProperty
 
-// ViasAncestor is the interface that an ancestor of a Via must implement.
-// An Ancestor is defined as an entity that has Via as a descendant.
-// An Ancestor can get a list of its child Vias, but not necessarily create one.
-type ViasAncestor interface {
-	Vias(*bambou.FetchingInfo) (ViasList, *bambou.Error)
+// CustomPropertiesAncestor is the interface that an ancestor of a CustomProperty must implement.
+// An Ancestor is defined as an entity that has CustomProperty as a descendant.
+// An Ancestor can get a list of its child CustomProperties, but not necessarily create one.
+type CustomPropertiesAncestor interface {
+	CustomProperties(*bambou.FetchingInfo) (CustomPropertiesList, *bambou.Error)
 }
 
-// ViasParent is the interface that a parent of a Via must implement.
-// A Parent is defined as an entity that has Via as a child.
-// A Parent is an Ancestor which can create a Via.
-type ViasParent interface {
-	ViasAncestor
-	CreateVia(*Via) *bambou.Error
+// CustomPropertiesParent is the interface that a parent of a CustomProperty must implement.
+// A Parent is defined as an entity that has CustomProperty as a child.
+// A Parent is an Ancestor which can create a CustomProperty.
+type CustomPropertiesParent interface {
+	CustomPropertiesAncestor
+	CreateCustomProperty(*CustomProperty) *bambou.Error
 }
 
-// Via represents the model of a via
-type Via struct {
-	ID         string        `json:"ID,omitempty"`
-	ParentID   string        `json:"parentID,omitempty"`
-	ParentType string        `json:"parentType,omitempty"`
-	Owner      string        `json:"owner,omitempty"`
-	NextHops   []interface{} `json:"nextHops,omitempty"`
+// CustomProperty represents the model of a customproperty
+type CustomProperty struct {
+	ID             string `json:"ID,omitempty"`
+	ParentID       string `json:"parentID,omitempty"`
+	ParentType     string `json:"parentType,omitempty"`
+	Owner          string `json:"owner,omitempty"`
+	AttributeName  string `json:"attributeName,omitempty"`
+	AttributeValue string `json:"attributeValue,omitempty"`
 }
 
-// NewVia returns a new *Via
-func NewVia() *Via {
+// NewCustomProperty returns a new *CustomProperty
+func NewCustomProperty() *CustomProperty {
 
-	return &Via{}
+	return &CustomProperty{}
 }
 
 // Identity returns the Identity of the object.
-func (o *Via) Identity() bambou.Identity {
+func (o *CustomProperty) Identity() bambou.Identity {
 
-	return ViaIdentity
+	return CustomPropertyIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Via) Identifier() string {
+func (o *CustomProperty) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Via) SetIdentifier(ID string) {
+func (o *CustomProperty) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the Via from the server
-func (o *Via) Fetch() *bambou.Error {
+// Fetch retrieves the CustomProperty from the server
+func (o *CustomProperty) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the Via into the server
-func (o *Via) Save() *bambou.Error {
+// Save saves the CustomProperty into the server
+func (o *CustomProperty) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the Via from the server
-func (o *Via) Delete() *bambou.Error {
+// Delete deletes the CustomProperty from the server
+func (o *CustomProperty) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }

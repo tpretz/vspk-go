@@ -38,10 +38,19 @@ var SystemConfigIdentity = bambou.Identity{
 // SystemConfigsList represents a list of SystemConfigs
 type SystemConfigsList []*SystemConfig
 
-// SystemConfigsAncestor is the interface of an ancestor of a SystemConfig must implement.
+// SystemConfigsAncestor is the interface that an ancestor of a SystemConfig must implement.
+// An Ancestor is defined as an entity that has SystemConfig as a descendant.
+// An Ancestor can get a list of its child SystemConfigs, but not necessarily create one.
 type SystemConfigsAncestor interface {
 	SystemConfigs(*bambou.FetchingInfo) (SystemConfigsList, *bambou.Error)
-	CreateSystemConfigs(*SystemConfig) *bambou.Error
+}
+
+// SystemConfigsParent is the interface that a parent of a SystemConfig must implement.
+// A Parent is defined as an entity that has SystemConfig as a child.
+// A Parent is an Ancestor which can create a SystemConfig.
+type SystemConfigsParent interface {
+	SystemConfigsAncestor
+	CreateSystemConfig(*SystemConfig) *bambou.Error
 }
 
 // SystemConfig represents the model of a systemconfig
@@ -64,6 +73,8 @@ type SystemConfig struct {
 	ZFBRequestRetryTimer                              int    `json:"ZFBRequestRetryTimer,omitempty"`
 	ZFBSchedulerStaleRequestTimeout                   int    `json:"ZFBSchedulerStaleRequestTimeout,omitempty"`
 	DHCPOptionSize                                    int    `json:"DHCPOptionSize,omitempty"`
+	VLANIDLowerLimit                                  int    `json:"VLANIDLowerLimit,omitempty"`
+	VLANIDUpperLimit                                  int    `json:"VLANIDUpperLimit,omitempty"`
 	VMCacheSize                                       int    `json:"VMCacheSize,omitempty"`
 	VMPurgeTime                                       int    `json:"VMPurgeTime,omitempty"`
 	VMResyncDeletionWaitTime                          int    `json:"VMResyncDeletionWaitTime,omitempty"`
@@ -95,6 +106,7 @@ type SystemConfig struct {
 	MaxFailedLogins                                   int    `json:"maxFailedLogins,omitempty"`
 	MaxResponse                                       int    `json:"maxResponse,omitempty"`
 	AccumulateLicensesEnabled                         bool   `json:"accumulateLicensesEnabled"`
+	PerDomainVlanIdEnabled                            bool   `json:"perDomainVlanIdEnabled"`
 	PerformancePathSelectionVNID                      int    `json:"performancePathSelectionVNID,omitempty"`
 	ServiceIDUpperLimit                               int    `json:"serviceIDUpperLimit,omitempty"`
 	KeyServerMonitorEnabled                           bool   `json:"keyServerMonitorEnabled"`
@@ -181,7 +193,27 @@ type SystemConfig struct {
 // NewSystemConfig returns a new *SystemConfig
 func NewSystemConfig() *SystemConfig {
 
-	return &SystemConfig{}
+	return &SystemConfig{
+		ZFBRequestRetryTimer:        30,
+		VMCacheSize:                 5000,
+		VMPurgeTime:                 60,
+		VMResyncDeletionWaitTime:    2,
+		VMResyncOutstandingInterval: 1000,
+		VMUnreachableCleanupTime:    7200,
+		VMUnreachableTime:           3600,
+		VPortInitStatefulTimer:      300,
+		PageMaxSize:                 500,
+		PageSize:                    50,
+		AccumulateLicensesEnabled:   false,
+		PerDomainVlanIdEnabled:      false,
+		ElasticClusterName:          "nuage_elasticsearch",
+		AllowEnterpriseAvatarOnNSG:  true,
+		CsprootAuthenticationMethod: "LOCAL",
+		StatsMinDuration:            2592000,
+		StickyECMPIdleTimeout:       0,
+		SubnetResyncInterval:        10,
+		DynamicWANServiceDiffTime:   1,
+	}
 }
 
 // Identity returns the Identity of the object.
