@@ -38,50 +38,64 @@ var EnterpriseIdentity = bambou.Identity{
 // EnterprisesList represents a list of Enterprises
 type EnterprisesList []*Enterprise
 
-// EnterprisesAncestor is the interface of an ancestor of a Enterprise must implement.
+// EnterprisesAncestor is the interface that an ancestor of a Enterprise must implement.
+// An Ancestor is defined as an entity that has Enterprise as a descendant.
+// An Ancestor can get a list of its child Enterprises, but not necessarily create one.
 type EnterprisesAncestor interface {
 	Enterprises(*bambou.FetchingInfo) (EnterprisesList, *bambou.Error)
-	CreateEnterprises(*Enterprise) *bambou.Error
+}
+
+// EnterprisesParent is the interface that a parent of a Enterprise must implement.
+// A Parent is defined as an entity that has Enterprise as a child.
+// A Parent is an Ancestor which can create a Enterprise.
+type EnterprisesParent interface {
+	EnterprisesAncestor
+	CreateEnterprise(*Enterprise) *bambou.Error
 }
 
 // Enterprise represents the model of a enterprise
 type Enterprise struct {
-	ID                                    string        `json:"ID,omitempty"`
-	ParentID                              string        `json:"parentID,omitempty"`
-	ParentType                            string        `json:"parentType,omitempty"`
-	Owner                                 string        `json:"owner,omitempty"`
-	LDAPAuthorizationEnabled              bool          `json:"LDAPAuthorizationEnabled"`
-	LDAPEnabled                           bool          `json:"LDAPEnabled"`
-	BGPEnabled                            bool          `json:"BGPEnabled"`
-	DHCPLeaseInterval                     int           `json:"DHCPLeaseInterval,omitempty"`
-	Name                                  string        `json:"name,omitempty"`
-	LastUpdatedBy                         string        `json:"lastUpdatedBy,omitempty"`
-	ReceiveMultiCastListID                string        `json:"receiveMultiCastListID,omitempty"`
-	SendMultiCastListID                   string        `json:"sendMultiCastListID,omitempty"`
-	Description                           string        `json:"description,omitempty"`
-	AllowAdvancedQOSConfiguration         bool          `json:"allowAdvancedQOSConfiguration"`
-	AllowGatewayManagement                bool          `json:"allowGatewayManagement"`
-	AllowTrustedForwardingClass           bool          `json:"allowTrustedForwardingClass"`
-	AllowedForwardingClasses              []interface{} `json:"allowedForwardingClasses,omitempty"`
-	FloatingIPsQuota                      int           `json:"floatingIPsQuota,omitempty"`
-	FloatingIPsUsed                       int           `json:"floatingIPsUsed,omitempty"`
-	EncryptionManagementMode              string        `json:"encryptionManagementMode,omitempty"`
-	EnterpriseProfileID                   string        `json:"enterpriseProfileID,omitempty"`
-	EntityScope                           string        `json:"entityScope,omitempty"`
-	LocalAS                               int           `json:"localAS,omitempty"`
-	AssociatedEnterpriseSecurityID        string        `json:"associatedEnterpriseSecurityID,omitempty"`
-	AssociatedGroupKeyEncryptionProfileID string        `json:"associatedGroupKeyEncryptionProfileID,omitempty"`
-	AssociatedKeyServerMonitorID          string        `json:"associatedKeyServerMonitorID,omitempty"`
-	CustomerID                            int           `json:"customerID,omitempty"`
-	AvatarData                            string        `json:"avatarData,omitempty"`
-	AvatarType                            string        `json:"avatarType,omitempty"`
-	ExternalID                            string        `json:"externalID,omitempty"`
+	ID                                     string        `json:"ID,omitempty"`
+	ParentID                               string        `json:"parentID,omitempty"`
+	ParentType                             string        `json:"parentType,omitempty"`
+	Owner                                  string        `json:"owner,omitempty"`
+	LDAPAuthorizationEnabled               bool          `json:"LDAPAuthorizationEnabled"`
+	LDAPEnabled                            bool          `json:"LDAPEnabled"`
+	BGPEnabled                             bool          `json:"BGPEnabled"`
+	DHCPLeaseInterval                      int           `json:"DHCPLeaseInterval,omitempty"`
+	Name                                   string        `json:"name,omitempty"`
+	LastUpdatedBy                          string        `json:"lastUpdatedBy,omitempty"`
+	ReceiveMultiCastListID                 string        `json:"receiveMultiCastListID,omitempty"`
+	SendMultiCastListID                    string        `json:"sendMultiCastListID,omitempty"`
+	Description                            string        `json:"description,omitempty"`
+	DictionaryVersion                      int           `json:"dictionaryVersion,omitempty"`
+	AllowAdvancedQOSConfiguration          bool          `json:"allowAdvancedQOSConfiguration"`
+	AllowGatewayManagement                 bool          `json:"allowGatewayManagement"`
+	AllowTrustedForwardingClass            bool          `json:"allowTrustedForwardingClass"`
+	AllowedForwardingClasses               []interface{} `json:"allowedForwardingClasses,omitempty"`
+	FloatingIPsQuota                       int           `json:"floatingIPsQuota,omitempty"`
+	FloatingIPsUsed                        int           `json:"floatingIPsUsed,omitempty"`
+	EnableApplicationPerformanceManagement bool          `json:"enableApplicationPerformanceManagement"`
+	EncryptionManagementMode               string        `json:"encryptionManagementMode,omitempty"`
+	EnterpriseProfileID                    string        `json:"enterpriseProfileID,omitempty"`
+	EntityScope                            string        `json:"entityScope,omitempty"`
+	LocalAS                                int           `json:"localAS,omitempty"`
+	AssociatedEnterpriseSecurityID         string        `json:"associatedEnterpriseSecurityID,omitempty"`
+	AssociatedGroupKeyEncryptionProfileID  string        `json:"associatedGroupKeyEncryptionProfileID,omitempty"`
+	AssociatedKeyServerMonitorID           string        `json:"associatedKeyServerMonitorID,omitempty"`
+	CustomerID                             int           `json:"customerID,omitempty"`
+	AvatarData                             string        `json:"avatarData,omitempty"`
+	AvatarType                             string        `json:"avatarType,omitempty"`
+	ExternalID                             string        `json:"externalID,omitempty"`
 }
 
 // NewEnterprise returns a new *Enterprise
 func NewEnterprise() *Enterprise {
 
-	return &Enterprise{}
+	return &Enterprise{
+		DictionaryVersion:                      1,
+		EnableApplicationPerformanceManagement: false,
+	}
 }
 
 // Identity returns the Identity of the object.
@@ -148,6 +162,14 @@ func (o *Enterprise) CreateL2DomainTemplate(child *L2DomainTemplate) *bambou.Err
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// L7applicationsignatures retrieves the list of child L7applicationsignatures of the Enterprise
+func (o *Enterprise) L7applicationsignatures(info *bambou.FetchingInfo) (L7applicationsignaturesList, *bambou.Error) {
+
+	var list L7applicationsignaturesList
+	err := bambou.CurrentSession().FetchChildren(o, L7applicationsignatureIdentity, &list, info)
+	return list, err
+}
+
 // RateLimiters retrieves the list of child RateLimiters of the Enterprise
 func (o *Enterprise) RateLimiters(info *bambou.FetchingInfo) (RateLimitersList, *bambou.Error) {
 
@@ -198,24 +220,12 @@ func (o *Enterprise) PATNATPools(info *bambou.FetchingInfo) (PATNATPoolsList, *b
 	return list, err
 }
 
-// CreatePATNATPool creates a new child PATNATPool under the Enterprise
-func (o *Enterprise) CreatePATNATPool(child *PATNATPool) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // LDAPConfigurations retrieves the list of child LDAPConfigurations of the Enterprise
 func (o *Enterprise) LDAPConfigurations(info *bambou.FetchingInfo) (LDAPConfigurationsList, *bambou.Error) {
 
 	var list LDAPConfigurationsList
 	err := bambou.CurrentSession().FetchChildren(o, LDAPConfigurationIdentity, &list, info)
 	return list, err
-}
-
-// CreateLDAPConfiguration creates a new child LDAPConfiguration under the Enterprise
-func (o *Enterprise) CreateLDAPConfiguration(child *LDAPConfiguration) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // RedundancyGroups retrieves the list of child RedundancyGroups of the Enterprise
@@ -228,6 +238,20 @@ func (o *Enterprise) RedundancyGroups(info *bambou.FetchingInfo) (RedundancyGrou
 
 // CreateRedundancyGroup creates a new child RedundancyGroup under the Enterprise
 func (o *Enterprise) CreateRedundancyGroup(child *RedundancyGroup) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// PerformanceMonitors retrieves the list of child PerformanceMonitors of the Enterprise
+func (o *Enterprise) PerformanceMonitors(info *bambou.FetchingInfo) (PerformanceMonitorsList, *bambou.Error) {
+
+	var list PerformanceMonitorsList
+	err := bambou.CurrentSession().FetchChildren(o, PerformanceMonitorIdentity, &list, info)
+	return list, err
+}
+
+// CreatePerformanceMonitor creates a new child PerformanceMonitor under the Enterprise
+func (o *Enterprise) CreatePerformanceMonitor(child *PerformanceMonitor) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -274,18 +298,26 @@ func (o *Enterprise) CreateNetworkMacroGroup(child *NetworkMacroGroup) *bambou.E
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NetworkPerformanceMeasurements retrieves the list of child NetworkPerformanceMeasurements of the Enterprise
+func (o *Enterprise) NetworkPerformanceMeasurements(info *bambou.FetchingInfo) (NetworkPerformanceMeasurementsList, *bambou.Error) {
+
+	var list NetworkPerformanceMeasurementsList
+	err := bambou.CurrentSession().FetchChildren(o, NetworkPerformanceMeasurementIdentity, &list, info)
+	return list, err
+}
+
+// CreateNetworkPerformanceMeasurement creates a new child NetworkPerformanceMeasurement under the Enterprise
+func (o *Enterprise) CreateNetworkPerformanceMeasurement(child *NetworkPerformanceMeasurement) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // KeyServerMonitors retrieves the list of child KeyServerMonitors of the Enterprise
 func (o *Enterprise) KeyServerMonitors(info *bambou.FetchingInfo) (KeyServerMonitorsList, *bambou.Error) {
 
 	var list KeyServerMonitorsList
 	err := bambou.CurrentSession().FetchChildren(o, KeyServerMonitorIdentity, &list, info)
 	return list, err
-}
-
-// CreateKeyServerMonitor creates a new child KeyServerMonitor under the Enterprise
-func (o *Enterprise) CreateKeyServerMonitor(child *KeyServerMonitor) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // ZFBRequests retrieves the list of child ZFBRequests of the Enterprise
@@ -338,8 +370,30 @@ func (o *Enterprise) SharedNetworkResources(info *bambou.FetchingInfo) (SharedNe
 	return list, err
 }
 
-// CreateSharedNetworkResource creates a new child SharedNetworkResource under the Enterprise
-func (o *Enterprise) CreateSharedNetworkResource(child *SharedNetworkResource) *bambou.Error {
+// FirewallAcls retrieves the list of child FirewallAcls of the Enterprise
+func (o *Enterprise) FirewallAcls(info *bambou.FetchingInfo) (FirewallAclsList, *bambou.Error) {
+
+	var list FirewallAclsList
+	err := bambou.CurrentSession().FetchChildren(o, FirewallAclIdentity, &list, info)
+	return list, err
+}
+
+// CreateFirewallAcl creates a new child FirewallAcl under the Enterprise
+func (o *Enterprise) CreateFirewallAcl(child *FirewallAcl) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// FirewallRules retrieves the list of child FirewallRules of the Enterprise
+func (o *Enterprise) FirewallRules(info *bambou.FetchingInfo) (FirewallRulesList, *bambou.Error) {
+
+	var list FirewallRulesList
+	err := bambou.CurrentSession().FetchChildren(o, FirewallRuleIdentity, &list, info)
+	return list, err
+}
+
+// CreateFirewallRule creates a new child FirewallRule under the Enterprise
+func (o *Enterprise) CreateFirewallRule(child *FirewallRule) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -422,24 +476,12 @@ func (o *Enterprise) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Erro
 	return list, err
 }
 
-// CreateAlarm creates a new child Alarm under the Enterprise
-func (o *Enterprise) CreateAlarm(child *Alarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // AllAlarms retrieves the list of child AllAlarms of the Enterprise
 func (o *Enterprise) AllAlarms(info *bambou.FetchingInfo) (AllAlarmsList, *bambou.Error) {
 
 	var list AllAlarmsList
 	err := bambou.CurrentSession().FetchChildren(o, AllAlarmIdentity, &list, info)
 	return list, err
-}
-
-// CreateAllAlarm creates a new child AllAlarm under the Enterprise
-func (o *Enterprise) CreateAllAlarm(child *AllAlarm) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the Enterprise
@@ -464,26 +506,6 @@ func (o *Enterprise) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
 	return list, err
 }
 
-// CreateVM creates a new child VM under the Enterprise
-func (o *Enterprise) CreateVM(child *VM) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// InfrastructurePortProfiles retrieves the list of child InfrastructurePortProfiles of the Enterprise
-func (o *Enterprise) InfrastructurePortProfiles(info *bambou.FetchingInfo) (InfrastructurePortProfilesList, *bambou.Error) {
-
-	var list InfrastructurePortProfilesList
-	err := bambou.CurrentSession().FetchChildren(o, InfrastructurePortProfileIdentity, &list, info)
-	return list, err
-}
-
-// CreateInfrastructurePortProfile creates a new child InfrastructurePortProfile under the Enterprise
-func (o *Enterprise) CreateInfrastructurePortProfile(child *InfrastructurePortProfile) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // EnterpriseNetworks retrieves the list of child EnterpriseNetworks of the Enterprise
 func (o *Enterprise) EnterpriseNetworks(info *bambou.FetchingInfo) (EnterpriseNetworksList, *bambou.Error) {
 
@@ -504,12 +526,6 @@ func (o *Enterprise) EnterpriseSecurities(info *bambou.FetchingInfo) (Enterprise
 	var list EnterpriseSecuritiesList
 	err := bambou.CurrentSession().FetchChildren(o, EnterpriseSecurityIdentity, &list, info)
 	return list, err
-}
-
-// CreateEnterpriseSecurity creates a new child EnterpriseSecurity under the Enterprise
-func (o *Enterprise) CreateEnterpriseSecurity(child *EnterpriseSecurity) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // Jobs retrieves the list of child Jobs of the Enterprise
@@ -562,12 +578,6 @@ func (o *Enterprise) Containers(info *bambou.FetchingInfo) (ContainersList, *bam
 	return list, err
 }
 
-// CreateContainer creates a new child Container under the Enterprise
-func (o *Enterprise) CreateContainer(child *Container) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // RoutingPolicies retrieves the list of child RoutingPolicies of the Enterprise
 func (o *Enterprise) RoutingPolicies(info *bambou.FetchingInfo) (RoutingPoliciesList, *bambou.Error) {
 
@@ -582,16 +592,30 @@ func (o *Enterprise) CreateRoutingPolicy(child *RoutingPolicy) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Apps retrieves the list of child Apps of the Enterprise
-func (o *Enterprise) Apps(info *bambou.FetchingInfo) (AppsList, *bambou.Error) {
+// Applications retrieves the list of child Applications of the Enterprise
+func (o *Enterprise) Applications(info *bambou.FetchingInfo) (ApplicationsList, *bambou.Error) {
 
-	var list AppsList
-	err := bambou.CurrentSession().FetchChildren(o, AppIdentity, &list, info)
+	var list ApplicationsList
+	err := bambou.CurrentSession().FetchChildren(o, ApplicationIdentity, &list, info)
 	return list, err
 }
 
-// CreateApp creates a new child App under the Enterprise
-func (o *Enterprise) CreateApp(child *App) *bambou.Error {
+// CreateApplication creates a new child Application under the Enterprise
+func (o *Enterprise) CreateApplication(child *Application) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Applicationperformancemanagements retrieves the list of child Applicationperformancemanagements of the Enterprise
+func (o *Enterprise) Applicationperformancemanagements(info *bambou.FetchingInfo) (ApplicationperformancemanagementsList, *bambou.Error) {
+
+	var list ApplicationperformancemanagementsList
+	err := bambou.CurrentSession().FetchChildren(o, ApplicationperformancemanagementIdentity, &list, info)
+	return list, err
+}
+
+// CreateApplicationperformancemanagement creates a new child Applicationperformancemanagement under the Enterprise
+func (o *Enterprise) CreateApplicationperformancemanagement(child *Applicationperformancemanagement) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -630,12 +654,6 @@ func (o *Enterprise) GroupKeyEncryptionProfiles(info *bambou.FetchingInfo) (Grou
 	var list GroupKeyEncryptionProfilesList
 	err := bambou.CurrentSession().FetchChildren(o, GroupKeyEncryptionProfileIdentity, &list, info)
 	return list, err
-}
-
-// CreateGroupKeyEncryptionProfile creates a new child GroupKeyEncryptionProfile under the Enterprise
-func (o *Enterprise) CreateGroupKeyEncryptionProfile(child *GroupKeyEncryptionProfile) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // DSCPForwardingClassTables retrieves the list of child DSCPForwardingClassTables of the Enterprise
@@ -688,8 +706,16 @@ func (o *Enterprise) NSGatewayTemplates(info *bambou.FetchingInfo) (NSGatewayTem
 	return list, err
 }
 
-// CreateNSGatewayTemplate creates a new child NSGatewayTemplate under the Enterprise
-func (o *Enterprise) CreateNSGatewayTemplate(child *NSGatewayTemplate) *bambou.Error {
+// NSGGroups retrieves the list of child NSGGroups of the Enterprise
+func (o *Enterprise) NSGGroups(info *bambou.FetchingInfo) (NSGGroupsList, *bambou.Error) {
+
+	var list NSGGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, NSGGroupIdentity, &list, info)
+	return list, err
+}
+
+// CreateNSGGroup creates a new child NSGGroup under the Enterprise
+func (o *Enterprise) CreateNSGGroup(child *NSGGroup) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -730,12 +756,6 @@ func (o *Enterprise) MultiCastLists(info *bambou.FetchingInfo) (MultiCastListsLi
 	return list, err
 }
 
-// CreateMultiCastList creates a new child MultiCastList under the Enterprise
-func (o *Enterprise) CreateMultiCastList(child *MultiCastList) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Avatars retrieves the list of child Avatars of the Enterprise
 func (o *Enterprise) Avatars(info *bambou.FetchingInfo) (AvatarsList, *bambou.Error) {
 
@@ -758,12 +778,6 @@ func (o *Enterprise) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambo
 	return list, err
 }
 
-// CreateEventLog creates a new child EventLog under the Enterprise
-func (o *Enterprise) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // ExternalAppServices retrieves the list of child ExternalAppServices of the Enterprise
 func (o *Enterprise) ExternalAppServices(info *bambou.FetchingInfo) (ExternalAppServicesList, *bambou.Error) {
 
@@ -784,10 +798,4 @@ func (o *Enterprise) ExternalServices(info *bambou.FetchingInfo) (ExternalServic
 	var list ExternalServicesList
 	err := bambou.CurrentSession().FetchChildren(o, ExternalServiceIdentity, &list, info)
 	return list, err
-}
-
-// CreateExternalService creates a new child ExternalService under the Enterprise
-func (o *Enterprise) CreateExternalService(child *ExternalService) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }

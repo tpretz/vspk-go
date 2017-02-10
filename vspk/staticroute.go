@@ -38,10 +38,19 @@ var StaticRouteIdentity = bambou.Identity{
 // StaticRoutesList represents a list of StaticRoutes
 type StaticRoutesList []*StaticRoute
 
-// StaticRoutesAncestor is the interface of an ancestor of a StaticRoute must implement.
+// StaticRoutesAncestor is the interface that an ancestor of a StaticRoute must implement.
+// An Ancestor is defined as an entity that has StaticRoute as a descendant.
+// An Ancestor can get a list of its child StaticRoutes, but not necessarily create one.
 type StaticRoutesAncestor interface {
 	StaticRoutes(*bambou.FetchingInfo) (StaticRoutesList, *bambou.Error)
-	CreateStaticRoutes(*StaticRoute) *bambou.Error
+}
+
+// StaticRoutesParent is the interface that a parent of a StaticRoute must implement.
+// A Parent is defined as an entity that has StaticRoute as a child.
+// A Parent is an Ancestor which can create a StaticRoute.
+type StaticRoutesParent interface {
+	StaticRoutesAncestor
+	CreateStaticRoute(*StaticRoute) *bambou.Error
 }
 
 // StaticRoute represents the model of a staticroute
@@ -51,6 +60,7 @@ type StaticRoute struct {
 	ParentType         string `json:"parentType,omitempty"`
 	Owner              string `json:"owner,omitempty"`
 	IPType             string `json:"IPType,omitempty"`
+	IPv6Address        string `json:"IPv6Address,omitempty"`
 	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
 	Address            string `json:"address,omitempty"`
 	Netmask            string `json:"netmask,omitempty"`
@@ -137,10 +147,4 @@ func (o *StaticRoute) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bamb
 	var list EventLogsList
 	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
-}
-
-// CreateEventLog creates a new child EventLog under the StaticRoute
-func (o *StaticRoute) CreateEventLog(child *EventLog) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -38,10 +38,19 @@ var VLANTemplateIdentity = bambou.Identity{
 // VLANTemplatesList represents a list of VLANTemplates
 type VLANTemplatesList []*VLANTemplate
 
-// VLANTemplatesAncestor is the interface of an ancestor of a VLANTemplate must implement.
+// VLANTemplatesAncestor is the interface that an ancestor of a VLANTemplate must implement.
+// An Ancestor is defined as an entity that has VLANTemplate as a descendant.
+// An Ancestor can get a list of its child VLANTemplates, but not necessarily create one.
 type VLANTemplatesAncestor interface {
 	VLANTemplates(*bambou.FetchingInfo) (VLANTemplatesList, *bambou.Error)
-	CreateVLANTemplates(*VLANTemplate) *bambou.Error
+}
+
+// VLANTemplatesParent is the interface that a parent of a VLANTemplate must implement.
+// A Parent is defined as an entity that has VLANTemplate as a child.
+// A Parent is an Ancestor which can create a VLANTemplate.
+type VLANTemplatesParent interface {
+	VLANTemplatesAncestor
+	CreateVLANTemplate(*VLANTemplate) *bambou.Error
 }
 
 // VLANTemplate represents the model of a vlantemplate
@@ -55,6 +64,8 @@ type VLANTemplate struct {
 	Description                 string `json:"description,omitempty"`
 	EntityScope                 string `json:"entityScope,omitempty"`
 	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
+	AssociatedVSCProfileID      string `json:"associatedVSCProfileID,omitempty"`
+	DucVlan                     bool   `json:"ducVlan"`
 	ExternalID                  string `json:"externalID,omitempty"`
 }
 
@@ -124,6 +135,34 @@ func (o *VLANTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadat
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the VLANTemplate
 func (o *VLANTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// UplinkConnections retrieves the list of child UplinkConnections of the VLANTemplate
+func (o *VLANTemplate) UplinkConnections(info *bambou.FetchingInfo) (UplinkConnectionsList, *bambou.Error) {
+
+	var list UplinkConnectionsList
+	err := bambou.CurrentSession().FetchChildren(o, UplinkConnectionIdentity, &list, info)
+	return list, err
+}
+
+// CreateUplinkConnection creates a new child UplinkConnection under the VLANTemplate
+func (o *VLANTemplate) CreateUplinkConnection(child *UplinkConnection) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// BRConnections retrieves the list of child BRConnections of the VLANTemplate
+func (o *VLANTemplate) BRConnections(info *bambou.FetchingInfo) (BRConnectionsList, *bambou.Error) {
+
+	var list BRConnectionsList
+	err := bambou.CurrentSession().FetchChildren(o, BRConnectionIdentity, &list, info)
+	return list, err
+}
+
+// CreateBRConnection creates a new child BRConnection under the VLANTemplate
+func (o *VLANTemplate) CreateBRConnection(child *BRConnection) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
