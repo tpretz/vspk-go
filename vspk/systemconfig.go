@@ -120,7 +120,6 @@ type SystemConfig struct {
 	EjbcaVspRootCa                                    string `json:"ejbcaVspRootCa,omitempty"`
 	AlarmsMaxPerObject                                int    `json:"alarmsMaxPerObject,omitempty"`
 	ElasticClusterName                                string `json:"elasticClusterName,omitempty"`
-	ElasticSearchUIAddress                            string `json:"elasticSearchUIAddress,omitempty"`
 	AllowEnterpriseAvatarOnNSG                        bool   `json:"allowEnterpriseAvatarOnNSG"`
 	GlobalMACAddress                                  string `json:"globalMACAddress,omitempty"`
 	FlowCollectionEnabled                             bool   `json:"flowCollectionEnabled"`

@@ -209,6 +209,20 @@ func (o *Domain) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NetworkPerformanceBindings retrieves the list of child NetworkPerformanceBindings of the Domain
+func (o *Domain) NetworkPerformanceBindings(info *bambou.FetchingInfo) (NetworkPerformanceBindingsList, *bambou.Error) {
+
+	var list NetworkPerformanceBindingsList
+	err := bambou.CurrentSession().FetchChildren(o, NetworkPerformanceBindingIdentity, &list, info)
+	return list, err
+}
+
+// CreateNetworkPerformanceBinding creates a new child NetworkPerformanceBinding under the Domain
+func (o *Domain) CreateNetworkPerformanceBinding(child *NetworkPerformanceBinding) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // EgressACLEntryTemplates retrieves the list of child EgressACLEntryTemplates of the Domain
 func (o *Domain) EgressACLEntryTemplates(info *bambou.FetchingInfo) (EgressACLEntryTemplatesList, *bambou.Error) {
 
