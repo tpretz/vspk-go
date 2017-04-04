@@ -61,6 +61,8 @@ type NSGateway struct {
 	Owner                              string `json:"owner,omitempty"`
 	MACAddress                         string `json:"MACAddress,omitempty"`
 	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
+	TCPMSSEnabled                      bool   `json:"TCPMSSEnabled"`
+	TCPMaximumSegmentSize              int    `json:"TCPMaximumSegmentSize,omitempty"`
 	SKU                                string `json:"SKU,omitempty"`
 	TPMStatus                          string `json:"TPMStatus,omitempty"`
 	CPUType                            string `json:"CPUType,omitempty"`
@@ -101,6 +103,8 @@ type NSGateway struct {
 func NewNSGateway() *NSGateway {
 
 	return &NSGateway{
+		TCPMSSEnabled:                    false,
+		TCPMaximumSegmentSize:            1330,
 		TPMStatus:                        "UNKNOWN",
 		SSHService:                       "INHERITED",
 		LastConfigurationReloadTimestamp: -1,

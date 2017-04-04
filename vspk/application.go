@@ -61,6 +61,7 @@ type Application struct {
 	Owner                              string  `json:"owner,omitempty"`
 	DSCP                               string  `json:"DSCP,omitempty"`
 	Name                               string  `json:"name,omitempty"`
+	Bandwidth                          int     `json:"bandwidth,omitempty"`
 	ReadOnly                           bool    `json:"readOnly"`
 	PerformanceMonitorType             string  `json:"performanceMonitorType,omitempty"`
 	Description                        string  `json:"description,omitempty"`
@@ -73,6 +74,7 @@ type Application struct {
 	PostClassificationPath             string  `json:"postClassificationPath,omitempty"`
 	SourceIP                           string  `json:"sourceIP,omitempty"`
 	SourcePort                         string  `json:"sourcePort,omitempty"`
+	AppId                              int     `json:"appId,omitempty"`
 	OptimizePathSelection              string  `json:"optimizePathSelection,omitempty"`
 	PreClassificationPath              string  `json:"preClassificationPath,omitempty"`
 	Protocol                           string  `json:"protocol,omitempty"`
@@ -91,6 +93,7 @@ func NewApplication() *Application {
 		PostClassificationPath: "ANY",
 		PreClassificationPath:  "DEFAULT",
 		Protocol:               "NONE",
+		Symmetry:               false,
 	}
 }
 

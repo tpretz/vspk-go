@@ -71,6 +71,8 @@ type License struct {
 	MinorRelease                int     `json:"minorRelease,omitempty"`
 	Zip                         string  `json:"zip,omitempty"`
 	City                        string  `json:"city,omitempty"`
+	AllowedAVRSGsCount          int     `json:"allowedAVRSGsCount,omitempty"`
+	AllowedAVRSsCount           int     `json:"allowedAVRSsCount,omitempty"`
 	AllowedCPEsCount            int     `json:"allowedCPEsCount,omitempty"`
 	AllowedNICsCount            int     `json:"allowedNICsCount,omitempty"`
 	AllowedVMsCount             int     `json:"allowedVMsCount,omitempty"`
@@ -90,6 +92,7 @@ type License struct {
 	Street                      string  `json:"street,omitempty"`
 	CustomerKey                 string  `json:"customerKey,omitempty"`
 	ExpirationDate              float64 `json:"expirationDate,omitempty"`
+	ExpiryTimestamp             int     `json:"expiryTimestamp,omitempty"`
 	ExternalID                  string  `json:"externalID,omitempty"`
 }
 

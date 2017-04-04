@@ -62,7 +62,6 @@ type Applicationperformancemanagement struct {
 	Name                           string `json:"name,omitempty"`
 	ReadOnly                       bool   `json:"readOnly"`
 	Description                    string `json:"description,omitempty"`
-	ApplicationGroupType           string `json:"applicationGroupType,omitempty"`
 	AssociatedPerformanceMonitorID string `json:"associatedPerformanceMonitorID,omitempty"`
 }
 
