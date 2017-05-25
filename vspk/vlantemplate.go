@@ -67,6 +67,7 @@ type VLANTemplate struct {
 	AssociatedVSCProfileID      string `json:"associatedVSCProfileID,omitempty"`
 	DucVlan                     bool   `json:"ducVlan"`
 	ExternalID                  string `json:"externalID,omitempty"`
+	Type                        string `json:"type,omitempty"`
 }
 
 // NewVLANTemplate returns a new *VLANTemplate

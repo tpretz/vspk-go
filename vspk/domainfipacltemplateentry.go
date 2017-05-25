@@ -62,12 +62,12 @@ type DomainFIPAclTemplateEntry struct {
 	ACLTemplateName                 string      `json:"ACLTemplateName,omitempty"`
 	ICMPCode                        string      `json:"ICMPCode,omitempty"`
 	ICMPType                        string      `json:"ICMPType,omitempty"`
+	IPv6AddressOverride             string      `json:"IPv6AddressOverride,omitempty"`
 	DSCP                            string      `json:"DSCP,omitempty"`
 	LastUpdatedBy                   string      `json:"lastUpdatedBy,omitempty"`
 	Action                          string      `json:"action,omitempty"`
 	ActionDetails                   interface{} `json:"actionDetails,omitempty"`
 	AddressOverride                 string      `json:"addressOverride,omitempty"`
-	Reflexive                       bool        `json:"reflexive"`
 	Description                     string      `json:"description,omitempty"`
 	DestPgId                        string      `json:"destPgId,omitempty"`
 	DestPgType                      string      `json:"destPgType,omitempty"`

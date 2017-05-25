@@ -64,13 +64,18 @@ type UplinkConnection struct {
 	Gateway                 string `json:"gateway,omitempty"`
 	Address                 string `json:"address,omitempty"`
 	AdvertisementCriteria   string `json:"advertisementCriteria,omitempty"`
+	SecondaryAddress        string `json:"secondaryAddress,omitempty"`
 	Netmask                 string `json:"netmask,omitempty"`
+	VlanId                  string `json:"vlanId,omitempty"`
 	InterfaceConnectionType string `json:"interfaceConnectionType,omitempty"`
 	Mode                    string `json:"mode,omitempty"`
 	Role                    string `json:"role,omitempty"`
+	RoleOrder               string `json:"roleOrder,omitempty"`
+	PortName                string `json:"portName,omitempty"`
 	UplinkID                string `json:"uplinkID,omitempty"`
 	Username                string `json:"username,omitempty"`
 	AssocUnderlayID         string `json:"assocUnderlayID,omitempty"`
+	AssociatedBGPNeighborID string `json:"associatedBGPNeighborID,omitempty"`
 	AssociatedUnderlayName  string `json:"associatedUnderlayName,omitempty"`
 	AssociatedVSCProfileID  string `json:"associatedVSCProfileID,omitempty"`
 	AuxiliaryLink           bool   `json:"auxiliaryLink"`

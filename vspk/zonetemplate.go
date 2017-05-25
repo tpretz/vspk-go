@@ -61,6 +61,7 @@ type ZoneTemplate struct {
 	Owner                           string `json:"owner,omitempty"`
 	DPI                             string `json:"DPI,omitempty"`
 	IPType                          string `json:"IPType,omitempty"`
+	IPv6Address                     string `json:"IPv6Address,omitempty"`
 	Name                            string `json:"name,omitempty"`
 	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Address                         string `json:"address,omitempty"`
@@ -73,6 +74,7 @@ type ZoneTemplate struct {
 	Multicast                       string `json:"multicast,omitempty"`
 	NumberOfHostsInSubnets          int    `json:"numberOfHostsInSubnets,omitempty"`
 	ExternalID                      string `json:"externalID,omitempty"`
+	DynamicIpv6Address              bool   `json:"dynamicIpv6Address"`
 }
 
 // NewZoneTemplate returns a new *ZoneTemplate

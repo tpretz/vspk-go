@@ -78,6 +78,7 @@ type VLAN struct {
 	Status                       string `json:"status,omitempty"`
 	DucVlan                      bool   `json:"ducVlan"`
 	ExternalID                   string `json:"externalID,omitempty"`
+	Type                         string `json:"type,omitempty"`
 }
 
 // NewVLAN returns a new *VLAN

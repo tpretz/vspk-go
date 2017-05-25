@@ -62,6 +62,8 @@ type L2Domain struct {
 	DHCPManaged                       bool   `json:"DHCPManaged"`
 	DPI                               string `json:"DPI,omitempty"`
 	IPType                            string `json:"IPType,omitempty"`
+	IPv6Address                       string `json:"IPv6Address,omitempty"`
+	IPv6Gateway                       string `json:"IPv6Gateway,omitempty"`
 	MaintenanceMode                   string `json:"maintenanceMode,omitempty"`
 	Name                              string `json:"name,omitempty"`
 	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
@@ -75,10 +77,12 @@ type L2Domain struct {
 	VnId                              int    `json:"vnId,omitempty"`
 	Encryption                        string `json:"encryption,omitempty"`
 	EntityScope                       string `json:"entityScope,omitempty"`
+	EntityState                       string `json:"entityState,omitempty"`
 	PolicyChangeStatus                string `json:"policyChangeStatus,omitempty"`
 	RouteDistinguisher                string `json:"routeDistinguisher,omitempty"`
 	RouteTarget                       string `json:"routeTarget,omitempty"`
 	UplinkPreference                  string `json:"uplinkPreference,omitempty"`
+	UseGlobalMAC                      string `json:"useGlobalMAC,omitempty"`
 	AssociatedMulticastChannelMapID   string `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedSharedNetworkResourceID string `json:"associatedSharedNetworkResourceID,omitempty"`
 	Stretched                         bool   `json:"stretched"`

@@ -66,6 +66,7 @@ type NSPort struct {
 	TemplateID                  string `json:"templateID,omitempty"`
 	PermittedAction             string `json:"permittedAction,omitempty"`
 	Description                 string `json:"description,omitempty"`
+	NetworkAccelerationEnabled  bool   `json:"networkAccelerationEnabled"`
 	PhysicalName                string `json:"physicalName,omitempty"`
 	EntityScope                 string `json:"entityScope,omitempty"`
 	PortType                    string `json:"portType,omitempty"`
@@ -222,6 +223,14 @@ func (o *NSPort) StatisticsPolicies(info *bambou.FetchingInfo) (StatisticsPolici
 func (o *NSPort) CreateStatisticsPolicy(child *StatisticsPolicy) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// LTEInformations retrieves the list of child LTEInformations of the NSPort
+func (o *NSPort) LTEInformations(info *bambou.FetchingInfo) (LTEInformationsList, *bambou.Error) {
+
+	var list LTEInformationsList
+	err := bambou.CurrentSession().FetchChildren(o, LTEInformationIdentity, &list, info)
+	return list, err
 }
 
 // EventLogs retrieves the list of child EventLogs of the NSPort

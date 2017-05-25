@@ -66,7 +66,6 @@ type IngressACLTemplate struct {
 	DefaultAllowNonIP      bool   `json:"defaultAllowNonIP"`
 	Description            string `json:"description,omitempty"`
 	AllowAddressSpoof      bool   `json:"allowAddressSpoof"`
-	AllowL2AddressSpoof    bool   `json:"allowL2AddressSpoof"`
 	EntityScope            string `json:"entityScope,omitempty"`
 	PolicyState            string `json:"policyState,omitempty"`
 	Priority               int    `json:"priority,omitempty"`

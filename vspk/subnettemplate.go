@@ -61,8 +61,8 @@ type SubnetTemplate struct {
 	Owner                           string `json:"owner,omitempty"`
 	DPI                             string `json:"DPI,omitempty"`
 	IPType                          string `json:"IPType,omitempty"`
+	IPv6Address                     string `json:"IPv6Address,omitempty"`
 	IPv6Gateway                     string `json:"IPv6Gateway,omitempty"`
-	IPv6address                     string `json:"IPv6address,omitempty"`
 	Name                            string `json:"name,omitempty"`
 	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Gateway                         string `json:"gateway,omitempty"`
@@ -77,6 +77,7 @@ type SubnetTemplate struct {
 	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
 	Multicast                       string `json:"multicast,omitempty"`
 	ExternalID                      string `json:"externalID,omitempty"`
+	DynamicIpv6Address              bool   `json:"dynamicIpv6Address"`
 }
 
 // NewSubnetTemplate returns a new *SubnetTemplate

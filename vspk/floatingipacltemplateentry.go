@@ -62,11 +62,11 @@ type FloatingIPACLTemplateEntry struct {
 	ACLTemplateName                 string `json:"ACLTemplateName,omitempty"`
 	ICMPCode                        string `json:"ICMPCode,omitempty"`
 	ICMPType                        string `json:"ICMPType,omitempty"`
+	IPv6AddressOverride             string `json:"IPv6AddressOverride,omitempty"`
 	DSCP                            string `json:"DSCP,omitempty"`
 	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Action                          string `json:"action,omitempty"`
 	AddressOverride                 string `json:"addressOverride,omitempty"`
-	Reflexive                       bool   `json:"reflexive"`
 	Description                     string `json:"description,omitempty"`
 	DestinationPort                 string `json:"destinationPort,omitempty"`
 	NetworkID                       string `json:"networkID,omitempty"`

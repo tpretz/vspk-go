@@ -37,28 +37,28 @@ var MeIdentity = bambou.Identity{
 
 // Me represents the model of a me
 type Me struct {
-	ID                     string `json:"ID,omitempty"`
-	ParentID               string `json:"parentID,omitempty"`
-	ParentType             string `json:"parentType,omitempty"`
-	Owner                  string `json:"owner,omitempty"`
-	Password               string `json:"password,omitempty"`
-	LastName               string `json:"lastName,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	FirstName              string `json:"firstName,omitempty"`
-	Disabled               bool   `json:"disabled"`
-	ElasticSearchUIAddress string `json:"elasticSearchUIAddress,omitempty"`
-	FlowCollectionEnabled  bool   `json:"flowCollectionEnabled"`
-	Email                  string `json:"email,omitempty"`
-	EnterpriseID           string `json:"enterpriseID,omitempty"`
-	EnterpriseName         string `json:"enterpriseName,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	MobileNumber           string `json:"mobileNumber,omitempty"`
-	Role                   string `json:"role,omitempty"`
-	UserName               string `json:"userName,omitempty"`
-	StatisticsEnabled      bool   `json:"statisticsEnabled"`
-	AvatarData             string `json:"avatarData,omitempty"`
-	AvatarType             string `json:"avatarType,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
+	ID                    string `json:"ID,omitempty"`
+	ParentID              string `json:"parentID,omitempty"`
+	ParentType            string `json:"parentType,omitempty"`
+	Owner                 string `json:"owner,omitempty"`
+	Password              string `json:"password,omitempty"`
+	LastName              string `json:"lastName,omitempty"`
+	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
+	FirstName             string `json:"firstName,omitempty"`
+	Disabled              bool   `json:"disabled"`
+	ElasticSearchAddress  string `json:"elasticSearchAddress,omitempty"`
+	FlowCollectionEnabled bool   `json:"flowCollectionEnabled"`
+	Email                 string `json:"email,omitempty"`
+	EnterpriseID          string `json:"enterpriseID,omitempty"`
+	EnterpriseName        string `json:"enterpriseName,omitempty"`
+	EntityScope           string `json:"entityScope,omitempty"`
+	MobileNumber          string `json:"mobileNumber,omitempty"`
+	Role                  string `json:"role,omitempty"`
+	UserName              string `json:"userName,omitempty"`
+	StatisticsEnabled     bool   `json:"statisticsEnabled"`
+	AvatarData            string `json:"avatarData,omitempty"`
+	AvatarType            string `json:"avatarType,omitempty"`
+	ExternalID            string `json:"externalID,omitempty"`
 
 	Token        string `json:"APIKey,omitempty"`
 	Organization string `json:"enterprise,omitempty"`
@@ -286,20 +286,6 @@ func (o *Me) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error)
 
 // CreateMetadata creates a new child Metadata under the Me
 func (o *Me) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// MetadataTags retrieves the list of child MetadataTags of the Me
-func (o *Me) MetadataTags(info *bambou.FetchingInfo) (MetadataTagsList, *bambou.Error) {
-
-	var list MetadataTagsList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataTagIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadataTag creates a new child MetadataTag under the Me
-func (o *Me) CreateMetadataTag(child *MetadataTag) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -888,34 +874,6 @@ func (o *Me) AutoDiscoveredGateways(info *bambou.FetchingInfo) (AutoDiscoveredGa
 	var list AutoDiscoveredGatewaysList
 	err := bambou.CurrentSession().FetchChildren(o, AutoDiscoveredGatewayIdentity, &list, info)
 	return list, err
-}
-
-// ExternalAppServices retrieves the list of child ExternalAppServices of the Me
-func (o *Me) ExternalAppServices(info *bambou.FetchingInfo) (ExternalAppServicesList, *bambou.Error) {
-
-	var list ExternalAppServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ExternalAppServiceIdentity, &list, info)
-	return list, err
-}
-
-// CreateExternalAppService creates a new child ExternalAppService under the Me
-func (o *Me) CreateExternalAppService(child *ExternalAppService) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// ExternalServices retrieves the list of child ExternalServices of the Me
-func (o *Me) ExternalServices(info *bambou.FetchingInfo) (ExternalServicesList, *bambou.Error) {
-
-	var list ExternalServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ExternalServiceIdentity, &list, info)
-	return list, err
-}
-
-// CreateExternalService creates a new child ExternalService under the Me
-func (o *Me) CreateExternalService(child *ExternalService) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // SystemConfigs retrieves the list of child SystemConfigs of the Me

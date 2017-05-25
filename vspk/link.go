@@ -173,6 +173,34 @@ func (o *Link) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// CSNATPools retrieves the list of child CSNATPools of the Link
+func (o *Link) CSNATPools(info *bambou.FetchingInfo) (CSNATPoolsList, *bambou.Error) {
+
+	var list CSNATPoolsList
+	err := bambou.CurrentSession().FetchChildren(o, CSNATPoolIdentity, &list, info)
+	return list, err
+}
+
+// CreateCSNATPool creates a new child CSNATPool under the Link
+func (o *Link) CreateCSNATPool(child *CSNATPool) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// PSNATPools retrieves the list of child PSNATPools of the Link
+func (o *Link) PSNATPools(info *bambou.FetchingInfo) (PSNATPoolsList, *bambou.Error) {
+
+	var list PSNATPoolsList
+	err := bambou.CurrentSession().FetchChildren(o, PSNATPoolIdentity, &list, info)
+	return list, err
+}
+
+// CreatePSNATPool creates a new child PSNATPool under the Link
+func (o *Link) CreatePSNATPool(child *PSNATPool) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // OverlayAddressPools retrieves the list of child OverlayAddressPools of the Link
 func (o *Link) OverlayAddressPools(info *bambou.FetchingInfo) (OverlayAddressPoolsList, *bambou.Error) {
 

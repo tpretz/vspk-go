@@ -29,92 +29,79 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// MetadataIdentity represents the Identity of the object
-var MetadataIdentity = bambou.Identity{
-	Name:     "metadata",
-	Category: "metadatas",
+// PSPATMapIdentity represents the Identity of the object
+var PSPATMapIdentity = bambou.Identity{
+	Name:     "pspatmap",
+	Category: "pspatmaps",
 }
 
-// MetadatasList represents a list of Metadatas
-type MetadatasList []*Metadata
+// PSPATMapsList represents a list of PSPATMaps
+type PSPATMapsList []*PSPATMap
 
-// MetadatasAncestor is the interface that an ancestor of a Metadata must implement.
-// An Ancestor is defined as an entity that has Metadata as a descendant.
-// An Ancestor can get a list of its child Metadatas, but not necessarily create one.
-type MetadatasAncestor interface {
-	Metadatas(*bambou.FetchingInfo) (MetadatasList, *bambou.Error)
+// PSPATMapsAncestor is the interface that an ancestor of a PSPATMap must implement.
+// An Ancestor is defined as an entity that has PSPATMap as a descendant.
+// An Ancestor can get a list of its child PSPATMaps, but not necessarily create one.
+type PSPATMapsAncestor interface {
+	PSPATMaps(*bambou.FetchingInfo) (PSPATMapsList, *bambou.Error)
 }
 
-// MetadatasParent is the interface that a parent of a Metadata must implement.
-// A Parent is defined as an entity that has Metadata as a child.
-// A Parent is an Ancestor which can create a Metadata.
-type MetadatasParent interface {
-	MetadatasAncestor
-	CreateMetadata(*Metadata) *bambou.Error
+// PSPATMapsParent is the interface that a parent of a PSPATMap must implement.
+// A Parent is defined as an entity that has PSPATMap as a child.
+// A Parent is an Ancestor which can create a PSPATMap.
+type PSPATMapsParent interface {
+	PSPATMapsAncestor
+	CreatePSPATMap(*PSPATMap) *bambou.Error
 }
 
-// Metadata represents the model of a metadata
-type Metadata struct {
+// PSPATMap represents the model of a pspatmap
+type PSPATMap struct {
 	ID                          string        `json:"ID,omitempty"`
 	ParentID                    string        `json:"parentID,omitempty"`
 	ParentType                  string        `json:"parentType,omitempty"`
 	Owner                       string        `json:"owner,omitempty"`
 	Name                        string        `json:"name,omitempty"`
-	Description                 string        `json:"description,omitempty"`
-	MetadataTagIDs              []interface{} `json:"metadataTagIDs,omitempty"`
-	NetworkNotificationDisabled bool          `json:"networkNotificationDisabled"`
-	Blob                        string        `json:"blob,omitempty"`
-	GlobalMetadata              bool          `json:"globalMetadata"`
-	EntityScope                 string        `json:"entityScope,omitempty"`
-	ExternalID                  string        `json:"externalID,omitempty"`
+	ReservedSPATIPs             []interface{} `json:"reservedSPATIPs,omitempty"`
+	AssociatedSPATSourcesPoolID string        `json:"associatedSPATSourcesPoolID,omitempty"`
 }
 
-// NewMetadata returns a new *Metadata
-func NewMetadata() *Metadata {
+// NewPSPATMap returns a new *PSPATMap
+func NewPSPATMap() *PSPATMap {
 
-	return &Metadata{}
+	return &PSPATMap{}
 }
 
 // Identity returns the Identity of the object.
-func (o *Metadata) Identity() bambou.Identity {
+func (o *PSPATMap) Identity() bambou.Identity {
 
-	return MetadataIdentity
+	return PSPATMapIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *Metadata) Identifier() string {
+func (o *PSPATMap) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *Metadata) SetIdentifier(ID string) {
+func (o *PSPATMap) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the Metadata from the server
-func (o *Metadata) Fetch() *bambou.Error {
+// Fetch retrieves the PSPATMap from the server
+func (o *PSPATMap) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the Metadata into the server
-func (o *Metadata) Save() *bambou.Error {
+// Save saves the PSPATMap into the server
+func (o *PSPATMap) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the Metadata from the server
-func (o *Metadata) Delete() *bambou.Error {
+// Delete deletes the PSPATMap from the server
+func (o *PSPATMap) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
-}
-
-// EventLogs retrieves the list of child EventLogs of the Metadata
-func (o *Metadata) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
-
-	var list EventLogsList
-	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
 }

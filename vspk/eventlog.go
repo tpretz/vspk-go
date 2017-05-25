@@ -59,6 +59,7 @@ type EventLog struct {
 	ParentID          string        `json:"parentID,omitempty"`
 	ParentType        string        `json:"parentType,omitempty"`
 	Owner             string        `json:"owner,omitempty"`
+	RequestID         string        `json:"requestID,omitempty"`
 	Diff              interface{}   `json:"diff,omitempty"`
 	Enterprise        string        `json:"enterprise,omitempty"`
 	Entities          []interface{} `json:"entities,omitempty"`

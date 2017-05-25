@@ -67,7 +67,6 @@ type IngressACLEntryTemplate struct {
 	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Action                          string `json:"action,omitempty"`
 	AddressOverride                 string `json:"addressOverride,omitempty"`
-	Reflexive                       bool   `json:"reflexive"`
 	Description                     string `json:"description,omitempty"`
 	DestinationPort                 string `json:"destinationPort,omitempty"`
 	NetworkID                       string `json:"networkID,omitempty"`

@@ -102,13 +102,18 @@ type VCenter struct {
 	PortgroupMetadata                bool   `json:"portgroupMetadata"`
 	HostLevelManagement              bool   `json:"hostLevelManagement"`
 	NovaClientVersion                int    `json:"novaClientVersion,omitempty"`
+	NovaIdentityURLVersion           string `json:"novaIdentityURLVersion,omitempty"`
 	NovaMetadataServiceAuthUrl       string `json:"novaMetadataServiceAuthUrl,omitempty"`
 	NovaMetadataServiceEndpoint      string `json:"novaMetadataServiceEndpoint,omitempty"`
 	NovaMetadataServicePassword      string `json:"novaMetadataServicePassword,omitempty"`
 	NovaMetadataServiceTenant        string `json:"novaMetadataServiceTenant,omitempty"`
 	NovaMetadataServiceUsername      string `json:"novaMetadataServiceUsername,omitempty"`
 	NovaMetadataSharedSecret         string `json:"novaMetadataSharedSecret,omitempty"`
+	NovaOSKeystoneUsername           string `json:"novaOSKeystoneUsername,omitempty"`
+	NovaProjectDomainName            string `json:"novaProjectDomainName,omitempty"`
+	NovaProjectName                  string `json:"novaProjectName,omitempty"`
 	NovaRegionName                   string `json:"novaRegionName,omitempty"`
+	NovaUserDomainName               string `json:"novaUserDomainName,omitempty"`
 	IpAddress                        string `json:"ipAddress,omitempty"`
 	UpgradePackagePassword           string `json:"upgradePackagePassword,omitempty"`
 	UpgradePackageURL                string `json:"upgradePackageURL,omitempty"`

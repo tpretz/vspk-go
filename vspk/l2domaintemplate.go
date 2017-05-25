@@ -62,15 +62,17 @@ type L2DomainTemplate struct {
 	DHCPManaged                     bool   `json:"DHCPManaged"`
 	DPI                             string `json:"DPI,omitempty"`
 	IPType                          string `json:"IPType,omitempty"`
+	IPv6Address                     string `json:"IPv6Address,omitempty"`
+	IPv6Gateway                     string `json:"IPv6Gateway,omitempty"`
 	Name                            string `json:"name,omitempty"`
 	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Gateway                         string `json:"gateway,omitempty"`
-	GatewayMACAddress               string `json:"gatewayMACAddress,omitempty"`
 	Address                         string `json:"address,omitempty"`
 	Description                     string `json:"description,omitempty"`
 	Netmask                         string `json:"netmask,omitempty"`
 	Encryption                      string `json:"encryption,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
+	EntityState                     string `json:"entityState,omitempty"`
 	PolicyChangeStatus              string `json:"policyChangeStatus,omitempty"`
 	UseGlobalMAC                    string `json:"useGlobalMAC,omitempty"`
 	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`

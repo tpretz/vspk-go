@@ -61,7 +61,6 @@ type EnterpriseProfile struct {
 	Owner                                  string        `json:"owner,omitempty"`
 	BGPEnabled                             bool          `json:"BGPEnabled"`
 	DHCPLeaseInterval                      int           `json:"DHCPLeaseInterval,omitempty"`
-	DPIEnabled                             bool          `json:"DPIEnabled"`
 	Name                                   string        `json:"name,omitempty"`
 	LastUpdatedBy                          string        `json:"lastUpdatedBy,omitempty"`
 	ReceiveMultiCastListID                 string        `json:"receiveMultiCastListID,omitempty"`
@@ -83,7 +82,6 @@ func NewEnterpriseProfile() *EnterpriseProfile {
 
 	return &EnterpriseProfile{
 		DHCPLeaseInterval:                      24,
-		DPIEnabled:                             false,
 		FloatingIPsQuota:                       100,
 		EnableApplicationPerformanceManagement: false,
 	}
@@ -175,23 +173,4 @@ func (o *EnterpriseProfile) EventLogs(info *bambou.FetchingInfo) (EventLogsList,
 	var list EventLogsList
 	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
-}
-
-// ExternalServices retrieves the list of child ExternalServices of the EnterpriseProfile
-func (o *EnterpriseProfile) ExternalServices(info *bambou.FetchingInfo) (ExternalServicesList, *bambou.Error) {
-
-	var list ExternalServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ExternalServiceIdentity, &list, info)
-	return list, err
-}
-
-// AssignExternalServices assigns the list of ExternalServices to the EnterpriseProfile
-func (o *EnterpriseProfile) AssignExternalServices(children ExternalServicesList) *bambou.Error {
-
-	list := []bambou.Identifiable{}
-	for _, c := range children {
-		list = append(list, c)
-	}
-
-	return bambou.CurrentSession().AssignChildren(o, list, ExternalServiceIdentity)
 }

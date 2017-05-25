@@ -100,13 +100,18 @@ type VCenterDataCenter struct {
 	EntityScope                      string `json:"entityScope,omitempty"`
 	PortgroupMetadata                bool   `json:"portgroupMetadata"`
 	NovaClientVersion                int    `json:"novaClientVersion,omitempty"`
+	NovaIdentityURLVersion           string `json:"novaIdentityURLVersion,omitempty"`
 	NovaMetadataServiceAuthUrl       string `json:"novaMetadataServiceAuthUrl,omitempty"`
 	NovaMetadataServiceEndpoint      string `json:"novaMetadataServiceEndpoint,omitempty"`
 	NovaMetadataServicePassword      string `json:"novaMetadataServicePassword,omitempty"`
 	NovaMetadataServiceTenant        string `json:"novaMetadataServiceTenant,omitempty"`
 	NovaMetadataServiceUsername      string `json:"novaMetadataServiceUsername,omitempty"`
 	NovaMetadataSharedSecret         string `json:"novaMetadataSharedSecret,omitempty"`
+	NovaOSKeystoneUsername           string `json:"novaOSKeystoneUsername,omitempty"`
+	NovaProjectDomainName            string `json:"novaProjectDomainName,omitempty"`
+	NovaProjectName                  string `json:"novaProjectName,omitempty"`
 	NovaRegionName                   string `json:"novaRegionName,omitempty"`
+	NovaUserDomainName               string `json:"novaUserDomainName,omitempty"`
 	UpgradePackagePassword           string `json:"upgradePackagePassword,omitempty"`
 	UpgradePackageURL                string `json:"upgradePackageURL,omitempty"`
 	UpgradePackageUsername           string `json:"upgradePackageUsername,omitempty"`

@@ -74,6 +74,7 @@ type Domain struct {
 	MaintenanceMode                 string        `json:"maintenanceMode,omitempty"`
 	Name                            string        `json:"name,omitempty"`
 	LastUpdatedBy                   string        `json:"lastUpdatedBy,omitempty"`
+	AdvertiseCriteria               string        `json:"advertiseCriteria,omitempty"`
 	LeakingEnabled                  bool          `json:"leakingEnabled"`
 	SecondaryDHCPServerAddress      string        `json:"secondaryDHCPServerAddress,omitempty"`
 	TemplateID                      string        `json:"templateID,omitempty"`
@@ -205,6 +206,20 @@ func (o *Domain) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Er
 
 // CreateMetadata creates a new child Metadata under the Domain
 func (o *Domain) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// NetworkPerformanceBindings retrieves the list of child NetworkPerformanceBindings of the Domain
+func (o *Domain) NetworkPerformanceBindings(info *bambou.FetchingInfo) (NetworkPerformanceBindingsList, *bambou.Error) {
+
+	var list NetworkPerformanceBindingsList
+	err := bambou.CurrentSession().FetchChildren(o, NetworkPerformanceBindingIdentity, &list, info)
+	return list, err
+}
+
+// CreateNetworkPerformanceBinding creates a new child NetworkPerformanceBinding under the Domain
+func (o *Domain) CreateNetworkPerformanceBinding(child *NetworkPerformanceBinding) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -502,6 +517,20 @@ func (o *Domain) CreateRoutingPolicy(child *RoutingPolicy) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// SPATSourcesPools retrieves the list of child SPATSourcesPools of the Domain
+func (o *Domain) SPATSourcesPools(info *bambou.FetchingInfo) (SPATSourcesPoolsList, *bambou.Error) {
+
+	var list SPATSourcesPoolsList
+	err := bambou.CurrentSession().FetchChildren(o, SPATSourcesPoolIdentity, &list, info)
+	return list, err
+}
+
+// CreateSPATSourcesPool creates a new child SPATSourcesPool under the Domain
+func (o *Domain) CreateSPATSourcesPool(child *SPATSourcesPool) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // UplinkRDs retrieves the list of child UplinkRDs of the Domain
 func (o *Domain) UplinkRDs(info *bambou.FetchingInfo) (UplinkRDsList, *bambou.Error) {
 
@@ -612,18 +641,4 @@ func (o *Domain) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Er
 	var list EventLogsList
 	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
-}
-
-// ExternalAppServices retrieves the list of child ExternalAppServices of the Domain
-func (o *Domain) ExternalAppServices(info *bambou.FetchingInfo) (ExternalAppServicesList, *bambou.Error) {
-
-	var list ExternalAppServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ExternalAppServiceIdentity, &list, info)
-	return list, err
-}
-
-// CreateExternalAppService creates a new child ExternalAppService under the Domain
-func (o *Domain) CreateExternalAppService(child *ExternalAppService) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }

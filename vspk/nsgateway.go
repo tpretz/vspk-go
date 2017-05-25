@@ -61,6 +61,8 @@ type NSGateway struct {
 	Owner                              string `json:"owner,omitempty"`
 	MACAddress                         string `json:"MACAddress,omitempty"`
 	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
+	TCPMSSEnabled                      bool   `json:"TCPMSSEnabled"`
+	TCPMaximumSegmentSize              int    `json:"TCPMaximumSegmentSize,omitempty"`
 	SKU                                string `json:"SKU,omitempty"`
 	TPMStatus                          string `json:"TPMStatus,omitempty"`
 	CPUType                            string `json:"CPUType,omitempty"`
@@ -89,6 +91,8 @@ type NSGateway struct {
 	ConfigurationStatus                string `json:"configurationStatus,omitempty"`
 	BootstrapID                        string `json:"bootstrapID,omitempty"`
 	BootstrapStatus                    string `json:"bootstrapStatus,omitempty"`
+	OperationMode                      string `json:"operationMode,omitempty"`
+	OperationStatus                    string `json:"operationStatus,omitempty"`
 	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
 	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
 	AssociatedNSGInfoID                string `json:"associatedNSGInfoID,omitempty"`
@@ -101,10 +105,14 @@ type NSGateway struct {
 func NewNSGateway() *NSGateway {
 
 	return &NSGateway{
+		TCPMSSEnabled:                    false,
+		TCPMaximumSegmentSize:            1330,
 		TPMStatus:                        "UNKNOWN",
 		SSHService:                       "INHERITED",
 		LastConfigurationReloadTimestamp: -1,
 		InheritedSSHServiceState:         "ENABLED",
+		ConfigurationReloadState:         "UNKNOWN",
+		ConfigurationStatus:              "UNKNOWN",
 	}
 }
 
@@ -279,6 +287,14 @@ func (o *NSGateway) Bootstraps(info *bambou.FetchingInfo) (BootstrapsList, *bamb
 func (o *NSGateway) CreateBootstrapActivation(child *BootstrapActivation) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// UplinkConnections retrieves the list of child UplinkConnections of the NSGateway
+func (o *NSGateway) UplinkConnections(info *bambou.FetchingInfo) (UplinkConnectionsList, *bambou.Error) {
+
+	var list UplinkConnectionsList
+	err := bambou.CurrentSession().FetchChildren(o, UplinkConnectionIdentity, &list, info)
+	return list, err
 }
 
 // NSGInfos retrieves the list of child NSGInfos of the NSGateway

@@ -270,20 +270,6 @@ func (o *Enterprise) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// MetadataTags retrieves the list of child MetadataTags of the Enterprise
-func (o *Enterprise) MetadataTags(info *bambou.FetchingInfo) (MetadataTagsList, *bambou.Error) {
-
-	var list MetadataTagsList
-	err := bambou.CurrentSession().FetchChildren(o, MetadataTagIdentity, &list, info)
-	return list, err
-}
-
-// CreateMetadataTag creates a new child MetadataTag under the Enterprise
-func (o *Enterprise) CreateMetadataTag(child *MetadataTag) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // NetworkMacroGroups retrieves the list of child NetworkMacroGroups of the Enterprise
 func (o *Enterprise) NetworkMacroGroups(info *bambou.FetchingInfo) (NetworkMacroGroupsList, *bambou.Error) {
 
@@ -656,6 +642,20 @@ func (o *Enterprise) GroupKeyEncryptionProfiles(info *bambou.FetchingInfo) (Grou
 	return list, err
 }
 
+// Trunks retrieves the list of child Trunks of the Enterprise
+func (o *Enterprise) Trunks(info *bambou.FetchingInfo) (TrunksList, *bambou.Error) {
+
+	var list TrunksList
+	err := bambou.CurrentSession().FetchChildren(o, TrunkIdentity, &list, info)
+	return list, err
+}
+
+// CreateTrunk creates a new child Trunk under the Enterprise
+func (o *Enterprise) CreateTrunk(child *Trunk) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // DSCPForwardingClassTables retrieves the list of child DSCPForwardingClassTables of the Enterprise
 func (o *Enterprise) DSCPForwardingClassTables(info *bambou.FetchingInfo) (DSCPForwardingClassTablesList, *bambou.Error) {
 
@@ -775,27 +775,5 @@ func (o *Enterprise) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambo
 
 	var list EventLogsList
 	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
-	return list, err
-}
-
-// ExternalAppServices retrieves the list of child ExternalAppServices of the Enterprise
-func (o *Enterprise) ExternalAppServices(info *bambou.FetchingInfo) (ExternalAppServicesList, *bambou.Error) {
-
-	var list ExternalAppServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ExternalAppServiceIdentity, &list, info)
-	return list, err
-}
-
-// CreateExternalAppService creates a new child ExternalAppService under the Enterprise
-func (o *Enterprise) CreateExternalAppService(child *ExternalAppService) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// ExternalServices retrieves the list of child ExternalServices of the Enterprise
-func (o *Enterprise) ExternalServices(info *bambou.FetchingInfo) (ExternalServicesList, *bambou.Error) {
-
-	var list ExternalServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ExternalServiceIdentity, &list, info)
 	return list, err
 }

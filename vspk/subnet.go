@@ -81,6 +81,7 @@ type Subnet struct {
 	Underlay                          bool   `json:"underlay"`
 	UnderlayEnabled                   string `json:"underlayEnabled,omitempty"`
 	EntityScope                       string `json:"entityScope,omitempty"`
+	EntityState                       string `json:"entityState,omitempty"`
 	PolicyGroupID                     int    `json:"policyGroupID,omitempty"`
 	RouteDistinguisher                string `json:"routeDistinguisher,omitempty"`
 	RouteTarget                       string `json:"routeTarget,omitempty"`
@@ -95,17 +96,19 @@ type Subnet struct {
 	Public                            bool   `json:"public"`
 	Multicast                         string `json:"multicast,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`
+	DynamicIpv6Address                bool   `json:"dynamicIpv6Address"`
 }
 
 // NewSubnet returns a new *Subnet
 func NewSubnet() *Subnet {
 
 	return &Subnet{
-		PATEnabled:      "INHERITED",
-		DPI:             "INHERITED",
-		IPType:          "IPV4",
-		MaintenanceMode: "DISABLED",
-		Multicast:       "INHERITED",
+		PATEnabled:         "INHERITED",
+		DPI:                "INHERITED",
+		IPType:             "IPV4",
+		MaintenanceMode:    "DISABLED",
+		Multicast:          "INHERITED",
+		DynamicIpv6Address: false,
 	}
 }
 

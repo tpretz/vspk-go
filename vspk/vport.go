@@ -66,14 +66,18 @@ type VPort struct {
 	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
 	Active                              bool   `json:"active"`
 	AddressSpoofing                     string `json:"addressSpoofing,omitempty"`
+	SegmentationID                      int    `json:"segmentationID,omitempty"`
+	SegmentationType                    string `json:"segmentationType,omitempty"`
 	Description                         string `json:"description,omitempty"`
 	EntityScope                         string `json:"entityScope,omitempty"`
 	DomainID                            string `json:"domainID,omitempty"`
 	ZoneID                              string `json:"zoneID,omitempty"`
 	OperationalState                    string `json:"operationalState,omitempty"`
+	TrunkRole                           string `json:"trunkRole,omitempty"`
 	AssociatedFloatingIPID              string `json:"associatedFloatingIPID,omitempty"`
 	AssociatedMulticastChannelMapID     string `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedSendMulticastChannelMapID string `json:"associatedSendMulticastChannelMapID,omitempty"`
+	AssociatedTrunkID                   string `json:"associatedTrunkID,omitempty"`
 	MultiNICVPortID                     string `json:"multiNICVPortID,omitempty"`
 	Multicast                           string `json:"multicast,omitempty"`
 	ExternalID                          string `json:"externalID,omitempty"`
@@ -87,7 +91,9 @@ func NewVPort() *VPort {
 	return &VPort{
 		DPI:              "INHERITED",
 		AddressSpoofing:  "INHERITED",
+		SegmentationType: "NONE",
 		OperationalState: "INIT",
+		TrunkRole:        "NONE",
 		Multicast:        "INHERITED",
 		Type:             "VM",
 	}
@@ -184,6 +190,28 @@ func (o *VPort) AggregateMetadatas(info *bambou.FetchingInfo) (AggregateMetadata
 	return list, err
 }
 
+// BGPNeighbors retrieves the list of child BGPNeighbors of the VPort
+func (o *VPort) BGPNeighbors(info *bambou.FetchingInfo) (BGPNeighborsList, *bambou.Error) {
+
+	var list BGPNeighborsList
+	err := bambou.CurrentSession().FetchChildren(o, BGPNeighborIdentity, &list, info)
+	return list, err
+}
+
+// CreateBGPNeighbor creates a new child BGPNeighbor under the VPort
+func (o *VPort) CreateBGPNeighbor(child *BGPNeighbor) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EgressACLEntryTemplates retrieves the list of child EgressACLEntryTemplates of the VPort
+func (o *VPort) EgressACLEntryTemplates(info *bambou.FetchingInfo) (EgressACLEntryTemplatesList, *bambou.Error) {
+
+	var list EgressACLEntryTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, EgressACLEntryTemplateIdentity, &list, info)
+	return list, err
+}
+
 // DHCPOptions retrieves the list of child DHCPOptions of the VPort
 func (o *VPort) DHCPOptions(info *bambou.FetchingInfo) (DHCPOptionsList, *bambou.Error) {
 
@@ -247,6 +275,28 @@ func (o *VPort) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bamb
 
 	var list VMInterfacesList
 	err := bambou.CurrentSession().FetchChildren(o, VMInterfaceIdentity, &list, info)
+	return list, err
+}
+
+// CreateVMInterface creates a new child VMInterface under the VPort
+func (o *VPort) CreateVMInterface(child *VMInterface) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// IngressACLEntryTemplates retrieves the list of child IngressACLEntryTemplates of the VPort
+func (o *VPort) IngressACLEntryTemplates(info *bambou.FetchingInfo) (IngressACLEntryTemplatesList, *bambou.Error) {
+
+	var list IngressACLEntryTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, IngressACLEntryTemplateIdentity, &list, info)
+	return list, err
+}
+
+// IngressAdvFwdEntryTemplates retrieves the list of child IngressAdvFwdEntryTemplates of the VPort
+func (o *VPort) IngressAdvFwdEntryTemplates(info *bambou.FetchingInfo) (IngressAdvFwdEntryTemplatesList, *bambou.Error) {
+
+	var list IngressAdvFwdEntryTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, IngressAdvFwdEntryTemplateIdentity, &list, info)
 	return list, err
 }
 
@@ -373,6 +423,14 @@ func (o *VPort) VRSs(info *bambou.FetchingInfo) (VRSsList, *bambou.Error) {
 
 	var list VRSsList
 	err := bambou.CurrentSession().FetchChildren(o, VRSIdentity, &list, info)
+	return list, err
+}
+
+// Trunks retrieves the list of child Trunks of the VPort
+func (o *VPort) Trunks(info *bambou.FetchingInfo) (TrunksList, *bambou.Error) {
+
+	var list TrunksList
+	err := bambou.CurrentSession().FetchChildren(o, TrunkIdentity, &list, info)
 	return list, err
 }
 

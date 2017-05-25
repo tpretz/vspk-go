@@ -85,6 +85,7 @@ func NewTCA() *TCA {
 		Metric:       "BYTES_IN",
 		ThrottleTime: 0,
 		Disable:      false,
+		Count:        0,
 		Status:       false,
 		Type:         "ROLLING_AVERAGE",
 	}
