@@ -61,7 +61,6 @@ type EnterpriseProfile struct {
 	Owner                                  string        `json:"owner,omitempty"`
 	BGPEnabled                             bool          `json:"BGPEnabled"`
 	DHCPLeaseInterval                      int           `json:"DHCPLeaseInterval,omitempty"`
-	DPIEnabled                             bool          `json:"DPIEnabled"`
 	Name                                   string        `json:"name,omitempty"`
 	LastUpdatedBy                          string        `json:"lastUpdatedBy,omitempty"`
 	ReceiveMultiCastListID                 string        `json:"receiveMultiCastListID,omitempty"`
@@ -83,7 +82,6 @@ func NewEnterpriseProfile() *EnterpriseProfile {
 
 	return &EnterpriseProfile{
 		DHCPLeaseInterval:                      24,
-		DPIEnabled:                             false,
 		FloatingIPsQuota:                       100,
 		EnableApplicationPerformanceManagement: false,
 	}

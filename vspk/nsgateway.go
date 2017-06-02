@@ -91,6 +91,8 @@ type NSGateway struct {
 	ConfigurationStatus                string `json:"configurationStatus,omitempty"`
 	BootstrapID                        string `json:"bootstrapID,omitempty"`
 	BootstrapStatus                    string `json:"bootstrapStatus,omitempty"`
+	OperationMode                      string `json:"operationMode,omitempty"`
+	OperationStatus                    string `json:"operationStatus,omitempty"`
 	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
 	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
 	AssociatedNSGInfoID                string `json:"associatedNSGInfoID,omitempty"`
