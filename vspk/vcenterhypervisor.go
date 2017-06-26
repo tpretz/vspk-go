@@ -140,6 +140,7 @@ type VCenterHypervisor struct {
 	NtpServer1                       string        `json:"ntpServer1,omitempty"`
 	NtpServer2                       string        `json:"ntpServer2,omitempty"`
 	Mtu                              int           `json:"mtu,omitempty"`
+	SuccessfullyAppliedVersion       string        `json:"successfullyAppliedVersion,omitempty"`
 	MultiVMSsupport                  bool          `json:"multiVMSsupport"`
 	MulticastReceiveInterface        string        `json:"multicastReceiveInterface,omitempty"`
 	MulticastReceiveInterfaceIP      string        `json:"multicastReceiveInterfaceIP,omitempty"`

@@ -124,6 +124,20 @@ func (o *UplinkConnection) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// BFDSessions retrieves the list of child BFDSessions of the UplinkConnection
+func (o *UplinkConnection) BFDSessions(info *bambou.FetchingInfo) (BFDSessionsList, *bambou.Error) {
+
+	var list BFDSessionsList
+	err := bambou.CurrentSession().FetchChildren(o, BFDSessionIdentity, &list, info)
+	return list, err
+}
+
+// CreateBFDSession creates a new child BFDSession under the UplinkConnection
+func (o *UplinkConnection) CreateBFDSession(child *BFDSession) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Underlays retrieves the list of child Underlays of the UplinkConnection
 func (o *UplinkConnection) Underlays(info *bambou.FetchingInfo) (UnderlaysList, *bambou.Error) {
 

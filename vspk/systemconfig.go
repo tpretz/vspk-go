@@ -59,6 +59,8 @@ type SystemConfig struct {
 	ParentID                                          string `json:"parentID,omitempty"`
 	ParentType                                        string `json:"parentType,omitempty"`
 	Owner                                             string `json:"owner,omitempty"`
+	AARFlowStatsInterval                              int    `json:"AARFlowStatsInterval,omitempty"`
+	AARProbeStatsInterval                             int    `json:"AARProbeStatsInterval,omitempty"`
 	ACLAllowOrigin                                    string `json:"ACLAllowOrigin,omitempty"`
 	ECMPCount                                         int    `json:"ECMPCount,omitempty"`
 	LDAPSyncInterval                                  int    `json:"LDAPSyncInterval,omitempty"`
@@ -92,7 +94,9 @@ type SystemConfig struct {
 	VSCOnSameVersionAsVSD                             bool   `json:"VSCOnSameVersionAsVSD"`
 	VSDReadOnlyMode                                   bool   `json:"VSDReadOnlyMode"`
 	VSDUpgradeIsComplete                              bool   `json:"VSDUpgradeIsComplete"`
+	NSGUplinkHoldDownTimer                            int    `json:"NSGUplinkHoldDownTimer,omitempty"`
 	ASNumber                                          int    `json:"ASNumber,omitempty"`
+	VSSStatsInterval                                  int    `json:"VSSStatsInterval,omitempty"`
 	RTLowerLimit                                      int    `json:"RTLowerLimit,omitempty"`
 	RTPublicNetworkLowerLimit                         int    `json:"RTPublicNetworkLowerLimit,omitempty"`
 	RTPublicNetworkUpperLimit                         int    `json:"RTPublicNetworkUpperLimit,omitempty"`
@@ -193,6 +197,8 @@ type SystemConfig struct {
 func NewSystemConfig() *SystemConfig {
 
 	return &SystemConfig{
+		AARFlowStatsInterval:        30,
+		AARProbeStatsInterval:       30,
 		ZFBRequestRetryTimer:        30,
 		VMCacheSize:                 5000,
 		VMPurgeTime:                 60,
@@ -201,6 +207,8 @@ func NewSystemConfig() *SystemConfig {
 		VMUnreachableCleanupTime:    7200,
 		VMUnreachableTime:           3600,
 		VPortInitStatefulTimer:      300,
+		NSGUplinkHoldDownTimer:      5,
+		VSSStatsInterval:            30,
 		PageMaxSize:                 500,
 		PageSize:                    50,
 		AccumulateLicensesEnabled:   false,

@@ -91,6 +91,7 @@ type VCenter struct {
 	MgmtNetworkPortgroup             string `json:"mgmtNetworkPortgroup,omitempty"`
 	DhcpRelayServer                  string `json:"dhcpRelayServer,omitempty"`
 	MirrorNetworkPortgroup           string `json:"mirrorNetworkPortgroup,omitempty"`
+	DisableNetworkDiscovery          bool   `json:"disableNetworkDiscovery"`
 	SiteId                           string `json:"siteId,omitempty"`
 	OldAgencyName                    string `json:"oldAgencyName,omitempty"`
 	AllowDataDHCP                    bool   `json:"allowDataDHCP"`

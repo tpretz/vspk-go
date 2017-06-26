@@ -71,6 +71,7 @@ type VRSMetrics struct {
 	AgentName                     string  `json:"agentName,omitempty"`
 	EntityScope                   string  `json:"entityScope,omitempty"`
 	AssociatedVCenterHypervisorID string  `json:"associatedVCenterHypervisorID,omitempty"`
+	CurrentVersion                string  `json:"currentVersion,omitempty"`
 	ExternalID                    string  `json:"externalID,omitempty"`
 }
 
