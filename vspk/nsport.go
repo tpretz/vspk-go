@@ -66,7 +66,6 @@ type NSPort struct {
 	TemplateID                  string `json:"templateID,omitempty"`
 	PermittedAction             string `json:"permittedAction,omitempty"`
 	Description                 string `json:"description,omitempty"`
-	NetworkAccelerationEnabled  bool   `json:"networkAccelerationEnabled"`
 	PhysicalName                string `json:"physicalName,omitempty"`
 	EntityScope                 string `json:"entityScope,omitempty"`
 	PortType                    string `json:"portType,omitempty"`

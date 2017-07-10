@@ -29,90 +29,80 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// NSGInfoIdentity represents the Identity of the object
-var NSGInfoIdentity = bambou.Identity{
-	Name:     "nsginfo",
-	Category: "nsginfos",
+// VNFInterfaceDescriptorIdentity represents the Identity of the object
+var VNFInterfaceDescriptorIdentity = bambou.Identity{
+	Name:     "vnfinterfacedescriptor",
+	Category: "vnfinterfacedescriptors",
 }
 
-// NSGInfosList represents a list of NSGInfos
-type NSGInfosList []*NSGInfo
+// VNFInterfaceDescriptorsList represents a list of VNFInterfaceDescriptors
+type VNFInterfaceDescriptorsList []*VNFInterfaceDescriptor
 
-// NSGInfosAncestor is the interface that an ancestor of a NSGInfo must implement.
-// An Ancestor is defined as an entity that has NSGInfo as a descendant.
-// An Ancestor can get a list of its child NSGInfos, but not necessarily create one.
-type NSGInfosAncestor interface {
-	NSGInfos(*bambou.FetchingInfo) (NSGInfosList, *bambou.Error)
+// VNFInterfaceDescriptorsAncestor is the interface that an ancestor of a VNFInterfaceDescriptor must implement.
+// An Ancestor is defined as an entity that has VNFInterfaceDescriptor as a descendant.
+// An Ancestor can get a list of its child VNFInterfaceDescriptors, but not necessarily create one.
+type VNFInterfaceDescriptorsAncestor interface {
+	VNFInterfaceDescriptors(*bambou.FetchingInfo) (VNFInterfaceDescriptorsList, *bambou.Error)
 }
 
-// NSGInfosParent is the interface that a parent of a NSGInfo must implement.
-// A Parent is defined as an entity that has NSGInfo as a child.
-// A Parent is an Ancestor which can create a NSGInfo.
-type NSGInfosParent interface {
-	NSGInfosAncestor
-	CreateNSGInfo(*NSGInfo) *bambou.Error
+// VNFInterfaceDescriptorsParent is the interface that a parent of a VNFInterfaceDescriptor must implement.
+// A Parent is defined as an entity that has VNFInterfaceDescriptor as a child.
+// A Parent is an Ancestor which can create a VNFInterfaceDescriptor.
+type VNFInterfaceDescriptorsParent interface {
+	VNFInterfaceDescriptorsAncestor
+	CreateVNFInterfaceDescriptor(*VNFInterfaceDescriptor) *bambou.Error
 }
 
-// NSGInfo represents the model of a nsginfo
-type NSGInfo struct {
+// VNFInterfaceDescriptor represents the model of a vnfinterfacedescriptor
+type VNFInterfaceDescriptor struct {
 	ID                    string `json:"ID,omitempty"`
 	ParentID              string `json:"parentID,omitempty"`
 	ParentType            string `json:"parentType,omitempty"`
 	Owner                 string `json:"owner,omitempty"`
-	MACAddress            string `json:"MACAddress,omitempty"`
-	BIOSVersion           string `json:"BIOSVersion,omitempty"`
-	SKU                   string `json:"SKU,omitempty"`
-	TPMStatus             string `json:"TPMStatus,omitempty"`
-	CPUType               string `json:"CPUType,omitempty"`
-	NSGVersion            string `json:"NSGVersion,omitempty"`
-	UUID                  string `json:"UUID,omitempty"`
-	Family                string `json:"family,omitempty"`
-	SerialNumber          string `json:"serialNumber,omitempty"`
-	Libraries             string `json:"libraries,omitempty"`
-	EntityScope           string `json:"entityScope,omitempty"`
-	ProductName           string `json:"productName,omitempty"`
-	AssociatedNSGatewayID string `json:"associatedNSGatewayID,omitempty"`
-	ExternalID            string `json:"externalID,omitempty"`
+	Name                  string `json:"name,omitempty"`
+	IsManagementInterface bool   `json:"isManagementInterface"`
 }
 
-// NewNSGInfo returns a new *NSGInfo
-func NewNSGInfo() *NSGInfo {
+// NewVNFInterfaceDescriptor returns a new *VNFInterfaceDescriptor
+func NewVNFInterfaceDescriptor() *VNFInterfaceDescriptor {
 
-	return &NSGInfo{}
+	return &VNFInterfaceDescriptor{
+		IsManagementInterface: false,
+	}
 }
 
 // Identity returns the Identity of the object.
-func (o *NSGInfo) Identity() bambou.Identity {
+func (o *VNFInterfaceDescriptor) Identity() bambou.Identity {
 
-	return NSGInfoIdentity
+	return VNFInterfaceDescriptorIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *NSGInfo) Identifier() string {
+func (o *VNFInterfaceDescriptor) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *NSGInfo) SetIdentifier(ID string) {
+func (o *VNFInterfaceDescriptor) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the NSGInfo from the server
-func (o *NSGInfo) Fetch() *bambou.Error {
+// Fetch retrieves the VNFInterfaceDescriptor from the server
+func (o *VNFInterfaceDescriptor) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the NSGInfo into the server
-func (o *NSGInfo) Save() *bambou.Error {
+// Save saves the VNFInterfaceDescriptor into the server
+func (o *VNFInterfaceDescriptor) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the NSGInfo from the server
-func (o *NSGInfo) Delete() *bambou.Error {
+// Delete deletes the VNFInterfaceDescriptor from the server
+func (o *VNFInterfaceDescriptor) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }

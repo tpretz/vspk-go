@@ -72,9 +72,6 @@ type Zone struct {
 	Encryption                      string `json:"encryption,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
 	PolicyGroupID                   int    `json:"policyGroupID,omitempty"`
-	AssociatedApplicationID         string `json:"associatedApplicationID,omitempty"`
-	AssociatedApplicationObjectID   string `json:"associatedApplicationObjectID,omitempty"`
-	AssociatedApplicationObjectType string `json:"associatedApplicationObjectType,omitempty"`
 	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
 	PublicZone                      bool   `json:"publicZone"`
 	Multicast                       string `json:"multicast,omitempty"`

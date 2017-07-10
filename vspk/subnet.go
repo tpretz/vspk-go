@@ -88,9 +88,6 @@ type Subnet struct {
 	SplitSubnet                       bool   `json:"splitSubnet"`
 	ProxyARP                          bool   `json:"proxyARP"`
 	UseGlobalMAC                      string `json:"useGlobalMAC,omitempty"`
-	AssociatedApplicationID           string `json:"associatedApplicationID,omitempty"`
-	AssociatedApplicationObjectID     string `json:"associatedApplicationObjectID,omitempty"`
-	AssociatedApplicationObjectType   string `json:"associatedApplicationObjectType,omitempty"`
 	AssociatedMulticastChannelMapID   string `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedSharedNetworkResourceID string `json:"associatedSharedNetworkResourceID,omitempty"`
 	Public                            bool   `json:"public"`

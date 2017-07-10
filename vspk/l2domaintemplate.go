@@ -203,6 +203,20 @@ func (o *L2DomainTemplate) CreateEgressACLTemplate(child *EgressACLTemplate) *ba
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// EgressAdvFwdTemplates retrieves the list of child EgressAdvFwdTemplates of the L2DomainTemplate
+func (o *L2DomainTemplate) EgressAdvFwdTemplates(info *bambou.FetchingInfo) (EgressAdvFwdTemplatesList, *bambou.Error) {
+
+	var list EgressAdvFwdTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, EgressAdvFwdTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateEgressAdvFwdTemplate creates a new child EgressAdvFwdTemplate under the L2DomainTemplate
+func (o *L2DomainTemplate) CreateEgressAdvFwdTemplate(child *EgressAdvFwdTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the L2DomainTemplate
 func (o *L2DomainTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -307,4 +321,18 @@ func (o *L2DomainTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, 
 	var list EventLogsList
 	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
+}
+
+// OverlayMirrorDestinationTemplates retrieves the list of child OverlayMirrorDestinationTemplates of the L2DomainTemplate
+func (o *L2DomainTemplate) OverlayMirrorDestinationTemplates(info *bambou.FetchingInfo) (OverlayMirrorDestinationTemplatesList, *bambou.Error) {
+
+	var list OverlayMirrorDestinationTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, OverlayMirrorDestinationTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateOverlayMirrorDestinationTemplate creates a new child OverlayMirrorDestinationTemplate under the L2DomainTemplate
+func (o *L2DomainTemplate) CreateOverlayMirrorDestinationTemplate(child *OverlayMirrorDestinationTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -76,8 +76,10 @@ type VPort struct {
 	TrunkRole                           string `json:"trunkRole,omitempty"`
 	AssociatedFloatingIPID              string `json:"associatedFloatingIPID,omitempty"`
 	AssociatedMulticastChannelMapID     string `json:"associatedMulticastChannelMapID,omitempty"`
+	AssociatedSSID                      string `json:"associatedSSID,omitempty"`
 	AssociatedSendMulticastChannelMapID string `json:"associatedSendMulticastChannelMapID,omitempty"`
 	AssociatedTrunkID                   string `json:"associatedTrunkID,omitempty"`
+	SubType                             string `json:"subType,omitempty"`
 	MultiNICVPortID                     string `json:"multiNICVPortID,omitempty"`
 	Multicast                           string `json:"multicast,omitempty"`
 	ExternalID                          string `json:"externalID,omitempty"`
@@ -94,6 +96,7 @@ func NewVPort() *VPort {
 		SegmentationType: "NONE",
 		OperationalState: "INIT",
 		TrunkRole:        "NONE",
+		SubType:          "NONE",
 		Multicast:        "INHERITED",
 		Type:             "VM",
 	}
@@ -282,6 +285,14 @@ func (o *VPort) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bamb
 func (o *VPort) CreateVMInterface(child *VMInterface) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// VNFInterfaces retrieves the list of child VNFInterfaces of the VPort
+func (o *VPort) VNFInterfaces(info *bambou.FetchingInfo) (VNFInterfacesList, *bambou.Error) {
+
+	var list VNFInterfacesList
+	err := bambou.CurrentSession().FetchChildren(o, VNFInterfaceIdentity, &list, info)
+	return list, err
 }
 
 // IngressACLEntryTemplates retrieves the list of child IngressACLEntryTemplates of the VPort

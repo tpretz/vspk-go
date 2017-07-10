@@ -492,6 +492,20 @@ func (o *Enterprise) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
 	return list, err
 }
 
+// VNFs retrieves the list of child VNFs of the Enterprise
+func (o *Enterprise) VNFs(info *bambou.FetchingInfo) (VNFsList, *bambou.Error) {
+
+	var list VNFsList
+	err := bambou.CurrentSession().FetchChildren(o, VNFIdentity, &list, info)
+	return list, err
+}
+
+// CreateVNF creates a new child VNF under the Enterprise
+func (o *Enterprise) CreateVNF(child *VNF) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // EnterpriseNetworks retrieves the list of child EnterpriseNetworks of the Enterprise
 func (o *Enterprise) EnterpriseNetworks(info *bambou.FetchingInfo) (EnterpriseNetworksList, *bambou.Error) {
 
@@ -524,6 +538,20 @@ func (o *Enterprise) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
 
 // CreateJob creates a new child Job under the Enterprise
 func (o *Enterprise) CreateJob(child *Job) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// PolicyObjectGroups retrieves the list of child PolicyObjectGroups of the Enterprise
+func (o *Enterprise) PolicyObjectGroups(info *bambou.FetchingInfo) (PolicyObjectGroupsList, *bambou.Error) {
+
+	var list PolicyObjectGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, PolicyObjectGroupIdentity, &list, info)
+	return list, err
+}
+
+// CreatePolicyObjectGroup creates a new child PolicyObjectGroup under the Enterprise
+func (o *Enterprise) CreatePolicyObjectGroup(child *PolicyObjectGroup) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -602,20 +630,6 @@ func (o *Enterprise) Applicationperformancemanagements(info *bambou.FetchingInfo
 
 // CreateApplicationperformancemanagement creates a new child Applicationperformancemanagement under the Enterprise
 func (o *Enterprise) CreateApplicationperformancemanagement(child *Applicationperformancemanagement) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// ApplicationServices retrieves the list of child ApplicationServices of the Enterprise
-func (o *Enterprise) ApplicationServices(info *bambou.FetchingInfo) (ApplicationServicesList, *bambou.Error) {
-
-	var list ApplicationServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ApplicationServiceIdentity, &list, info)
-	return list, err
-}
-
-// CreateApplicationService creates a new child ApplicationService under the Enterprise
-func (o *Enterprise) CreateApplicationService(child *ApplicationService) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

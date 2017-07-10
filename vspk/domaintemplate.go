@@ -173,6 +173,20 @@ func (o *DomainTemplate) CreateEgressACLTemplate(child *EgressACLTemplate) *bamb
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// EgressAdvFwdTemplates retrieves the list of child EgressAdvFwdTemplates of the DomainTemplate
+func (o *DomainTemplate) EgressAdvFwdTemplates(info *bambou.FetchingInfo) (EgressAdvFwdTemplatesList, *bambou.Error) {
+
+	var list EgressAdvFwdTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, EgressAdvFwdTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateEgressAdvFwdTemplate creates a new child EgressAdvFwdTemplate under the DomainTemplate
+func (o *DomainTemplate) CreateEgressAdvFwdTemplate(child *EgressAdvFwdTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // DomainFIPAclTemplates retrieves the list of child DomainFIPAclTemplates of the DomainTemplate
 func (o *DomainTemplate) DomainFIPAclTemplates(info *bambou.FetchingInfo) (DomainFIPAclTemplatesList, *bambou.Error) {
 

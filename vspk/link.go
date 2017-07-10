@@ -145,16 +145,16 @@ func (o *Link) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// NextHopAddress retrieves the list of child NextHopAddress of the Link
-func (o *Link) NextHopAddress(info *bambou.FetchingInfo) (NextHopAddressList, *bambou.Error) {
+// NextHops retrieves the list of child NextHops of the Link
+func (o *Link) NextHops(info *bambou.FetchingInfo) (NextHopsList, *bambou.Error) {
 
-	var list NextHopAddressList
-	err := bambou.CurrentSession().FetchChildren(o, NextHopAddressIdentity, &list, info)
+	var list NextHopsList
+	err := bambou.CurrentSession().FetchChildren(o, NextHopIdentity, &list, info)
 	return list, err
 }
 
-// CreateNextHopAddress creates a new child NextHopAddress under the Link
-func (o *Link) CreateNextHopAddress(child *NextHopAddress) *bambou.Error {
+// CreateNextHop creates a new child NextHop under the Link
+func (o *Link) CreateNextHop(child *NextHop) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -169,6 +169,20 @@ func (o *Link) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, 
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the Link
 func (o *Link) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// PolicyStatements retrieves the list of child PolicyStatements of the Link
+func (o *Link) PolicyStatements(info *bambou.FetchingInfo) (PolicyStatementsList, *bambou.Error) {
+
+	var list PolicyStatementsList
+	err := bambou.CurrentSession().FetchChildren(o, PolicyStatementIdentity, &list, info)
+	return list, err
+}
+
+// CreatePolicyStatement creates a new child PolicyStatement under the Link
+func (o *Link) CreatePolicyStatement(child *PolicyStatement) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

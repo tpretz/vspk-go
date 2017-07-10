@@ -221,6 +221,20 @@ func (o *L2Domain) CreateEgressACLTemplate(child *EgressACLTemplate) *bambou.Err
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// EgressAdvFwdTemplates retrieves the list of child EgressAdvFwdTemplates of the L2Domain
+func (o *L2Domain) EgressAdvFwdTemplates(info *bambou.FetchingInfo) (EgressAdvFwdTemplatesList, *bambou.Error) {
+
+	var list EgressAdvFwdTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, EgressAdvFwdTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateEgressAdvFwdTemplate creates a new child EgressAdvFwdTemplate under the L2Domain
+func (o *L2Domain) CreateEgressAdvFwdTemplate(child *EgressAdvFwdTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // DHCPOptions retrieves the list of child DHCPOptions of the L2Domain
 func (o *L2Domain) DHCPOptions(info *bambou.FetchingInfo) (DHCPOptionsList, *bambou.Error) {
 
@@ -439,20 +453,6 @@ func (o *L2Domain) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error)
 	return list, err
 }
 
-// StaticRoutes retrieves the list of child StaticRoutes of the L2Domain
-func (o *L2Domain) StaticRoutes(info *bambou.FetchingInfo) (StaticRoutesList, *bambou.Error) {
-
-	var list StaticRoutesList
-	err := bambou.CurrentSession().FetchChildren(o, StaticRouteIdentity, &list, info)
-	return list, err
-}
-
-// CreateStaticRoute creates a new child StaticRoute under the L2Domain
-func (o *L2Domain) CreateStaticRoute(child *StaticRoute) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Statistics retrieves the list of child Statistics of the L2Domain
 func (o *L2Domain) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
 
@@ -481,4 +481,18 @@ func (o *L2Domain) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.
 	var list EventLogsList
 	err := bambou.CurrentSession().FetchChildren(o, EventLogIdentity, &list, info)
 	return list, err
+}
+
+// OverlayMirrorDestinations retrieves the list of child OverlayMirrorDestinations of the L2Domain
+func (o *L2Domain) OverlayMirrorDestinations(info *bambou.FetchingInfo) (OverlayMirrorDestinationsList, *bambou.Error) {
+
+	var list OverlayMirrorDestinationsList
+	err := bambou.CurrentSession().FetchChildren(o, OverlayMirrorDestinationIdentity, &list, info)
+	return list, err
+}
+
+// CreateOverlayMirrorDestination creates a new child OverlayMirrorDestination under the L2Domain
+func (o *L2Domain) CreateOverlayMirrorDestination(child *OverlayMirrorDestination) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -60,7 +60,7 @@ type DemarcationService struct {
 	ParentType          string `json:"parentType,omitempty"`
 	Owner               string `json:"owner,omitempty"`
 	RouteDistinguisher  string `json:"routeDistinguisher,omitempty"`
-	Priority            string `json:"priority,omitempty"`
+	Priority            int    `json:"priority,omitempty"`
 	AssociatedGatewayID string `json:"associatedGatewayID,omitempty"`
 	AssociatedVLANID    string `json:"associatedVLANID,omitempty"`
 	Type                string `json:"type,omitempty"`

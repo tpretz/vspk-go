@@ -550,6 +550,28 @@ func (o *Me) CreateUnderlay(child *Underlay) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VNFCatalogs retrieves the list of child VNFCatalogs of the Me
+func (o *Me) VNFCatalogs(info *bambou.FetchingInfo) (VNFCatalogsList, *bambou.Error) {
+
+	var list VNFCatalogsList
+	err := bambou.CurrentSession().FetchChildren(o, VNFCatalogIdentity, &list, info)
+	return list, err
+}
+
+// VNFMetadatas retrieves the list of child VNFMetadatas of the Me
+func (o *Me) VNFMetadatas(info *bambou.FetchingInfo) (VNFMetadatasList, *bambou.Error) {
+
+	var list VNFMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, VNFMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateVNFMetadata creates a new child VNFMetadata under the Me
+func (o *Me) CreateVNFMetadata(child *VNFMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // InfrastructureAccessProfiles retrieves the list of child InfrastructureAccessProfiles of the Me
 func (o *Me) InfrastructureAccessProfiles(info *bambou.FetchingInfo) (InfrastructureAccessProfilesList, *bambou.Error) {
 
@@ -728,20 +750,6 @@ func (o *Me) UplinkRDs(info *bambou.FetchingInfo) (UplinkRDsList, *bambou.Error)
 	return list, err
 }
 
-// ApplicationServices retrieves the list of child ApplicationServices of the Me
-func (o *Me) ApplicationServices(info *bambou.FetchingInfo) (ApplicationServicesList, *bambou.Error) {
-
-	var list ApplicationServicesList
-	err := bambou.CurrentSession().FetchChildren(o, ApplicationServiceIdentity, &list, info)
-	return list, err
-}
-
-// CreateApplicationService creates a new child ApplicationService under the Me
-func (o *Me) CreateApplicationService(child *ApplicationService) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // VCenterVRSConfigs retrieves the list of child VCenterVRSConfigs of the Me
 func (o *Me) VCenterVRSConfigs(info *bambou.FetchingInfo) (VCenterVRSConfigsList, *bambou.Error) {
 
@@ -756,12 +764,6 @@ func (o *Me) Users(info *bambou.FetchingInfo) (UsersList, *bambou.Error) {
 	var list UsersList
 	err := bambou.CurrentSession().FetchChildren(o, UserIdentity, &list, info)
 	return list, err
-}
-
-// CreateUser creates a new child User under the Me
-func (o *Me) CreateUser(child *User) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // NSGateways retrieves the list of child NSGateways of the Me

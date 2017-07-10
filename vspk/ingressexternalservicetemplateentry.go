@@ -84,9 +84,6 @@ type IngressExternalServiceTemplateEntry struct {
 	SourcePort                        string `json:"sourcePort,omitempty"`
 	Priority                          int    `json:"priority,omitempty"`
 	Protocol                          string `json:"protocol,omitempty"`
-	AssociatedApplicationID           string `json:"associatedApplicationID,omitempty"`
-	AssociatedApplicationObjectID     string `json:"associatedApplicationObjectID,omitempty"`
-	AssociatedApplicationObjectType   string `json:"associatedApplicationObjectType,omitempty"`
 	AssociatedLiveEntityID            string `json:"associatedLiveEntityID,omitempty"`
 	StatsID                           string `json:"statsID,omitempty"`
 	StatsLoggingEnabled               bool   `json:"statsLoggingEnabled"`

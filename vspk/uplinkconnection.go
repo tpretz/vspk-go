@@ -55,30 +55,30 @@ type UplinkConnectionsParent interface {
 
 // UplinkConnection represents the model of a uplinkconnection
 type UplinkConnection struct {
-	ID                      string `json:"ID,omitempty"`
-	ParentID                string `json:"parentID,omitempty"`
-	ParentType              string `json:"parentType,omitempty"`
-	Owner                   string `json:"owner,omitempty"`
-	DNSAddress              string `json:"DNSAddress,omitempty"`
-	Password                string `json:"password,omitempty"`
-	Gateway                 string `json:"gateway,omitempty"`
-	Address                 string `json:"address,omitempty"`
-	AdvertisementCriteria   string `json:"advertisementCriteria,omitempty"`
-	SecondaryAddress        string `json:"secondaryAddress,omitempty"`
-	Netmask                 string `json:"netmask,omitempty"`
-	VlanId                  string `json:"vlanId,omitempty"`
-	InterfaceConnectionType string `json:"interfaceConnectionType,omitempty"`
-	Mode                    string `json:"mode,omitempty"`
-	Role                    string `json:"role,omitempty"`
-	RoleOrder               string `json:"roleOrder,omitempty"`
-	PortName                string `json:"portName,omitempty"`
-	UplinkID                string `json:"uplinkID,omitempty"`
-	Username                string `json:"username,omitempty"`
-	AssocUnderlayID         string `json:"assocUnderlayID,omitempty"`
-	AssociatedBGPNeighborID string `json:"associatedBGPNeighborID,omitempty"`
-	AssociatedUnderlayName  string `json:"associatedUnderlayName,omitempty"`
-	AssociatedVSCProfileID  string `json:"associatedVSCProfileID,omitempty"`
-	AuxiliaryLink           bool   `json:"auxiliaryLink"`
+	ID                      string  `json:"ID,omitempty"`
+	ParentID                string  `json:"parentID,omitempty"`
+	ParentType              string  `json:"parentType,omitempty"`
+	Owner                   string  `json:"owner,omitempty"`
+	DNSAddress              string  `json:"DNSAddress,omitempty"`
+	Password                string  `json:"password,omitempty"`
+	Gateway                 string  `json:"gateway,omitempty"`
+	Address                 string  `json:"address,omitempty"`
+	AdvertisementCriteria   string  `json:"advertisementCriteria,omitempty"`
+	SecondaryAddress        string  `json:"secondaryAddress,omitempty"`
+	Netmask                 string  `json:"netmask,omitempty"`
+	VlanId                  string  `json:"vlanId,omitempty"`
+	InterfaceConnectionType string  `json:"interfaceConnectionType,omitempty"`
+	Mode                    string  `json:"mode,omitempty"`
+	Role                    string  `json:"role,omitempty"`
+	RoleOrder               string  `json:"roleOrder,omitempty"`
+	PortName                string  `json:"portName,omitempty"`
+	DownloadRateLimit       float64 `json:"downloadRateLimit,omitempty"`
+	UplinkID                string  `json:"uplinkID,omitempty"`
+	Username                string  `json:"username,omitempty"`
+	AssocUnderlayID         string  `json:"assocUnderlayID,omitempty"`
+	AssociatedBGPNeighborID string  `json:"associatedBGPNeighborID,omitempty"`
+	AssociatedUnderlayName  string  `json:"associatedUnderlayName,omitempty"`
+	AuxiliaryLink           bool    `json:"auxiliaryLink"`
 }
 
 // NewUplinkConnection returns a new *UplinkConnection
@@ -87,9 +87,10 @@ func NewUplinkConnection() *UplinkConnection {
 	return &UplinkConnection{
 		Address:                 "IPv4",
 		InterfaceConnectionType: "AUTOMATIC",
-		Mode:          "Dynamic",
-		Role:          "PRIMARY",
-		AuxiliaryLink: false,
+		Mode:              "Dynamic",
+		Role:              "PRIMARY",
+		DownloadRateLimit: 8,
+		AuxiliaryLink:     false,
 	}
 }
 
@@ -135,12 +136,6 @@ func (o *UplinkConnection) Underlays(info *bambou.FetchingInfo) (UnderlaysList, 
 	var list UnderlaysList
 	err := bambou.CurrentSession().FetchChildren(o, UnderlayIdentity, &list, info)
 	return list, err
-}
-
-// CreateUnderlay creates a new child Underlay under the UplinkConnection
-func (o *UplinkConnection) CreateUnderlay(child *Underlay) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // CustomProperties retrieves the list of child CustomProperties of the UplinkConnection

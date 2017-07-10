@@ -87,13 +87,13 @@ type Domain struct {
 	Encryption                      string        `json:"encryption,omitempty"`
 	UnderlayEnabled                 string        `json:"underlayEnabled,omitempty"`
 	EntityScope                     string        `json:"entityScope,omitempty"`
+	LocalAS                         int           `json:"localAS,omitempty"`
 	PolicyChangeStatus              string        `json:"policyChangeStatus,omitempty"`
 	DomainID                        int           `json:"domainID,omitempty"`
 	DomainVLANID                    int           `json:"domainVLANID,omitempty"`
 	RouteDistinguisher              string        `json:"routeDistinguisher,omitempty"`
 	RouteTarget                     string        `json:"routeTarget,omitempty"`
 	UplinkPreference                string        `json:"uplinkPreference,omitempty"`
-	ApplicationDeploymentPolicy     string        `json:"applicationDeploymentPolicy,omitempty"`
 	AssociatedBGPProfileID          string        `json:"associatedBGPProfileID,omitempty"`
 	AssociatedMulticastChannelMapID string        `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedPATMapperID           string        `json:"associatedPATMapperID,omitempty"`
@@ -109,12 +109,11 @@ type Domain struct {
 func NewDomain() *Domain {
 
 	return &Domain{
-		PATEnabled:                  "INHERITED",
-		DHCPBehavior:                "CONSUME",
-		DPI:                         "DISABLED",
-		MaintenanceMode:             "DISABLED",
-		ApplicationDeploymentPolicy: "ZONE",
-		TunnelType:                  "DC_DEFAULT",
+		PATEnabled:      "INHERITED",
+		DHCPBehavior:    "CONSUME",
+		DPI:             "DISABLED",
+		MaintenanceMode: "DISABLED",
+		TunnelType:      "DC_DEFAULT",
 	}
 }
 
@@ -242,6 +241,20 @@ func (o *Domain) EgressACLTemplates(info *bambou.FetchingInfo) (EgressACLTemplat
 
 // CreateEgressACLTemplate creates a new child EgressACLTemplate under the Domain
 func (o *Domain) CreateEgressACLTemplate(child *EgressACLTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EgressAdvFwdTemplates retrieves the list of child EgressAdvFwdTemplates of the Domain
+func (o *Domain) EgressAdvFwdTemplates(info *bambou.FetchingInfo) (EgressAdvFwdTemplatesList, *bambou.Error) {
+
+	var list EgressAdvFwdTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, EgressAdvFwdTemplateIdentity, &list, info)
+	return list, err
+}
+
+// CreateEgressAdvFwdTemplate creates a new child EgressAdvFwdTemplate under the Domain
+func (o *Domain) CreateEgressAdvFwdTemplate(child *EgressAdvFwdTemplate) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

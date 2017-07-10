@@ -29,32 +29,32 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// EgressACLEntryTemplateIdentity represents the Identity of the object
-var EgressACLEntryTemplateIdentity = bambou.Identity{
-	Name:     "egressaclentrytemplate",
-	Category: "egressaclentrytemplates",
+// EgressAdvFwdEntryTemplateIdentity represents the Identity of the object
+var EgressAdvFwdEntryTemplateIdentity = bambou.Identity{
+	Name:     "egressadvfwdentrytemplate",
+	Category: "egressadvfwdentrytemplates",
 }
 
-// EgressACLEntryTemplatesList represents a list of EgressACLEntryTemplates
-type EgressACLEntryTemplatesList []*EgressACLEntryTemplate
+// EgressAdvFwdEntryTemplatesList represents a list of EgressAdvFwdEntryTemplates
+type EgressAdvFwdEntryTemplatesList []*EgressAdvFwdEntryTemplate
 
-// EgressACLEntryTemplatesAncestor is the interface that an ancestor of a EgressACLEntryTemplate must implement.
-// An Ancestor is defined as an entity that has EgressACLEntryTemplate as a descendant.
-// An Ancestor can get a list of its child EgressACLEntryTemplates, but not necessarily create one.
-type EgressACLEntryTemplatesAncestor interface {
-	EgressACLEntryTemplates(*bambou.FetchingInfo) (EgressACLEntryTemplatesList, *bambou.Error)
+// EgressAdvFwdEntryTemplatesAncestor is the interface that an ancestor of a EgressAdvFwdEntryTemplate must implement.
+// An Ancestor is defined as an entity that has EgressAdvFwdEntryTemplate as a descendant.
+// An Ancestor can get a list of its child EgressAdvFwdEntryTemplates, but not necessarily create one.
+type EgressAdvFwdEntryTemplatesAncestor interface {
+	EgressAdvFwdEntryTemplates(*bambou.FetchingInfo) (EgressAdvFwdEntryTemplatesList, *bambou.Error)
 }
 
-// EgressACLEntryTemplatesParent is the interface that a parent of a EgressACLEntryTemplate must implement.
-// A Parent is defined as an entity that has EgressACLEntryTemplate as a child.
-// A Parent is an Ancestor which can create a EgressACLEntryTemplate.
-type EgressACLEntryTemplatesParent interface {
-	EgressACLEntryTemplatesAncestor
-	CreateEgressACLEntryTemplate(*EgressACLEntryTemplate) *bambou.Error
+// EgressAdvFwdEntryTemplatesParent is the interface that a parent of a EgressAdvFwdEntryTemplate must implement.
+// A Parent is defined as an entity that has EgressAdvFwdEntryTemplate as a child.
+// A Parent is an Ancestor which can create a EgressAdvFwdEntryTemplate.
+type EgressAdvFwdEntryTemplatesParent interface {
+	EgressAdvFwdEntryTemplatesAncestor
+	CreateEgressAdvFwdEntryTemplate(*EgressAdvFwdEntryTemplate) *bambou.Error
 }
 
-// EgressACLEntryTemplate represents the model of a egressaclentrytemplate
-type EgressACLEntryTemplate struct {
+// EgressAdvFwdEntryTemplate represents the model of a egressadvfwdentrytemplate
+type EgressAdvFwdEntryTemplate struct {
 	ID                     string `json:"ID,omitempty"`
 	ParentID               string `json:"parentID,omitempty"`
 	ParentType             string `json:"parentType,omitempty"`
@@ -62,11 +62,14 @@ type EgressACLEntryTemplate struct {
 	ACLTemplateName        string `json:"ACLTemplateName,omitempty"`
 	ICMPCode               string `json:"ICMPCode,omitempty"`
 	ICMPType               string `json:"ICMPType,omitempty"`
+	FCOverride             string `json:"FCOverride,omitempty"`
 	IPv6AddressOverride    string `json:"IPv6AddressOverride,omitempty"`
 	DSCP                   string `json:"DSCP,omitempty"`
+	Name                   string `json:"name,omitempty"`
 	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	Action                 string `json:"action,omitempty"`
 	AddressOverride        string `json:"addressOverride,omitempty"`
+	RedirectVPortTagID     string `json:"redirectVPortTagID,omitempty"`
 	Description            string `json:"description,omitempty"`
 	DestinationPort        string `json:"destinationPort,omitempty"`
 	NetworkID              string `json:"networkID,omitempty"`
@@ -80,101 +83,94 @@ type EgressACLEntryTemplate struct {
 	PolicyState            string `json:"policyState,omitempty"`
 	DomainName             string `json:"domainName,omitempty"`
 	SourcePort             string `json:"sourcePort,omitempty"`
+	UplinkPreference       string `json:"uplinkPreference,omitempty"`
 	Priority               int    `json:"priority,omitempty"`
 	Protocol               string `json:"protocol,omitempty"`
 	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
-	Stateful               bool   `json:"stateful"`
 	StatsID                string `json:"statsID,omitempty"`
 	StatsLoggingEnabled    bool   `json:"statsLoggingEnabled"`
 	EtherType              string `json:"etherType,omitempty"`
 	ExternalID             string `json:"externalID,omitempty"`
 }
 
-// NewEgressACLEntryTemplate returns a new *EgressACLEntryTemplate
-func NewEgressACLEntryTemplate() *EgressACLEntryTemplate {
+// NewEgressAdvFwdEntryTemplate returns a new *EgressAdvFwdEntryTemplate
+func NewEgressAdvFwdEntryTemplate() *EgressAdvFwdEntryTemplate {
 
-	return &EgressACLEntryTemplate{
-		DSCP:         "*",
-		Action:       "FORWARD",
-		NetworkType:  "ANY",
-		LocationType: "ANY",
-		Protocol:     "6",
-		EtherType:    "0x0800",
-	}
+	return &EgressAdvFwdEntryTemplate{}
 }
 
 // Identity returns the Identity of the object.
-func (o *EgressACLEntryTemplate) Identity() bambou.Identity {
+func (o *EgressAdvFwdEntryTemplate) Identity() bambou.Identity {
 
-	return EgressACLEntryTemplateIdentity
+	return EgressAdvFwdEntryTemplateIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *EgressACLEntryTemplate) Identifier() string {
+func (o *EgressAdvFwdEntryTemplate) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *EgressACLEntryTemplate) SetIdentifier(ID string) {
+func (o *EgressAdvFwdEntryTemplate) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the EgressACLEntryTemplate from the server
-func (o *EgressACLEntryTemplate) Fetch() *bambou.Error {
+// Fetch retrieves the EgressAdvFwdEntryTemplate from the server
+func (o *EgressAdvFwdEntryTemplate) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the EgressACLEntryTemplate into the server
-func (o *EgressACLEntryTemplate) Save() *bambou.Error {
+// Save saves the EgressAdvFwdEntryTemplate into the server
+func (o *EgressAdvFwdEntryTemplate) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the EgressACLEntryTemplate from the server
-func (o *EgressACLEntryTemplate) Delete() *bambou.Error {
+// Delete deletes the EgressAdvFwdEntryTemplate from the server
+func (o *EgressAdvFwdEntryTemplate) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Metadatas retrieves the list of child Metadatas of the EgressACLEntryTemplate
-func (o *EgressACLEntryTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the EgressAdvFwdEntryTemplate
+func (o *EgressAdvFwdEntryTemplate) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
 	var list MetadatasList
 	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the EgressACLEntryTemplate
-func (o *EgressACLEntryTemplate) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the EgressAdvFwdEntryTemplate
+func (o *EgressAdvFwdEntryTemplate) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EgressACLEntryTemplate
-func (o *EgressACLEntryTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the EgressAdvFwdEntryTemplate
+func (o *EgressAdvFwdEntryTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
 	var list GlobalMetadatasList
 	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateGlobalMetadata creates a new child GlobalMetadata under the EgressACLEntryTemplate
-func (o *EgressACLEntryTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreateGlobalMetadata creates a new child GlobalMetadata under the EgressAdvFwdEntryTemplate
+func (o *EgressAdvFwdEntryTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// CreateJob creates a new child Job under the EgressACLEntryTemplate
-func (o *EgressACLEntryTemplate) CreateJob(child *Job) *bambou.Error {
+// CreateJob creates a new child Job under the EgressAdvFwdEntryTemplate
+func (o *EgressAdvFwdEntryTemplate) CreateJob(child *Job) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// Statistics retrieves the list of child Statistics of the EgressACLEntryTemplate
-func (o *EgressACLEntryTemplate) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
+// Statistics retrieves the list of child Statistics of the EgressAdvFwdEntryTemplate
+func (o *EgressAdvFwdEntryTemplate) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
 
 	var list StatisticsList
 	err := bambou.CurrentSession().FetchChildren(o, StatisticsIdentity, &list, info)

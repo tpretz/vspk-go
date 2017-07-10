@@ -63,7 +63,6 @@ type NSPortTemplate struct {
 	Name                        string `json:"name,omitempty"`
 	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
 	Description                 string `json:"description,omitempty"`
-	NetworkAccelerationEnabled  bool   `json:"networkAccelerationEnabled"`
 	PhysicalName                string `json:"physicalName,omitempty"`
 	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
 	EntityScope                 string `json:"entityScope,omitempty"`

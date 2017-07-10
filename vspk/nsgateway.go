@@ -63,6 +63,7 @@ type NSGateway struct {
 	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
 	TCPMSSEnabled                      bool   `json:"TCPMSSEnabled"`
 	TCPMaximumSegmentSize              int    `json:"TCPMaximumSegmentSize,omitempty"`
+	BIOSVersion                        string `json:"BIOSVersion,omitempty"`
 	SKU                                string `json:"SKU,omitempty"`
 	TPMStatus                          string `json:"TPMStatus,omitempty"`
 	CPUType                            string `json:"CPUType,omitempty"`
@@ -82,6 +83,7 @@ type NSGateway struct {
 	PermittedAction                    string `json:"permittedAction,omitempty"`
 	Personality                        string `json:"personality,omitempty"`
 	Description                        string `json:"description,omitempty"`
+	NetworkAcceleration                string `json:"networkAcceleration,omitempty"`
 	Libraries                          string `json:"libraries,omitempty"`
 	InheritedSSHServiceState           string `json:"inheritedSSHServiceState,omitempty"`
 	EnterpriseID                       string `json:"enterpriseID,omitempty"`
@@ -93,6 +95,7 @@ type NSGateway struct {
 	BootstrapStatus                    string `json:"bootstrapStatus,omitempty"`
 	OperationMode                      string `json:"operationMode,omitempty"`
 	OperationStatus                    string `json:"operationStatus,omitempty"`
+	ProductName                        string `json:"productName,omitempty"`
 	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
 	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
 	AssociatedNSGInfoID                string `json:"associatedNSGInfoID,omitempty"`
@@ -110,6 +113,7 @@ func NewNSGateway() *NSGateway {
 		TPMStatus:                        "UNKNOWN",
 		SSHService:                       "INHERITED",
 		LastConfigurationReloadTimestamp: -1,
+		NetworkAcceleration:              "NONE",
 		InheritedSSHServiceState:         "ENABLED",
 		ConfigurationReloadState:         "UNKNOWN",
 		ConfigurationStatus:              "UNKNOWN",
@@ -203,6 +207,20 @@ func (o *NSGateway) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou
 
 // CreateMetadata creates a new child Metadata under the NSGateway
 func (o *NSGateway) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// WirelessPorts retrieves the list of child WirelessPorts of the NSGateway
+func (o *NSGateway) WirelessPorts(info *bambou.FetchingInfo) (WirelessPortsList, *bambou.Error) {
+
+	var list WirelessPortsList
+	err := bambou.CurrentSession().FetchChildren(o, WirelessPortIdentity, &list, info)
+	return list, err
+}
+
+// CreateWirelessPort creates a new child WirelessPort under the NSGateway
+func (o *NSGateway) CreateWirelessPort(child *WirelessPort) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
