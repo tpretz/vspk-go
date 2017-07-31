@@ -2,7 +2,9 @@
 
 go-vspk is a Go SDK for [Nuage VSP Platform](http://www.nuagenetworks.net/products/virtualized-services-platform/)
 
-Learn how to use it from our [complete documentation](https://nuagenetworks.github.io/documentation/index.html)
+More information on the Nuage VSP API can be found in our [API Documentation](https://nuagenetworks.github.io/vsd-api-documentation/)
+
+Learn how to use VSPK-Go from [this blog post](https://nuagenetworks.github.io/2016/02/20/Go-Bambo-Go.html)
 
 
 ## License
