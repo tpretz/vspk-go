@@ -84,7 +84,7 @@ type VNF struct {
 func NewVNF() *VNF {
 
 	return &VNF{
-		IsAttachedToDescriptor: true,
+		IsAttachedToDescriptor: True,
 	}
 }
 
