@@ -71,6 +71,9 @@ type VCenterDataCenter struct {
 	DatapathSyncTimeout              int    `json:"datapathSyncTimeout,omitempty"`
 	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
 	DeletedFromVCenter               bool   `json:"deletedFromVCenter"`
+	RemoteSyslogServerIP             string `json:"remoteSyslogServerIP,omitempty"`
+	RemoteSyslogServerPort           int    `json:"remoteSyslogServerPort,omitempty"`
+	RemoteSyslogServerType           string `json:"remoteSyslogServerType,omitempty"`
 	GenericSplitActivation           bool   `json:"genericSplitActivation"`
 	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
 	Personality                      string `json:"personality,omitempty"`
@@ -144,7 +147,9 @@ type VCenterDataCenter struct {
 func NewVCenterDataCenter() *VCenterDataCenter {
 
 	return &VCenterDataCenter{
-		DestinationMirrorPort: "no_mirror",
+		RemoteSyslogServerPort: 514,
+		RemoteSyslogServerType: "NONE",
+		DestinationMirrorPort:  "no_mirror",
 	}
 }
 

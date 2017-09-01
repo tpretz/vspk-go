@@ -73,6 +73,7 @@ type VLAN struct {
 	UserMnemonic                 string `json:"userMnemonic,omitempty"`
 	AssociatedBGPProfileID       string `json:"associatedBGPProfileID,omitempty"`
 	AssociatedEgressQOSPolicyID  string `json:"associatedEgressQOSPolicyID,omitempty"`
+	AssociatedIngressQOSPolicyID string `json:"associatedIngressQOSPolicyID,omitempty"`
 	AssociatedUplinkConnectionID string `json:"associatedUplinkConnectionID,omitempty"`
 	AssociatedVSCProfileID       string `json:"associatedVSCProfileID,omitempty"`
 	Status                       string `json:"status,omitempty"`

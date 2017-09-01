@@ -59,6 +59,7 @@ type NetworkPerformanceMeasurement struct {
 	ParentID                       string `json:"parentID,omitempty"`
 	ParentType                     string `json:"parentType,omitempty"`
 	Owner                          string `json:"owner,omitempty"`
+	NPMType                        string `json:"NPMType,omitempty"`
 	Name                           string `json:"name,omitempty"`
 	ReadOnly                       bool   `json:"readOnly"`
 	Description                    string `json:"description,omitempty"`
@@ -69,6 +70,7 @@ type NetworkPerformanceMeasurement struct {
 func NewNetworkPerformanceMeasurement() *NetworkPerformanceMeasurement {
 
 	return &NetworkPerformanceMeasurement{
+		NPMType:  "NONE",
 		ReadOnly: false,
 	}
 }

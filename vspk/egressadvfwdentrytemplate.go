@@ -65,6 +65,7 @@ type EgressAdvFwdEntryTemplate struct {
 	FCOverride             string `json:"FCOverride,omitempty"`
 	IPv6AddressOverride    string `json:"IPv6AddressOverride,omitempty"`
 	DSCP                   string `json:"DSCP,omitempty"`
+	FailsafeDatapath       string `json:"failsafeDatapath,omitempty"`
 	Name                   string `json:"name,omitempty"`
 	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	Action                 string `json:"action,omitempty"`
@@ -96,7 +97,9 @@ type EgressAdvFwdEntryTemplate struct {
 // NewEgressAdvFwdEntryTemplate returns a new *EgressAdvFwdEntryTemplate
 func NewEgressAdvFwdEntryTemplate() *EgressAdvFwdEntryTemplate {
 
-	return &EgressAdvFwdEntryTemplate{}
+	return &EgressAdvFwdEntryTemplate{
+		FailsafeDatapath: "FAIL_TO_BLOCK",
+	}
 }
 
 // Identity returns the Identity of the object.

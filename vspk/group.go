@@ -59,6 +59,7 @@ type Group struct {
 	ParentID            string  `json:"parentID,omitempty"`
 	ParentType          string  `json:"parentType,omitempty"`
 	Owner               string  `json:"owner,omitempty"`
+	LDAPGroupDN         string  `json:"LDAPGroupDN,omitempty"`
 	Name                string  `json:"name,omitempty"`
 	ManagementMode      string  `json:"managementMode,omitempty"`
 	LastUpdatedBy       string  `json:"lastUpdatedBy,omitempty"`

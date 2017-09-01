@@ -70,6 +70,9 @@ type VCenter struct {
 	DataNetworkPortgroup             string `json:"dataNetworkPortgroup,omitempty"`
 	DatapathSyncTimeout              int    `json:"datapathSyncTimeout,omitempty"`
 	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
+	RemoteSyslogServerIP             string `json:"remoteSyslogServerIP,omitempty"`
+	RemoteSyslogServerPort           int    `json:"remoteSyslogServerPort,omitempty"`
+	RemoteSyslogServerType           string `json:"remoteSyslogServerType,omitempty"`
 	GenericSplitActivation           bool   `json:"genericSplitActivation"`
 	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
 	Personality                      string `json:"personality,omitempty"`
@@ -152,7 +155,9 @@ type VCenter struct {
 func NewVCenter() *VCenter {
 
 	return &VCenter{
-		DestinationMirrorPort: "no_mirror",
+		RemoteSyslogServerPort: 514,
+		RemoteSyslogServerType: "NONE",
+		DestinationMirrorPort:  "no_mirror",
 	}
 }
 

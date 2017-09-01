@@ -91,6 +91,8 @@ type NSGateway struct {
 	LocationID                         string `json:"locationID,omitempty"`
 	ConfigurationReloadState           string `json:"configurationReloadState,omitempty"`
 	ConfigurationStatus                string `json:"configurationStatus,omitempty"`
+	ControlTrafficCOSValue             int    `json:"controlTrafficCOSValue,omitempty"`
+	ControlTrafficDSCPValue            int    `json:"controlTrafficDSCPValue,omitempty"`
 	BootstrapID                        string `json:"bootstrapID,omitempty"`
 	BootstrapStatus                    string `json:"bootstrapStatus,omitempty"`
 	OperationMode                      string `json:"operationMode,omitempty"`
@@ -99,6 +101,7 @@ type NSGateway struct {
 	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
 	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
 	AssociatedNSGInfoID                string `json:"associatedNSGInfoID,omitempty"`
+	AssociatedNSGUpgradeProfileID      string `json:"associatedNSGUpgradeProfileID,omitempty"`
 	AutoDiscGatewayID                  string `json:"autoDiscGatewayID,omitempty"`
 	ExternalID                         string `json:"externalID,omitempty"`
 	SystemID                           string `json:"systemID,omitempty"`
@@ -117,6 +120,8 @@ func NewNSGateway() *NSGateway {
 		InheritedSSHServiceState:         "ENABLED",
 		ConfigurationReloadState:         "UNKNOWN",
 		ConfigurationStatus:              "UNKNOWN",
+		ControlTrafficCOSValue:           7,
+		ControlTrafficDSCPValue:          56,
 	}
 }
 
@@ -283,6 +288,20 @@ func (o *NSGateway) Locations(info *bambou.FetchingInfo) (LocationsList, *bambou
 	var list LocationsList
 	err := bambou.CurrentSession().FetchChildren(o, LocationIdentity, &list, info)
 	return list, err
+}
+
+// Commands retrieves the list of child Commands of the NSGateway
+func (o *NSGateway) Commands(info *bambou.FetchingInfo) (CommandsList, *bambou.Error) {
+
+	var list CommandsList
+	err := bambou.CurrentSession().FetchChildren(o, CommandIdentity, &list, info)
+	return list, err
+}
+
+// CreateCommand creates a new child Command under the NSGateway
+func (o *NSGateway) CreateCommand(child *Command) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // Monitorscopes retrieves the list of child Monitorscopes of the NSGateway

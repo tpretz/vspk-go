@@ -55,26 +55,30 @@ type SSIDConnectionsParent interface {
 
 // SSIDConnection represents the model of a ssidconnection
 type SSIDConnection struct {
-	ID                          string        `json:"ID,omitempty"`
-	ParentID                    string        `json:"parentID,omitempty"`
-	ParentType                  string        `json:"parentType,omitempty"`
-	Owner                       string        `json:"owner,omitempty"`
-	Name                        string        `json:"name,omitempty"`
-	Passphrase                  string        `json:"passphrase,omitempty"`
-	GenericConfig               string        `json:"genericConfig,omitempty"`
-	Description                 string        `json:"description,omitempty"`
-	WhiteList                   []interface{} `json:"whiteList,omitempty"`
-	BlackList                   []interface{} `json:"blackList,omitempty"`
-	InterfaceName               string        `json:"interfaceName,omitempty"`
-	BroadcastSSID               bool          `json:"broadcastSSID"`
-	AssociatedEgressQOSPolicyID string        `json:"associatedEgressQOSPolicyID,omitempty"`
-	AuthenticationMode          string        `json:"authenticationMode,omitempty"`
+	ID                               string        `json:"ID,omitempty"`
+	ParentID                         string        `json:"parentID,omitempty"`
+	ParentType                       string        `json:"parentType,omitempty"`
+	Owner                            string        `json:"owner,omitempty"`
+	Name                             string        `json:"name,omitempty"`
+	Passphrase                       string        `json:"passphrase,omitempty"`
+	RedirectOption                   string        `json:"redirectOption,omitempty"`
+	RedirectURL                      string        `json:"redirectURL,omitempty"`
+	GenericConfig                    string        `json:"genericConfig,omitempty"`
+	Description                      string        `json:"description,omitempty"`
+	WhiteList                        []interface{} `json:"whiteList,omitempty"`
+	BlackList                        []interface{} `json:"blackList,omitempty"`
+	InterfaceName                    string        `json:"interfaceName,omitempty"`
+	BroadcastSSID                    bool          `json:"broadcastSSID"`
+	AssociatedCaptivePortalProfileID string        `json:"associatedCaptivePortalProfileID,omitempty"`
+	AssociatedEgressQOSPolicyID      string        `json:"associatedEgressQOSPolicyID,omitempty"`
+	AuthenticationMode               string        `json:"authenticationMode,omitempty"`
 }
 
 // NewSSIDConnection returns a new *SSIDConnection
 func NewSSIDConnection() *SSIDConnection {
 
 	return &SSIDConnection{
+		RedirectOption:     "ORIGINAL_REQUEST",
 		BroadcastSSID:      true,
 		AuthenticationMode: "OPEN",
 	}
@@ -114,6 +118,25 @@ func (o *SSIDConnection) Save() *bambou.Error {
 func (o *SSIDConnection) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// CaptivePortalProfiles retrieves the list of child CaptivePortalProfiles of the SSIDConnection
+func (o *SSIDConnection) CaptivePortalProfiles(info *bambou.FetchingInfo) (CaptivePortalProfilesList, *bambou.Error) {
+
+	var list CaptivePortalProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, CaptivePortalProfileIdentity, &list, info)
+	return list, err
+}
+
+// AssignCaptivePortalProfiles assigns the list of CaptivePortalProfiles to the SSIDConnection
+func (o *SSIDConnection) AssignCaptivePortalProfiles(children CaptivePortalProfilesList) *bambou.Error {
+
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, CaptivePortalProfileIdentity)
 }
 
 // Alarms retrieves the list of child Alarms of the SSIDConnection

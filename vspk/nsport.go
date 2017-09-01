@@ -67,9 +67,11 @@ type NSPort struct {
 	PermittedAction             string `json:"permittedAction,omitempty"`
 	Description                 string `json:"description,omitempty"`
 	PhysicalName                string `json:"physicalName,omitempty"`
+	EnableNATProbes             bool   `json:"enableNATProbes"`
 	EntityScope                 string `json:"entityScope,omitempty"`
 	PortType                    string `json:"portType,omitempty"`
 	Speed                       string `json:"speed,omitempty"`
+	TrafficThroughUBROnly       bool   `json:"TrafficThroughUBROnly"`
 	UseUserMnemonic             bool   `json:"useUserMnemonic"`
 	UserMnemonic                string `json:"userMnemonic,omitempty"`
 	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
@@ -83,8 +85,10 @@ type NSPort struct {
 func NewNSPort() *NSPort {
 
 	return &NSPort{
-		NATTraversal: "NONE",
-		Mtu:          1500,
+		NATTraversal:          "NONE",
+		EnableNATProbes:       true,
+		TrafficThroughUBROnly: false,
+		Mtu: 1500,
 	}
 }
 

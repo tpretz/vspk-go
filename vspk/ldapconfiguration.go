@@ -69,6 +69,8 @@ type LDAPConfiguration struct {
 	EntityScope           string `json:"entityScope,omitempty"`
 	Port                  string `json:"port,omitempty"`
 	GroupDN               string `json:"groupDN,omitempty"`
+	GroupNamePrefix       string `json:"groupNamePrefix,omitempty"`
+	GroupNameSuffix       string `json:"groupNameSuffix,omitempty"`
 	UserDNTemplate        string `json:"userDNTemplate,omitempty"`
 	AuthorizationEnabled  bool   `json:"authorizationEnabled"`
 	AuthorizingUserDN     string `json:"authorizingUserDN,omitempty"`

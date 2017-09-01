@@ -72,6 +72,9 @@ type VCenterCluster struct {
 	Scope                            bool   `json:"scope"`
 	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
 	DeletedFromVCenterDataCenter     bool   `json:"deletedFromVCenterDataCenter"`
+	RemoteSyslogServerIP             string `json:"remoteSyslogServerIP,omitempty"`
+	RemoteSyslogServerPort           int    `json:"remoteSyslogServerPort,omitempty"`
+	RemoteSyslogServerType           string `json:"remoteSyslogServerType,omitempty"`
 	GenericSplitActivation           bool   `json:"genericSplitActivation"`
 	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
 	Personality                      string `json:"personality,omitempty"`
@@ -146,7 +149,9 @@ type VCenterCluster struct {
 func NewVCenterCluster() *VCenterCluster {
 
 	return &VCenterCluster{
-		DestinationMirrorPort: "no_mirror",
+		RemoteSyslogServerPort: 514,
+		RemoteSyslogServerType: "NONE",
+		DestinationMirrorPort:  "no_mirror",
 	}
 }
 

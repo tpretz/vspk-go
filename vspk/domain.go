@@ -64,6 +64,7 @@ type Domain struct {
 	BGPEnabled                      bool          `json:"BGPEnabled"`
 	DHCPBehavior                    string        `json:"DHCPBehavior,omitempty"`
 	DHCPServerAddress               string        `json:"DHCPServerAddress,omitempty"`
+	FIPUnderlay                     bool          `json:"FIPUnderlay"`
 	DPI                             string        `json:"DPI,omitempty"`
 	LabelID                         int           `json:"labelID,omitempty"`
 	BackHaulRouteDistinguisher      string        `json:"backHaulRouteDistinguisher,omitempty"`
@@ -97,6 +98,7 @@ type Domain struct {
 	AssociatedBGPProfileID          string        `json:"associatedBGPProfileID,omitempty"`
 	AssociatedMulticastChannelMapID string        `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedPATMapperID           string        `json:"associatedPATMapperID,omitempty"`
+	AssociatedSharedPATMapperID     string        `json:"associatedSharedPATMapperID,omitempty"`
 	Stretched                       bool          `json:"stretched"`
 	Multicast                       string        `json:"multicast,omitempty"`
 	TunnelType                      string        `json:"tunnelType,omitempty"`
@@ -111,6 +113,7 @@ func NewDomain() *Domain {
 	return &Domain{
 		PATEnabled:      "INHERITED",
 		DHCPBehavior:    "CONSUME",
+		FIPUnderlay:     false,
 		DPI:             "DISABLED",
 		MaintenanceMode: "DISABLED",
 		TunnelType:      "DC_DEFAULT",
@@ -219,6 +222,20 @@ func (o *Domain) NetworkPerformanceBindings(info *bambou.FetchingInfo) (NetworkP
 
 // CreateNetworkPerformanceBinding creates a new child NetworkPerformanceBinding under the Domain
 func (o *Domain) CreateNetworkPerformanceBinding(child *NetworkPerformanceBinding) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// PGExpressions retrieves the list of child PGExpressions of the Domain
+func (o *Domain) PGExpressions(info *bambou.FetchingInfo) (PGExpressionsList, *bambou.Error) {
+
+	var list PGExpressionsList
+	err := bambou.CurrentSession().FetchChildren(o, PGExpressionIdentity, &list, info)
+	return list, err
+}
+
+// CreatePGExpression creates a new child PGExpression under the Domain
+func (o *Domain) CreatePGExpression(child *PGExpression) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -365,6 +382,20 @@ func (o *Domain) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bam
 	var list VMInterfacesList
 	err := bambou.CurrentSession().FetchChildren(o, VMInterfaceIdentity, &list, info)
 	return list, err
+}
+
+// VNFDomainMappings retrieves the list of child VNFDomainMappings of the Domain
+func (o *Domain) VNFDomainMappings(info *bambou.FetchingInfo) (VNFDomainMappingsList, *bambou.Error) {
+
+	var list VNFDomainMappingsList
+	err := bambou.CurrentSession().FetchChildren(o, VNFDomainMappingIdentity, &list, info)
+	return list, err
+}
+
+// CreateVNFDomainMapping creates a new child VNFDomainMapping under the Domain
+func (o *Domain) CreateVNFDomainMapping(child *VNFDomainMapping) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // IngressACLEntryTemplates retrieves the list of child IngressACLEntryTemplates of the Domain

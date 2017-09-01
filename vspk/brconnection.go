@@ -109,3 +109,17 @@ func (o *BRConnection) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }
+
+// BFDSessions retrieves the list of child BFDSessions of the BRConnection
+func (o *BRConnection) BFDSessions(info *bambou.FetchingInfo) (BFDSessionsList, *bambou.Error) {
+
+	var list BFDSessionsList
+	err := bambou.CurrentSession().FetchChildren(o, BFDSessionIdentity, &list, info)
+	return list, err
+}
+
+// CreateBFDSession creates a new child BFDSession under the BRConnection
+func (o *BRConnection) CreateBFDSession(child *BFDSession) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}

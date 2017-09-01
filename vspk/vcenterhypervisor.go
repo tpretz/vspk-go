@@ -62,8 +62,11 @@ type VCenterHypervisor struct {
 	VCenterIP                                 string        `json:"vCenterIP,omitempty"`
 	VCenterPassword                           string        `json:"vCenterPassword,omitempty"`
 	VCenterUser                               string        `json:"vCenterUser,omitempty"`
+	VRSAgentMOID                              string        `json:"VRSAgentMOID,omitempty"`
+	VRSAgentName                              string        `json:"VRSAgentName,omitempty"`
 	VRSConfigurationTimeLimit                 int           `json:"VRSConfigurationTimeLimit,omitempty"`
 	VRSMetricsID                              string        `json:"VRSMetricsID,omitempty"`
+	VRSMgmtHostname                           string        `json:"VRSMgmtHostname,omitempty"`
 	VRSState                                  string        `json:"VRSState,omitempty"`
 	VRequireNuageMetadata                     bool          `json:"vRequireNuageMetadata"`
 	Name                                      string        `json:"name,omitempty"`
@@ -79,6 +82,9 @@ type VCenterHypervisor struct {
 	DatapathSyncTimeout                       int           `json:"datapathSyncTimeout,omitempty"`
 	Scope                                     bool          `json:"scope"`
 	SecondaryNuageController                  string        `json:"secondaryNuageController,omitempty"`
+	RemoteSyslogServerIP                      string        `json:"remoteSyslogServerIP,omitempty"`
+	RemoteSyslogServerPort                    int           `json:"remoteSyslogServerPort,omitempty"`
+	RemoteSyslogServerType                    string        `json:"remoteSyslogServerType,omitempty"`
 	RemovedFromVCenterInventory               bool          `json:"removedFromVCenterInventory"`
 	GenericSplitActivation                    bool          `json:"genericSplitActivation"`
 	SeparateDataNetwork                       bool          `json:"separateDataNetwork"`
@@ -171,8 +177,9 @@ type VCenterHypervisor struct {
 func NewVCenterHypervisor() *VCenterHypervisor {
 
 	return &VCenterHypervisor{
-		VRSState:              "NOT_DEPLOYED",
-		DestinationMirrorPort: "no_mirror",
+		VRSState:               "NOT_DEPLOYED",
+		RemoteSyslogServerType: "NONE",
+		DestinationMirrorPort:  "no_mirror",
 	}
 }
 

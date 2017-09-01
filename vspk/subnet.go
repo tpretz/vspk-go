@@ -70,11 +70,14 @@ type Subnet struct {
 	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
 	Gateway                           string `json:"gateway,omitempty"`
 	GatewayMACAddress                 string `json:"gatewayMACAddress,omitempty"`
+	AccessRestrictionEnabled          bool   `json:"accessRestrictionEnabled"`
 	Address                           string `json:"address,omitempty"`
+	Advertise                         bool   `json:"advertise"`
 	DefaultAction                     string `json:"defaultAction,omitempty"`
 	TemplateID                        string `json:"templateID,omitempty"`
 	ServiceID                         int    `json:"serviceID,omitempty"`
 	Description                       string `json:"description,omitempty"`
+	ResourceType                      string `json:"resourceType,omitempty"`
 	Netmask                           string `json:"netmask,omitempty"`
 	VnId                              int    `json:"vnId,omitempty"`
 	Encryption                        string `json:"encryption,omitempty"`
@@ -100,12 +103,15 @@ type Subnet struct {
 func NewSubnet() *Subnet {
 
 	return &Subnet{
-		PATEnabled:         "INHERITED",
-		DPI:                "INHERITED",
-		IPType:             "IPV4",
-		MaintenanceMode:    "DISABLED",
-		Multicast:          "INHERITED",
-		DynamicIpv6Address: false,
+		PATEnabled:               "INHERITED",
+		DPI:                      "INHERITED",
+		IPType:                   "IPV4",
+		MaintenanceMode:          "DISABLED",
+		AccessRestrictionEnabled: false,
+		Advertise:                true,
+		ResourceType:             "STANDARD",
+		Multicast:                "INHERITED",
+		DynamicIpv6Address:       false,
 	}
 }
 
@@ -143,6 +149,14 @@ func (o *Subnet) Save() *bambou.Error {
 func (o *Subnet) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// PATIPEntries retrieves the list of child PATIPEntries of the Subnet
+func (o *Subnet) PATIPEntries(info *bambou.FetchingInfo) (PATIPEntriesList, *bambou.Error) {
+
+	var list PATIPEntriesList
+	err := bambou.CurrentSession().FetchChildren(o, PATIPEntryIdentity, &list, info)
+	return list, err
 }
 
 // TCAs retrieves the list of child TCAs of the Subnet
@@ -286,6 +300,20 @@ func (o *Subnet) VMInterfaces(info *bambou.FetchingInfo) (VMInterfacesList, *bam
 	return list, err
 }
 
+// EnterprisePermissions retrieves the list of child EnterprisePermissions of the Subnet
+func (o *Subnet) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
+
+	var list EnterprisePermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterprisePermission creates a new child EnterprisePermission under the Subnet
+func (o *Subnet) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Containers retrieves the list of child Containers of the Subnet
 func (o *Subnet) Containers(info *bambou.FetchingInfo) (ContainersList, *bambou.Error) {
 
@@ -354,6 +382,20 @@ func (o *Subnet) IPReservations(info *bambou.FetchingInfo) (IPReservationsList, 
 
 // CreateIPReservation creates a new child IPReservation under the Subnet
 func (o *Subnet) CreateIPReservation(child *IPReservation) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ProxyARPFilters retrieves the list of child ProxyARPFilters of the Subnet
+func (o *Subnet) ProxyARPFilters(info *bambou.FetchingInfo) (ProxyARPFiltersList, *bambou.Error) {
+
+	var list ProxyARPFiltersList
+	err := bambou.CurrentSession().FetchChildren(o, ProxyARPFilterIdentity, &list, info)
+	return list, err
+}
+
+// CreateProxyARPFilter creates a new child ProxyARPFilter under the Subnet
+func (o *Subnet) CreateProxyARPFilter(child *ProxyARPFilter) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

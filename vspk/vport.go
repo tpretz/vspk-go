@@ -64,6 +64,7 @@ type VPort struct {
 	Name                                string `json:"name,omitempty"`
 	HasAttachedInterfaces               bool   `json:"hasAttachedInterfaces"`
 	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
+	GatewayMACMoveRole                  string `json:"gatewayMACMoveRole,omitempty"`
 	Active                              bool   `json:"active"`
 	AddressSpoofing                     string `json:"addressSpoofing,omitempty"`
 	SegmentationID                      int    `json:"segmentationID,omitempty"`
@@ -309,6 +310,20 @@ func (o *VPort) IngressAdvFwdEntryTemplates(info *bambou.FetchingInfo) (IngressA
 	var list IngressAdvFwdEntryTemplatesList
 	err := bambou.CurrentSession().FetchChildren(o, IngressAdvFwdEntryTemplateIdentity, &list, info)
 	return list, err
+}
+
+// Jobs retrieves the list of child Jobs of the VPort
+func (o *VPort) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
+
+	var list JobsList
+	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
+	return list, err
+}
+
+// CreateJob creates a new child Job under the VPort
+func (o *VPort) CreateJob(child *Job) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // PolicyGroups retrieves the list of child PolicyGroups of the VPort

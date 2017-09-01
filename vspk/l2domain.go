@@ -199,6 +199,20 @@ func (o *L2Domain) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// PGExpressions retrieves the list of child PGExpressions of the L2Domain
+func (o *L2Domain) PGExpressions(info *bambou.FetchingInfo) (PGExpressionsList, *bambou.Error) {
+
+	var list PGExpressionsList
+	err := bambou.CurrentSession().FetchChildren(o, PGExpressionIdentity, &list, info)
+	return list, err
+}
+
+// CreatePGExpression creates a new child PGExpression under the L2Domain
+func (o *L2Domain) CreatePGExpression(child *PGExpression) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // EgressACLEntryTemplates retrieves the list of child EgressACLEntryTemplates of the L2Domain
 func (o *L2Domain) EgressACLEntryTemplates(info *bambou.FetchingInfo) (EgressACLEntryTemplatesList, *bambou.Error) {
 

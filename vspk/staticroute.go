@@ -67,6 +67,7 @@ type StaticRoute struct {
 	NextHopIp          string `json:"nextHopIp,omitempty"`
 	EntityScope        string `json:"entityScope,omitempty"`
 	RouteDistinguisher string `json:"routeDistinguisher,omitempty"`
+	AssociatedSubnetID string `json:"associatedSubnetID,omitempty"`
 	ExternalID         string `json:"externalID,omitempty"`
 	Type               string `json:"type,omitempty"`
 }

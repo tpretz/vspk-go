@@ -41,6 +41,9 @@ type Me struct {
 	ParentID              string `json:"parentID,omitempty"`
 	ParentType            string `json:"parentType,omitempty"`
 	Owner                 string `json:"owner,omitempty"`
+	AARFlowStatsInterval  int    `json:"AARFlowStatsInterval,omitempty"`
+	AARProbeStatsInterval int    `json:"AARProbeStatsInterval,omitempty"`
+	VSSStatsInterval      int    `json:"VSSStatsInterval,omitempty"`
 	Password              string `json:"password,omitempty"`
 	LastName              string `json:"lastName,omitempty"`
 	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
@@ -67,7 +70,11 @@ type Me struct {
 // NewMe returns a new *Me
 func NewMe() *Me {
 
-	return &Me{}
+	return &Me{
+		AARFlowStatsInterval:  30,
+		AARProbeStatsInterval: 30,
+		VSSStatsInterval:      30,
+	}
 }
 
 // Identity returns the Identity of the object.
@@ -638,6 +645,20 @@ func (o *Me) IngressAdvFwdEntryTemplates(info *bambou.FetchingInfo) (IngressAdvF
 	return list, err
 }
 
+// IngressQOSPolicies retrieves the list of child IngressQOSPolicies of the Me
+func (o *Me) IngressQOSPolicies(info *bambou.FetchingInfo) (IngressQOSPoliciesList, *bambou.Error) {
+
+	var list IngressQOSPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, IngressQOSPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateIngressQOSPolicy creates a new child IngressQOSPolicy under the Me
+func (o *Me) CreateIngressQOSPolicy(child *IngressQOSPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Enterprises retrieves the list of child Enterprises of the Me
 func (o *Me) Enterprises(info *bambou.FetchingInfo) (EnterprisesList, *bambou.Error) {
 
@@ -726,6 +747,20 @@ func (o *Me) ContainerInterfaces(info *bambou.FetchingInfo) (ContainerInterfaces
 	return list, err
 }
 
+// COSRemarkingPolicyTables retrieves the list of child COSRemarkingPolicyTables of the Me
+func (o *Me) COSRemarkingPolicyTables(info *bambou.FetchingInfo) (COSRemarkingPolicyTablesList, *bambou.Error) {
+
+	var list COSRemarkingPolicyTablesList
+	err := bambou.CurrentSession().FetchChildren(o, COSRemarkingPolicyTableIdentity, &list, info)
+	return list, err
+}
+
+// CreateCOSRemarkingPolicyTable creates a new child COSRemarkingPolicyTable under the Me
+func (o *Me) CreateCOSRemarkingPolicyTable(child *COSRemarkingPolicyTable) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // HostInterfaces retrieves the list of child HostInterfaces of the Me
 func (o *Me) HostInterfaces(info *bambou.FetchingInfo) (HostInterfacesList, *bambou.Error) {
 
@@ -756,6 +791,20 @@ func (o *Me) VCenterVRSConfigs(info *bambou.FetchingInfo) (VCenterVRSConfigsList
 	var list VCenterVRSConfigsList
 	err := bambou.CurrentSession().FetchChildren(o, VCenterVRSConfigIdentity, &list, info)
 	return list, err
+}
+
+// DSCPRemarkingPolicyTables retrieves the list of child DSCPRemarkingPolicyTables of the Me
+func (o *Me) DSCPRemarkingPolicyTables(info *bambou.FetchingInfo) (DSCPRemarkingPolicyTablesList, *bambou.Error) {
+
+	var list DSCPRemarkingPolicyTablesList
+	err := bambou.CurrentSession().FetchChildren(o, DSCPRemarkingPolicyTableIdentity, &list, info)
+	return list, err
+}
+
+// CreateDSCPRemarkingPolicyTable creates a new child DSCPRemarkingPolicyTable under the Me
+func (o *Me) CreateDSCPRemarkingPolicyTable(child *DSCPRemarkingPolicyTable) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // Users retrieves the list of child Users of the Me
@@ -808,6 +857,20 @@ func (o *Me) NSRedundantGatewayGroups(info *bambou.FetchingInfo) (NSRedundantGat
 	var list NSRedundantGatewayGroupsList
 	err := bambou.CurrentSession().FetchChildren(o, NSRedundantGatewayGroupIdentity, &list, info)
 	return list, err
+}
+
+// NSGUpgradeProfiles retrieves the list of child NSGUpgradeProfiles of the Me
+func (o *Me) NSGUpgradeProfiles(info *bambou.FetchingInfo) (NSGUpgradeProfilesList, *bambou.Error) {
+
+	var list NSGUpgradeProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, NSGUpgradeProfileIdentity, &list, info)
+	return list, err
+}
+
+// CreateNSGUpgradeProfile creates a new child NSGUpgradeProfile under the Me
+func (o *Me) CreateNSGUpgradeProfile(child *NSGUpgradeProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // VSPs retrieves the list of child VSPs of the Me

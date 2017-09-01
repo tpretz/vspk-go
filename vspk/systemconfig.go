@@ -59,6 +59,8 @@ type SystemConfig struct {
 	ParentID                                          string      `json:"parentID,omitempty"`
 	ParentType                                        string      `json:"parentType,omitempty"`
 	Owner                                             string      `json:"owner,omitempty"`
+	AARFlowStatsInterval                              int         `json:"AARFlowStatsInterval,omitempty"`
+	AARProbeStatsInterval                             int         `json:"AARProbeStatsInterval,omitempty"`
 	ACLAllowOrigin                                    string      `json:"ACLAllowOrigin,omitempty"`
 	ECMPCount                                         int         `json:"ECMPCount,omitempty"`
 	LDAPSyncInterval                                  int         `json:"LDAPSyncInterval,omitempty"`
@@ -96,6 +98,7 @@ type SystemConfig struct {
 	VSDReadOnlyMode                                   bool        `json:"VSDReadOnlyMode"`
 	VSDUpgradeIsComplete                              bool        `json:"VSDUpgradeIsComplete"`
 	ASNumber                                          int         `json:"ASNumber,omitempty"`
+	VSSStatsInterval                                  int         `json:"VSSStatsInterval,omitempty"`
 	RTLowerLimit                                      int         `json:"RTLowerLimit,omitempty"`
 	RTPublicNetworkLowerLimit                         int         `json:"RTPublicNetworkLowerLimit,omitempty"`
 	RTPublicNetworkUpperLimit                         int         `json:"RTPublicNetworkUpperLimit,omitempty"`
@@ -167,6 +170,8 @@ type SystemConfig struct {
 	StatsNumberOfDataPoints                           int         `json:"statsNumberOfDataPoints,omitempty"`
 	StatsTSDBServerAddress                            string      `json:"statsTSDBServerAddress,omitempty"`
 	StickyECMPIdleTimeout                             int         `json:"stickyECMPIdleTimeout,omitempty"`
+	AttachProbeToIPsecNPM                             bool        `json:"attachProbeToIPsecNPM"`
+	AttachProbeToVXLANNPM                             bool        `json:"attachProbeToVXLANNPM"`
 	SubnetResyncInterval                              int         `json:"subnetResyncInterval,omitempty"`
 	SubnetResyncOutstandingInterval                   int         `json:"subnetResyncOutstandingInterval,omitempty"`
 	CustomerIDUpperLimit                              int         `json:"customerIDUpperLimit,omitempty"`
@@ -196,6 +201,8 @@ type SystemConfig struct {
 func NewSystemConfig() *SystemConfig {
 
 	return &SystemConfig{
+		AARFlowStatsInterval:        30,
+		AARProbeStatsInterval:       30,
 		ZFBRequestRetryTimer:        30,
 		PGIDLowerLimit:              65536,
 		PGIDUpperLimit:              2147483647,
@@ -207,6 +214,7 @@ func NewSystemConfig() *SystemConfig {
 		VMUnreachableTime:           3600,
 		VNFTaskTimeout:              3600,
 		VPortInitStatefulTimer:      300,
+		VSSStatsInterval:            30,
 		PageMaxSize:                 500,
 		PageSize:                    50,
 		AccumulateLicensesEnabled:   false,
@@ -216,6 +224,8 @@ func NewSystemConfig() *SystemConfig {
 		CsprootAuthenticationMethod: "LOCAL",
 		StatsMinDuration:            2592000,
 		StickyECMPIdleTimeout:       0,
+		AttachProbeToIPsecNPM:       false,
+		AttachProbeToVXLANNPM:       false,
 		SubnetResyncInterval:        10,
 		DynamicWANServiceDiffTime:   1,
 	}

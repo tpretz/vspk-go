@@ -55,57 +55,66 @@ type IngressAdvFwdEntryTemplatesParent interface {
 
 // IngressAdvFwdEntryTemplate represents the model of a ingressadvfwdentrytemplate
 type IngressAdvFwdEntryTemplate struct {
-	ID                     string `json:"ID,omitempty"`
-	ParentID               string `json:"parentID,omitempty"`
-	ParentType             string `json:"parentType,omitempty"`
-	Owner                  string `json:"owner,omitempty"`
-	ACLTemplateName        string `json:"ACLTemplateName,omitempty"`
-	ICMPCode               string `json:"ICMPCode,omitempty"`
-	ICMPType               string `json:"ICMPType,omitempty"`
-	FCOverride             string `json:"FCOverride,omitempty"`
-	IPv6AddressOverride    string `json:"IPv6AddressOverride,omitempty"`
-	DSCP                   string `json:"DSCP,omitempty"`
-	Name                   string `json:"name,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	Action                 string `json:"action,omitempty"`
-	AddressOverride        string `json:"addressOverride,omitempty"`
-	RedirectRewriteType    string `json:"redirectRewriteType,omitempty"`
-	RedirectRewriteValue   string `json:"redirectRewriteValue,omitempty"`
-	RedirectVPortTagID     string `json:"redirectVPortTagID,omitempty"`
-	Description            string `json:"description,omitempty"`
-	DestinationPort        string `json:"destinationPort,omitempty"`
-	NetworkID              string `json:"networkID,omitempty"`
-	NetworkType            string `json:"networkType,omitempty"`
-	MirrorDestinationID    string `json:"mirrorDestinationID,omitempty"`
-	VlanRange              string `json:"vlanRange,omitempty"`
-	FlowLoggingEnabled     bool   `json:"flowLoggingEnabled"`
-	EnterpriseName         string `json:"enterpriseName,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	LocationID             string `json:"locationID,omitempty"`
-	LocationType           string `json:"locationType,omitempty"`
-	PolicyState            string `json:"policyState,omitempty"`
-	DomainName             string `json:"domainName,omitempty"`
-	SourcePort             string `json:"sourcePort,omitempty"`
-	UplinkPreference       string `json:"uplinkPreference,omitempty"`
-	Priority               int    `json:"priority,omitempty"`
-	Protocol               string `json:"protocol,omitempty"`
-	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
-	StatsID                string `json:"statsID,omitempty"`
-	StatsLoggingEnabled    bool   `json:"statsLoggingEnabled"`
-	EtherType              string `json:"etherType,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
+	ID                      string `json:"ID,omitempty"`
+	ParentID                string `json:"parentID,omitempty"`
+	ParentType              string `json:"parentType,omitempty"`
+	Owner                   string `json:"owner,omitempty"`
+	ACLTemplateName         string `json:"ACLTemplateName,omitempty"`
+	ICMPCode                string `json:"ICMPCode,omitempty"`
+	ICMPType                string `json:"ICMPType,omitempty"`
+	FCOverride              string `json:"FCOverride,omitempty"`
+	IPv6AddressOverride     string `json:"IPv6AddressOverride,omitempty"`
+	DSCP                    string `json:"DSCP,omitempty"`
+	FailsafeDatapath        string `json:"failsafeDatapath,omitempty"`
+	Name                    string `json:"name,omitempty"`
+	LastUpdatedBy           string `json:"lastUpdatedBy,omitempty"`
+	Action                  string `json:"action,omitempty"`
+	AddressOverride         string `json:"addressOverride,omitempty"`
+	RedirectRewriteType     string `json:"redirectRewriteType,omitempty"`
+	RedirectRewriteValue    string `json:"redirectRewriteValue,omitempty"`
+	RedirectVPortTagID      string `json:"redirectVPortTagID,omitempty"`
+	Description             string `json:"description,omitempty"`
+	DestinationPort         string `json:"destinationPort,omitempty"`
+	NetworkID               string `json:"networkID,omitempty"`
+	NetworkType             string `json:"networkType,omitempty"`
+	MirrorDestinationID     string `json:"mirrorDestinationID,omitempty"`
+	VlanRange               string `json:"vlanRange,omitempty"`
+	FlowLoggingEnabled      bool   `json:"flowLoggingEnabled"`
+	EnterpriseName          string `json:"enterpriseName,omitempty"`
+	EntityScope             string `json:"entityScope,omitempty"`
+	LocationID              string `json:"locationID,omitempty"`
+	LocationType            string `json:"locationType,omitempty"`
+	PolicyState             string `json:"policyState,omitempty"`
+	DomainName              string `json:"domainName,omitempty"`
+	SourcePort              string `json:"sourcePort,omitempty"`
+	UplinkPreference        string `json:"uplinkPreference,omitempty"`
+	AppType                 string `json:"appType,omitempty"`
+	Priority                int    `json:"priority,omitempty"`
+	Protocol                string `json:"protocol,omitempty"`
+	IsSLAAware              bool   `json:"isSLAAware"`
+	AssociatedApplicationID string `json:"associatedApplicationID,omitempty"`
+	AssociatedLiveEntityID  string `json:"associatedLiveEntityID,omitempty"`
+	AssociatedTrafficType   string `json:"associatedTrafficType,omitempty"`
+	AssociatedTrafficTypeID string `json:"associatedTrafficTypeID,omitempty"`
+	StatsID                 string `json:"statsID,omitempty"`
+	StatsLoggingEnabled     bool   `json:"statsLoggingEnabled"`
+	EtherType               string `json:"etherType,omitempty"`
+	ExternalID              string `json:"externalID,omitempty"`
 }
 
 // NewIngressAdvFwdEntryTemplate returns a new *IngressAdvFwdEntryTemplate
 func NewIngressAdvFwdEntryTemplate() *IngressAdvFwdEntryTemplate {
 
 	return &IngressAdvFwdEntryTemplate{
-		DSCP:         "*",
-		Action:       "FORWARD",
-		NetworkType:  "ANY",
-		LocationType: "ANY",
-		Protocol:     "6",
-		EtherType:    "0x0800",
+		DSCP:             "*",
+		FailsafeDatapath: "FAIL_TO_BLOCK",
+		Action:           "FORWARD",
+		NetworkType:      "ANY",
+		LocationType:     "ANY",
+		AppType:          "NONE",
+		Protocol:         "6",
+		IsSLAAware:       false,
+		EtherType:        "0x0800",
 	}
 }
 

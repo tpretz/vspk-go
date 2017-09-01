@@ -59,6 +59,7 @@ type User struct {
 	ParentID       string `json:"parentID,omitempty"`
 	ParentType     string `json:"parentType,omitempty"`
 	Owner          string `json:"owner,omitempty"`
+	LDAPUserDN     string `json:"LDAPUserDN,omitempty"`
 	ManagementMode string `json:"managementMode,omitempty"`
 	Password       string `json:"password,omitempty"`
 	LastName       string `json:"lastName,omitempty"`
