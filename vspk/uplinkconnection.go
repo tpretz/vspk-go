@@ -72,7 +72,6 @@ type UplinkConnection struct {
 	Username                string `json:"username,omitempty"`
 	AssocUnderlayID         string `json:"assocUnderlayID,omitempty"`
 	AssociatedUnderlayName  string `json:"associatedUnderlayName,omitempty"`
-	AssociatedVSCProfileID  string `json:"associatedVSCProfileID,omitempty"`
 	AuxiliaryLink           bool   `json:"auxiliaryLink"`
 }
 
