@@ -69,9 +69,11 @@ type VLAN struct {
 	Restricted                   bool   `json:"restricted"`
 	EntityScope                  string `json:"entityScope,omitempty"`
 	VportID                      string `json:"vportID,omitempty"`
+	IsUplink                     bool   `json:"isUplink"`
 	UseUserMnemonic              bool   `json:"useUserMnemonic"`
 	UserMnemonic                 string `json:"userMnemonic,omitempty"`
 	AssociatedBGPProfileID       string `json:"associatedBGPProfileID,omitempty"`
+	AssociatedConnectionType     string `json:"associatedConnectionType,omitempty"`
 	AssociatedEgressQOSPolicyID  string `json:"associatedEgressQOSPolicyID,omitempty"`
 	AssociatedIngressQOSPolicyID string `json:"associatedIngressQOSPolicyID,omitempty"`
 	AssociatedUplinkConnectionID string `json:"associatedUplinkConnectionID,omitempty"`
@@ -86,7 +88,8 @@ type VLAN struct {
 func NewVLAN() *VLAN {
 
 	return &VLAN{
-		DucVlan: false,
+		IsUplink: false,
+		DucVlan:  false,
 	}
 }
 

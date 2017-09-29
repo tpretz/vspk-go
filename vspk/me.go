@@ -133,6 +133,20 @@ func (o *Me) L2Domains(info *bambou.FetchingInfo) (L2DomainsList, *bambou.Error)
 	return list, err
 }
 
+// L4Services retrieves the list of child L4Services of the Me
+func (o *Me) L4Services(info *bambou.FetchingInfo) (L4ServicesList, *bambou.Error) {
+
+	var list L4ServicesList
+	err := bambou.CurrentSession().FetchChildren(o, L4ServiceIdentity, &list, info)
+	return list, err
+}
+
+// CreateL4Service creates a new child L4Service under the Me
+func (o *Me) CreateL4Service(child *L4Service) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // VCenterEAMConfigs retrieves the list of child VCenterEAMConfigs of the Me
 func (o *Me) VCenterEAMConfigs(info *bambou.FetchingInfo) (VCenterEAMConfigsList, *bambou.Error) {
 

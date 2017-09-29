@@ -78,14 +78,16 @@ type L2DomainTemplate struct {
 	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
 	Multicast                       string `json:"multicast,omitempty"`
 	ExternalID                      string `json:"externalID,omitempty"`
+	DynamicIpv6Address              bool   `json:"dynamicIpv6Address"`
 }
 
 // NewL2DomainTemplate returns a new *L2DomainTemplate
 func NewL2DomainTemplate() *L2DomainTemplate {
 
 	return &L2DomainTemplate{
-		DPI:          "false",
-		UseGlobalMAC: "DISABLED",
+		DPI:                "false",
+		UseGlobalMAC:       "DISABLED",
+		DynamicIpv6Address: false,
 	}
 }
 
