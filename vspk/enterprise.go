@@ -506,6 +506,20 @@ func (o *Enterprise) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Error) {
 	return list, err
 }
 
+// IngressQOSPolicies retrieves the list of child IngressQOSPolicies of the Enterprise
+func (o *Enterprise) IngressQOSPolicies(info *bambou.FetchingInfo) (IngressQOSPoliciesList, *bambou.Error) {
+
+	var list IngressQOSPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, IngressQOSPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateIngressQOSPolicy creates a new child IngressQOSPolicy under the Enterprise
+func (o *Enterprise) CreateIngressQOSPolicy(child *IngressQOSPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // EnterpriseNetworks retrieves the list of child EnterpriseNetworks of the Enterprise
 func (o *Enterprise) EnterpriseNetworks(info *bambou.FetchingInfo) (EnterpriseNetworksList, *bambou.Error) {
 

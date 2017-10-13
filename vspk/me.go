@@ -630,6 +630,20 @@ func (o *Me) IngressAdvFwdEntryTemplates(info *bambou.FetchingInfo) (IngressAdvF
 	return list, err
 }
 
+// IngressQOSPolicies retrieves the list of child IngressQOSPolicies of the Me
+func (o *Me) IngressQOSPolicies(info *bambou.FetchingInfo) (IngressQOSPoliciesList, *bambou.Error) {
+
+	var list IngressQOSPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, IngressQOSPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateIngressQOSPolicy creates a new child IngressQOSPolicy under the Me
+func (o *Me) CreateIngressQOSPolicy(child *IngressQOSPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Enterprises retrieves the list of child Enterprises of the Me
 func (o *Me) Enterprises(info *bambou.FetchingInfo) (EnterprisesList, *bambou.Error) {
 
