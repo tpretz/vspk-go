@@ -62,8 +62,14 @@ type L7applicationsignature struct {
 	Name              string `json:"name,omitempty"`
 	Category          string `json:"category,omitempty"`
 	Readonly          bool   `json:"readonly"`
+	Reference         string `json:"reference,omitempty"`
 	Description       string `json:"description,omitempty"`
 	DictionaryVersion int    `json:"dictionaryVersion,omitempty"`
+	SignatureIndex    int    `json:"signatureIndex,omitempty"`
+	Risk              int    `json:"risk,omitempty"`
+	PluginName        string `json:"pluginName,omitempty"`
+	SoftwareFlags     string `json:"softwareFlags,omitempty"`
+	Productivity      int    `json:"productivity,omitempty"`
 	Guidstring        string `json:"guidstring,omitempty"`
 }
 

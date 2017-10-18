@@ -635,6 +635,20 @@ func (o *Me) CreateInfrastructureVscProfile(child *InfrastructureVscProfile) *ba
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VNFThresholdPolicies retrieves the list of child VNFThresholdPolicies of the Me
+func (o *Me) VNFThresholdPolicies(info *bambou.FetchingInfo) (VNFThresholdPoliciesList, *bambou.Error) {
+
+	var list VNFThresholdPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VNFThresholdPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVNFThresholdPolicy creates a new child VNFThresholdPolicy under the Me
+func (o *Me) CreateVNFThresholdPolicy(child *VNFThresholdPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // IngressACLEntryTemplates retrieves the list of child IngressACLEntryTemplates of the Me
 func (o *Me) IngressACLEntryTemplates(info *bambou.FetchingInfo) (IngressACLEntryTemplatesList, *bambou.Error) {
 
@@ -759,6 +773,20 @@ func (o *Me) ContainerInterfaces(info *bambou.FetchingInfo) (ContainerInterfaces
 	var list ContainerInterfacesList
 	err := bambou.CurrentSession().FetchChildren(o, ContainerInterfaceIdentity, &list, info)
 	return list, err
+}
+
+// QosPolicers retrieves the list of child QosPolicers of the Me
+func (o *Me) QosPolicers(info *bambou.FetchingInfo) (QosPolicersList, *bambou.Error) {
+
+	var list QosPolicersList
+	err := bambou.CurrentSession().FetchChildren(o, QosPolicerIdentity, &list, info)
+	return list, err
+}
+
+// CreateQosPolicer creates a new child QosPolicer under the Me
+func (o *Me) CreateQosPolicer(child *QosPolicer) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // COSRemarkingPolicyTables retrieves the list of child COSRemarkingPolicyTables of the Me

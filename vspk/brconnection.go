@@ -31,7 +31,7 @@ import "github.com/nuagenetworks/go-bambou/bambou"
 
 // BRConnectionIdentity represents the Identity of the object
 var BRConnectionIdentity = bambou.Identity{
-	Name:     "brconnections",
+	Name:     "brconnection",
 	Category: "brconnections",
 }
 
@@ -53,7 +53,7 @@ type BRConnectionsParent interface {
 	CreateBRConnection(*BRConnection) *bambou.Error
 }
 
-// BRConnection represents the model of a brconnections
+// BRConnection represents the model of a brconnection
 type BRConnection struct {
 	ID                    string `json:"ID,omitempty"`
 	ParentID              string `json:"parentID,omitempty"`

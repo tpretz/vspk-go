@@ -68,6 +68,7 @@ type SSIDConnection struct {
 	WhiteList                        []interface{} `json:"whiteList,omitempty"`
 	BlackList                        []interface{} `json:"blackList,omitempty"`
 	InterfaceName                    string        `json:"interfaceName,omitempty"`
+	VportID                          string        `json:"vportID,omitempty"`
 	BroadcastSSID                    bool          `json:"broadcastSSID"`
 	AssociatedCaptivePortalProfileID string        `json:"associatedCaptivePortalProfileID,omitempty"`
 	AssociatedEgressQOSPolicyID      string        `json:"associatedEgressQOSPolicyID,omitempty"`

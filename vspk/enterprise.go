@@ -565,6 +565,20 @@ func (o *Enterprise) CreateVNFMetadata(child *VNFMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VNFThresholdPolicies retrieves the list of child VNFThresholdPolicies of the Enterprise
+func (o *Enterprise) VNFThresholdPolicies(info *bambou.FetchingInfo) (VNFThresholdPoliciesList, *bambou.Error) {
+
+	var list VNFThresholdPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VNFThresholdPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVNFThresholdPolicy creates a new child VNFThresholdPolicy under the Enterprise
+func (o *Enterprise) CreateVNFThresholdPolicy(child *VNFThresholdPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // IngressQOSPolicies retrieves the list of child IngressQOSPolicies of the Enterprise
 func (o *Enterprise) IngressQOSPolicies(info *bambou.FetchingInfo) (IngressQOSPoliciesList, *bambou.Error) {
 
