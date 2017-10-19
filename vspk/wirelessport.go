@@ -60,6 +60,7 @@ type WirelessPort struct {
 	ParentType        string `json:"parentType,omitempty"`
 	Owner             string `json:"owner,omitempty"`
 	Name              string `json:"name,omitempty"`
+	TemplateID        string `json:"templateID,omitempty"`
 	GenericConfig     string `json:"genericConfig,omitempty"`
 	Description       string `json:"description,omitempty"`
 	PhysicalName      string `json:"physicalName,omitempty"`

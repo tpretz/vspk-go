@@ -88,16 +88,14 @@ type L2Domain struct {
 	Stretched                         bool   `json:"stretched"`
 	Multicast                         string `json:"multicast,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`
-	DynamicIpv6Address                bool   `json:"dynamicIpv6Address"`
 }
 
 // NewL2Domain returns a new *L2Domain
 func NewL2Domain() *L2Domain {
 
 	return &L2Domain{
-		DPI:                "DISABLED",
-		MaintenanceMode:    "DISABLED",
-		DynamicIpv6Address: false,
+		DPI:             "DISABLED",
+		MaintenanceMode: "DISABLED",
 	}
 }
 

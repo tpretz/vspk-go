@@ -144,14 +144,3 @@ func (o *NetworkMacroGroup) EnterpriseNetworks(info *bambou.FetchingInfo) (Enter
 	err := bambou.CurrentSession().FetchChildren(o, EnterpriseNetworkIdentity, &list, info)
 	return list, err
 }
-
-// AssignEnterpriseNetworks assigns the list of EnterpriseNetworks to the NetworkMacroGroup
-func (o *NetworkMacroGroup) AssignEnterpriseNetworks(children EnterpriseNetworksList) *bambou.Error {
-
-	list := []bambou.Identifiable{}
-	for _, c := range children {
-		list = append(list, c)
-	}
-
-	return bambou.CurrentSession().AssignChildren(o, list, EnterpriseNetworkIdentity)
-}

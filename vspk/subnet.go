@@ -94,7 +94,6 @@ type Subnet struct {
 	AssociatedMulticastChannelMapID   string `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedSharedNetworkResourceID string `json:"associatedSharedNetworkResourceID,omitempty"`
 	Public                            bool   `json:"public"`
-	MultiHomeEnabled                  bool   `json:"multiHomeEnabled"`
 	Multicast                         string `json:"multicast,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`
 	DynamicIpv6Address                bool   `json:"dynamicIpv6Address"`
@@ -111,7 +110,6 @@ func NewSubnet() *Subnet {
 		AccessRestrictionEnabled: false,
 		Advertise:                true,
 		ResourceType:             "STANDARD",
-		MultiHomeEnabled:         false,
 		Multicast:                "INHERITED",
 		DynamicIpv6Address:       false,
 	}
