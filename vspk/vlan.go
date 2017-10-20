@@ -69,10 +69,13 @@ type VLAN struct {
 	Restricted                   bool   `json:"restricted"`
 	EntityScope                  string `json:"entityScope,omitempty"`
 	VportID                      string `json:"vportID,omitempty"`
+	IsUplink                     bool   `json:"isUplink"`
 	UseUserMnemonic              bool   `json:"useUserMnemonic"`
 	UserMnemonic                 string `json:"userMnemonic,omitempty"`
 	AssociatedBGPProfileID       string `json:"associatedBGPProfileID,omitempty"`
+	AssociatedConnectionType     string `json:"associatedConnectionType,omitempty"`
 	AssociatedEgressQOSPolicyID  string `json:"associatedEgressQOSPolicyID,omitempty"`
+	AssociatedIngressQOSPolicyID string `json:"associatedIngressQOSPolicyID,omitempty"`
 	AssociatedUplinkConnectionID string `json:"associatedUplinkConnectionID,omitempty"`
 	AssociatedVSCProfileID       string `json:"associatedVSCProfileID,omitempty"`
 	Status                       string `json:"status,omitempty"`
@@ -84,7 +87,8 @@ type VLAN struct {
 func NewVLAN() *VLAN {
 
 	return &VLAN{
-		DucVlan: false,
+		IsUplink: false,
+		DucVlan:  false,
 	}
 }
 
@@ -261,6 +265,14 @@ func (o *VLAN) BRConnections(info *bambou.FetchingInfo) (BRConnectionsList, *bam
 func (o *VLAN) CreateBRConnection(child *BRConnection) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Statistics retrieves the list of child Statistics of the VLAN
+func (o *VLAN) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
+
+	var list StatisticsList
+	err := bambou.CurrentSession().FetchChildren(o, StatisticsIdentity, &list, info)
+	return list, err
 }
 
 // Ltestatistics retrieves the list of child Ltestatistics of the VLAN

@@ -68,7 +68,7 @@ type UplinkConnection struct {
 	InterfaceConnectionType string `json:"interfaceConnectionType,omitempty"`
 	Mode                    string `json:"mode,omitempty"`
 	Role                    string `json:"role,omitempty"`
-	UplinkID                string `json:"uplinkID,omitempty"`
+	UplinkID                int    `json:"uplinkID,omitempty"`
 	Username                string `json:"username,omitempty"`
 	AssocUnderlayID         string `json:"assocUnderlayID,omitempty"`
 	AssociatedUnderlayName  string `json:"associatedUnderlayName,omitempty"`
@@ -79,7 +79,6 @@ type UplinkConnection struct {
 func NewUplinkConnection() *UplinkConnection {
 
 	return &UplinkConnection{
-		Address:                 "IPv4",
 		InterfaceConnectionType: "AUTOMATIC",
 		Mode:          "Dynamic",
 		Role:          "PRIMARY",
