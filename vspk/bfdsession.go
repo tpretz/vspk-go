@@ -74,7 +74,7 @@ func NewBFDSession() *BFDSession {
 	return &BFDSession{
 		BFDMultiplier:   3,
 		BFDTimer:        500,
-		MultiHopEnabled: false,
+		MultiHopEnabled: False,
 	}
 }
 
