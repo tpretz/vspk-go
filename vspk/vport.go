@@ -94,9 +94,7 @@ func NewVPort() *VPort {
 	return &VPort{
 		DPI:              "INHERITED",
 		AddressSpoofing:  "INHERITED",
-		SegmentationType: "NONE",
 		OperationalState: "INIT",
-		TrunkRole:        "NONE",
 		SubType:          "NONE",
 		Multicast:        "INHERITED",
 		Type:             "VM",

@@ -73,7 +73,7 @@ type VNFInterface struct {
 	DomainName            string `json:"domainName,omitempty"`
 	ZoneID                string `json:"zoneID,omitempty"`
 	ZoneName              string `json:"zoneName,omitempty"`
-	IsManagementInterface string `json:"isManagementInterface,omitempty"`
+	IsManagementInterface bool   `json:"isManagementInterface"`
 	AttachedNetworkID     string `json:"attachedNetworkID,omitempty"`
 	AttachedNetworkType   string `json:"attachedNetworkType,omitempty"`
 }

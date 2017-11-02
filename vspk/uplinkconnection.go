@@ -73,7 +73,7 @@ type UplinkConnection struct {
 	RoleOrder               string  `json:"roleOrder,omitempty"`
 	PortName                string  `json:"portName,omitempty"`
 	DownloadRateLimit       float64 `json:"downloadRateLimit,omitempty"`
-	UplinkID                string  `json:"uplinkID,omitempty"`
+	UplinkID                int     `json:"uplinkID,omitempty"`
 	Username                string  `json:"username,omitempty"`
 	AssocUnderlayID         string  `json:"assocUnderlayID,omitempty"`
 	AssociatedBGPNeighborID string  `json:"associatedBGPNeighborID,omitempty"`
@@ -85,7 +85,6 @@ type UplinkConnection struct {
 func NewUplinkConnection() *UplinkConnection {
 
 	return &UplinkConnection{
-		Address:                 "IPv4",
 		InterfaceConnectionType: "AUTOMATIC",
 		Mode:              "Dynamic",
 		Role:              "PRIMARY",
