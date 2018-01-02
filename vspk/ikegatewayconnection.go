@@ -63,6 +63,7 @@ type IKEGatewayConnection struct {
 	NSGIdentifierType                string `json:"NSGIdentifierType,omitempty"`
 	NSGRole                          string `json:"NSGRole,omitempty"`
 	Name                             string `json:"name,omitempty"`
+	Mark                             int    `json:"mark,omitempty"`
 	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
 	Sequence                         int    `json:"sequence,omitempty"`
 	AllowAnySubnet                   bool   `json:"allowAnySubnet"`
@@ -83,6 +84,7 @@ func NewIKEGatewayConnection() *IKEGatewayConnection {
 
 	return &IKEGatewayConnection{
 		NSGIdentifierType: "ID_KEY_ID",
+		Mark:              1,
 	}
 }
 
@@ -122,6 +124,25 @@ func (o *IKEGatewayConnection) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// PerformanceMonitors retrieves the list of child PerformanceMonitors of the IKEGatewayConnection
+func (o *IKEGatewayConnection) PerformanceMonitors(info *bambou.FetchingInfo) (PerformanceMonitorsList, *bambou.Error) {
+
+	var list PerformanceMonitorsList
+	err := bambou.CurrentSession().FetchChildren(o, PerformanceMonitorIdentity, &list, info)
+	return list, err
+}
+
+// AssignPerformanceMonitors assigns the list of PerformanceMonitors to the IKEGatewayConnection
+func (o *IKEGatewayConnection) AssignPerformanceMonitors(children PerformanceMonitorsList) *bambou.Error {
+
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, PerformanceMonitorIdentity)
+}
+
 // Metadatas retrieves the list of child Metadatas of the IKEGatewayConnection
 func (o *IKEGatewayConnection) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -132,6 +153,20 @@ func (o *IKEGatewayConnection) Metadatas(info *bambou.FetchingInfo) (MetadatasLi
 
 // CreateMetadata creates a new child Metadata under the IKEGatewayConnection
 func (o *IKEGatewayConnection) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// Alarms retrieves the list of child Alarms of the IKEGatewayConnection
+func (o *IKEGatewayConnection) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
+// CreateAlarm creates a new child Alarm under the IKEGatewayConnection
+func (o *IKEGatewayConnection) CreateAlarm(child *Alarm) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

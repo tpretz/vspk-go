@@ -485,6 +485,20 @@ func (o *Me) CreateMirrorDestination(child *MirrorDestination) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VirtualFirewallPolicies retrieves the list of child VirtualFirewallPolicies of the Me
+func (o *Me) VirtualFirewallPolicies(info *bambou.FetchingInfo) (VirtualFirewallPoliciesList, *bambou.Error) {
+
+	var list VirtualFirewallPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VirtualFirewallPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVirtualFirewallPolicy creates a new child VirtualFirewallPolicy under the Me
+func (o *Me) CreateVirtualFirewallPolicy(child *VirtualFirewallPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // SiteInfos retrieves the list of child SiteInfos of the Me
 func (o *Me) SiteInfos(info *bambou.FetchingInfo) (SiteInfosList, *bambou.Error) {
 
@@ -655,6 +669,12 @@ func (o *Me) IngressACLEntryTemplates(info *bambou.FetchingInfo) (IngressACLEntr
 	var list IngressACLEntryTemplatesList
 	err := bambou.CurrentSession().FetchChildren(o, IngressACLEntryTemplateIdentity, &list, info)
 	return list, err
+}
+
+// CreateIngressACLEntryTemplate creates a new child IngressACLEntryTemplate under the Me
+func (o *Me) CreateIngressACLEntryTemplate(child *IngressACLEntryTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // IngressACLTemplates retrieves the list of child IngressACLTemplates of the Me
@@ -854,6 +874,14 @@ func (o *Me) Users(info *bambou.FetchingInfo) (UsersList, *bambou.Error) {
 
 	var list UsersList
 	err := bambou.CurrentSession().FetchChildren(o, UserIdentity, &list, info)
+	return list, err
+}
+
+// UserContexts retrieves the list of child UserContexts of the Me
+func (o *Me) UserContexts(info *bambou.FetchingInfo) (UserContextsList, *bambou.Error) {
+
+	var list UserContextsList
+	err := bambou.CurrentSession().FetchChildren(o, UserContextIdentity, &list, info)
 	return list, err
 }
 

@@ -85,8 +85,10 @@ type NSPort struct {
 func NewNSPort() *NSPort {
 
 	return &NSPort{
-		NATTraversal:          "NONE",
-		EnableNATProbes:       true,
+		NATTraversal:    "NONE",
+		VLANRange:       "0-4094",
+		EnableNATProbes: true,
+		Speed:           "AUTONEGOTIATE",
 		TrafficThroughUBROnly: false,
 		Mtu: 1500,
 	}

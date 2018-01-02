@@ -73,7 +73,9 @@ type InfrastructureVscProfile struct {
 // NewInfrastructureVscProfile returns a new *InfrastructureVscProfile
 func NewInfrastructureVscProfile() *InfrastructureVscProfile {
 
-	return &InfrastructureVscProfile{}
+	return &InfrastructureVscProfile{
+		ProbeInterval: 5000,
+	}
 }
 
 // Identity returns the Identity of the object.

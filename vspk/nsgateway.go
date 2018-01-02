@@ -63,6 +63,7 @@ type NSGateway struct {
 	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
 	TCPMSSEnabled                      bool   `json:"TCPMSSEnabled"`
 	TCPMaximumSegmentSize              int    `json:"TCPMaximumSegmentSize,omitempty"`
+	BIOSReleaseDate                    string `json:"BIOSReleaseDate,omitempty"`
 	BIOSVersion                        string `json:"BIOSVersion,omitempty"`
 	SKU                                string `json:"SKU,omitempty"`
 	TPMStatus                          string `json:"TPMStatus,omitempty"`
@@ -83,7 +84,6 @@ type NSGateway struct {
 	PermittedAction                    string `json:"permittedAction,omitempty"`
 	Personality                        string `json:"personality,omitempty"`
 	Description                        string `json:"description,omitempty"`
-	NetworkAcceleration                string `json:"networkAcceleration,omitempty"`
 	Libraries                          string `json:"libraries,omitempty"`
 	InheritedSSHServiceState           string `json:"inheritedSSHServiceState,omitempty"`
 	EnterpriseID                       string `json:"enterpriseID,omitempty"`
@@ -116,7 +116,6 @@ func NewNSGateway() *NSGateway {
 		TPMStatus:                        "UNKNOWN",
 		SSHService:                       "INHERITED",
 		LastConfigurationReloadTimestamp: -1,
-		NetworkAcceleration:              "NONE",
 		InheritedSSHServiceState:         "ENABLED",
 		ConfigurationReloadState:         "UNKNOWN",
 		ConfigurationStatus:              "UNKNOWN",

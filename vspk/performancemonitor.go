@@ -69,7 +69,7 @@ type PerformanceMonitor struct {
 	Timeout               int           `json:"timeout,omitempty"`
 	Interval              int           `json:"interval,omitempty"`
 	EntityScope           string        `json:"entityScope,omitempty"`
-	DownThresholdCount    int           `json:"downThresholdCount,omitempty"`
+	HoldDownTimer         int           `json:"holdDownTimer,omitempty"`
 	ProbeType             string        `json:"probeType,omitempty"`
 	NumberOfPackets       int           `json:"numberOfPackets,omitempty"`
 	ExternalID            string        `json:"externalID,omitempty"`
@@ -83,6 +83,7 @@ func NewPerformanceMonitor() *PerformanceMonitor {
 		ReadOnly:        false,
 		Timeout:         1000,
 		Interval:        3000,
+		HoldDownTimer:   900,
 		ProbeType:       "ONEWAY",
 		NumberOfPackets: 1,
 	}
@@ -122,6 +123,14 @@ func (o *PerformanceMonitor) Save() *bambou.Error {
 func (o *PerformanceMonitor) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// Tiers retrieves the list of child Tiers of the PerformanceMonitor
+func (o *PerformanceMonitor) Tiers(info *bambou.FetchingInfo) (TiersList, *bambou.Error) {
+
+	var list TiersList
+	err := bambou.CurrentSession().FetchChildren(o, TierIdentity, &list, info)
+	return list, err
 }
 
 // Applicationperformancemanagements retrieves the list of child Applicationperformancemanagements of the PerformanceMonitor

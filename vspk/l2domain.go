@@ -85,6 +85,7 @@ type L2Domain struct {
 	UseGlobalMAC                      string `json:"useGlobalMAC,omitempty"`
 	AssociatedMulticastChannelMapID   string `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedSharedNetworkResourceID string `json:"associatedSharedNetworkResourceID,omitempty"`
+	AssociatedUnderlayID              string `json:"associatedUnderlayID,omitempty"`
 	Stretched                         bool   `json:"stretched"`
 	Multicast                         string `json:"multicast,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`
@@ -201,6 +202,20 @@ func (o *L2Domain) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NetworkPerformanceBindings retrieves the list of child NetworkPerformanceBindings of the L2Domain
+func (o *L2Domain) NetworkPerformanceBindings(info *bambou.FetchingInfo) (NetworkPerformanceBindingsList, *bambou.Error) {
+
+	var list NetworkPerformanceBindingsList
+	err := bambou.CurrentSession().FetchChildren(o, NetworkPerformanceBindingIdentity, &list, info)
+	return list, err
+}
+
+// CreateNetworkPerformanceBinding creates a new child NetworkPerformanceBinding under the L2Domain
+func (o *L2Domain) CreateNetworkPerformanceBinding(child *NetworkPerformanceBinding) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // PGExpressions retrieves the list of child PGExpressions of the L2Domain
 func (o *L2Domain) PGExpressions(info *bambou.FetchingInfo) (PGExpressionsList, *bambou.Error) {
 
@@ -265,6 +280,20 @@ func (o *L2Domain) CreateDHCPOption(child *DHCPOption) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VirtualFirewallPolicies retrieves the list of child VirtualFirewallPolicies of the L2Domain
+func (o *L2Domain) VirtualFirewallPolicies(info *bambou.FetchingInfo) (VirtualFirewallPoliciesList, *bambou.Error) {
+
+	var list VirtualFirewallPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VirtualFirewallPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVirtualFirewallPolicy creates a new child VirtualFirewallPolicy under the L2Domain
+func (o *L2Domain) CreateVirtualFirewallPolicy(child *VirtualFirewallPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the L2Domain
 func (o *L2Domain) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -301,6 +330,12 @@ func (o *L2Domain) IngressACLEntryTemplates(info *bambou.FetchingInfo) (IngressA
 	var list IngressACLEntryTemplatesList
 	err := bambou.CurrentSession().FetchChildren(o, IngressACLEntryTemplateIdentity, &list, info)
 	return list, err
+}
+
+// CreateIngressACLEntryTemplate creates a new child IngressACLEntryTemplate under the L2Domain
+func (o *L2Domain) CreateIngressACLEntryTemplate(child *IngressACLEntryTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // IngressACLTemplates retrieves the list of child IngressACLTemplates of the L2Domain
@@ -435,20 +470,6 @@ func (o *L2Domain) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error)
 
 // CreateVPort creates a new child VPort under the L2Domain
 func (o *L2Domain) CreateVPort(child *VPort) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Applicationperformancemanagementbindings retrieves the list of child Applicationperformancemanagementbindings of the L2Domain
-func (o *L2Domain) Applicationperformancemanagementbindings(info *bambou.FetchingInfo) (ApplicationperformancemanagementbindingsList, *bambou.Error) {
-
-	var list ApplicationperformancemanagementbindingsList
-	err := bambou.CurrentSession().FetchChildren(o, ApplicationperformancemanagementbindingIdentity, &list, info)
-	return list, err
-}
-
-// CreateApplicationperformancemanagementbinding creates a new child Applicationperformancemanagementbinding under the L2Domain
-func (o *L2Domain) CreateApplicationperformancemanagementbinding(child *Applicationperformancemanagementbinding) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

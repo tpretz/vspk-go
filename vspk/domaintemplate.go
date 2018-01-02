@@ -229,6 +229,20 @@ func (o *DomainTemplate) CreateFloatingIPACLTemplate(child *FloatingIPACLTemplat
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VirtualFirewallPolicies retrieves the list of child VirtualFirewallPolicies of the DomainTemplate
+func (o *DomainTemplate) VirtualFirewallPolicies(info *bambou.FetchingInfo) (VirtualFirewallPoliciesList, *bambou.Error) {
+
+	var list VirtualFirewallPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VirtualFirewallPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVirtualFirewallPolicy creates a new child VirtualFirewallPolicy under the DomainTemplate
+func (o *DomainTemplate) CreateVirtualFirewallPolicy(child *VirtualFirewallPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the DomainTemplate
 func (o *DomainTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 

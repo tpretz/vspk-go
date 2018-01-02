@@ -73,6 +73,7 @@ type IngressAdvFwdEntryTemplate struct {
 	RedirectRewriteType     string `json:"redirectRewriteType,omitempty"`
 	RedirectRewriteValue    string `json:"redirectRewriteValue,omitempty"`
 	RedirectVPortTagID      string `json:"redirectVPortTagID,omitempty"`
+	RemoteUplinkPreference  string `json:"remoteUplinkPreference,omitempty"`
 	Description             string `json:"description,omitempty"`
 	DestinationPort         string `json:"destinationPort,omitempty"`
 	NetworkID               string `json:"networkID,omitempty"`
@@ -106,15 +107,16 @@ type IngressAdvFwdEntryTemplate struct {
 func NewIngressAdvFwdEntryTemplate() *IngressAdvFwdEntryTemplate {
 
 	return &IngressAdvFwdEntryTemplate{
-		DSCP:             "*",
-		FailsafeDatapath: "FAIL_TO_BLOCK",
-		Action:           "FORWARD",
-		NetworkType:      "ANY",
-		LocationType:     "ANY",
-		AppType:          "NONE",
-		Protocol:         "6",
-		IsSLAAware:       false,
-		EtherType:        "0x0800",
+		DSCP:                   "*",
+		FailsafeDatapath:       "FAIL_TO_BLOCK",
+		Action:                 "FORWARD",
+		RemoteUplinkPreference: "DEFAULT",
+		NetworkType:            "ANY",
+		LocationType:           "ANY",
+		AppType:                "NONE",
+		Protocol:               "6",
+		IsSLAAware:             false,
+		EtherType:              "0x0800",
 	}
 }
 

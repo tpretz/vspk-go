@@ -81,7 +81,9 @@ type VNFInterface struct {
 // NewVNFInterface returns a new *VNFInterface
 func NewVNFInterface() *VNFInterface {
 
-	return &VNFInterface{}
+	return &VNFInterface{
+		IsManagementInterface: false,
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -59,6 +59,7 @@ type StaticRoute struct {
 	ParentID           string `json:"parentID,omitempty"`
 	ParentType         string `json:"parentType,omitempty"`
 	Owner              string `json:"owner,omitempty"`
+	BFDEnabled         bool   `json:"BFDEnabled"`
 	IPType             string `json:"IPType,omitempty"`
 	IPv6Address        string `json:"IPv6Address,omitempty"`
 	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
@@ -75,7 +76,9 @@ type StaticRoute struct {
 // NewStaticRoute returns a new *StaticRoute
 func NewStaticRoute() *StaticRoute {
 
-	return &StaticRoute{}
+	return &StaticRoute{
+		BFDEnabled: false,
+	}
 }
 
 // Identity returns the Identity of the object.

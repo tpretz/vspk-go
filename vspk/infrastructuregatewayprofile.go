@@ -93,16 +93,19 @@ func NewInfrastructureGatewayProfile() *InfrastructureGatewayProfile {
 	return &InfrastructureGatewayProfile{
 		DatapathSyncTimeout:          1000,
 		DeadTimer:                    "ONE_HOUR",
+		DeadTimerEnabled:             false,
 		RemoteLogMode:                "DISABLED",
+		RemoteLogServerPort:          514,
 		FlowEvictionThreshold:        2500,
 		ControllerLessDuration:       "PT7D",
 		ControllerLessForwardingMode: "DISABLED",
 		ControllerLessRemoteDuration: "PT7D",
+		ForceImmediateSystemSync:     false,
 		OpenFlowAuditTimer:           180,
-		UpgradeAction:                "NONE",
+		UpgradeAction:                "DOWNLOAD_AND_UPGRADE_AT_WINDOW",
 		UseTwoFactor:                 true,
 		StatsCollectorPort:           39090,
-		SystemSyncScheduler:          "0 0 * * 0",
+		SystemSyncScheduler:          "0 0 * * *",
 	}
 }
 

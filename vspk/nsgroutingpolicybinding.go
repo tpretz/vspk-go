@@ -29,117 +29,115 @@ package vspk
 
 import "github.com/nuagenetworks/go-bambou/bambou"
 
-// BGPNeighborIdentity represents the Identity of the object
-var BGPNeighborIdentity = bambou.Identity{
-	Name:     "bgpneighbor",
-	Category: "bgpneighbors",
+// NSGRoutingPolicyBindingIdentity represents the Identity of the object
+var NSGRoutingPolicyBindingIdentity = bambou.Identity{
+	Name:     "nsgroutingpolicybinding",
+	Category: "nsgroutingpolicybindings",
 }
 
-// BGPNeighborsList represents a list of BGPNeighbors
-type BGPNeighborsList []*BGPNeighbor
+// NSGRoutingPolicyBindingsList represents a list of NSGRoutingPolicyBindings
+type NSGRoutingPolicyBindingsList []*NSGRoutingPolicyBinding
 
-// BGPNeighborsAncestor is the interface that an ancestor of a BGPNeighbor must implement.
-// An Ancestor is defined as an entity that has BGPNeighbor as a descendant.
-// An Ancestor can get a list of its child BGPNeighbors, but not necessarily create one.
-type BGPNeighborsAncestor interface {
-	BGPNeighbors(*bambou.FetchingInfo) (BGPNeighborsList, *bambou.Error)
+// NSGRoutingPolicyBindingsAncestor is the interface that an ancestor of a NSGRoutingPolicyBinding must implement.
+// An Ancestor is defined as an entity that has NSGRoutingPolicyBinding as a descendant.
+// An Ancestor can get a list of its child NSGRoutingPolicyBindings, but not necessarily create one.
+type NSGRoutingPolicyBindingsAncestor interface {
+	NSGRoutingPolicyBindings(*bambou.FetchingInfo) (NSGRoutingPolicyBindingsList, *bambou.Error)
 }
 
-// BGPNeighborsParent is the interface that a parent of a BGPNeighbor must implement.
-// A Parent is defined as an entity that has BGPNeighbor as a child.
-// A Parent is an Ancestor which can create a BGPNeighbor.
-type BGPNeighborsParent interface {
-	BGPNeighborsAncestor
-	CreateBGPNeighbor(*BGPNeighbor) *bambou.Error
+// NSGRoutingPolicyBindingsParent is the interface that a parent of a NSGRoutingPolicyBinding must implement.
+// A Parent is defined as an entity that has NSGRoutingPolicyBinding as a child.
+// A Parent is an Ancestor which can create a NSGRoutingPolicyBinding.
+type NSGRoutingPolicyBindingsParent interface {
+	NSGRoutingPolicyBindingsAncestor
+	CreateNSGRoutingPolicyBinding(*NSGRoutingPolicyBinding) *bambou.Error
 }
 
-// BGPNeighbor represents the model of a bgpneighbor
-type BGPNeighbor struct {
+// NSGRoutingPolicyBinding represents the model of a nsgroutingpolicybinding
+type NSGRoutingPolicyBinding struct {
 	ID                              string `json:"ID,omitempty"`
 	ParentID                        string `json:"parentID,omitempty"`
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
-	BFDEnabled                      bool   `json:"BFDEnabled"`
 	Name                            string `json:"name,omitempty"`
-	DampeningEnabled                bool   `json:"dampeningEnabled"`
-	PeerAS                          int    `json:"peerAS,omitempty"`
-	PeerIP                          string `json:"peerIP,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
 	Description                     string `json:"description,omitempty"`
-	Session                         string `json:"session,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
 	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
 	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
+	AssociatedPolicyObjectGroupID   string `json:"associatedPolicyObjectGroupID,omitempty"`
+	ExportToOverlay                 string `json:"exportToOverlay,omitempty"`
 	ExternalID                      string `json:"externalID,omitempty"`
 }
 
-// NewBGPNeighbor returns a new *BGPNeighbor
-func NewBGPNeighbor() *BGPNeighbor {
+// NewNSGRoutingPolicyBinding returns a new *NSGRoutingPolicyBinding
+func NewNSGRoutingPolicyBinding() *NSGRoutingPolicyBinding {
 
-	return &BGPNeighbor{
-		BFDEnabled: false,
+	return &NSGRoutingPolicyBinding{
+		ExportToOverlay: "INHERITED",
 	}
 }
 
 // Identity returns the Identity of the object.
-func (o *BGPNeighbor) Identity() bambou.Identity {
+func (o *NSGRoutingPolicyBinding) Identity() bambou.Identity {
 
-	return BGPNeighborIdentity
+	return NSGRoutingPolicyBindingIdentity
 }
 
 // Identifier returns the value of the object's unique identifier.
-func (o *BGPNeighbor) Identifier() string {
+func (o *NSGRoutingPolicyBinding) Identifier() string {
 
 	return o.ID
 }
 
 // SetIdentifier sets the value of the object's unique identifier.
-func (o *BGPNeighbor) SetIdentifier(ID string) {
+func (o *NSGRoutingPolicyBinding) SetIdentifier(ID string) {
 
 	o.ID = ID
 }
 
-// Fetch retrieves the BGPNeighbor from the server
-func (o *BGPNeighbor) Fetch() *bambou.Error {
+// Fetch retrieves the NSGRoutingPolicyBinding from the server
+func (o *NSGRoutingPolicyBinding) Fetch() *bambou.Error {
 
 	return bambou.CurrentSession().FetchEntity(o)
 }
 
-// Save saves the BGPNeighbor into the server
-func (o *BGPNeighbor) Save() *bambou.Error {
+// Save saves the NSGRoutingPolicyBinding into the server
+func (o *NSGRoutingPolicyBinding) Save() *bambou.Error {
 
 	return bambou.CurrentSession().SaveEntity(o)
 }
 
-// Delete deletes the BGPNeighbor from the server
-func (o *BGPNeighbor) Delete() *bambou.Error {
+// Delete deletes the NSGRoutingPolicyBinding from the server
+func (o *NSGRoutingPolicyBinding) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
-// Metadatas retrieves the list of child Metadatas of the BGPNeighbor
-func (o *BGPNeighbor) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+// Metadatas retrieves the list of child Metadatas of the NSGRoutingPolicyBinding
+func (o *NSGRoutingPolicyBinding) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
 	var list MetadatasList
 	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the BGPNeighbor
-func (o *BGPNeighbor) CreateMetadata(child *Metadata) *bambou.Error {
+// CreateMetadata creates a new child Metadata under the NSGRoutingPolicyBinding
+func (o *NSGRoutingPolicyBinding) CreateMetadata(child *Metadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// GlobalMetadatas retrieves the list of child GlobalMetadatas of the BGPNeighbor
-func (o *BGPNeighbor) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the NSGRoutingPolicyBinding
+func (o *NSGRoutingPolicyBinding) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
 	var list GlobalMetadatasList
 	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
 	return list, err
 }
 
-// CreateGlobalMetadata creates a new child GlobalMetadata under the BGPNeighbor
-func (o *BGPNeighbor) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+// CreateGlobalMetadata creates a new child GlobalMetadata under the NSGRoutingPolicyBinding
+func (o *NSGRoutingPolicyBinding) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

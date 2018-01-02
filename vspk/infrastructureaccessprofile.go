@@ -144,3 +144,31 @@ func (o *InfrastructureAccessProfile) CreateGlobalMetadata(child *GlobalMetadata
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
+
+// Connectionendpoints retrieves the list of child Connectionendpoints of the InfrastructureAccessProfile
+func (o *InfrastructureAccessProfile) Connectionendpoints(info *bambou.FetchingInfo) (ConnectionendpointsList, *bambou.Error) {
+
+	var list ConnectionendpointsList
+	err := bambou.CurrentSession().FetchChildren(o, ConnectionendpointIdentity, &list, info)
+	return list, err
+}
+
+// CreateConnectionendpoint creates a new child Connectionendpoint under the InfrastructureAccessProfile
+func (o *InfrastructureAccessProfile) CreateConnectionendpoint(child *Connectionendpoint) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// SSHKeys retrieves the list of child SSHKeys of the InfrastructureAccessProfile
+func (o *InfrastructureAccessProfile) SSHKeys(info *bambou.FetchingInfo) (SSHKeysList, *bambou.Error) {
+
+	var list SSHKeysList
+	err := bambou.CurrentSession().FetchChildren(o, SSHKeyIdentity, &list, info)
+	return list, err
+}
+
+// CreateSSHKey creates a new child SSHKey under the InfrastructureAccessProfile
+func (o *InfrastructureAccessProfile) CreateSSHKey(child *SSHKey) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}

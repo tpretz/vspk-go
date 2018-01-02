@@ -59,6 +59,7 @@ type UplinkConnection struct {
 	ParentID                string  `json:"parentID,omitempty"`
 	ParentType              string  `json:"parentType,omitempty"`
 	Owner                   string  `json:"owner,omitempty"`
+	PATEnabled              bool    `json:"PATEnabled"`
 	DNSAddress              string  `json:"DNSAddress,omitempty"`
 	Password                string  `json:"password,omitempty"`
 	Gateway                 string  `json:"gateway,omitempty"`
@@ -67,6 +68,8 @@ type UplinkConnection struct {
 	SecondaryAddress        string  `json:"secondaryAddress,omitempty"`
 	Netmask                 string  `json:"netmask,omitempty"`
 	VlanId                  string  `json:"vlanId,omitempty"`
+	UnderlayEnabled         bool    `json:"underlayEnabled"`
+	InstallerManaged        bool    `json:"installerManaged"`
 	InterfaceConnectionType string  `json:"interfaceConnectionType,omitempty"`
 	Mode                    string  `json:"mode,omitempty"`
 	Role                    string  `json:"role,omitempty"`
@@ -85,6 +88,9 @@ type UplinkConnection struct {
 func NewUplinkConnection() *UplinkConnection {
 
 	return &UplinkConnection{
+		PATEnabled:              true,
+		UnderlayEnabled:         true,
+		InstallerManaged:        false,
 		InterfaceConnectionType: "AUTOMATIC",
 		Mode:              "Dynamic",
 		Role:              "PRIMARY",

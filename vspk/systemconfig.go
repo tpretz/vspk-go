@@ -119,6 +119,7 @@ type SystemConfig struct {
 	KeyServerVSDDataSynchronizationInterval           int         `json:"keyServerVSDDataSynchronizationInterval,omitempty"`
 	OffsetCustomerID                                  int         `json:"offsetCustomerID,omitempty"`
 	OffsetServiceID                                   int         `json:"offsetServiceID,omitempty"`
+	VirtualFirewallRulesEnabled                       bool        `json:"virtualFirewallRulesEnabled"`
 	EjbcaNSGCertificateProfile                        string      `json:"ejbcaNSGCertificateProfile,omitempty"`
 	EjbcaNSGEndEntityProfile                          string      `json:"ejbcaNSGEndEntityProfile,omitempty"`
 	EjbcaOCSPResponderCN                              string      `json:"ejbcaOCSPResponderCN,omitempty"`
@@ -219,6 +220,7 @@ func NewSystemConfig() *SystemConfig {
 		PageSize:                    50,
 		AccumulateLicensesEnabled:   false,
 		PerDomainVlanIdEnabled:      false,
+		VirtualFirewallRulesEnabled: false,
 		ElasticClusterName:          "nuage_elasticsearch",
 		AllowEnterpriseAvatarOnNSG:  true,
 		CsprootAuthenticationMethod: "LOCAL",

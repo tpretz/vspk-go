@@ -77,7 +77,9 @@ type NSPortTemplate struct {
 func NewNSPortTemplate() *NSPortTemplate {
 
 	return &NSPortTemplate{
-		Mtu: 1500,
+		VLANRange: "0-4094",
+		Speed:     "AUTONEGOTIATE",
+		Mtu:       1500,
 	}
 }
 

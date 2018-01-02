@@ -87,7 +87,9 @@ type IKEEncryptionprofile struct {
 func NewIKEEncryptionprofile() *IKEEncryptionprofile {
 
 	return &IKEEncryptionprofile{
-		DPDMode: "REPLY_ONLY",
+		DPDInterval:                       0,
+		DPDMode:                           "REPLY_ONLY",
+		DPDTimeout:                        0,
 		IPsecAuthenticationAlgorithm:      "HMAC_SHA256",
 		IPsecEncryptionAlgorithm:          "AES256",
 		IPsecSALifetime:                   3600,

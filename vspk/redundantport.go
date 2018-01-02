@@ -84,7 +84,8 @@ type RedundantPort struct {
 func NewRedundantPort() *RedundantPort {
 
 	return &RedundantPort{
-		MTU: 1500,
+		VLANRange: "0-4094",
+		MTU:       1500,
 	}
 }
 

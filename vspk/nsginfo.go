@@ -60,6 +60,7 @@ type NSGInfo struct {
 	ParentType            string `json:"parentType,omitempty"`
 	Owner                 string `json:"owner,omitempty"`
 	MACAddress            string `json:"MACAddress,omitempty"`
+	BIOSReleaseDate       string `json:"BIOSReleaseDate,omitempty"`
 	BIOSVersion           string `json:"BIOSVersion,omitempty"`
 	SKU                   string `json:"SKU,omitempty"`
 	TPMStatus             string `json:"TPMStatus,omitempty"`

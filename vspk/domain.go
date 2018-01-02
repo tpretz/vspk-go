@@ -69,6 +69,7 @@ type Domain struct {
 	LabelID                         int           `json:"labelID,omitempty"`
 	BackHaulRouteDistinguisher      string        `json:"backHaulRouteDistinguisher,omitempty"`
 	BackHaulRouteTarget             string        `json:"backHaulRouteTarget,omitempty"`
+	BackHaulServiceID               int           `json:"backHaulServiceID,omitempty"`
 	BackHaulSubnetIPAddress         string        `json:"backHaulSubnetIPAddress,omitempty"`
 	BackHaulSubnetMask              string        `json:"backHaulSubnetMask,omitempty"`
 	BackHaulVNID                    int           `json:"backHaulVNID,omitempty"`
@@ -99,6 +100,7 @@ type Domain struct {
 	AssociatedMulticastChannelMapID string        `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedPATMapperID           string        `json:"associatedPATMapperID,omitempty"`
 	AssociatedSharedPATMapperID     string        `json:"associatedSharedPATMapperID,omitempty"`
+	AssociatedUnderlayID            string        `json:"associatedUnderlayID,omitempty"`
 	Stretched                       bool          `json:"stretched"`
 	Multicast                       string        `json:"multicast,omitempty"`
 	TunnelType                      string        `json:"tunnelType,omitempty"`
@@ -340,6 +342,20 @@ func (o *Domain) FirewallAcls(info *bambou.FetchingInfo) (FirewallAclsList, *bam
 	return list, err
 }
 
+// VirtualFirewallPolicies retrieves the list of child VirtualFirewallPolicies of the Domain
+func (o *Domain) VirtualFirewallPolicies(info *bambou.FetchingInfo) (VirtualFirewallPoliciesList, *bambou.Error) {
+
+	var list VirtualFirewallPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VirtualFirewallPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVirtualFirewallPolicy creates a new child VirtualFirewallPolicy under the Domain
+func (o *Domain) CreateVirtualFirewallPolicy(child *VirtualFirewallPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // FloatingIps retrieves the list of child FloatingIps of the Domain
 func (o *Domain) FloatingIps(info *bambou.FetchingInfo) (FloatingIpsList, *bambou.Error) {
 
@@ -404,6 +420,12 @@ func (o *Domain) IngressACLEntryTemplates(info *bambou.FetchingInfo) (IngressACL
 	var list IngressACLEntryTemplatesList
 	err := bambou.CurrentSession().FetchChildren(o, IngressACLEntryTemplateIdentity, &list, info)
 	return list, err
+}
+
+// CreateIngressACLEntryTemplate creates a new child IngressACLEntryTemplate under the Domain
+func (o *Domain) CreateIngressACLEntryTemplate(child *IngressACLEntryTemplate) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // IngressACLTemplates retrieves the list of child IngressACLTemplates of the Domain
@@ -633,6 +655,34 @@ func (o *Domain) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
 	var list GroupsList
 	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
 	return list, err
+}
+
+// NSGRoutingPolicyBindings retrieves the list of child NSGRoutingPolicyBindings of the Domain
+func (o *Domain) NSGRoutingPolicyBindings(info *bambou.FetchingInfo) (NSGRoutingPolicyBindingsList, *bambou.Error) {
+
+	var list NSGRoutingPolicyBindingsList
+	err := bambou.CurrentSession().FetchChildren(o, NSGRoutingPolicyBindingIdentity, &list, info)
+	return list, err
+}
+
+// CreateNSGRoutingPolicyBinding creates a new child NSGRoutingPolicyBinding under the Domain
+func (o *Domain) CreateNSGRoutingPolicyBinding(child *NSGRoutingPolicyBinding) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// OSPFInstances retrieves the list of child OSPFInstances of the Domain
+func (o *Domain) OSPFInstances(info *bambou.FetchingInfo) (OSPFInstancesList, *bambou.Error) {
+
+	var list OSPFInstancesList
+	err := bambou.CurrentSession().FetchChildren(o, OSPFInstanceIdentity, &list, info)
+	return list, err
+}
+
+// CreateOSPFInstance creates a new child OSPFInstance under the Domain
+func (o *Domain) CreateOSPFInstance(child *OSPFInstance) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // StaticRoutes retrieves the list of child StaticRoutes of the Domain

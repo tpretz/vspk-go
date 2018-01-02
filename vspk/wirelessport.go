@@ -74,7 +74,6 @@ type WirelessPort struct {
 func NewWirelessPort() *WirelessPort {
 
 	return &WirelessPort{
-		GenericConfig:     "4096",
 		WifiFrequencyBand: "FREQ_2_4_GHZ",
 		WifiMode:          "WIFI_B_G_N",
 		PortType:          "ACCESS",

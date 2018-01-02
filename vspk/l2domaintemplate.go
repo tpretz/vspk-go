@@ -233,6 +233,20 @@ func (o *L2DomainTemplate) CreateEgressAdvFwdTemplate(child *EgressAdvFwdTemplat
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VirtualFirewallPolicies retrieves the list of child VirtualFirewallPolicies of the L2DomainTemplate
+func (o *L2DomainTemplate) VirtualFirewallPolicies(info *bambou.FetchingInfo) (VirtualFirewallPoliciesList, *bambou.Error) {
+
+	var list VirtualFirewallPoliciesList
+	err := bambou.CurrentSession().FetchChildren(o, VirtualFirewallPolicyIdentity, &list, info)
+	return list, err
+}
+
+// CreateVirtualFirewallPolicy creates a new child VirtualFirewallPolicy under the L2DomainTemplate
+func (o *L2DomainTemplate) CreateVirtualFirewallPolicy(child *VirtualFirewallPolicy) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the L2DomainTemplate
 func (o *L2DomainTemplate) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
