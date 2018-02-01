@@ -81,6 +81,7 @@ func NewPerformanceMonitor() *PerformanceMonitor {
 	return &PerformanceMonitor{
 		PayloadSize:     108,
 		ReadOnly:        false,
+		ServiceClass:    "H",
 		Timeout:         1000,
 		Interval:        3000,
 		HoldDownTimer:   900,

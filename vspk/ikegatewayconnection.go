@@ -192,3 +192,14 @@ func (o *IKEGatewayConnection) Subnets(info *bambou.FetchingInfo) (SubnetsList, 
 	err := bambou.CurrentSession().FetchChildren(o, SubnetIdentity, &list, info)
 	return list, err
 }
+
+// AssignSubnets assigns the list of Subnets to the IKEGatewayConnection
+func (o *IKEGatewayConnection) AssignSubnets(children SubnetsList) *bambou.Error {
+
+	list := []bambou.Identifiable{}
+	for _, c := range children {
+		list = append(list, c)
+	}
+
+	return bambou.CurrentSession().AssignChildren(o, list, SubnetIdentity)
+}
