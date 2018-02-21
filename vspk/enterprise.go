@@ -77,6 +77,7 @@ type Enterprise struct {
 	AllowedForwardingClasses               []interface{} `json:"allowedForwardingClasses,omitempty"`
 	FloatingIPsQuota                       int           `json:"floatingIPsQuota,omitempty"`
 	FloatingIPsUsed                        int           `json:"floatingIPsUsed,omitempty"`
+	FlowCollectionEnabled                  string        `json:"flowCollectionEnabled,omitempty"`
 	EnableApplicationPerformanceManagement bool          `json:"enableApplicationPerformanceManagement"`
 	EncryptionManagementMode               string        `json:"encryptionManagementMode,omitempty"`
 	EnterpriseProfileID                    string        `json:"enterpriseProfileID,omitempty"`
@@ -97,6 +98,7 @@ func NewEnterprise() *Enterprise {
 	return &Enterprise{
 		VNFManagementEnabled:                   false,
 		DictionaryVersion:                      1,
+		FlowCollectionEnabled:                  "DISABLED",
 		EnableApplicationPerformanceManagement: false,
 	}
 }

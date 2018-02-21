@@ -79,6 +79,7 @@ type VNF struct {
 	AssociatedVNFThresholdPolicyID string        `json:"associatedVNFThresholdPolicyID,omitempty"`
 	Status                         string        `json:"status,omitempty"`
 	StorageGB                      int           `json:"storageGB,omitempty"`
+	Type                           string        `json:"type,omitempty"`
 }
 
 // NewVNF returns a new *VNF

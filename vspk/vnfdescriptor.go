@@ -68,6 +68,7 @@ type VNFDescriptor struct {
 	Visible                        bool   `json:"visible"`
 	AssociatedVNFThresholdPolicyID string `json:"associatedVNFThresholdPolicyID,omitempty"`
 	StorageGB                      int    `json:"storageGB,omitempty"`
+	Type                           string `json:"type,omitempty"`
 }
 
 // NewVNFDescriptor returns a new *VNFDescriptor
@@ -75,6 +76,7 @@ func NewVNFDescriptor() *VNFDescriptor {
 
 	return &VNFDescriptor{
 		Visible: true,
+		Type:    "FIREWALL",
 	}
 }
 

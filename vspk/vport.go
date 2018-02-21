@@ -70,6 +70,7 @@ type VPort struct {
 	SegmentationID                      int    `json:"segmentationID,omitempty"`
 	SegmentationType                    string `json:"segmentationType,omitempty"`
 	Description                         string `json:"description,omitempty"`
+	FlowCollectionEnabled               string `json:"flowCollectionEnabled,omitempty"`
 	EntityScope                         string `json:"entityScope,omitempty"`
 	DomainID                            string `json:"domainID,omitempty"`
 	ZoneID                              string `json:"zoneID,omitempty"`
@@ -92,12 +93,13 @@ type VPort struct {
 func NewVPort() *VPort {
 
 	return &VPort{
-		DPI:              "INHERITED",
-		AddressSpoofing:  "INHERITED",
-		OperationalState: "INIT",
-		SubType:          "NONE",
-		Multicast:        "INHERITED",
-		Type:             "VM",
+		DPI:                   "INHERITED",
+		AddressSpoofing:       "INHERITED",
+		FlowCollectionEnabled: "INHERITED",
+		OperationalState:      "INIT",
+		SubType:               "NONE",
+		Multicast:             "INHERITED",
+		Type:                  "VM",
 	}
 }
 

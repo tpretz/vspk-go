@@ -85,6 +85,7 @@ type Domain struct {
 	Description                     string        `json:"description,omitempty"`
 	DhcpServerAddresses             []interface{} `json:"dhcpServerAddresses,omitempty"`
 	GlobalRoutingEnabled            bool          `json:"globalRoutingEnabled"`
+	FlowCollectionEnabled           string        `json:"flowCollectionEnabled,omitempty"`
 	ImportRouteTarget               string        `json:"importRouteTarget,omitempty"`
 	Encryption                      string        `json:"encryption,omitempty"`
 	UnderlayEnabled                 string        `json:"underlayEnabled,omitempty"`
@@ -113,12 +114,13 @@ type Domain struct {
 func NewDomain() *Domain {
 
 	return &Domain{
-		PATEnabled:      "INHERITED",
-		DHCPBehavior:    "CONSUME",
-		FIPUnderlay:     false,
-		DPI:             "DISABLED",
-		MaintenanceMode: "DISABLED",
-		TunnelType:      "DC_DEFAULT",
+		PATEnabled:            "INHERITED",
+		DHCPBehavior:          "CONSUME",
+		FIPUnderlay:           false,
+		DPI:                   "DISABLED",
+		MaintenanceMode:       "DISABLED",
+		FlowCollectionEnabled: "INHERITED",
+		TunnelType:            "DC_DEFAULT",
 	}
 }
 

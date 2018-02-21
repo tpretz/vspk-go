@@ -74,6 +74,7 @@ type L2Domain struct {
 	ServiceID                         int    `json:"serviceID,omitempty"`
 	Description                       string `json:"description,omitempty"`
 	Netmask                           string `json:"netmask,omitempty"`
+	FlowCollectionEnabled             string `json:"flowCollectionEnabled,omitempty"`
 	VnId                              int    `json:"vnId,omitempty"`
 	Encryption                        string `json:"encryption,omitempty"`
 	EntityScope                       string `json:"entityScope,omitempty"`
@@ -96,9 +97,10 @@ type L2Domain struct {
 func NewL2Domain() *L2Domain {
 
 	return &L2Domain{
-		DPI:                "DISABLED",
-		MaintenanceMode:    "DISABLED",
-		DynamicIpv6Address: false,
+		DPI:                   "DISABLED",
+		MaintenanceMode:       "DISABLED",
+		FlowCollectionEnabled: "INHERITED",
+		DynamicIpv6Address:    false,
 	}
 }
 

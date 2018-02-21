@@ -72,6 +72,7 @@ type LDAPConfiguration struct {
 	GroupNamePrefix       string `json:"groupNamePrefix,omitempty"`
 	GroupNameSuffix       string `json:"groupNameSuffix,omitempty"`
 	UserDNTemplate        string `json:"userDNTemplate,omitempty"`
+	UserNameAttribute     string `json:"userNameAttribute,omitempty"`
 	AuthorizationEnabled  bool   `json:"authorizationEnabled"`
 	AuthorizingUserDN     string `json:"authorizingUserDN,omitempty"`
 	ExternalID            string `json:"externalID,omitempty"`

@@ -67,6 +67,7 @@ type NSGateway struct {
 	BIOSVersion                        string `json:"BIOSVersion,omitempty"`
 	SKU                                string `json:"SKU,omitempty"`
 	TPMStatus                          string `json:"TPMStatus,omitempty"`
+	TPMVersion                         string `json:"TPMVersion,omitempty"`
 	CPUType                            string `json:"CPUType,omitempty"`
 	NSGVersion                         string `json:"NSGVersion,omitempty"`
 	SSHService                         string `json:"SSHService,omitempty"`
@@ -76,6 +77,7 @@ type NSGateway struct {
 	LastConfigurationReloadTimestamp   int    `json:"lastConfigurationReloadTimestamp,omitempty"`
 	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
 	DatapathID                         string `json:"datapathID,omitempty"`
+	Patches                            string `json:"patches,omitempty"`
 	RedundancyGroupID                  string `json:"redundancyGroupID,omitempty"`
 	TemplateID                         string `json:"templateID,omitempty"`
 	Pending                            bool   `json:"pending"`

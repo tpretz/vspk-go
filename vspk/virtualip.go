@@ -60,6 +60,7 @@ type VirtualIP struct {
 	ParentType             string `json:"parentType,omitempty"`
 	Owner                  string `json:"owner,omitempty"`
 	MAC                    string `json:"MAC,omitempty"`
+	IPType                 string `json:"IPType,omitempty"`
 	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
 	VirtualIP              string `json:"virtualIP,omitempty"`
 	EntityScope            string `json:"entityScope,omitempty"`
@@ -71,7 +72,9 @@ type VirtualIP struct {
 // NewVirtualIP returns a new *VirtualIP
 func NewVirtualIP() *VirtualIP {
 
-	return &VirtualIP{}
+	return &VirtualIP{
+		IPType: "IPV4",
+	}
 }
 
 // Identity returns the Identity of the object.

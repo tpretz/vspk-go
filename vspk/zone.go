@@ -69,6 +69,7 @@ type Zone struct {
 	TemplateID                      string `json:"templateID,omitempty"`
 	Description                     string `json:"description,omitempty"`
 	Netmask                         string `json:"netmask,omitempty"`
+	FlowCollectionEnabled           string `json:"flowCollectionEnabled,omitempty"`
 	Encryption                      string `json:"encryption,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
 	PolicyGroupID                   int    `json:"policyGroupID,omitempty"`
@@ -84,9 +85,10 @@ type Zone struct {
 func NewZone() *Zone {
 
 	return &Zone{
-		DPI:             "INHERITED",
-		MaintenanceMode: "DISABLED",
-		Multicast:       "INHERITED",
+		DPI:                   "INHERITED",
+		MaintenanceMode:       "DISABLED",
+		FlowCollectionEnabled: "INHERITED",
+		Multicast:             "INHERITED",
 	}
 }
 

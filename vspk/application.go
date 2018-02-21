@@ -62,6 +62,7 @@ type Application struct {
 	DSCP                               string  `json:"DSCP,omitempty"`
 	Name                               string  `json:"name,omitempty"`
 	Bandwidth                          int     `json:"bandwidth,omitempty"`
+	LastUpdatedBy                      string  `json:"lastUpdatedBy,omitempty"`
 	ReadOnly                           bool    `json:"readOnly"`
 	PerformanceMonitorType             string  `json:"performanceMonitorType,omitempty"`
 	Description                        string  `json:"description,omitempty"`
@@ -71,6 +72,7 @@ type Application struct {
 	OneWayDelay                        int     `json:"oneWayDelay,omitempty"`
 	OneWayJitter                       int     `json:"oneWayJitter,omitempty"`
 	OneWayLoss                         float64 `json:"oneWayLoss,omitempty"`
+	EntityScope                        string  `json:"entityScope,omitempty"`
 	PostClassificationPath             string  `json:"postClassificationPath,omitempty"`
 	SourceIP                           string  `json:"sourceIP,omitempty"`
 	SourcePort                         string  `json:"sourcePort,omitempty"`
@@ -80,6 +82,7 @@ type Application struct {
 	Protocol                           string  `json:"protocol,omitempty"`
 	AssociatedL7ApplicationSignatureID string  `json:"associatedL7ApplicationSignatureID,omitempty"`
 	EtherType                          string  `json:"etherType,omitempty"`
+	ExternalID                         string  `json:"externalID,omitempty"`
 	Symmetry                           bool    `json:"symmetry"`
 }
 
@@ -131,6 +134,34 @@ func (o *Application) Save() *bambou.Error {
 func (o *Application) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// Metadatas retrieves the list of child Metadatas of the Application
+func (o *Application) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the Application
+func (o *Application) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the Application
+func (o *Application) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the Application
+func (o *Application) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // Monitorscopes retrieves the list of child Monitorscopes of the Application

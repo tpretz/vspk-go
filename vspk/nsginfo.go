@@ -64,10 +64,12 @@ type NSGInfo struct {
 	BIOSVersion           string `json:"BIOSVersion,omitempty"`
 	SKU                   string `json:"SKU,omitempty"`
 	TPMStatus             string `json:"TPMStatus,omitempty"`
+	TPMVersion            string `json:"TPMVersion,omitempty"`
 	CPUType               string `json:"CPUType,omitempty"`
 	NSGVersion            string `json:"NSGVersion,omitempty"`
 	UUID                  string `json:"UUID,omitempty"`
 	Family                string `json:"family,omitempty"`
+	Patches               string `json:"patches,omitempty"`
 	SerialNumber          string `json:"serialNumber,omitempty"`
 	Libraries             string `json:"libraries,omitempty"`
 	EntityScope           string `json:"entityScope,omitempty"`

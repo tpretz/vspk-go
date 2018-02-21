@@ -74,7 +74,8 @@ func NewTier() *Tier {
 
 	return &Tier{
 		PacketCount:        1,
-		DownThresholdCount: 15,
+		Timeout:            3000,
+		DownThresholdCount: 5,
 		ProbeInterval:      10,
 	}
 }

@@ -112,6 +112,7 @@ type SystemConfig struct {
 	MaxFailedLogins                                   int         `json:"maxFailedLogins,omitempty"`
 	MaxResponse                                       int         `json:"maxResponse,omitempty"`
 	AccumulateLicensesEnabled                         bool        `json:"accumulateLicensesEnabled"`
+	VcinLoadBalancerIP                                string      `json:"vcinLoadBalancerIP,omitempty"`
 	PerDomainVlanIdEnabled                            bool        `json:"perDomainVlanIdEnabled"`
 	PerformancePathSelectionVNID                      int         `json:"performancePathSelectionVNID,omitempty"`
 	ServiceIDUpperLimit                               int         `json:"serviceIDUpperLimit,omitempty"`
@@ -131,6 +132,7 @@ type SystemConfig struct {
 	GlobalMACAddress                                  string      `json:"globalMACAddress,omitempty"`
 	FlowCollectionEnabled                             bool        `json:"flowCollectionEnabled"`
 	InactiveTimeout                                   int         `json:"inactiveTimeout,omitempty"`
+	InfrastructureBGPASNumber                         int         `json:"infrastructureBGPASNumber,omitempty"`
 	EntityScope                                       string      `json:"entityScope,omitempty"`
 	DomainTunnelType                                  string      `json:"domainTunnelType,omitempty"`
 	PostProcessorThreadsCount                         int         `json:"postProcessorThreadsCount,omitempty"`
@@ -223,6 +225,7 @@ func NewSystemConfig() *SystemConfig {
 		VirtualFirewallRulesEnabled: false,
 		ElasticClusterName:          "nuage_elasticsearch",
 		AllowEnterpriseAvatarOnNSG:  true,
+		InfrastructureBGPASNumber:   65500,
 		CsprootAuthenticationMethod: "LOCAL",
 		StatsMinDuration:            2592000,
 		StickyECMPIdleTimeout:       0,

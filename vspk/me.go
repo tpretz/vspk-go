@@ -921,6 +921,20 @@ func (o *Me) CreateNSGGroup(child *NSGGroup) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NSGPatchProfiles retrieves the list of child NSGPatchProfiles of the Me
+func (o *Me) NSGPatchProfiles(info *bambou.FetchingInfo) (NSGPatchProfilesList, *bambou.Error) {
+
+	var list NSGPatchProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, NSGPatchProfileIdentity, &list, info)
+	return list, err
+}
+
+// CreateNSGPatchProfile creates a new child NSGPatchProfile under the Me
+func (o *Me) CreateNSGPatchProfile(child *NSGPatchProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // NSRedundantGatewayGroups retrieves the list of child NSRedundantGatewayGroups of the Me
 func (o *Me) NSRedundantGatewayGroups(info *bambou.FetchingInfo) (NSRedundantGatewayGroupsList, *bambou.Error) {
 

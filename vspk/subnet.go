@@ -79,6 +79,7 @@ type Subnet struct {
 	Description                       string `json:"description,omitempty"`
 	ResourceType                      string `json:"resourceType,omitempty"`
 	Netmask                           string `json:"netmask,omitempty"`
+	FlowCollectionEnabled             string `json:"flowCollectionEnabled,omitempty"`
 	VnId                              int    `json:"vnId,omitempty"`
 	Encryption                        string `json:"encryption,omitempty"`
 	Underlay                          bool   `json:"underlay"`
@@ -111,6 +112,7 @@ func NewSubnet() *Subnet {
 		AccessRestrictionEnabled: false,
 		Advertise:                true,
 		ResourceType:             "STANDARD",
+		FlowCollectionEnabled:    "INHERITED",
 		MultiHomeEnabled:         false,
 		Multicast:                "INHERITED",
 		DynamicIpv6Address:       false,
@@ -187,6 +189,14 @@ func (o *Subnet) AddressRanges(info *bambou.FetchingInfo) (AddressRangesList, *b
 func (o *Subnet) CreateAddressRange(child *AddressRange) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// DefaultGateways retrieves the list of child DefaultGateways of the Subnet
+func (o *Subnet) DefaultGateways(info *bambou.FetchingInfo) (DefaultGatewaysList, *bambou.Error) {
+
+	var list DefaultGatewaysList
+	err := bambou.CurrentSession().FetchChildren(o, DefaultGatewayIdentity, &list, info)
+	return list, err
 }
 
 // VMResyncs retrieves the list of child VMResyncs of the Subnet

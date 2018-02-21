@@ -66,6 +66,7 @@ type OSPFInstance struct {
 	Preference                      int    `json:"preference,omitempty"`
 	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
 	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
+	SuperBackboneEnabled            bool   `json:"superBackboneEnabled"`
 	ExportLimit                     int    `json:"exportLimit,omitempty"`
 	ExportToOverlay                 bool   `json:"exportToOverlay"`
 	ExternalID                      string `json:"externalID,omitempty"`
@@ -76,9 +77,10 @@ type OSPFInstance struct {
 func NewOSPFInstance() *OSPFInstance {
 
 	return &OSPFInstance{
-		Preference:         10,
-		ExportToOverlay:    false,
-		ExternalPreference: 150,
+		Preference:           10,
+		SuperBackboneEnabled: false,
+		ExportToOverlay:      false,
+		ExternalPreference:   150,
 	}
 }
 

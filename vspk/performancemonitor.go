@@ -79,7 +79,7 @@ type PerformanceMonitor struct {
 func NewPerformanceMonitor() *PerformanceMonitor {
 
 	return &PerformanceMonitor{
-		PayloadSize:     108,
+		PayloadSize:     137,
 		ReadOnly:        false,
 		ServiceClass:    "H",
 		Timeout:         1000,
