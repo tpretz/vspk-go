@@ -59,6 +59,7 @@ type CSNATPool struct {
 	ParentID     string `json:"parentID,omitempty"`
 	ParentType   string `json:"parentType,omitempty"`
 	Owner        string `json:"owner,omitempty"`
+	Name         string `json:"name,omitempty"`
 	EndAddress   string `json:"endAddress,omitempty"`
 	StartAddress string `json:"startAddress,omitempty"`
 }

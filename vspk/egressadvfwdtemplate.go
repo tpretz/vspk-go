@@ -155,9 +155,3 @@ func (o *EgressAdvFwdTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bamb
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
-
-// CreateJob creates a new child Job under the EgressAdvFwdTemplate
-func (o *EgressAdvFwdTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}

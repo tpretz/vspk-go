@@ -62,6 +62,7 @@ type VCenterDataCenter struct {
 	VRSConfigurationTimeLimit              int    `json:"VRSConfigurationTimeLimit,omitempty"`
 	VRequireNuageMetadata                  bool   `json:"vRequireNuageMetadata"`
 	Name                                   string `json:"name,omitempty"`
+	ManageVRSAvailability                  bool   `json:"manageVRSAvailability"`
 	ManagedObjectID                        string `json:"managedObjectID,omitempty"`
 	LastUpdatedBy                          string `json:"lastUpdatedBy,omitempty"`
 	DataDNS1                               string `json:"dataDNS1,omitempty"`
@@ -165,6 +166,7 @@ type VCenterDataCenter struct {
 func NewVCenterDataCenter() *VCenterDataCenter {
 
 	return &VCenterDataCenter{
+		ManageVRSAvailability:          false,
 		SecondaryDataUplinkDHCPEnabled: false,
 		SecondaryDataUplinkEnabled:     false,
 		SecondaryDataUplinkMTU:         1500,

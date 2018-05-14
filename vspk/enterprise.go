@@ -71,6 +71,7 @@ type Enterprise struct {
 	Description                            string        `json:"description,omitempty"`
 	SharedEnterprise                       bool          `json:"sharedEnterprise"`
 	DictionaryVersion                      int           `json:"dictionaryVersion,omitempty"`
+	VirtualFirewallRulesEnabled            bool          `json:"virtualFirewallRulesEnabled"`
 	AllowAdvancedQOSConfiguration          bool          `json:"allowAdvancedQOSConfiguration"`
 	AllowGatewayManagement                 bool          `json:"allowGatewayManagement"`
 	AllowTrustedForwardingClass            bool          `json:"allowTrustedForwardingClass"`
@@ -98,6 +99,7 @@ func NewEnterprise() *Enterprise {
 	return &Enterprise{
 		VNFManagementEnabled:                   false,
 		DictionaryVersion:                      1,
+		VirtualFirewallRulesEnabled:            false,
 		FlowCollectionEnabled:                  "DISABLED",
 		EnableApplicationPerformanceManagement: false,
 	}

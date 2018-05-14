@@ -84,7 +84,7 @@ func NewPerformanceMonitor() *PerformanceMonitor {
 		ServiceClass:    "H",
 		Timeout:         1000,
 		Interval:        3000,
-		HoldDownTimer:   900,
+		HoldDownTimer:   1000,
 		ProbeType:       "ONEWAY",
 		NumberOfPackets: 1,
 	}

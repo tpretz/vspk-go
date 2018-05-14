@@ -68,6 +68,7 @@ type VRS struct {
 	LastEventTimestamp        int           `json:"lastEventTimestamp,omitempty"`
 	LastStateChange           int           `json:"lastStateChange,omitempty"`
 	LastUpdatedBy             string        `json:"lastUpdatedBy,omitempty"`
+	GatewayUUID               string        `json:"gatewayUUID,omitempty"`
 	DbSynced                  bool          `json:"dbSynced"`
 	Address                   string        `json:"address,omitempty"`
 	PeakCPUUsage              float64       `json:"peakCPUUsage,omitempty"`

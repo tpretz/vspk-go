@@ -166,12 +166,6 @@ func (o *EgressAdvFwdEntryTemplate) CreateGlobalMetadata(child *GlobalMetadata) 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// CreateJob creates a new child Job under the EgressAdvFwdEntryTemplate
-func (o *EgressAdvFwdEntryTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Statistics retrieves the list of child Statistics of the EgressAdvFwdEntryTemplate
 func (o *EgressAdvFwdEntryTemplate) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
 

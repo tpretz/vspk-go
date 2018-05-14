@@ -75,7 +75,9 @@ type OverlayMirrorDestination struct {
 // NewOverlayMirrorDestination returns a new *OverlayMirrorDestination
 func NewOverlayMirrorDestination() *OverlayMirrorDestination {
 
-	return &OverlayMirrorDestination{}
+	return &OverlayMirrorDestination{
+		EndPointType: "VIRTUAL_WIRE",
+	}
 }
 
 // Identity returns the Identity of the object.

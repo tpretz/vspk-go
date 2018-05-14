@@ -60,6 +60,7 @@ type Command struct {
 	ParentType          string `json:"parentType,omitempty"`
 	Owner               string `json:"owner,omitempty"`
 	LastUpdatedBy       string `json:"lastUpdatedBy,omitempty"`
+	Detail              string `json:"detail,omitempty"`
 	DetailedStatus      string `json:"detailedStatus,omitempty"`
 	DetailedStatusCode  int    `json:"detailedStatusCode,omitempty"`
 	EntityScope         string `json:"entityScope,omitempty"`

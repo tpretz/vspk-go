@@ -141,12 +141,6 @@ func (o *PolicyGroupTemplate) CreateGlobalMetadata(child *GlobalMetadata) *bambo
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// CreateJob creates a new child Job under the PolicyGroupTemplate
-func (o *PolicyGroupTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // EventLogs retrieves the list of child EventLogs of the PolicyGroupTemplate
 func (o *PolicyGroupTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 

@@ -161,12 +161,6 @@ func (o *IngressExternalServiceTemplateEntry) CreateGlobalMetadata(child *Global
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// CreateJob creates a new child Job under the IngressExternalServiceTemplateEntry
-func (o *IngressExternalServiceTemplateEntry) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Statistics retrieves the list of child Statistics of the IngressExternalServiceTemplateEntry
 func (o *IngressExternalServiceTemplateEntry) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
 

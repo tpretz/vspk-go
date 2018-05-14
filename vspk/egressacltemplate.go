@@ -168,6 +168,14 @@ func (o *EgressACLTemplate) VMs(info *bambou.FetchingInfo) (VMsList, *bambou.Err
 	return list, err
 }
 
+// Jobs retrieves the list of child Jobs of the EgressACLTemplate
+func (o *EgressACLTemplate) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
+
+	var list JobsList
+	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
+	return list, err
+}
+
 // CreateJob creates a new child Job under the EgressACLTemplate
 func (o *EgressACLTemplate) CreateJob(child *Job) *bambou.Error {
 

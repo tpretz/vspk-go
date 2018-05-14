@@ -549,6 +549,20 @@ func (o *Domain) ContainerInterfaces(info *bambou.FetchingInfo) (ContainerInterf
 	return list, err
 }
 
+// ForwardingPathLists retrieves the list of child ForwardingPathLists of the Domain
+func (o *Domain) ForwardingPathLists(info *bambou.FetchingInfo) (ForwardingPathListsList, *bambou.Error) {
+
+	var list ForwardingPathListsList
+	err := bambou.CurrentSession().FetchChildren(o, ForwardingPathListIdentity, &list, info)
+	return list, err
+}
+
+// CreateForwardingPathList creates a new child ForwardingPathList under the Domain
+func (o *Domain) CreateForwardingPathList(child *ForwardingPathList) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // QOSs retrieves the list of child QOSs of the Domain
 func (o *Domain) QOSs(info *bambou.FetchingInfo) (QOSsList, *bambou.Error) {
 

@@ -61,6 +61,8 @@ type BridgeInterface struct {
 	Owner                       string `json:"owner,omitempty"`
 	VPortID                     string `json:"VPortID,omitempty"`
 	VPortName                   string `json:"VPortName,omitempty"`
+	IPv6Address                 string `json:"IPv6Address,omitempty"`
+	IPv6Gateway                 string `json:"IPv6Gateway,omitempty"`
 	Name                        string `json:"name,omitempty"`
 	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
 	Gateway                     string `json:"gateway,omitempty"`

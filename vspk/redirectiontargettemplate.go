@@ -141,12 +141,6 @@ func (o *RedirectionTargetTemplate) CreateGlobalMetadata(child *GlobalMetadata) 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// CreateJob creates a new child Job under the RedirectionTargetTemplate
-func (o *RedirectionTargetTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // EventLogs retrieves the list of child EventLogs of the RedirectionTargetTemplate
 func (o *RedirectionTargetTemplate) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 

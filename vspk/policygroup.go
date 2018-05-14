@@ -143,12 +143,6 @@ func (o *PolicyGroup) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// CreateJob creates a new child Job under the PolicyGroup
-func (o *PolicyGroup) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // VPorts retrieves the list of child VPorts of the PolicyGroup
 func (o *PolicyGroup) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error) {
 

@@ -64,6 +64,7 @@ type BRConnection struct {
 	Address               string `json:"address,omitempty"`
 	AdvertisementCriteria string `json:"advertisementCriteria,omitempty"`
 	Netmask               string `json:"netmask,omitempty"`
+	Inherited             bool   `json:"inherited"`
 	Mode                  string `json:"mode,omitempty"`
 	UplinkID              int    `json:"uplinkID,omitempty"`
 }
@@ -71,7 +72,9 @@ type BRConnection struct {
 // NewBRConnection returns a new *BRConnection
 func NewBRConnection() *BRConnection {
 
-	return &BRConnection{}
+	return &BRConnection{
+		Inherited: false,
+	}
 }
 
 // Identity returns the Identity of the object.

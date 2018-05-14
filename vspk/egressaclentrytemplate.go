@@ -170,12 +170,6 @@ func (o *EgressACLEntryTemplate) CreateGlobalMetadata(child *GlobalMetadata) *ba
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// CreateJob creates a new child Job under the EgressACLEntryTemplate
-func (o *EgressACLEntryTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // Statistics retrieves the list of child Statistics of the EgressACLEntryTemplate
 func (o *EgressACLEntryTemplate) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
 

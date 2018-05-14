@@ -156,6 +156,14 @@ func (o *IngressAdvFwdTemplate) CreateIngressAdvFwdEntryTemplate(child *IngressA
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Jobs retrieves the list of child Jobs of the IngressAdvFwdTemplate
+func (o *IngressAdvFwdTemplate) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
+
+	var list JobsList
+	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
+	return list, err
+}
+
 // CreateJob creates a new child Job under the IngressAdvFwdTemplate
 func (o *IngressAdvFwdTemplate) CreateJob(child *Job) *bambou.Error {
 

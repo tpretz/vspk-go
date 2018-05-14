@@ -158,12 +158,6 @@ func (o *RedirectionTarget) CreateGlobalMetadata(child *GlobalMetadata) *bambou.
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
-// CreateJob creates a new child Job under the RedirectionTarget
-func (o *RedirectionTarget) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // VPorts retrieves the list of child VPorts of the RedirectionTarget
 func (o *RedirectionTarget) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error) {
 

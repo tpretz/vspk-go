@@ -153,9 +153,3 @@ func (o *IngressExternalServiceTemplate) CreateIngressExternalServiceTemplateEnt
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
-
-// CreateJob creates a new child Job under the IngressExternalServiceTemplate
-func (o *IngressExternalServiceTemplate) CreateJob(child *Job) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}

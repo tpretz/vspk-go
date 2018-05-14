@@ -69,6 +69,7 @@ type UplinkConnection struct {
 	Netmask                 string  `json:"netmask,omitempty"`
 	VlanId                  string  `json:"vlanId,omitempty"`
 	UnderlayEnabled         bool    `json:"underlayEnabled"`
+	Inherited               bool    `json:"inherited"`
 	InstallerManaged        bool    `json:"installerManaged"`
 	InterfaceConnectionType string  `json:"interfaceConnectionType,omitempty"`
 	Mode                    string  `json:"mode,omitempty"`
@@ -90,6 +91,7 @@ func NewUplinkConnection() *UplinkConnection {
 	return &UplinkConnection{
 		PATEnabled:              true,
 		UnderlayEnabled:         true,
+		Inherited:               false,
 		InstallerManaged:        false,
 		InterfaceConnectionType: "AUTOMATIC",
 		Mode:              "Dynamic",

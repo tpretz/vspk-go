@@ -169,6 +169,14 @@ func (o *IngressACLTemplate) CreateIngressACLEntryTemplate(child *IngressACLEntr
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Jobs retrieves the list of child Jobs of the IngressACLTemplate
+func (o *IngressACLTemplate) Jobs(info *bambou.FetchingInfo) (JobsList, *bambou.Error) {
+
+	var list JobsList
+	err := bambou.CurrentSession().FetchChildren(o, JobIdentity, &list, info)
+	return list, err
+}
+
 // CreateJob creates a new child Job under the IngressACLTemplate
 func (o *IngressACLTemplate) CreateJob(child *Job) *bambou.Error {
 

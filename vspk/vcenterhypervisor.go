@@ -70,6 +70,7 @@ type VCenterHypervisor struct {
 	VRSState                                  string        `json:"VRSState,omitempty"`
 	VRequireNuageMetadata                     bool          `json:"vRequireNuageMetadata"`
 	Name                                      string        `json:"name,omitempty"`
+	ManageVRSAvailability                     bool          `json:"manageVRSAvailability"`
 	ManagedObjectID                           string        `json:"managedObjectID,omitempty"`
 	LastUpdatedBy                             string        `json:"lastUpdatedBy,omitempty"`
 	LastVRSDeployedDate                       float64       `json:"lastVRSDeployedDate,omitempty"`
@@ -161,6 +162,7 @@ type VCenterHypervisor struct {
 	PrimaryDataUplinkUnderlayID               int           `json:"primaryDataUplinkUnderlayID,omitempty"`
 	PrimaryNuageController                    string        `json:"primaryNuageController,omitempty"`
 	VrsId                                     string        `json:"vrsId,omitempty"`
+	VrsMarkedAsAvailable                      bool          `json:"vrsMarkedAsAvailable"`
 	VrsPassword                               string        `json:"vrsPassword,omitempty"`
 	VrsUserName                               string        `json:"vrsUserName,omitempty"`
 	StaticRoute                               string        `json:"staticRoute,omitempty"`
@@ -198,6 +200,7 @@ func NewVCenterHypervisor() *VCenterHypervisor {
 
 	return &VCenterHypervisor{
 		VRSState:                       "NOT_DEPLOYED",
+		ManageVRSAvailability:          false,
 		SecondaryDataUplinkDHCPEnabled: false,
 		SecondaryDataUplinkEnabled:     false,
 		SecondaryDataUplinkMTU:         1500,
@@ -214,6 +217,7 @@ func NewVCenterHypervisor() *VCenterHypervisor {
 		ConfiguredMetricsPushInterval:  60,
 		CpuCount:                       "DEFAULT_2",
 		PrimaryDataUplinkUnderlayID:    0,
+		VrsMarkedAsAvailable:           false,
 		AvrsEnabled:                    false,
 		AvrsProfile:                    "AVRS_25G",
 	}

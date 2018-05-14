@@ -84,6 +84,7 @@ type VirtualFirewallRule struct {
 	AssociatedLiveEntityID             string `json:"associatedLiveEntityID,omitempty"`
 	AssociatedTrafficType              string `json:"associatedTrafficType,omitempty"`
 	AssociatedTrafficTypeID            string `json:"associatedTrafficTypeID,omitempty"`
+	Stateful                           bool   `json:"stateful"`
 	StatsID                            string `json:"statsID,omitempty"`
 	StatsLoggingEnabled                bool   `json:"statsLoggingEnabled"`
 	OverlayMirrorDestinationID         string `json:"overlayMirrorDestinationID,omitempty"`
@@ -96,6 +97,7 @@ func NewVirtualFirewallRule() *VirtualFirewallRule {
 	return &VirtualFirewallRule{
 		NetworkType:         "ANY",
 		FlowLoggingEnabled:  false,
+		Stateful:            false,
 		StatsLoggingEnabled: false,
 	}
 }
@@ -160,12 +162,6 @@ func (o *VirtualFirewallRule) GlobalMetadatas(info *bambou.FetchingInfo) (Global
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the VirtualFirewallRule
 func (o *VirtualFirewallRule) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// CreateJob creates a new child Job under the VirtualFirewallRule
-func (o *VirtualFirewallRule) CreateJob(child *Job) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

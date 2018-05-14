@@ -64,6 +64,8 @@ type VNFInterface struct {
 	IPAddress           string `json:"IPAddress,omitempty"`
 	VPortID             string `json:"VPortID,omitempty"`
 	VPortName           string `json:"VPortName,omitempty"`
+	IPv6Address         string `json:"IPv6Address,omitempty"`
+	IPv6Gateway         string `json:"IPv6Gateway,omitempty"`
 	Name                string `json:"name,omitempty"`
 	Gateway             string `json:"gateway,omitempty"`
 	Netmask             string `json:"netmask,omitempty"`
