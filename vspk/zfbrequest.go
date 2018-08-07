@@ -77,6 +77,9 @@ type ZFBRequest struct {
 	Hostname                 string  `json:"hostname,omitempty"`
 	AssociatedEnterpriseID   string  `json:"associatedEnterpriseID,omitempty"`
 	AssociatedEnterpriseName string  `json:"associatedEnterpriseName,omitempty"`
+	AssociatedEntityType     string  `json:"associatedEntityType,omitempty"`
+	AssociatedGatewayID      string  `json:"associatedGatewayID,omitempty"`
+	AssociatedGatewayName    string  `json:"associatedGatewayName,omitempty"`
 	AssociatedNSGatewayID    string  `json:"associatedNSGatewayID,omitempty"`
 	AssociatedNSGatewayName  string  `json:"associatedNSGatewayName,omitempty"`
 	StatusString             string  `json:"statusString,omitempty"`

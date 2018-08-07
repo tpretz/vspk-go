@@ -82,6 +82,7 @@ type L2Domain struct {
 	PolicyChangeStatus                string `json:"policyChangeStatus,omitempty"`
 	RouteDistinguisher                string `json:"routeDistinguisher,omitempty"`
 	RouteTarget                       string `json:"routeTarget,omitempty"`
+	RoutedVPLSEnabled                 bool   `json:"routedVPLSEnabled"`
 	UplinkPreference                  string `json:"uplinkPreference,omitempty"`
 	UseGlobalMAC                      string `json:"useGlobalMAC,omitempty"`
 	AssociatedMulticastChannelMapID   string `json:"associatedMulticastChannelMapID,omitempty"`
@@ -100,6 +101,7 @@ func NewL2Domain() *L2Domain {
 		DPI:                   "DISABLED",
 		MaintenanceMode:       "DISABLED",
 		FlowCollectionEnabled: "INHERITED",
+		RoutedVPLSEnabled:     false,
 		DynamicIpv6Address:    false,
 	}
 }
@@ -476,6 +478,20 @@ func (o *L2Domain) CreateVPort(child *VPort) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Applicationperformancemanagementbindings retrieves the list of child Applicationperformancemanagementbindings of the L2Domain
+func (o *L2Domain) Applicationperformancemanagementbindings(info *bambou.FetchingInfo) (ApplicationperformancemanagementbindingsList, *bambou.Error) {
+
+	var list ApplicationperformancemanagementbindingsList
+	err := bambou.CurrentSession().FetchChildren(o, ApplicationperformancemanagementbindingIdentity, &list, info)
+	return list, err
+}
+
+// CreateApplicationperformancemanagementbinding creates a new child Applicationperformancemanagementbinding under the L2Domain
+func (o *L2Domain) CreateApplicationperformancemanagementbinding(child *Applicationperformancemanagementbinding) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // BridgeInterfaces retrieves the list of child BridgeInterfaces of the L2Domain
 func (o *L2Domain) BridgeInterfaces(info *bambou.FetchingInfo) (BridgeInterfacesList, *bambou.Error) {
 
@@ -489,6 +505,14 @@ func (o *L2Domain) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error)
 
 	var list GroupsList
 	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
+	return list, err
+}
+
+// NSGatewaySummaries retrieves the list of child NSGatewaySummaries of the L2Domain
+func (o *L2Domain) NSGatewaySummaries(info *bambou.FetchingInfo) (NSGatewaySummariesList, *bambou.Error) {
+
+	var list NSGatewaySummariesList
+	err := bambou.CurrentSession().FetchChildren(o, NSGatewaySummaryIdentity, &list, info)
 	return list, err
 }
 

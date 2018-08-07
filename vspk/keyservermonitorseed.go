@@ -63,6 +63,7 @@ type KeyServerMonitorSeed struct {
 	SeedTrafficAuthenticationAlgorithm string `json:"seedTrafficAuthenticationAlgorithm,omitempty"`
 	SeedTrafficEncryptionAlgorithm     string `json:"seedTrafficEncryptionAlgorithm,omitempty"`
 	SeedTrafficEncryptionKeyLifetime   int    `json:"seedTrafficEncryptionKeyLifetime,omitempty"`
+	SeedType                           string `json:"seedType,omitempty"`
 	Lifetime                           int    `json:"lifetime,omitempty"`
 	EntityScope                        string `json:"entityScope,omitempty"`
 	CreationTime                       int    `json:"creationTime,omitempty"`

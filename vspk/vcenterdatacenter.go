@@ -77,6 +77,7 @@ type VCenterDataCenter struct {
 	SecondaryDataUplinkPrimaryController   string `json:"secondaryDataUplinkPrimaryController,omitempty"`
 	SecondaryDataUplinkSecondaryController string `json:"secondaryDataUplinkSecondaryController,omitempty"`
 	SecondaryDataUplinkUnderlayID          int    `json:"secondaryDataUplinkUnderlayID,omitempty"`
+	SecondaryDataUplinkVDFControlVLAN      int    `json:"secondaryDataUplinkVDFControlVLAN,omitempty"`
 	SecondaryNuageController               string `json:"secondaryNuageController,omitempty"`
 	DeletedFromVCenter                     bool   `json:"deletedFromVCenter"`
 	MemorySizeInGB                         string `json:"memorySizeInGB,omitempty"`
@@ -136,6 +137,7 @@ type VCenterDataCenter struct {
 	UpgradeScriptTimeLimit                 int    `json:"upgradeScriptTimeLimit,omitempty"`
 	CpuCount                               string `json:"cpuCount,omitempty"`
 	PrimaryDataUplinkUnderlayID            int    `json:"primaryDataUplinkUnderlayID,omitempty"`
+	PrimaryDataUplinkVDFControlVLAN        int    `json:"primaryDataUplinkVDFControlVLAN,omitempty"`
 	PrimaryNuageController                 string `json:"primaryNuageController,omitempty"`
 	VrsPassword                            string `json:"vrsPassword,omitempty"`
 	VrsUserName                            string `json:"vrsUserName,omitempty"`
@@ -166,25 +168,28 @@ type VCenterDataCenter struct {
 func NewVCenterDataCenter() *VCenterDataCenter {
 
 	return &VCenterDataCenter{
-		ManageVRSAvailability:          false,
-		SecondaryDataUplinkDHCPEnabled: false,
-		SecondaryDataUplinkEnabled:     false,
-		SecondaryDataUplinkMTU:         1500,
-		SecondaryDataUplinkUnderlayID:  1,
-		MemorySizeInGB:                 "DEFAULT_4",
-		RemoteSyslogServerPort:         514,
-		RemoteSyslogServerType:         "NONE",
-		DestinationMirrorPort:          "no_mirror",
-		RevertiveControllerEnabled:     false,
-		RevertiveTimer:                 300,
-		DisableGROOnDatapath:           false,
-		DisableLROOnDatapath:           false,
-		EnableVRSResourceReservation:   false,
-		ConfiguredMetricsPushInterval:  60,
-		CpuCount:                       "DEFAULT_2",
-		PrimaryDataUplinkUnderlayID:    0,
-		AvrsEnabled:                    false,
-		AvrsProfile:                    "AVRS_25G",
+		ManageVRSAvailability:             false,
+		SecondaryDataUplinkDHCPEnabled:    false,
+		SecondaryDataUplinkEnabled:        false,
+		SecondaryDataUplinkMTU:            1500,
+		SecondaryDataUplinkUnderlayID:     1,
+		SecondaryDataUplinkVDFControlVLAN: 0,
+		MemorySizeInGB:                    "DEFAULT_4",
+		RemoteSyslogServerPort:            514,
+		RemoteSyslogServerType:            "NONE",
+		Personality:                       "VRS",
+		DestinationMirrorPort:             "no_mirror",
+		RevertiveControllerEnabled:        false,
+		RevertiveTimer:                    300,
+		DisableGROOnDatapath:              false,
+		DisableLROOnDatapath:              false,
+		EnableVRSResourceReservation:      false,
+		ConfiguredMetricsPushInterval:     60,
+		CpuCount:                          "DEFAULT_2",
+		PrimaryDataUplinkUnderlayID:       0,
+		PrimaryDataUplinkVDFControlVLAN:   0,
+		AvrsEnabled:                       false,
+		AvrsProfile:                       "AVRS_25G",
 	}
 }
 

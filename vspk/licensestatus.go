@@ -69,9 +69,13 @@ type LicenseStatus struct {
 	TotalLicensedUsedAVRSsCount  int    `json:"totalLicensedUsedAVRSsCount,omitempty"`
 	TotalLicensedUsedNICsCount   int    `json:"totalLicensedUsedNICsCount,omitempty"`
 	TotalLicensedUsedNSGsCount   int    `json:"totalLicensedUsedNSGsCount,omitempty"`
+	TotalLicensedUsedVDFGsCount  int    `json:"totalLicensedUsedVDFGsCount,omitempty"`
+	TotalLicensedUsedVDFsCount   int    `json:"totalLicensedUsedVDFsCount,omitempty"`
 	TotalLicensedUsedVMsCount    int    `json:"totalLicensedUsedVMsCount,omitempty"`
 	TotalLicensedUsedVRSGsCount  int    `json:"totalLicensedUsedVRSGsCount,omitempty"`
 	TotalLicensedUsedVRSsCount   int    `json:"totalLicensedUsedVRSsCount,omitempty"`
+	TotalLicensedVDFGsCount      int    `json:"totalLicensedVDFGsCount,omitempty"`
+	TotalLicensedVDFsCount       int    `json:"totalLicensedVDFsCount,omitempty"`
 	TotalLicensedVMsCount        int    `json:"totalLicensedVMsCount,omitempty"`
 	TotalLicensedVRSGsCount      int    `json:"totalLicensedVRSGsCount,omitempty"`
 	TotalLicensedVRSsCount       int    `json:"totalLicensedVRSsCount,omitempty"`

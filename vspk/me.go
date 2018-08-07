@@ -311,6 +311,20 @@ func (o *Me) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NetconfProfiles retrieves the list of child NetconfProfiles of the Me
+func (o *Me) NetconfProfiles(info *bambou.FetchingInfo) (NetconfProfilesList, *bambou.Error) {
+
+	var list NetconfProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, NetconfProfileIdentity, &list, info)
+	return list, err
+}
+
+// CreateNetconfProfile creates a new child NetconfProfile under the Me
+func (o *Me) CreateNetconfProfile(child *NetconfProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // NetworkLayouts retrieves the list of child NetworkLayouts of the Me
 func (o *Me) NetworkLayouts(info *bambou.FetchingInfo) (NetworkLayoutsList, *bambou.Error) {
 
@@ -617,6 +631,20 @@ func (o *Me) InfrastructureAccessProfiles(info *bambou.FetchingInfo) (Infrastruc
 
 // CreateInfrastructureAccessProfile creates a new child InfrastructureAccessProfile under the Me
 func (o *Me) CreateInfrastructureAccessProfile(child *InfrastructureAccessProfile) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// InfrastructureEVDFProfiles retrieves the list of child InfrastructureEVDFProfiles of the Me
+func (o *Me) InfrastructureEVDFProfiles(info *bambou.FetchingInfo) (InfrastructureEVDFProfilesList, *bambou.Error) {
+
+	var list InfrastructureEVDFProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, InfrastructureEVDFProfileIdentity, &list, info)
+	return list, err
+}
+
+// CreateInfrastructureEVDFProfile creates a new child InfrastructureEVDFProfile under the Me
+func (o *Me) CreateInfrastructureEVDFProfile(child *InfrastructureEVDFProfile) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

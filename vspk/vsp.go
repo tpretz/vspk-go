@@ -124,6 +124,20 @@ func (o *VSP) CreateMetadata(child *Metadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NetconfManagers retrieves the list of child NetconfManagers of the VSP
+func (o *VSP) NetconfManagers(info *bambou.FetchingInfo) (NetconfManagersList, *bambou.Error) {
+
+	var list NetconfManagersList
+	err := bambou.CurrentSession().FetchChildren(o, NetconfManagerIdentity, &list, info)
+	return list, err
+}
+
+// CreateNetconfManager creates a new child NetconfManager under the VSP
+func (o *VSP) CreateNetconfManager(child *NetconfManager) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the VSP
 func (o *VSP) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 

@@ -59,24 +59,34 @@ type VPort struct {
 	ParentID                            string `json:"parentID,omitempty"`
 	ParentType                          string `json:"parentType,omitempty"`
 	Owner                               string `json:"owner,omitempty"`
+	FIPIgnoreDefaultRoute               string `json:"FIPIgnoreDefaultRoute,omitempty"`
+	VLAN                                int    `json:"VLAN,omitempty"`
 	VLANID                              string `json:"VLANID,omitempty"`
 	DPI                                 string `json:"DPI,omitempty"`
 	Name                                string `json:"name,omitempty"`
 	HasAttachedInterfaces               bool   `json:"hasAttachedInterfaces"`
 	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
 	GatewayMACMoveRole                  string `json:"gatewayMACMoveRole,omitempty"`
+	GatewayPortName                     string `json:"gatewayPortName,omitempty"`
 	Active                              bool   `json:"active"`
 	AddressSpoofing                     string `json:"addressSpoofing,omitempty"`
+	PeerOperationalState                string `json:"peerOperationalState,omitempty"`
 	SegmentationID                      int    `json:"segmentationID,omitempty"`
 	SegmentationType                    string `json:"segmentationType,omitempty"`
+	ServiceID                           string `json:"serviceID,omitempty"`
 	Description                         string `json:"description,omitempty"`
-	FlowCollectionEnabled               string `json:"flowCollectionEnabled,omitempty"`
 	EntityScope                         string `json:"entityScope,omitempty"`
 	DomainID                            string `json:"domainID,omitempty"`
 	ZoneID                              string `json:"zoneID,omitempty"`
 	OperationalState                    string `json:"operationalState,omitempty"`
 	TrunkRole                           string `json:"trunkRole,omitempty"`
+	AssocEntityID                       string `json:"assocEntityID,omitempty"`
+	AssociatedEgressProfileID           string `json:"associatedEgressProfileID,omitempty"`
 	AssociatedFloatingIPID              string `json:"associatedFloatingIPID,omitempty"`
+	AssociatedGatewayID                 string `json:"associatedGatewayID,omitempty"`
+	AssociatedGatewayPersonality        string `json:"associatedGatewayPersonality,omitempty"`
+	AssociatedGatewayType               string `json:"associatedGatewayType,omitempty"`
+	AssociatedIngressProfileID          string `json:"associatedIngressProfileID,omitempty"`
 	AssociatedMulticastChannelMapID     string `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedSSID                      string `json:"associatedSSID,omitempty"`
 	AssociatedSendMulticastChannelMapID string `json:"associatedSendMulticastChannelMapID,omitempty"`
@@ -84,6 +94,7 @@ type VPort struct {
 	SubType                             string `json:"subType,omitempty"`
 	MultiNICVPortID                     string `json:"multiNICVPortID,omitempty"`
 	Multicast                           string `json:"multicast,omitempty"`
+	GwEligible                          bool   `json:"gwEligible"`
 	ExternalID                          string `json:"externalID,omitempty"`
 	Type                                string `json:"type,omitempty"`
 	SystemType                          string `json:"systemType,omitempty"`
@@ -93,13 +104,13 @@ type VPort struct {
 func NewVPort() *VPort {
 
 	return &VPort{
-		DPI:                   "INHERITED",
-		AddressSpoofing:       "INHERITED",
-		FlowCollectionEnabled: "INHERITED",
-		OperationalState:      "INIT",
-		SubType:               "NONE",
-		Multicast:             "INHERITED",
-		Type:                  "VM",
+		DPI:              "INHERITED",
+		AddressSpoofing:  "INHERITED",
+		OperationalState: "INIT",
+		SubType:          "NONE",
+		Multicast:        "INHERITED",
+		GwEligible:       false,
+		Type:             "VM",
 	}
 }
 

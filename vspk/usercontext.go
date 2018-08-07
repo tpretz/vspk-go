@@ -61,8 +61,11 @@ type UserContext struct {
 	Owner                  string `json:"owner,omitempty"`
 	AARFlowStatsInterval   int    `json:"AARFlowStatsInterval,omitempty"`
 	AARProbeStatsInterval  int    `json:"AARProbeStatsInterval,omitempty"`
+	VSSFeatureEnabled      bool   `json:"VSSFeatureEnabled"`
 	VSSStatsInterval       int    `json:"VSSStatsInterval,omitempty"`
+	PageSize               string `json:"pageSize,omitempty"`
 	FlowCollectionEnabled  bool   `json:"flowCollectionEnabled"`
+	GoogleMapsAPIKey       string `json:"googleMapsAPIKey,omitempty"`
 	StatisticsEnabled      bool   `json:"statisticsEnabled"`
 	StatsTSDBServerAddress string `json:"statsTSDBServerAddress,omitempty"`
 }
@@ -73,6 +76,7 @@ func NewUserContext() *UserContext {
 	return &UserContext{
 		AARFlowStatsInterval:  30,
 		AARProbeStatsInterval: 30,
+		VSSFeatureEnabled:     false,
 		VSSStatsInterval:      30,
 	}
 }

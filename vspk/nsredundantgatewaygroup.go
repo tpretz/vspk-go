@@ -62,9 +62,11 @@ type NSRedundantGatewayGroup struct {
 	Name                                string        `json:"name,omitempty"`
 	LastUpdatedBy                       string        `json:"lastUpdatedBy,omitempty"`
 	GatewayPeer1AutodiscoveredGatewayID string        `json:"gatewayPeer1AutodiscoveredGatewayID,omitempty"`
+	GatewayPeer1Connected               bool          `json:"gatewayPeer1Connected"`
 	GatewayPeer1ID                      string        `json:"gatewayPeer1ID,omitempty"`
 	GatewayPeer1Name                    string        `json:"gatewayPeer1Name,omitempty"`
 	GatewayPeer2AutodiscoveredGatewayID string        `json:"gatewayPeer2AutodiscoveredGatewayID,omitempty"`
+	GatewayPeer2Connected               bool          `json:"gatewayPeer2Connected"`
 	GatewayPeer2ID                      string        `json:"gatewayPeer2ID,omitempty"`
 	GatewayPeer2Name                    string        `json:"gatewayPeer2Name,omitempty"`
 	HeartbeatInterval                   int           `json:"heartbeatInterval,omitempty"`
@@ -84,6 +86,8 @@ type NSRedundantGatewayGroup struct {
 func NewNSRedundantGatewayGroup() *NSRedundantGatewayGroup {
 
 	return &NSRedundantGatewayGroup{
+		GatewayPeer1Connected:    false,
+		GatewayPeer2Connected:    false,
 		HeartbeatInterval:        500,
 		HeartbeatVLANID:          4094,
 		ConsecutiveFailuresCount: 3,
@@ -136,6 +140,20 @@ func (o *NSRedundantGatewayGroup) Metadatas(info *bambou.FetchingInfo) (Metadata
 
 // CreateMetadata creates a new child Metadata under the NSRedundantGatewayGroup
 func (o *NSRedundantGatewayGroup) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// ShuntLinks retrieves the list of child ShuntLinks of the NSRedundantGatewayGroup
+func (o *NSRedundantGatewayGroup) ShuntLinks(info *bambou.FetchingInfo) (ShuntLinksList, *bambou.Error) {
+
+	var list ShuntLinksList
+	err := bambou.CurrentSession().FetchChildren(o, ShuntLinkIdentity, &list, info)
+	return list, err
+}
+
+// CreateShuntLink creates a new child ShuntLink under the NSRedundantGatewayGroup
+func (o *NSRedundantGatewayGroup) CreateShuntLink(child *ShuntLink) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

@@ -60,8 +60,12 @@ type BRConnection struct {
 	ParentType            string `json:"parentType,omitempty"`
 	Owner                 string `json:"owner,omitempty"`
 	DNSAddress            string `json:"DNSAddress,omitempty"`
+	DNSAddressV6          string `json:"DNSAddressV6,omitempty"`
 	Gateway               string `json:"gateway,omitempty"`
+	GatewayV6             string `json:"gatewayV6,omitempty"`
 	Address               string `json:"address,omitempty"`
+	AddressFamily         string `json:"addressFamily,omitempty"`
+	AddressV6             string `json:"addressV6,omitempty"`
 	AdvertisementCriteria string `json:"advertisementCriteria,omitempty"`
 	Netmask               string `json:"netmask,omitempty"`
 	Inherited             bool   `json:"inherited"`
@@ -73,7 +77,8 @@ type BRConnection struct {
 func NewBRConnection() *BRConnection {
 
 	return &BRConnection{
-		Inherited: false,
+		AddressFamily: "IPV4",
+		Inherited:     false,
 	}
 }
 

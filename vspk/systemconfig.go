@@ -107,6 +107,7 @@ type SystemConfig struct {
 	EVPNBGPCommunityTagASNumber                       int    `json:"EVPNBGPCommunityTagASNumber,omitempty"`
 	EVPNBGPCommunityTagLowerLimit                     int    `json:"EVPNBGPCommunityTagLowerLimit,omitempty"`
 	EVPNBGPCommunityTagUpperLimit                     int    `json:"EVPNBGPCommunityTagUpperLimit,omitempty"`
+	SaaSApplicationsPublishDate                       string `json:"SaaSApplicationsPublishDate,omitempty"`
 	PageMaxSize                                       int    `json:"pageMaxSize,omitempty"`
 	PageSize                                          int    `json:"pageSize,omitempty"`
 	LastUpdatedBy                                     string `json:"lastUpdatedBy,omitempty"`
@@ -132,10 +133,12 @@ type SystemConfig struct {
 	AllowEnterpriseAvatarOnNSG                        bool   `json:"allowEnterpriseAvatarOnNSG"`
 	GlobalMACAddress                                  string `json:"globalMACAddress,omitempty"`
 	FlowCollectionEnabled                             bool   `json:"flowCollectionEnabled"`
+	ImportedSaaSApplicationsVersion                   string `json:"importedSaaSApplicationsVersion,omitempty"`
 	InactiveTimeout                                   int    `json:"inactiveTimeout,omitempty"`
 	InfrastructureBGPASNumber                         int    `json:"infrastructureBGPASNumber,omitempty"`
 	EntityScope                                       string `json:"entityScope,omitempty"`
 	DomainTunnelType                                  string `json:"domainTunnelType,omitempty"`
+	GoogleMapsAPIKey                                  string `json:"googleMapsAPIKey,omitempty"`
 	PostProcessorThreadsCount                         int    `json:"postProcessorThreadsCount,omitempty"`
 	GroupKeyDefaultSEKGenerationInterval              int    `json:"groupKeyDefaultSEKGenerationInterval,omitempty"`
 	GroupKeyDefaultSEKLifetime                        int    `json:"groupKeyDefaultSEKLifetime,omitempty"`

@@ -65,6 +65,7 @@ type IngressAdvFwdEntryTemplate struct {
 	FCOverride                     string `json:"FCOverride,omitempty"`
 	IPv6AddressOverride            string `json:"IPv6AddressOverride,omitempty"`
 	DSCP                           string `json:"DSCP,omitempty"`
+	DSCPRemarking                  string `json:"DSCPRemarking,omitempty"`
 	FailsafeDatapath               string `json:"failsafeDatapath,omitempty"`
 	Name                           string `json:"name,omitempty"`
 	LastUpdatedBy                  string `json:"lastUpdatedBy,omitempty"`

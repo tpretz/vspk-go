@@ -61,9 +61,13 @@ type UplinkConnection struct {
 	Owner                   string  `json:"owner,omitempty"`
 	PATEnabled              bool    `json:"PATEnabled"`
 	DNSAddress              string  `json:"DNSAddress,omitempty"`
+	DNSAddressV6            string  `json:"DNSAddressV6,omitempty"`
 	Password                string  `json:"password,omitempty"`
 	Gateway                 string  `json:"gateway,omitempty"`
+	GatewayV6               string  `json:"gatewayV6,omitempty"`
 	Address                 string  `json:"address,omitempty"`
+	AddressFamily           string  `json:"addressFamily,omitempty"`
+	AddressV6               string  `json:"addressV6,omitempty"`
 	AdvertisementCriteria   string  `json:"advertisementCriteria,omitempty"`
 	SecondaryAddress        string  `json:"secondaryAddress,omitempty"`
 	Netmask                 string  `json:"netmask,omitempty"`
@@ -90,6 +94,7 @@ func NewUplinkConnection() *UplinkConnection {
 
 	return &UplinkConnection{
 		PATEnabled:              true,
+		AddressFamily:           "IPV4",
 		UnderlayEnabled:         true,
 		Inherited:               false,
 		InstallerManaged:        false,

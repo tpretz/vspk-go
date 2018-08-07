@@ -66,6 +66,7 @@ type NSPort struct {
 	TemplateID                  string `json:"templateID,omitempty"`
 	PermittedAction             string `json:"permittedAction,omitempty"`
 	Description                 string `json:"description,omitempty"`
+	ShuntPort                   bool   `json:"shuntPort"`
 	PhysicalName                string `json:"physicalName,omitempty"`
 	EnableNATProbes             bool   `json:"enableNATProbes"`
 	EntityScope                 string `json:"entityScope,omitempty"`
@@ -87,6 +88,7 @@ func NewNSPort() *NSPort {
 	return &NSPort{
 		NATTraversal:    "NONE",
 		VLANRange:       "0-4094",
+		ShuntPort:       false,
 		EnableNATProbes: true,
 		Speed:           "AUTONEGOTIATE",
 		TrafficThroughUBROnly: false,

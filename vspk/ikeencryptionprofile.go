@@ -79,6 +79,7 @@ type IKEEncryptionprofile struct {
 	Sequence                          int    `json:"sequence,omitempty"`
 	Description                       string `json:"description,omitempty"`
 	EntityScope                       string `json:"entityScope,omitempty"`
+	IpsecSAReplayWindowSizeValue      int    `json:"ipsecSAReplayWindowSizeValue,omitempty"`
 	AssociatedEnterpriseID            string `json:"associatedEnterpriseID,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`
 }
@@ -99,6 +100,7 @@ func NewIKEEncryptionprofile() *IKEEncryptionprofile {
 		ISAKMPEncryptionAlgorithm:         "AES256",
 		ISAKMPEncryptionKeyLifetime:       28800,
 		ISAKMPHashAlgorithm:               "SHA256",
+		IpsecSAReplayWindowSizeValue:      32,
 	}
 }
 

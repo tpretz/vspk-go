@@ -91,6 +91,7 @@ type VCenterHypervisor struct {
 	SecondaryDataUplinkPrimaryController      string        `json:"secondaryDataUplinkPrimaryController,omitempty"`
 	SecondaryDataUplinkSecondaryController    string        `json:"secondaryDataUplinkSecondaryController,omitempty"`
 	SecondaryDataUplinkUnderlayID             int           `json:"secondaryDataUplinkUnderlayID,omitempty"`
+	SecondaryDataUplinkVDFControlVLAN         int           `json:"secondaryDataUplinkVDFControlVLAN,omitempty"`
 	SecondaryNuageController                  string        `json:"secondaryNuageController,omitempty"`
 	MemorySizeInGB                            string        `json:"memorySizeInGB,omitempty"`
 	RemoteSyslogServerIP                      string        `json:"remoteSyslogServerIP,omitempty"`
@@ -160,6 +161,7 @@ type VCenterHypervisor struct {
 	UpgradeTimedout                           bool          `json:"upgradeTimedout"`
 	CpuCount                                  string        `json:"cpuCount,omitempty"`
 	PrimaryDataUplinkUnderlayID               int           `json:"primaryDataUplinkUnderlayID,omitempty"`
+	PrimaryDataUplinkVDFControlVLAN           int           `json:"primaryDataUplinkVDFControlVLAN,omitempty"`
 	PrimaryNuageController                    string        `json:"primaryNuageController,omitempty"`
 	VrsId                                     string        `json:"vrsId,omitempty"`
 	VrsMarkedAsAvailable                      bool          `json:"vrsMarkedAsAvailable"`
@@ -199,27 +201,30 @@ type VCenterHypervisor struct {
 func NewVCenterHypervisor() *VCenterHypervisor {
 
 	return &VCenterHypervisor{
-		VRSState:                       "NOT_DEPLOYED",
-		ManageVRSAvailability:          false,
-		SecondaryDataUplinkDHCPEnabled: false,
-		SecondaryDataUplinkEnabled:     false,
-		SecondaryDataUplinkMTU:         1500,
-		SecondaryDataUplinkUnderlayID:  1,
-		MemorySizeInGB:                 "DEFAULT_4",
-		RemoteSyslogServerPort:         514,
-		RemoteSyslogServerType:         "NONE",
-		DestinationMirrorPort:          "no_mirror",
-		RevertiveControllerEnabled:     false,
-		RevertiveTimer:                 300,
-		DisableGROOnDatapath:           false,
-		DisableLROOnDatapath:           false,
-		EnableVRSResourceReservation:   false,
-		ConfiguredMetricsPushInterval:  60,
-		CpuCount:                       "DEFAULT_2",
-		PrimaryDataUplinkUnderlayID:    0,
-		VrsMarkedAsAvailable:           false,
-		AvrsEnabled:                    false,
-		AvrsProfile:                    "AVRS_25G",
+		VRSState:                          "NOT_DEPLOYED",
+		ManageVRSAvailability:             false,
+		SecondaryDataUplinkDHCPEnabled:    false,
+		SecondaryDataUplinkEnabled:        false,
+		SecondaryDataUplinkMTU:            1500,
+		SecondaryDataUplinkUnderlayID:     1,
+		SecondaryDataUplinkVDFControlVLAN: 0,
+		MemorySizeInGB:                    "DEFAULT_4",
+		RemoteSyslogServerPort:            514,
+		RemoteSyslogServerType:            "NONE",
+		Personality:                       "VRS",
+		DestinationMirrorPort:             "no_mirror",
+		RevertiveControllerEnabled:        false,
+		RevertiveTimer:                    300,
+		DisableGROOnDatapath:              false,
+		DisableLROOnDatapath:              false,
+		EnableVRSResourceReservation:      false,
+		ConfiguredMetricsPushInterval:     60,
+		CpuCount:                          "DEFAULT_2",
+		PrimaryDataUplinkUnderlayID:       0,
+		PrimaryDataUplinkVDFControlVLAN:   0,
+		VrsMarkedAsAvailable:              false,
+		AvrsEnabled:                       false,
+		AvrsProfile:                       "AVRS_25G",
 	}
 }
 

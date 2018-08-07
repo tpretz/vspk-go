@@ -64,6 +64,7 @@ type ForwardingPathListEntry struct {
 	EntityScope      string `json:"entityScope,omitempty"`
 	ForwardingAction string `json:"forwardingAction,omitempty"`
 	UplinkPreference string `json:"uplinkPreference,omitempty"`
+	Priority         int    `json:"priority,omitempty"`
 	ExternalID       string `json:"externalID,omitempty"`
 }
 

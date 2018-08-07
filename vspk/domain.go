@@ -64,6 +64,7 @@ type Domain struct {
 	BGPEnabled                      bool          `json:"BGPEnabled"`
 	DHCPBehavior                    string        `json:"DHCPBehavior,omitempty"`
 	DHCPServerAddress               string        `json:"DHCPServerAddress,omitempty"`
+	FIPIgnoreDefaultRoute           string        `json:"FIPIgnoreDefaultRoute,omitempty"`
 	FIPUnderlay                     bool          `json:"FIPUnderlay"`
 	DPI                             string        `json:"DPI,omitempty"`
 	LabelID                         int           `json:"labelID,omitempty"`
@@ -116,6 +117,7 @@ func NewDomain() *Domain {
 	return &Domain{
 		PATEnabled:            "INHERITED",
 		DHCPBehavior:          "CONSUME",
+		FIPIgnoreDefaultRoute: "DISABLED",
 		FIPUnderlay:           false,
 		DPI:                   "DISABLED",
 		MaintenanceMode:       "DISABLED",
@@ -670,6 +672,14 @@ func (o *Domain) Groups(info *bambou.FetchingInfo) (GroupsList, *bambou.Error) {
 
 	var list GroupsList
 	err := bambou.CurrentSession().FetchChildren(o, GroupIdentity, &list, info)
+	return list, err
+}
+
+// NSGatewaySummaries retrieves the list of child NSGatewaySummaries of the Domain
+func (o *Domain) NSGatewaySummaries(info *bambou.FetchingInfo) (NSGatewaySummariesList, *bambou.Error) {
+
+	var list NSGatewaySummariesList
+	err := bambou.CurrentSession().FetchChildren(o, NSGatewaySummaryIdentity, &list, info)
 	return list, err
 }
 

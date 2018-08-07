@@ -67,6 +67,7 @@ type VLAN struct {
 	PermittedAction                       string `json:"permittedAction,omitempty"`
 	Description                           string `json:"description,omitempty"`
 	Restricted                            bool   `json:"restricted"`
+	ShuntVLAN                             bool   `json:"shuntVLAN"`
 	EntityScope                           string `json:"entityScope,omitempty"`
 	VportID                               string `json:"vportID,omitempty"`
 	IsUplink                              bool   `json:"isUplink"`
@@ -90,8 +91,9 @@ type VLAN struct {
 func NewVLAN() *VLAN {
 
 	return &VLAN{
-		IsUplink: false,
-		DucVlan:  false,
+		ShuntVLAN: false,
+		IsUplink:  false,
+		DucVlan:   false,
 	}
 }
 

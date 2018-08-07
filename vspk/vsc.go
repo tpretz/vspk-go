@@ -191,6 +191,14 @@ func (o *VSC) VRSs(info *bambou.FetchingInfo) (VRSsList, *bambou.Error) {
 	return list, err
 }
 
+// Statistics retrieves the list of child Statistics of the VSC
+func (o *VSC) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
+
+	var list StatisticsList
+	err := bambou.CurrentSession().FetchChildren(o, StatisticsIdentity, &list, info)
+	return list, err
+}
+
 // EventLogs retrieves the list of child EventLogs of the VSC
 func (o *VSC) EventLogs(info *bambou.FetchingInfo) (EventLogsList, *bambou.Error) {
 

@@ -60,6 +60,8 @@ type BGPNeighbor struct {
 	ParentType                      string `json:"parentType,omitempty"`
 	Owner                           string `json:"owner,omitempty"`
 	BFDEnabled                      bool   `json:"BFDEnabled"`
+	IPType                          string `json:"IPType,omitempty"`
+	IPv6Address                     string `json:"IPv6Address,omitempty"`
 	Name                            string `json:"name,omitempty"`
 	DampeningEnabled                bool   `json:"dampeningEnabled"`
 	PeerAS                          int    `json:"peerAS,omitempty"`
@@ -77,6 +79,7 @@ func NewBGPNeighbor() *BGPNeighbor {
 
 	return &BGPNeighbor{
 		BFDEnabled: false,
+		IPType:     "IPV4",
 	}
 }
 

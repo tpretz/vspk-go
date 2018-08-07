@@ -68,6 +68,7 @@ type License struct {
 	LicenseEntities             string  `json:"licenseEntities,omitempty"`
 	LicenseID                   int     `json:"licenseID,omitempty"`
 	LicenseType                 string  `json:"licenseType,omitempty"`
+	LicensedFeature             string  `json:"licensedFeature,omitempty"`
 	MinorRelease                int     `json:"minorRelease,omitempty"`
 	Zip                         string  `json:"zip,omitempty"`
 	City                        string  `json:"city,omitempty"`
@@ -75,6 +76,8 @@ type License struct {
 	AllowedAVRSsCount           int     `json:"allowedAVRSsCount,omitempty"`
 	AllowedCPEsCount            int     `json:"allowedCPEsCount,omitempty"`
 	AllowedNICsCount            int     `json:"allowedNICsCount,omitempty"`
+	AllowedVDFGsCount           int     `json:"allowedVDFGsCount,omitempty"`
+	AllowedVDFsCount            int     `json:"allowedVDFsCount,omitempty"`
 	AllowedVMsCount             int     `json:"allowedVMsCount,omitempty"`
 	AllowedVRSGsCount           int     `json:"allowedVRSGsCount,omitempty"`
 	AllowedVRSsCount            int     `json:"allowedVRSsCount,omitempty"`

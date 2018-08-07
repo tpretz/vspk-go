@@ -64,13 +64,16 @@ type NetworkMacroGroup struct {
 	Description   string        `json:"description,omitempty"`
 	NetworkMacros []interface{} `json:"networkMacros,omitempty"`
 	EntityScope   string        `json:"entityScope,omitempty"`
+	IsSaaSType    bool          `json:"isSaaSType"`
 	ExternalID    string        `json:"externalID,omitempty"`
 }
 
 // NewNetworkMacroGroup returns a new *NetworkMacroGroup
 func NewNetworkMacroGroup() *NetworkMacroGroup {
 
-	return &NetworkMacroGroup{}
+	return &NetworkMacroGroup{
+		IsSaaSType: false,
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -63,6 +63,8 @@ type NSGateway struct {
 	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
 	TCPMSSEnabled                      bool   `json:"TCPMSSEnabled"`
 	TCPMaximumSegmentSize              int    `json:"TCPMaximumSegmentSize,omitempty"`
+	ZFBMatchAttribute                  string `json:"ZFBMatchAttribute,omitempty"`
+	ZFBMatchValue                      string `json:"ZFBMatchValue,omitempty"`
 	BIOSReleaseDate                    string `json:"BIOSReleaseDate,omitempty"`
 	BIOSVersion                        string `json:"BIOSVersion,omitempty"`
 	SKU                                string `json:"SKU,omitempty"`
@@ -78,6 +80,7 @@ type NSGateway struct {
 	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
 	DatapathID                         string `json:"datapathID,omitempty"`
 	Patches                            string `json:"patches,omitempty"`
+	GatewayConnected                   bool   `json:"gatewayConnected"`
 	RedundancyGroupID                  string `json:"redundancyGroupID,omitempty"`
 	TemplateID                         string `json:"templateID,omitempty"`
 	Pending                            bool   `json:"pending"`
@@ -116,9 +119,11 @@ func NewNSGateway() *NSGateway {
 	return &NSGateway{
 		TCPMSSEnabled:                    false,
 		TCPMaximumSegmentSize:            1330,
+		ZFBMatchAttribute:                "NONE",
 		TPMStatus:                        "UNKNOWN",
 		SSHService:                       "INHERITED",
 		LastConfigurationReloadTimestamp: -1,
+		GatewayConnected:                 false,
 		NetworkAcceleration:              "NONE",
 		InheritedSSHServiceState:         "ENABLED",
 		ConfigurationReloadState:         "UNKNOWN",
@@ -334,6 +339,14 @@ func (o *NSGateway) UplinkConnections(info *bambou.FetchingInfo) (UplinkConnecti
 
 	var list UplinkConnectionsList
 	err := bambou.CurrentSession().FetchChildren(o, UplinkConnectionIdentity, &list, info)
+	return list, err
+}
+
+// NSGatewaySummaries retrieves the list of child NSGatewaySummaries of the NSGateway
+func (o *NSGateway) NSGatewaySummaries(info *bambou.FetchingInfo) (NSGatewaySummariesList, *bambou.Error) {
+
+	var list NSGatewaySummariesList
+	err := bambou.CurrentSession().FetchChildren(o, NSGatewaySummaryIdentity, &list, info)
 	return list, err
 }
 

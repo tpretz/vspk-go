@@ -95,6 +95,7 @@ type Subnet struct {
 	AssociatedMulticastChannelMapID   string `json:"associatedMulticastChannelMapID,omitempty"`
 	AssociatedSharedNetworkResourceID string `json:"associatedSharedNetworkResourceID,omitempty"`
 	Public                            bool   `json:"public"`
+	SubnetVLANID                      int    `json:"subnetVLANID,omitempty"`
 	MultiHomeEnabled                  bool   `json:"multiHomeEnabled"`
 	Multicast                         string `json:"multicast,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`

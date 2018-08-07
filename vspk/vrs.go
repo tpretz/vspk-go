@@ -227,6 +227,14 @@ func (o *VRS) VPorts(info *bambou.FetchingInfo) (VPortsList, *bambou.Error) {
 	return list, err
 }
 
+// Statistics retrieves the list of child Statistics of the VRS
+func (o *VRS) Statistics(info *bambou.FetchingInfo) (StatisticsList, *bambou.Error) {
+
+	var list StatisticsList
+	err := bambou.CurrentSession().FetchChildren(o, StatisticsIdentity, &list, info)
+	return list, err
+}
+
 // MultiNICVPorts retrieves the list of child MultiNICVPorts of the VRS
 func (o *VRS) MultiNICVPorts(info *bambou.FetchingInfo) (MultiNICVPortsList, *bambou.Error) {
 

@@ -205,6 +205,34 @@ func (o *Enterprise) L7applicationsignatures(info *bambou.FetchingInfo) (L7appli
 	return list, err
 }
 
+// SaaSApplicationGroups retrieves the list of child SaaSApplicationGroups of the Enterprise
+func (o *Enterprise) SaaSApplicationGroups(info *bambou.FetchingInfo) (SaaSApplicationGroupsList, *bambou.Error) {
+
+	var list SaaSApplicationGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, SaaSApplicationGroupIdentity, &list, info)
+	return list, err
+}
+
+// CreateSaaSApplicationGroup creates a new child SaaSApplicationGroup under the Enterprise
+func (o *Enterprise) CreateSaaSApplicationGroup(child *SaaSApplicationGroup) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// SaaSApplicationTypes retrieves the list of child SaaSApplicationTypes of the Enterprise
+func (o *Enterprise) SaaSApplicationTypes(info *bambou.FetchingInfo) (SaaSApplicationTypesList, *bambou.Error) {
+
+	var list SaaSApplicationTypesList
+	err := bambou.CurrentSession().FetchChildren(o, SaaSApplicationTypeIdentity, &list, info)
+	return list, err
+}
+
+// CreateSaaSApplicationType creates a new child SaaSApplicationType under the Enterprise
+func (o *Enterprise) CreateSaaSApplicationType(child *SaaSApplicationType) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // CaptivePortalProfiles retrieves the list of child CaptivePortalProfiles of the Enterprise
 func (o *Enterprise) CaptivePortalProfiles(info *bambou.FetchingInfo) (CaptivePortalProfilesList, *bambou.Error) {
 
@@ -315,6 +343,20 @@ func (o *Enterprise) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambo
 
 // CreateMetadata creates a new child Metadata under the Enterprise
 func (o *Enterprise) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// NetconfProfiles retrieves the list of child NetconfProfiles of the Enterprise
+func (o *Enterprise) NetconfProfiles(info *bambou.FetchingInfo) (NetconfProfilesList, *bambou.Error) {
+
+	var list NetconfProfilesList
+	err := bambou.CurrentSession().FetchChildren(o, NetconfProfileIdentity, &list, info)
+	return list, err
+}
+
+// CreateNetconfProfile creates a new child NetconfProfile under the Enterprise
+func (o *Enterprise) CreateNetconfProfile(child *NetconfProfile) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -633,6 +675,20 @@ func (o *Enterprise) CreateJob(child *Job) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// PolicyGroupCategories retrieves the list of child PolicyGroupCategories of the Enterprise
+func (o *Enterprise) PolicyGroupCategories(info *bambou.FetchingInfo) (PolicyGroupCategoriesList, *bambou.Error) {
+
+	var list PolicyGroupCategoriesList
+	err := bambou.CurrentSession().FetchChildren(o, PolicyGroupCategoryIdentity, &list, info)
+	return list, err
+}
+
+// CreatePolicyGroupCategory creates a new child PolicyGroupCategory under the Enterprise
+func (o *Enterprise) CreatePolicyGroupCategory(child *PolicyGroupCategory) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // PolicyObjectGroups retrieves the list of child PolicyObjectGroups of the Enterprise
 func (o *Enterprise) PolicyObjectGroups(info *bambou.FetchingInfo) (PolicyObjectGroupsList, *bambou.Error) {
 
@@ -829,6 +885,14 @@ func (o *Enterprise) NSGateways(info *bambou.FetchingInfo) (NSGatewaysList, *bam
 func (o *Enterprise) CreateNSGateway(child *NSGateway) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// NSGatewaySummaries retrieves the list of child NSGatewaySummaries of the Enterprise
+func (o *Enterprise) NSGatewaySummaries(info *bambou.FetchingInfo) (NSGatewaySummariesList, *bambou.Error) {
+
+	var list NSGatewaySummariesList
+	err := bambou.CurrentSession().FetchChildren(o, NSGatewaySummaryIdentity, &list, info)
+	return list, err
 }
 
 // NSGatewayTemplates retrieves the list of child NSGatewayTemplates of the Enterprise

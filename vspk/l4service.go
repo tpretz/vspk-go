@@ -59,6 +59,8 @@ type L4Service struct {
 	ParentID       string `json:"parentID,omitempty"`
 	ParentType     string `json:"parentType,omitempty"`
 	Owner          string `json:"owner,omitempty"`
+	ICMPCode       string `json:"ICMPCode,omitempty"`
+	ICMPType       string `json:"ICMPType,omitempty"`
 	Name           string `json:"name,omitempty"`
 	LastUpdatedBy  string `json:"lastUpdatedBy,omitempty"`
 	DefaultService bool   `json:"defaultService"`
