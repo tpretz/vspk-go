@@ -71,6 +71,7 @@ type DomainFIPAclTemplate struct {
 	Priority               int           `json:"priority,omitempty"`
 	PriorityType           string        `json:"priorityType,omitempty"`
 	AssociatedLiveEntityID string        `json:"associatedLiveEntityID,omitempty"`
+	AutoGeneratePriority   bool          `json:"autoGeneratePriority"`
 	ExternalID             string        `json:"externalID,omitempty"`
 }
 

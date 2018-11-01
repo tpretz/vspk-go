@@ -61,11 +61,16 @@ type DeploymentFailure struct {
 	Owner              string `json:"owner,omitempty"`
 	LastFailureReason  string `json:"lastFailureReason,omitempty"`
 	LastKnownError     string `json:"lastKnownError,omitempty"`
+	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
 	AffectedEntityID   string `json:"affectedEntityID,omitempty"`
 	AffectedEntityType string `json:"affectedEntityType,omitempty"`
+	EntityScope        string `json:"entityScope,omitempty"`
 	ErrorCondition     int    `json:"errorCondition,omitempty"`
+	AssocEntityId      string `json:"assocEntityId,omitempty"`
+	AssocEntityType    string `json:"assocEntityType,omitempty"`
 	NumberOfOccurences int    `json:"numberOfOccurences,omitempty"`
 	EventType          string `json:"eventType,omitempty"`
+	ExternalID         string `json:"externalID,omitempty"`
 }
 
 // NewDeploymentFailure returns a new *DeploymentFailure
@@ -108,4 +113,32 @@ func (o *DeploymentFailure) Save() *bambou.Error {
 func (o *DeploymentFailure) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// Metadatas retrieves the list of child Metadatas of the DeploymentFailure
+func (o *DeploymentFailure) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the DeploymentFailure
+func (o *DeploymentFailure) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the DeploymentFailure
+func (o *DeploymentFailure) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the DeploymentFailure
+func (o *DeploymentFailure) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }

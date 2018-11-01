@@ -66,6 +66,7 @@ type MonitoringPort struct {
 	ResiliencyState string `json:"resiliencyState,omitempty"`
 	Resilient       bool   `json:"resilient"`
 	EntityScope     string `json:"entityScope,omitempty"`
+	DpdkEnabled     bool   `json:"dpdkEnabled"`
 	Uplink          bool   `json:"uplink"`
 	State           string `json:"state,omitempty"`
 	ExternalID      string `json:"externalID,omitempty"`

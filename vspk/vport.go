@@ -68,12 +68,13 @@ type VPort struct {
 	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
 	GatewayMACMoveRole                  string `json:"gatewayMACMoveRole,omitempty"`
 	GatewayPortName                     string `json:"gatewayPortName,omitempty"`
+	AccessRestrictionEnabled            bool   `json:"accessRestrictionEnabled"`
 	Active                              bool   `json:"active"`
 	AddressSpoofing                     string `json:"addressSpoofing,omitempty"`
 	PeerOperationalState                string `json:"peerOperationalState,omitempty"`
 	SegmentationID                      int    `json:"segmentationID,omitempty"`
 	SegmentationType                    string `json:"segmentationType,omitempty"`
-	ServiceID                           string `json:"serviceID,omitempty"`
+	ServiceID                           int    `json:"serviceID,omitempty"`
 	Description                         string `json:"description,omitempty"`
 	EntityScope                         string `json:"entityScope,omitempty"`
 	DomainID                            string `json:"domainID,omitempty"`
@@ -104,13 +105,14 @@ type VPort struct {
 func NewVPort() *VPort {
 
 	return &VPort{
-		DPI:              "INHERITED",
-		AddressSpoofing:  "INHERITED",
-		OperationalState: "INIT",
-		SubType:          "NONE",
-		Multicast:        "INHERITED",
-		GwEligible:       false,
-		Type:             "VM",
+		DPI: "INHERITED",
+		AccessRestrictionEnabled: false,
+		AddressSpoofing:          "INHERITED",
+		OperationalState:         "INIT",
+		SubType:                  "NONE",
+		Multicast:                "INHERITED",
+		GwEligible:               false,
+		Type:                     "VM",
 	}
 }
 
@@ -181,6 +183,20 @@ func (o *VPort) AssignRedirectionTargets(children RedirectionTargetsList) *bambo
 	}
 
 	return bambou.CurrentSession().AssignChildren(o, list, RedirectionTargetIdentity)
+}
+
+// DeploymentFailures retrieves the list of child DeploymentFailures of the VPort
+func (o *VPort) DeploymentFailures(info *bambou.FetchingInfo) (DeploymentFailuresList, *bambou.Error) {
+
+	var list DeploymentFailuresList
+	err := bambou.CurrentSession().FetchChildren(o, DeploymentFailureIdentity, &list, info)
+	return list, err
+}
+
+// CreateDeploymentFailure creates a new child DeploymentFailure under the VPort
+func (o *VPort) CreateDeploymentFailure(child *DeploymentFailure) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // Metadatas retrieves the list of child Metadatas of the VPort
@@ -420,25 +436,6 @@ func (o *VPort) VPortMirrors(info *bambou.FetchingInfo) (VPortMirrorsList, *bamb
 func (o *VPort) CreateVPortMirror(child *VPortMirror) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Applicationperformancemanagements retrieves the list of child Applicationperformancemanagements of the VPort
-func (o *VPort) Applicationperformancemanagements(info *bambou.FetchingInfo) (ApplicationperformancemanagementsList, *bambou.Error) {
-
-	var list ApplicationperformancemanagementsList
-	err := bambou.CurrentSession().FetchChildren(o, ApplicationperformancemanagementIdentity, &list, info)
-	return list, err
-}
-
-// AssignApplicationperformancemanagements assigns the list of Applicationperformancemanagements to the VPort
-func (o *VPort) AssignApplicationperformancemanagements(children ApplicationperformancemanagementsList) *bambou.Error {
-
-	list := []bambou.Identifiable{}
-	for _, c := range children {
-		list = append(list, c)
-	}
-
-	return bambou.CurrentSession().AssignChildren(o, list, ApplicationperformancemanagementIdentity)
 }
 
 // BridgeInterfaces retrieves the list of child BridgeInterfaces of the VPort

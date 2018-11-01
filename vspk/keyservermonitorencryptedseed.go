@@ -61,6 +61,7 @@ type KeyServerMonitorEncryptedSeed struct {
 	Owner                                      string `json:"owner,omitempty"`
 	SEKCreationTime                            int    `json:"SEKCreationTime,omitempty"`
 	LastUpdatedBy                              string `json:"lastUpdatedBy,omitempty"`
+	SeedType                                   string `json:"seedType,omitempty"`
 	KeyServerCertificateSerialNumber           int    `json:"keyServerCertificateSerialNumber,omitempty"`
 	EnterpriseSecuredDataID                    string `json:"enterpriseSecuredDataID,omitempty"`
 	EntityScope                                string `json:"entityScope,omitempty"`

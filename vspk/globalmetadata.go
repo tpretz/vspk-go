@@ -67,6 +67,7 @@ type GlobalMetadata struct {
 	Blob                        string        `json:"blob,omitempty"`
 	GlobalMetadata              bool          `json:"globalMetadata"`
 	EntityScope                 string        `json:"entityScope,omitempty"`
+	AssocEntityType             string        `json:"assocEntityType,omitempty"`
 	ExternalID                  string        `json:"externalID,omitempty"`
 }
 

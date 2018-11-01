@@ -60,6 +60,8 @@ type NSGateway struct {
 	ParentType                         string `json:"parentType,omitempty"`
 	Owner                              string `json:"owner,omitempty"`
 	MACAddress                         string `json:"MACAddress,omitempty"`
+	AARApplicationReleaseDate          string `json:"AARApplicationReleaseDate,omitempty"`
+	AARApplicationVersion              string `json:"AARApplicationVersion,omitempty"`
 	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
 	TCPMSSEnabled                      bool   `json:"TCPMSSEnabled"`
 	TCPMaximumSegmentSize              int    `json:"TCPMaximumSegmentSize,omitempty"`
@@ -79,7 +81,6 @@ type NSGateway struct {
 	LastConfigurationReloadTimestamp   int    `json:"lastConfigurationReloadTimestamp,omitempty"`
 	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
 	DatapathID                         string `json:"datapathID,omitempty"`
-	Patches                            string `json:"patches,omitempty"`
 	GatewayConnected                   bool   `json:"gatewayConnected"`
 	RedundancyGroupID                  string `json:"redundancyGroupID,omitempty"`
 	TemplateID                         string `json:"templateID,omitempty"`
@@ -167,6 +168,14 @@ func (o *NSGateway) Save() *bambou.Error {
 func (o *NSGateway) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// Patchs retrieves the list of child Patchs of the NSGateway
+func (o *NSGateway) Patchs(info *bambou.FetchingInfo) (PatchsList, *bambou.Error) {
+
+	var list PatchsList
+	err := bambou.CurrentSession().FetchChildren(o, PatchIdentity, &list, info)
+	return list, err
 }
 
 // GatewaySecurities retrieves the list of child GatewaySecurities of the NSGateway
@@ -260,6 +269,14 @@ func (o *NSGateway) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// VNFs retrieves the list of child VNFs of the NSGateway
+func (o *NSGateway) VNFs(info *bambou.FetchingInfo) (VNFsList, *bambou.Error) {
+
+	var list VNFsList
+	err := bambou.CurrentSession().FetchChildren(o, VNFIdentity, &list, info)
+	return list, err
+}
+
 // InfrastructureConfigs retrieves the list of child InfrastructureConfigs of the NSGateway
 func (o *NSGateway) InfrastructureConfigs(info *bambou.FetchingInfo) (InfrastructureConfigsList, *bambou.Error) {
 
@@ -274,6 +291,12 @@ func (o *NSGateway) EnterprisePermissions(info *bambou.FetchingInfo) (Enterprise
 	var list EnterprisePermissionsList
 	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
 	return list, err
+}
+
+// CreateEnterprisePermission creates a new child EnterprisePermission under the NSGateway
+func (o *NSGateway) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // Jobs retrieves the list of child Jobs of the NSGateway
@@ -310,14 +333,6 @@ func (o *NSGateway) Commands(info *bambou.FetchingInfo) (CommandsList, *bambou.E
 func (o *NSGateway) CreateCommand(child *Command) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// Monitorscopes retrieves the list of child Monitorscopes of the NSGateway
-func (o *NSGateway) Monitorscopes(info *bambou.FetchingInfo) (MonitorscopesList, *bambou.Error) {
-
-	var list MonitorscopesList
-	err := bambou.CurrentSession().FetchChildren(o, MonitorscopeIdentity, &list, info)
-	return list, err
 }
 
 // Bootstraps retrieves the list of child Bootstraps of the NSGateway

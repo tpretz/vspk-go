@@ -65,9 +65,11 @@ type Application struct {
 	LastUpdatedBy                      string  `json:"lastUpdatedBy,omitempty"`
 	ReadOnly                           bool    `json:"readOnly"`
 	PerformanceMonitorType             string  `json:"performanceMonitorType,omitempty"`
+	CertificateCommonName              string  `json:"certificateCommonName,omitempty"`
 	Description                        string  `json:"description,omitempty"`
 	DestinationIP                      string  `json:"destinationIP,omitempty"`
 	DestinationPort                    string  `json:"destinationPort,omitempty"`
+	NetworkSymmetry                    bool    `json:"networkSymmetry"`
 	EnablePPS                          bool    `json:"enablePPS"`
 	OneWayDelay                        int     `json:"oneWayDelay,omitempty"`
 	OneWayJitter                       int     `json:"oneWayJitter,omitempty"`
@@ -92,6 +94,8 @@ func NewApplication() *Application {
 	return &Application{
 		ReadOnly:               false,
 		PerformanceMonitorType: "FIRST_PACKET",
+		CertificateCommonName:  "*",
+		NetworkSymmetry:        false,
 		EnablePPS:              false,
 		PostClassificationPath: "ANY",
 		PreClassificationPath:  "DEFAULT",

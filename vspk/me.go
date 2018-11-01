@@ -147,6 +147,22 @@ func (o *Me) CreateL4Service(child *L4Service) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// L7applicationsignatures retrieves the list of child L7applicationsignatures of the Me
+func (o *Me) L7applicationsignatures(info *bambou.FetchingInfo) (L7applicationsignaturesList, *bambou.Error) {
+
+	var list L7applicationsignaturesList
+	err := bambou.CurrentSession().FetchChildren(o, L7applicationsignatureIdentity, &list, info)
+	return list, err
+}
+
+// SaaSApplicationTypes retrieves the list of child SaaSApplicationTypes of the Me
+func (o *Me) SaaSApplicationTypes(info *bambou.FetchingInfo) (SaaSApplicationTypesList, *bambou.Error) {
+
+	var list SaaSApplicationTypesList
+	err := bambou.CurrentSession().FetchChildren(o, SaaSApplicationTypeIdentity, &list, info)
+	return list, err
+}
+
 // VCenterEAMConfigs retrieves the list of child VCenterEAMConfigs of the Me
 func (o *Me) VCenterEAMConfigs(info *bambou.FetchingInfo) (VCenterEAMConfigsList, *bambou.Error) {
 
@@ -305,12 +321,6 @@ func (o *Me) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error)
 	return list, err
 }
 
-// CreateMetadata creates a new child Metadata under the Me
-func (o *Me) CreateMetadata(child *Metadata) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // NetconfProfiles retrieves the list of child NetconfProfiles of the Me
 func (o *Me) NetconfProfiles(info *bambou.FetchingInfo) (NetconfProfilesList, *bambou.Error) {
 
@@ -330,6 +340,14 @@ func (o *Me) NetworkLayouts(info *bambou.FetchingInfo) (NetworkLayoutsList, *bam
 
 	var list NetworkLayoutsList
 	err := bambou.CurrentSession().FetchChildren(o, NetworkLayoutIdentity, &list, info)
+	return list, err
+}
+
+// NetworkPerformanceMeasurements retrieves the list of child NetworkPerformanceMeasurements of the Me
+func (o *Me) NetworkPerformanceMeasurements(info *bambou.FetchingInfo) (NetworkPerformanceMeasurementsList, *bambou.Error) {
+
+	var list NetworkPerformanceMeasurementsList
+	err := bambou.CurrentSession().FetchChildren(o, NetworkPerformanceMeasurementIdentity, &list, info)
 	return list, err
 }
 
@@ -407,6 +425,14 @@ func (o *Me) EgressACLTemplates(info *bambou.FetchingInfo) (EgressACLTemplatesLi
 	return list, err
 }
 
+// EgressAdvFwdEntryTemplates retrieves the list of child EgressAdvFwdEntryTemplates of the Me
+func (o *Me) EgressAdvFwdEntryTemplates(info *bambou.FetchingInfo) (EgressAdvFwdEntryTemplatesList, *bambou.Error) {
+
+	var list EgressAdvFwdEntryTemplatesList
+	err := bambou.CurrentSession().FetchChildren(o, EgressAdvFwdEntryTemplateIdentity, &list, info)
+	return list, err
+}
+
 // DomainFIPAclTemplates retrieves the list of child DomainFIPAclTemplates of the Me
 func (o *Me) DomainFIPAclTemplates(info *bambou.FetchingInfo) (DomainFIPAclTemplatesList, *bambou.Error) {
 
@@ -417,20 +443,6 @@ func (o *Me) DomainFIPAclTemplates(info *bambou.FetchingInfo) (DomainFIPAclTempl
 
 // CreateDomainFIPAclTemplate creates a new child DomainFIPAclTemplate under the Me
 func (o *Me) CreateDomainFIPAclTemplate(child *DomainFIPAclTemplate) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
-// FloatingIPACLTemplates retrieves the list of child FloatingIPACLTemplates of the Me
-func (o *Me) FloatingIPACLTemplates(info *bambou.FetchingInfo) (FloatingIPACLTemplatesList, *bambou.Error) {
-
-	var list FloatingIPACLTemplatesList
-	err := bambou.CurrentSession().FetchChildren(o, FloatingIPACLTemplateIdentity, &list, info)
-	return list, err
-}
-
-// CreateFloatingIPACLTemplate creates a new child FloatingIPACLTemplate under the Me
-func (o *Me) CreateFloatingIPACLTemplate(child *FloatingIPACLTemplate) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -507,10 +519,12 @@ func (o *Me) VirtualFirewallPolicies(info *bambou.FetchingInfo) (VirtualFirewall
 	return list, err
 }
 
-// CreateVirtualFirewallPolicy creates a new child VirtualFirewallPolicy under the Me
-func (o *Me) CreateVirtualFirewallPolicy(child *VirtualFirewallPolicy) *bambou.Error {
+// VirtualFirewallRules retrieves the list of child VirtualFirewallRules of the Me
+func (o *Me) VirtualFirewallRules(info *bambou.FetchingInfo) (VirtualFirewallRulesList, *bambou.Error) {
 
-	return bambou.CurrentSession().CreateChild(o, child)
+	var list VirtualFirewallRulesList
+	err := bambou.CurrentSession().FetchChildren(o, VirtualFirewallRuleIdentity, &list, info)
+	return list, err
 }
 
 // SiteInfos retrieves the list of child SiteInfos of the Me
@@ -523,6 +537,28 @@ func (o *Me) SiteInfos(info *bambou.FetchingInfo) (SiteInfosList, *bambou.Error)
 
 // CreateSiteInfo creates a new child SiteInfo under the Me
 func (o *Me) CreateSiteInfo(child *SiteInfo) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// AllGateways retrieves the list of child AllGateways of the Me
+func (o *Me) AllGateways(info *bambou.FetchingInfo) (AllGatewaysList, *bambou.Error) {
+
+	var list AllGatewaysList
+	err := bambou.CurrentSession().FetchChildren(o, AllGatewayIdentity, &list, info)
+	return list, err
+}
+
+// AllRedundancyGroups retrieves the list of child AllRedundancyGroups of the Me
+func (o *Me) AllRedundancyGroups(info *bambou.FetchingInfo) (AllRedundancyGroupsList, *bambou.Error) {
+
+	var list AllRedundancyGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, AllRedundancyGroupIdentity, &list, info)
+	return list, err
+}
+
+// CreateAllRedundancyGroup creates a new child AllRedundancyGroup under the Me
+func (o *Me) CreateAllRedundancyGroup(child *AllRedundancyGroup) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }
@@ -699,12 +735,6 @@ func (o *Me) IngressACLEntryTemplates(info *bambou.FetchingInfo) (IngressACLEntr
 	return list, err
 }
 
-// CreateIngressACLEntryTemplate creates a new child IngressACLEntryTemplate under the Me
-func (o *Me) CreateIngressACLEntryTemplate(child *IngressACLEntryTemplate) *bambou.Error {
-
-	return bambou.CurrentSession().CreateChild(o, child)
-}
-
 // IngressACLTemplates retrieves the list of child IngressACLTemplates of the Me
 func (o *Me) IngressACLTemplates(info *bambou.FetchingInfo) (IngressACLTemplatesList, *bambou.Error) {
 
@@ -785,12 +815,34 @@ func (o *Me) PolicyGroups(info *bambou.FetchingInfo) (PolicyGroupsList, *bambou.
 	return list, err
 }
 
+// PolicyObjectGroups retrieves the list of child PolicyObjectGroups of the Me
+func (o *Me) PolicyObjectGroups(info *bambou.FetchingInfo) (PolicyObjectGroupsList, *bambou.Error) {
+
+	var list PolicyObjectGroupsList
+	err := bambou.CurrentSession().FetchChildren(o, PolicyObjectGroupIdentity, &list, info)
+	return list, err
+}
+
 // Domains retrieves the list of child Domains of the Me
 func (o *Me) Domains(info *bambou.FetchingInfo) (DomainsList, *bambou.Error) {
 
 	var list DomainsList
 	err := bambou.CurrentSession().FetchChildren(o, DomainIdentity, &list, info)
 	return list, err
+}
+
+// Commands retrieves the list of child Commands of the Me
+func (o *Me) Commands(info *bambou.FetchingInfo) (CommandsList, *bambou.Error) {
+
+	var list CommandsList
+	err := bambou.CurrentSession().FetchChildren(o, CommandIdentity, &list, info)
+	return list, err
+}
+
+// CreateCommand creates a new child Command under the Me
+func (o *Me) CreateCommand(child *Command) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // Zones retrieves the list of child Zones of the Me
@@ -875,6 +927,30 @@ func (o *Me) UplinkRDs(info *bambou.FetchingInfo) (UplinkRDsList, *bambou.Error)
 	return list, err
 }
 
+// Applications retrieves the list of child Applications of the Me
+func (o *Me) Applications(info *bambou.FetchingInfo) (ApplicationsList, *bambou.Error) {
+
+	var list ApplicationsList
+	err := bambou.CurrentSession().FetchChildren(o, ApplicationIdentity, &list, info)
+	return list, err
+}
+
+// Applicationperformancemanagements retrieves the list of child Applicationperformancemanagements of the Me
+func (o *Me) Applicationperformancemanagements(info *bambou.FetchingInfo) (ApplicationperformancemanagementsList, *bambou.Error) {
+
+	var list ApplicationperformancemanagementsList
+	err := bambou.CurrentSession().FetchChildren(o, ApplicationperformancemanagementIdentity, &list, info)
+	return list, err
+}
+
+// VRSs retrieves the list of child VRSs of the Me
+func (o *Me) VRSs(info *bambou.FetchingInfo) (VRSsList, *bambou.Error) {
+
+	var list VRSsList
+	err := bambou.CurrentSession().FetchChildren(o, VRSIdentity, &list, info)
+	return list, err
+}
+
 // VCenterVRSConfigs retrieves the list of child VCenterVRSConfigs of the Me
 func (o *Me) VCenterVRSConfigs(info *bambou.FetchingInfo) (VCenterVRSConfigsList, *bambou.Error) {
 
@@ -905,6 +981,12 @@ func (o *Me) Users(info *bambou.FetchingInfo) (UsersList, *bambou.Error) {
 	return list, err
 }
 
+// CreateUser creates a new child User under the Me
+func (o *Me) CreateUser(child *User) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // UserContexts retrieves the list of child UserContexts of the Me
 func (o *Me) UserContexts(info *bambou.FetchingInfo) (UserContextsList, *bambou.Error) {
 
@@ -919,6 +1001,12 @@ func (o *Me) NSGateways(info *bambou.FetchingInfo) (NSGatewaysList, *bambou.Erro
 	var list NSGatewaysList
 	err := bambou.CurrentSession().FetchChildren(o, NSGatewayIdentity, &list, info)
 	return list, err
+}
+
+// CreateNSGateway creates a new child NSGateway under the Me
+func (o *Me) CreateNSGateway(child *NSGateway) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // NSGatewayTemplates retrieves the list of child NSGatewayTemplates of the Me
@@ -969,6 +1057,12 @@ func (o *Me) NSRedundantGatewayGroups(info *bambou.FetchingInfo) (NSRedundantGat
 	var list NSRedundantGatewayGroupsList
 	err := bambou.CurrentSession().FetchChildren(o, NSRedundantGatewayGroupIdentity, &list, info)
 	return list, err
+}
+
+// CreateNSRedundantGatewayGroup creates a new child NSRedundantGatewayGroup under the Me
+func (o *Me) CreateNSRedundantGatewayGroup(child *NSRedundantGatewayGroup) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // NSGUpgradeProfiles retrieves the list of child NSGUpgradeProfiles of the Me
@@ -1050,6 +1144,14 @@ func (o *Me) AutoDiscoveredGateways(info *bambou.FetchingInfo) (AutoDiscoveredGa
 
 	var list AutoDiscoveredGatewaysList
 	err := bambou.CurrentSession().FetchChildren(o, AutoDiscoveredGatewayIdentity, &list, info)
+	return list, err
+}
+
+// OverlayMirrorDestinations retrieves the list of child OverlayMirrorDestinations of the Me
+func (o *Me) OverlayMirrorDestinations(info *bambou.FetchingInfo) (OverlayMirrorDestinationsList, *bambou.Error) {
+
+	var list OverlayMirrorDestinationsList
+	err := bambou.CurrentSession().FetchChildren(o, OverlayMirrorDestinationIdentity, &list, info)
 	return list, err
 }
 

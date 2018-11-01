@@ -84,8 +84,10 @@ type EgressACLEntryTemplate struct {
 	Protocol                           string `json:"protocol,omitempty"`
 	AssociatedL7ApplicationSignatureID string `json:"associatedL7ApplicationSignatureID,omitempty"`
 	AssociatedLiveEntityID             string `json:"associatedLiveEntityID,omitempty"`
+	AssociatedLiveTemplateID           string `json:"associatedLiveTemplateID,omitempty"`
 	AssociatedTrafficType              string `json:"associatedTrafficType,omitempty"`
 	AssociatedTrafficTypeID            string `json:"associatedTrafficTypeID,omitempty"`
+	AssociatedVirtualFirewallRuleID    string `json:"associatedVirtualFirewallRuleID,omitempty"`
 	Stateful                           bool   `json:"stateful"`
 	StatsID                            string `json:"statsID,omitempty"`
 	StatsLoggingEnabled                bool   `json:"statsLoggingEnabled"`

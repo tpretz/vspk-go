@@ -72,6 +72,7 @@ type ZFBRequest struct {
 	Family                   string  `json:"family,omitempty"`
 	LastConnectedTime        float64 `json:"lastConnectedTime,omitempty"`
 	LastUpdatedBy            string  `json:"lastUpdatedBy,omitempty"`
+	RegistrationURL          string  `json:"registrationURL,omitempty"`
 	SerialNumber             string  `json:"serialNumber,omitempty"`
 	EntityScope              string  `json:"entityScope,omitempty"`
 	Hostname                 string  `json:"hostname,omitempty"`

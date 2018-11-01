@@ -73,13 +73,11 @@ type Subnet struct {
 	AccessRestrictionEnabled          bool   `json:"accessRestrictionEnabled"`
 	Address                           string `json:"address,omitempty"`
 	Advertise                         bool   `json:"advertise"`
-	DefaultAction                     string `json:"defaultAction,omitempty"`
 	TemplateID                        string `json:"templateID,omitempty"`
 	ServiceID                         int    `json:"serviceID,omitempty"`
 	Description                       string `json:"description,omitempty"`
 	ResourceType                      string `json:"resourceType,omitempty"`
 	Netmask                           string `json:"netmask,omitempty"`
-	FlowCollectionEnabled             string `json:"flowCollectionEnabled,omitempty"`
 	VnId                              int    `json:"vnId,omitempty"`
 	Encryption                        string `json:"encryption,omitempty"`
 	Underlay                          bool   `json:"underlay"`
@@ -113,7 +111,6 @@ func NewSubnet() *Subnet {
 		AccessRestrictionEnabled: false,
 		Advertise:                true,
 		ResourceType:             "STANDARD",
-		FlowCollectionEnabled:    "INHERITED",
 		MultiHomeEnabled:         false,
 		Multicast:                "INHERITED",
 		DynamicIpv6Address:       false,

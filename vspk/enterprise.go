@@ -76,6 +76,7 @@ type Enterprise struct {
 	AllowGatewayManagement                 bool          `json:"allowGatewayManagement"`
 	AllowTrustedForwardingClass            bool          `json:"allowTrustedForwardingClass"`
 	AllowedForwardingClasses               []interface{} `json:"allowedForwardingClasses,omitempty"`
+	AllowedForwardingMode                  string        `json:"allowedForwardingMode,omitempty"`
 	FloatingIPsQuota                       int           `json:"floatingIPsQuota,omitempty"`
 	FloatingIPsUsed                        int           `json:"floatingIPsUsed,omitempty"`
 	FlowCollectionEnabled                  string        `json:"flowCollectionEnabled,omitempty"`
@@ -98,7 +99,7 @@ func NewEnterprise() *Enterprise {
 
 	return &Enterprise{
 		VNFManagementEnabled:                   false,
-		DictionaryVersion:                      1,
+		DictionaryVersion:                      2,
 		VirtualFirewallRulesEnabled:            false,
 		FlowCollectionEnabled:                  "DISABLED",
 		EnableApplicationPerformanceManagement: false,
@@ -273,6 +274,14 @@ func (o *Enterprise) Gateways(info *bambou.FetchingInfo) (GatewaysList, *bambou.
 func (o *Enterprise) CreateGateway(child *Gateway) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GatewaysLocations retrieves the list of child GatewaysLocations of the Enterprise
+func (o *Enterprise) GatewaysLocations(info *bambou.FetchingInfo) (GatewaysLocationsList, *bambou.Error) {
+
+	var list GatewaysLocationsList
+	err := bambou.CurrentSession().FetchChildren(o, GatewaysLocationIdentity, &list, info)
+	return list, err
 }
 
 // GatewayTemplates retrieves the list of child GatewayTemplates of the Enterprise
@@ -885,6 +894,14 @@ func (o *Enterprise) NSGateways(info *bambou.FetchingInfo) (NSGatewaysList, *bam
 func (o *Enterprise) CreateNSGateway(child *NSGateway) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// NSGatewaysCounts retrieves the list of child NSGatewaysCounts of the Enterprise
+func (o *Enterprise) NSGatewaysCounts(info *bambou.FetchingInfo) (NSGatewaysCountsList, *bambou.Error) {
+
+	var list NSGatewaysCountsList
+	err := bambou.CurrentSession().FetchChildren(o, NSGatewaysCountIdentity, &list, info)
+	return list, err
 }
 
 // NSGatewaySummaries retrieves the list of child NSGatewaySummaries of the Enterprise

@@ -55,12 +55,16 @@ type IPv6FilterProfilesParent interface {
 
 // IPv6FilterProfile represents the model of a ipv6filterprofile
 type IPv6FilterProfile struct {
-	ID          string `json:"ID,omitempty"`
-	ParentID    string `json:"parentID,omitempty"`
-	ParentType  string `json:"parentType,omitempty"`
-	Owner       string `json:"owner,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Description string `json:"description,omitempty"`
+	ID              string `json:"ID,omitempty"`
+	ParentID        string `json:"parentID,omitempty"`
+	ParentType      string `json:"parentType,omitempty"`
+	Owner           string `json:"owner,omitempty"`
+	Name            string `json:"name,omitempty"`
+	LastUpdatedBy   string `json:"lastUpdatedBy,omitempty"`
+	Description     string `json:"description,omitempty"`
+	EntityScope     string `json:"entityScope,omitempty"`
+	AssocEntityType string `json:"assocEntityType,omitempty"`
+	ExternalID      string `json:"externalID,omitempty"`
 }
 
 // NewIPv6FilterProfile returns a new *IPv6FilterProfile
@@ -103,4 +107,32 @@ func (o *IPv6FilterProfile) Save() *bambou.Error {
 func (o *IPv6FilterProfile) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// Metadatas retrieves the list of child Metadatas of the IPv6FilterProfile
+func (o *IPv6FilterProfile) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the IPv6FilterProfile
+func (o *IPv6FilterProfile) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the IPv6FilterProfile
+func (o *IPv6FilterProfile) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the IPv6FilterProfile
+func (o *IPv6FilterProfile) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }

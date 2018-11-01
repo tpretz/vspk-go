@@ -59,9 +59,12 @@ type DUCGroupBinding struct {
 	ParentID             string `json:"parentID,omitempty"`
 	ParentType           string `json:"parentType,omitempty"`
 	Owner                string `json:"owner,omitempty"`
+	LastUpdatedBy        string `json:"lastUpdatedBy,omitempty"`
 	OneWayDelay          int    `json:"oneWayDelay,omitempty"`
+	EntityScope          string `json:"entityScope,omitempty"`
 	Priority             int    `json:"priority,omitempty"`
 	AssociatedDUCGroupID string `json:"associatedDUCGroupID,omitempty"`
+	ExternalID           string `json:"externalID,omitempty"`
 }
 
 // NewDUCGroupBinding returns a new *DUCGroupBinding
@@ -106,4 +109,32 @@ func (o *DUCGroupBinding) Save() *bambou.Error {
 func (o *DUCGroupBinding) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// Metadatas retrieves the list of child Metadatas of the DUCGroupBinding
+func (o *DUCGroupBinding) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
+
+	var list MetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, MetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateMetadata creates a new child Metadata under the DUCGroupBinding
+func (o *DUCGroupBinding) CreateMetadata(child *Metadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// GlobalMetadatas retrieves the list of child GlobalMetadatas of the DUCGroupBinding
+func (o *DUCGroupBinding) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
+
+	var list GlobalMetadatasList
+	err := bambou.CurrentSession().FetchChildren(o, GlobalMetadataIdentity, &list, info)
+	return list, err
+}
+
+// CreateGlobalMetadata creates a new child GlobalMetadata under the DUCGroupBinding
+func (o *DUCGroupBinding) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }

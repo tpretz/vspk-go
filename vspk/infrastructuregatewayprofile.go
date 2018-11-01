@@ -75,6 +75,7 @@ type InfrastructureGatewayProfile struct {
 	EnterpriseID                 string `json:"enterpriseID,omitempty"`
 	EntityScope                  string `json:"entityScope,omitempty"`
 	ControllerLessDuration       string `json:"controllerLessDuration,omitempty"`
+	ControllerLessEnabled        bool   `json:"controllerLessEnabled"`
 	ControllerLessForwardingMode string `json:"controllerLessForwardingMode,omitempty"`
 	ControllerLessRemoteDuration string `json:"controllerLessRemoteDuration,omitempty"`
 	ForceImmediateSystemSync     bool   `json:"forceImmediateSystemSync"`
