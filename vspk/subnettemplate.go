@@ -84,9 +84,10 @@ type SubnetTemplate struct {
 func NewSubnetTemplate() *SubnetTemplate {
 
 	return &SubnetTemplate{
-		DPI:       "INHERITED",
-		IPType:    "IPV4",
-		Multicast: "INHERITED",
+		DPI:          "INHERITED",
+		IPType:       "IPV4",
+		UseGlobalMAC: "ENTERPRISE_DEFAULT",
+		Multicast:    "INHERITED",
 	}
 }
 

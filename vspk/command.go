@@ -66,6 +66,7 @@ type Command struct {
 	EntityScope         string `json:"entityScope,omitempty"`
 	Command             string `json:"command,omitempty"`
 	CommandInformation  string `json:"commandInformation,omitempty"`
+	Progress            string `json:"progress,omitempty"`
 	AssocEntityType     string `json:"assocEntityType,omitempty"`
 	AssociatedParam     string `json:"associatedParam,omitempty"`
 	AssociatedParamType string `json:"associatedParamType,omitempty"`

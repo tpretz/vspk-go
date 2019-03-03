@@ -73,11 +73,13 @@ type Gateway struct {
 	DatapathID                         string `json:"datapathID,omitempty"`
 	Patches                            string `json:"patches,omitempty"`
 	GatewayConnected                   bool   `json:"gatewayConnected"`
+	GatewayModel                       string `json:"gatewayModel,omitempty"`
 	GatewayVersion                     string `json:"gatewayVersion,omitempty"`
 	RedundancyGroupID                  string `json:"redundancyGroupID,omitempty"`
 	Peer                               string `json:"peer,omitempty"`
 	TemplateID                         string `json:"templateID,omitempty"`
 	Pending                            bool   `json:"pending"`
+	Vendor                             string `json:"vendor,omitempty"`
 	SerialNumber                       string `json:"serialNumber,omitempty"`
 	PermittedAction                    string `json:"permittedAction,omitempty"`
 	Personality                        string `json:"personality,omitempty"`
@@ -349,6 +351,14 @@ func (o *Gateway) Locations(info *bambou.FetchingInfo) (LocationsList, *bambou.E
 	return list, err
 }
 
+// Domains retrieves the list of child Domains of the Gateway
+func (o *Gateway) Domains(info *bambou.FetchingInfo) (DomainsList, *bambou.Error) {
+
+	var list DomainsList
+	err := bambou.CurrentSession().FetchChildren(o, DomainIdentity, &list, info)
+	return list, err
+}
+
 // Bootstraps retrieves the list of child Bootstraps of the Gateway
 func (o *Gateway) Bootstraps(info *bambou.FetchingInfo) (BootstrapsList, *bambou.Error) {
 
@@ -390,6 +400,14 @@ func (o *Gateway) IPv6FilterProfiles(info *bambou.FetchingInfo) (IPv6FilterProfi
 
 	var list IPv6FilterProfilesList
 	err := bambou.CurrentSession().FetchChildren(o, IPv6FilterProfileIdentity, &list, info)
+	return list, err
+}
+
+// Subnets retrieves the list of child Subnets of the Gateway
+func (o *Gateway) Subnets(info *bambou.FetchingInfo) (SubnetsList, *bambou.Error) {
+
+	var list SubnetsList
+	err := bambou.CurrentSession().FetchChildren(o, SubnetIdentity, &list, info)
 	return list, err
 }
 

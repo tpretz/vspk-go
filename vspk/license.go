@@ -62,6 +62,7 @@ type License struct {
 	MajorRelease                int     `json:"majorRelease,omitempty"`
 	LastUpdatedBy               string  `json:"lastUpdatedBy,omitempty"`
 	AdditionalSupportedVersions string  `json:"additionalSupportedVersions,omitempty"`
+	RequestID                   string  `json:"requestID,omitempty"`
 	Phone                       string  `json:"phone,omitempty"`
 	License                     string  `json:"license,omitempty"`
 	LicenseEncryption           string  `json:"licenseEncryption,omitempty"`
@@ -97,6 +98,7 @@ type License struct {
 	ExpirationDate              float64 `json:"expirationDate,omitempty"`
 	ExpiryTimestamp             int     `json:"expiryTimestamp,omitempty"`
 	ExternalID                  string  `json:"externalID,omitempty"`
+	System                      string  `json:"system,omitempty"`
 }
 
 // NewLicense returns a new *License

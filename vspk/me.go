@@ -1037,6 +1037,14 @@ func (o *Me) CreateNSGGroup(child *NSGGroup) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// NSGInfos retrieves the list of child NSGInfos of the Me
+func (o *Me) NSGInfos(info *bambou.FetchingInfo) (NSGInfosList, *bambou.Error) {
+
+	var list NSGInfosList
+	err := bambou.CurrentSession().FetchChildren(o, NSGInfoIdentity, &list, info)
+	return list, err
+}
+
 // NSGPatchProfiles retrieves the list of child NSGPatchProfiles of the Me
 func (o *Me) NSGPatchProfiles(info *bambou.FetchingInfo) (NSGPatchProfilesList, *bambou.Error) {
 

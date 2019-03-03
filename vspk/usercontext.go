@@ -69,6 +69,7 @@ type UserContext struct {
 	EntityScope            string `json:"entityScope,omitempty"`
 	GoogleMapsAPIKey       string `json:"googleMapsAPIKey,omitempty"`
 	StatisticsEnabled      bool   `json:"statisticsEnabled"`
+	StatsDatabaseProxy     string `json:"statsDatabaseProxy,omitempty"`
 	StatsTSDBServerAddress string `json:"statsTSDBServerAddress,omitempty"`
 	ExternalID             string `json:"externalID,omitempty"`
 }

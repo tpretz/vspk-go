@@ -70,6 +70,9 @@ type IngressAdvFwdEntryTemplate struct {
 	LastUpdatedBy                  string `json:"lastUpdatedBy,omitempty"`
 	Action                         string `json:"action,omitempty"`
 	AddressOverride                string `json:"addressOverride,omitempty"`
+	AddressOverrideType            string `json:"addressOverrideType,omitempty"`
+	WebFilterID                    string `json:"webFilterID,omitempty"`
+	WebFilterType                  string `json:"webFilterType,omitempty"`
 	RedirectRewriteType            string `json:"redirectRewriteType,omitempty"`
 	RedirectRewriteValue           string `json:"redirectRewriteValue,omitempty"`
 	RedirectVPortTagID             string `json:"redirectVPortTagID,omitempty"`
@@ -112,6 +115,7 @@ func NewIngressAdvFwdEntryTemplate() *IngressAdvFwdEntryTemplate {
 		DSCP:                   "*",
 		FailsafeDatapath:       "FAIL_TO_BLOCK",
 		Action:                 "FORWARD",
+		AddressOverrideType:    "IPV4",
 		RemoteUplinkPreference: "DEFAULT",
 		NetworkType:            "ANY",
 		LocationType:           "ANY",

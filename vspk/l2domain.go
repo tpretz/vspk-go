@@ -64,6 +64,7 @@ type L2Domain struct {
 	IPType                            string `json:"IPType,omitempty"`
 	IPv6Address                       string `json:"IPv6Address,omitempty"`
 	IPv6Gateway                       string `json:"IPv6Gateway,omitempty"`
+	VXLANECMPEnabled                  bool   `json:"VXLANECMPEnabled"`
 	MaintenanceMode                   string `json:"maintenanceMode,omitempty"`
 	Name                              string `json:"name,omitempty"`
 	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
@@ -77,6 +78,7 @@ type L2Domain struct {
 	FlowCollectionEnabled             string `json:"flowCollectionEnabled,omitempty"`
 	VnId                              int    `json:"vnId,omitempty"`
 	Encryption                        string `json:"encryption,omitempty"`
+	IngressReplicationEnabled         bool   `json:"ingressReplicationEnabled"`
 	EntityScope                       string `json:"entityScope,omitempty"`
 	EntityState                       string `json:"entityState,omitempty"`
 	PolicyChangeStatus                string `json:"policyChangeStatus,omitempty"`
@@ -90,6 +92,7 @@ type L2Domain struct {
 	AssociatedUnderlayID              string `json:"associatedUnderlayID,omitempty"`
 	Stretched                         bool   `json:"stretched"`
 	Multicast                         string `json:"multicast,omitempty"`
+	CustomerID                        int    `json:"customerID,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`
 	DynamicIpv6Address                bool   `json:"dynamicIpv6Address"`
 }
@@ -98,12 +101,14 @@ type L2Domain struct {
 func NewL2Domain() *L2Domain {
 
 	return &L2Domain{
-		DPI:                   "DISABLED",
-		MaintenanceMode:       "DISABLED",
-		FlowCollectionEnabled: "INHERITED",
-		RoutedVPLSEnabled:     false,
-		UseGlobalMAC:          "DISABLED",
-		DynamicIpv6Address:    false,
+		DPI:                       "DISABLED",
+		VXLANECMPEnabled:          false,
+		MaintenanceMode:           "DISABLED",
+		FlowCollectionEnabled:     "INHERITED",
+		IngressReplicationEnabled: false,
+		RoutedVPLSEnabled:         false,
+		UseGlobalMAC:              "DISABLED",
+		DynamicIpv6Address:        false,
 	}
 }
 

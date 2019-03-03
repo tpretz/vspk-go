@@ -62,6 +62,7 @@ type VsgRedundantPort struct {
 	VLANRange                   string `json:"VLANRange,omitempty"`
 	Name                        string `json:"name,omitempty"`
 	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	PeerLink                    bool   `json:"peerLink"`
 	PermittedAction             string `json:"permittedAction,omitempty"`
 	Description                 string `json:"description,omitempty"`
 	PhysicalName                string `json:"physicalName,omitempty"`
@@ -79,7 +80,9 @@ type VsgRedundantPort struct {
 // NewVsgRedundantPort returns a new *VsgRedundantPort
 func NewVsgRedundantPort() *VsgRedundantPort {
 
-	return &VsgRedundantPort{}
+	return &VsgRedundantPort{
+		PeerLink: false,
+	}
 }
 
 // Identity returns the Identity of the object.

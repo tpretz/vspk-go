@@ -79,9 +79,7 @@ type OSPFArea struct {
 func NewOSPFArea() *OSPFArea {
 
 	return &OSPFArea{
-		RedistributeExternalEnabled: true,
-		AreaType:                    "NORMAL",
-		SummariesEnabled:            true,
+		AreaType: "NORMAL",
 	}
 }
 

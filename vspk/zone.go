@@ -86,6 +86,7 @@ func NewZone() *Zone {
 	return &Zone{
 		DPI:             "INHERITED",
 		MaintenanceMode: "DISABLED",
+		Encryption:      "INHERITED",
 		Multicast:       "INHERITED",
 	}
 }

@@ -70,6 +70,7 @@ type BGPNeighbor struct {
 	Description                     string `json:"description,omitempty"`
 	Session                         string `json:"session,omitempty"`
 	EntityScope                     string `json:"entityScope,omitempty"`
+	DomainServiceLabel              string `json:"domainServiceLabel,omitempty"`
 	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
 	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
 	ExternalID                      string `json:"externalID,omitempty"`
@@ -118,6 +119,20 @@ func (o *BGPNeighbor) Save() *bambou.Error {
 func (o *BGPNeighbor) Delete() *bambou.Error {
 
 	return bambou.CurrentSession().DeleteEntity(o)
+}
+
+// DeploymentFailures retrieves the list of child DeploymentFailures of the BGPNeighbor
+func (o *BGPNeighbor) DeploymentFailures(info *bambou.FetchingInfo) (DeploymentFailuresList, *bambou.Error) {
+
+	var list DeploymentFailuresList
+	err := bambou.CurrentSession().FetchChildren(o, DeploymentFailureIdentity, &list, info)
+	return list, err
+}
+
+// CreateDeploymentFailure creates a new child DeploymentFailure under the BGPNeighbor
+func (o *BGPNeighbor) CreateDeploymentFailure(child *DeploymentFailure) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // Metadatas retrieves the list of child Metadatas of the BGPNeighbor

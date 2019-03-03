@@ -60,6 +60,9 @@ type NetconfSession struct {
 	ParentType            string `json:"parentType,omitempty"`
 	Owner                 string `json:"owner,omitempty"`
 	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
+	GatewayModel          string `json:"gatewayModel,omitempty"`
+	GatewayVendor         string `json:"gatewayVendor,omitempty"`
+	GatewayVersion        string `json:"gatewayVersion,omitempty"`
 	EntityScope           string `json:"entityScope,omitempty"`
 	AssociatedGatewayID   string `json:"associatedGatewayID,omitempty"`
 	AssociatedGatewayName string `json:"associatedGatewayName,omitempty"`

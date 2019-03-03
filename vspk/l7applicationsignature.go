@@ -69,6 +69,7 @@ type L7applicationsignature struct {
 	Description       string `json:"description,omitempty"`
 	DictionaryVersion int    `json:"dictionaryVersion,omitempty"`
 	SignatureIndex    int    `json:"signatureIndex,omitempty"`
+	SignatureVersion  string `json:"signatureVersion,omitempty"`
 	Risk              int    `json:"risk,omitempty"`
 	PluginName        string `json:"pluginName,omitempty"`
 	EntityScope       string `json:"entityScope,omitempty"`

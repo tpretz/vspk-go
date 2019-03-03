@@ -63,6 +63,7 @@ type VPort struct {
 	VLAN                                int    `json:"VLAN,omitempty"`
 	VLANID                              string `json:"VLANID,omitempty"`
 	DPI                                 string `json:"DPI,omitempty"`
+	BackhaulSubnetVNID                  int    `json:"backhaulSubnetVNID,omitempty"`
 	Name                                string `json:"name,omitempty"`
 	HasAttachedInterfaces               bool   `json:"hasAttachedInterfaces"`
 	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
@@ -78,6 +79,9 @@ type VPort struct {
 	Description                         string `json:"description,omitempty"`
 	EntityScope                         string `json:"entityScope,omitempty"`
 	DomainID                            string `json:"domainID,omitempty"`
+	DomainName                          string `json:"domainName,omitempty"`
+	DomainServiceLabel                  string `json:"domainServiceLabel,omitempty"`
+	DomainVLANID                        int    `json:"domainVLANID,omitempty"`
 	ZoneID                              string `json:"zoneID,omitempty"`
 	OperationalState                    string `json:"operationalState,omitempty"`
 	TrunkRole                           string `json:"trunkRole,omitempty"`
@@ -93,6 +97,7 @@ type VPort struct {
 	AssociatedSendMulticastChannelMapID string `json:"associatedSendMulticastChannelMapID,omitempty"`
 	AssociatedTrunkID                   string `json:"associatedTrunkID,omitempty"`
 	SubType                             string `json:"subType,omitempty"`
+	SubnetVNID                          int    `json:"subnetVNID,omitempty"`
 	MultiNICVPortID                     string `json:"multiNICVPortID,omitempty"`
 	Multicast                           string `json:"multicast,omitempty"`
 	GwEligible                          bool   `json:"gwEligible"`

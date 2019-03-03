@@ -64,13 +64,16 @@ type DUCGroup struct {
 	Description                    string `json:"description,omitempty"`
 	EntityScope                    string `json:"entityScope,omitempty"`
 	AssociatedPerformanceMonitorID string `json:"associatedPerformanceMonitorID,omitempty"`
+	Function                       string `json:"function,omitempty"`
 	ExternalID                     string `json:"externalID,omitempty"`
 }
 
 // NewDUCGroup returns a new *DUCGroup
 func NewDUCGroup() *DUCGroup {
 
-	return &DUCGroup{}
+	return &DUCGroup{
+		Function: "UBR",
+	}
 }
 
 // Identity returns the Identity of the object.

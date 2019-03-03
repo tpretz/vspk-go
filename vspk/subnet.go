@@ -65,6 +65,7 @@ type Subnet struct {
 	IPType                            string `json:"IPType,omitempty"`
 	IPv6Address                       string `json:"IPv6Address,omitempty"`
 	IPv6Gateway                       string `json:"IPv6Gateway,omitempty"`
+	EVPNEnabled                       bool   `json:"EVPNEnabled"`
 	MaintenanceMode                   string `json:"maintenanceMode,omitempty"`
 	Name                              string `json:"name,omitempty"`
 	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
@@ -82,9 +83,11 @@ type Subnet struct {
 	Encryption                        string `json:"encryption,omitempty"`
 	Underlay                          bool   `json:"underlay"`
 	UnderlayEnabled                   string `json:"underlayEnabled,omitempty"`
+	IngressReplicationEnabled         bool   `json:"ingressReplicationEnabled"`
 	EntityScope                       string `json:"entityScope,omitempty"`
 	EntityState                       string `json:"entityState,omitempty"`
 	PolicyGroupID                     int    `json:"policyGroupID,omitempty"`
+	DomainServiceLabel                string `json:"domainServiceLabel,omitempty"`
 	RouteDistinguisher                string `json:"routeDistinguisher,omitempty"`
 	RouteTarget                       string `json:"routeTarget,omitempty"`
 	SplitSubnet                       bool   `json:"splitSubnet"`
@@ -96,6 +99,7 @@ type Subnet struct {
 	SubnetVLANID                      int    `json:"subnetVLANID,omitempty"`
 	MultiHomeEnabled                  bool   `json:"multiHomeEnabled"`
 	Multicast                         string `json:"multicast,omitempty"`
+	CustomerID                        int    `json:"customerID,omitempty"`
 	ExternalID                        string `json:"externalID,omitempty"`
 	DynamicIpv6Address                bool   `json:"dynamicIpv6Address"`
 }
@@ -104,16 +108,21 @@ type Subnet struct {
 func NewSubnet() *Subnet {
 
 	return &Subnet{
-		PATEnabled:               "INHERITED",
-		DPI:                      "INHERITED",
-		IPType:                   "IPV4",
-		MaintenanceMode:          "DISABLED",
-		AccessRestrictionEnabled: false,
-		Advertise:                true,
-		ResourceType:             "STANDARD",
-		MultiHomeEnabled:         false,
-		Multicast:                "INHERITED",
-		DynamicIpv6Address:       false,
+		PATEnabled:                "INHERITED",
+		DPI:                       "INHERITED",
+		IPType:                    "IPV4",
+		EVPNEnabled:               true,
+		MaintenanceMode:           "DISABLED",
+		AccessRestrictionEnabled:  false,
+		Advertise:                 true,
+		ResourceType:              "STANDARD",
+		Encryption:                "INHERITED",
+		UnderlayEnabled:           "INHERITED",
+		IngressReplicationEnabled: false,
+		UseGlobalMAC:              "ENTERPRISE_DEFAULT",
+		MultiHomeEnabled:          false,
+		Multicast:                 "INHERITED",
+		DynamicIpv6Address:        false,
 	}
 }
 
@@ -195,6 +204,20 @@ func (o *Subnet) DefaultGateways(info *bambou.FetchingInfo) (DefaultGatewaysList
 	var list DefaultGatewaysList
 	err := bambou.CurrentSession().FetchChildren(o, DefaultGatewayIdentity, &list, info)
 	return list, err
+}
+
+// DeploymentFailures retrieves the list of child DeploymentFailures of the Subnet
+func (o *Subnet) DeploymentFailures(info *bambou.FetchingInfo) (DeploymentFailuresList, *bambou.Error) {
+
+	var list DeploymentFailuresList
+	err := bambou.CurrentSession().FetchChildren(o, DeploymentFailureIdentity, &list, info)
+	return list, err
+}
+
+// CreateDeploymentFailure creates a new child DeploymentFailure under the Subnet
+func (o *Subnet) CreateDeploymentFailure(child *DeploymentFailure) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
 }
 
 // VMResyncs retrieves the list of child VMResyncs of the Subnet

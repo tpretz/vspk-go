@@ -95,6 +95,8 @@ type SystemConfig struct {
 	VPortInitStatefulTimer                            int    `json:"VPortInitStatefulTimer,omitempty"`
 	LRUCacheSizePerSubnet                             int    `json:"LRUCacheSizePerSubnet,omitempty"`
 	VSCOnSameVersionAsVSD                             bool   `json:"VSCOnSameVersionAsVSD"`
+	VSDAARApplicationVersion                          string `json:"VSDAARApplicationVersion,omitempty"`
+	VSDAARApplicationVersionPublishDate               string `json:"VSDAARApplicationVersionPublishDate,omitempty"`
 	VSDReadOnlyMode                                   bool   `json:"VSDReadOnlyMode"`
 	VSDUpgradeIsComplete                              bool   `json:"VSDUpgradeIsComplete"`
 	NSGUplinkHoldDownTimer                            int    `json:"NSGUplinkHoldDownTimer,omitempty"`
@@ -111,6 +113,9 @@ type SystemConfig struct {
 	PageMaxSize                                       int    `json:"pageMaxSize,omitempty"`
 	PageSize                                          int    `json:"pageSize,omitempty"`
 	LastUpdatedBy                                     string `json:"lastUpdatedBy,omitempty"`
+	GatewayProbeInterval                              int    `json:"gatewayProbeInterval,omitempty"`
+	GatewayProbeWindow                                int    `json:"gatewayProbeWindow,omitempty"`
+	GatewayRebalancingInterval                        int    `json:"gatewayRebalancingInterval,omitempty"`
 	MaxFailedLogins                                   int    `json:"maxFailedLogins,omitempty"`
 	MaxResponse                                       int    `json:"maxResponse,omitempty"`
 	AccumulateLicensesEnabled                         bool   `json:"accumulateLicensesEnabled"`
@@ -171,6 +176,7 @@ type SystemConfig struct {
 	StatsCollectorAddress                             string `json:"statsCollectorAddress,omitempty"`
 	StatsCollectorPort                                string `json:"statsCollectorPort,omitempty"`
 	StatsCollectorProtoBufPort                        string `json:"statsCollectorProtoBufPort,omitempty"`
+	StatsDatabaseProxy                                string `json:"statsDatabaseProxy,omitempty"`
 	StatsMaxDataPoints                                int    `json:"statsMaxDataPoints,omitempty"`
 	StatsMinDuration                                  int    `json:"statsMinDuration,omitempty"`
 	StatsNumberOfDataPoints                           int    `json:"statsNumberOfDataPoints,omitempty"`
@@ -241,6 +247,7 @@ func NewSystemConfig() *SystemConfig {
 		APIKeyValidity:                  86400,
 		VPortInitStatefulTimer:          300,
 		LRUCacheSizePerSubnet:           32,
+		VSDReadOnlyMode:                 false,
 		NSGUplinkHoldDownTimer:          5,
 		ASNumber:                        65534,
 		VSSStatsInterval:                30,
@@ -253,6 +260,9 @@ func NewSystemConfig() *SystemConfig {
 		EVPNBGPCommunityTagUpperLimit:   65535,
 		PageMaxSize:                     500,
 		PageSize:                        50,
+		GatewayProbeInterval:            5,
+		GatewayProbeWindow:              120,
+		GatewayRebalancingInterval:      600,
 		MaxResponse:                     500,
 		AccumulateLicensesEnabled:       false,
 		PerDomainVlanIdEnabled:          false,
@@ -277,6 +287,7 @@ func NewSystemConfig() *SystemConfig {
 		NsgLocalUiUrl:                   "http://registration.nsg",
 		EsiID:                           10000,
 		CsprootAuthenticationMethod:     "LOCAL",
+		StackTraceEnabled:               false,
 		StatefulACLNonTCPTimeout:        180,
 		StatefulACLTCPTimeout:           3600,
 		StaticWANServicePurgeTime:       3600,
@@ -286,7 +297,7 @@ func NewSystemConfig() *SystemConfig {
 		StatsMaxDataPoints:              10000,
 		StatsMinDuration:                2592000,
 		StatsNumberOfDataPoints:         30,
-		StatsTSDBServerAddress:          "http://localhost:9300",
+		StatsTSDBServerAddress:          "localhost:9300",
 		StickyECMPIdleTimeout:           0,
 		AttachProbeToIPsecNPM:           true,
 		AttachProbeToVXLANNPM:           true,

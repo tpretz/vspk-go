@@ -64,6 +64,7 @@ type EnterpriseProfile struct {
 	VNFManagementEnabled                   bool          `json:"VNFManagementEnabled"`
 	Name                                   string        `json:"name,omitempty"`
 	LastUpdatedBy                          string        `json:"lastUpdatedBy,omitempty"`
+	WebFilterEnabled                       bool          `json:"webFilterEnabled"`
 	ReceiveMultiCastListID                 string        `json:"receiveMultiCastListID,omitempty"`
 	SendMultiCastListID                    string        `json:"sendMultiCastListID,omitempty"`
 	Description                            string        `json:"description,omitempty"`
@@ -84,6 +85,7 @@ func NewEnterpriseProfile() *EnterpriseProfile {
 	return &EnterpriseProfile{
 		DHCPLeaseInterval:                      24,
 		VNFManagementEnabled:                   false,
+		WebFilterEnabled:                       false,
 		FloatingIPsQuota:                       100,
 		EnableApplicationPerformanceManagement: false,
 	}

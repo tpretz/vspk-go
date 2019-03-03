@@ -69,6 +69,8 @@ type EgressAdvFwdEntryTemplate struct {
 	LastUpdatedBy            string `json:"lastUpdatedBy,omitempty"`
 	Action                   string `json:"action,omitempty"`
 	AddressOverride          string `json:"addressOverride,omitempty"`
+	WebFilterID              string `json:"webFilterID,omitempty"`
+	WebFilterType            string `json:"webFilterType,omitempty"`
 	RedirectVPortTagID       string `json:"redirectVPortTagID,omitempty"`
 	Description              string `json:"description,omitempty"`
 	DestinationPort          string `json:"destinationPort,omitempty"`

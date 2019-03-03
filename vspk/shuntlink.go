@@ -74,12 +74,7 @@ type ShuntLink struct {
 // NewShuntLink returns a new *ShuntLink
 func NewShuntLink() *ShuntLink {
 
-	return &ShuntLink{
-		Name:           "null",
-		GatewayPeer1ID: "null",
-		GatewayPeer2ID: "null",
-		Description:    "null",
-	}
+	return &ShuntLink{}
 }
 
 // Identity returns the Identity of the object.

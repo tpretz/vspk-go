@@ -118,6 +118,20 @@ func (o *GatewayRedundantPort) Delete() *bambou.Error {
 	return bambou.CurrentSession().DeleteEntity(o)
 }
 
+// Permissions retrieves the list of child Permissions of the GatewayRedundantPort
+func (o *GatewayRedundantPort) Permissions(info *bambou.FetchingInfo) (PermissionsList, *bambou.Error) {
+
+	var list PermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, PermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreatePermission creates a new child Permission under the GatewayRedundantPort
+func (o *GatewayRedundantPort) CreatePermission(child *Permission) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
 // Metadatas retrieves the list of child Metadatas of the GatewayRedundantPort
 func (o *GatewayRedundantPort) Metadatas(info *bambou.FetchingInfo) (MetadatasList, *bambou.Error) {
 
@@ -146,6 +160,14 @@ func (o *GatewayRedundantPort) CreateVLAN(child *VLAN) *bambou.Error {
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Alarms retrieves the list of child Alarms of the GatewayRedundantPort
+func (o *GatewayRedundantPort) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the GatewayRedundantPort
 func (o *GatewayRedundantPort) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 
@@ -156,6 +178,20 @@ func (o *GatewayRedundantPort) GlobalMetadatas(info *bambou.FetchingInfo) (Globa
 
 // CreateGlobalMetadata creates a new child GlobalMetadata under the GatewayRedundantPort
 func (o *GatewayRedundantPort) CreateGlobalMetadata(child *GlobalMetadata) *bambou.Error {
+
+	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// EnterprisePermissions retrieves the list of child EnterprisePermissions of the GatewayRedundantPort
+func (o *GatewayRedundantPort) EnterprisePermissions(info *bambou.FetchingInfo) (EnterprisePermissionsList, *bambou.Error) {
+
+	var list EnterprisePermissionsList
+	err := bambou.CurrentSession().FetchChildren(o, EnterprisePermissionIdentity, &list, info)
+	return list, err
+}
+
+// CreateEnterprisePermission creates a new child EnterprisePermission under the GatewayRedundantPort
+func (o *GatewayRedundantPort) CreateEnterprisePermission(child *EnterprisePermission) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
 }

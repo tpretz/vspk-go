@@ -66,6 +66,8 @@ type InfrastructureGatewayProfile struct {
 	DatapathSyncTimeout          int    `json:"datapathSyncTimeout,omitempty"`
 	DeadTimer                    string `json:"deadTimer,omitempty"`
 	DeadTimerEnabled             bool   `json:"deadTimerEnabled"`
+	WebFilterDownloadPort        int    `json:"webFilterDownloadPort,omitempty"`
+	WebFilterQueryPort           int    `json:"webFilterQueryPort,omitempty"`
 	RemoteLogMode                string `json:"remoteLogMode,omitempty"`
 	RemoteLogServerAddress       string `json:"remoteLogServerAddress,omitempty"`
 	RemoteLogServerPort          int    `json:"remoteLogServerPort,omitempty"`
@@ -93,8 +95,9 @@ func NewInfrastructureGatewayProfile() *InfrastructureGatewayProfile {
 
 	return &InfrastructureGatewayProfile{
 		DatapathSyncTimeout:          1000,
-		DeadTimer:                    "ONE_HOUR",
 		DeadTimerEnabled:             false,
+		WebFilterDownloadPort:        8080,
+		WebFilterQueryPort:           9090,
 		RemoteLogMode:                "DISABLED",
 		RemoteLogServerPort:          514,
 		FlowEvictionThreshold:        2500,
@@ -103,8 +106,8 @@ func NewInfrastructureGatewayProfile() *InfrastructureGatewayProfile {
 		ControllerLessRemoteDuration: "P3DT0H0M",
 		ForceImmediateSystemSync:     false,
 		OpenFlowAuditTimer:           180,
-		UpgradeAction:                "DOWNLOAD_AND_UPGRADE_AT_WINDOW",
-		UseTwoFactor:                 true,
+		UpgradeAction:                "NONE",
+		UseTwoFactor:                 false,
 		StatsCollectorPort:           39090,
 		SystemSyncScheduler:          "0 0 * * *",
 	}

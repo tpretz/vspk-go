@@ -138,6 +138,14 @@ func (o *NetconfManager) CreateNetconfSession(child *NetconfSession) *bambou.Err
 	return bambou.CurrentSession().CreateChild(o, child)
 }
 
+// Alarms retrieves the list of child Alarms of the NetconfManager
+func (o *NetconfManager) Alarms(info *bambou.FetchingInfo) (AlarmsList, *bambou.Error) {
+
+	var list AlarmsList
+	err := bambou.CurrentSession().FetchChildren(o, AlarmIdentity, &list, info)
+	return list, err
+}
+
 // GlobalMetadatas retrieves the list of child GlobalMetadatas of the NetconfManager
 func (o *NetconfManager) GlobalMetadatas(info *bambou.FetchingInfo) (GlobalMetadatasList, *bambou.Error) {
 

@@ -67,6 +67,7 @@ type Domain struct {
 	FIPIgnoreDefaultRoute           string        `json:"FIPIgnoreDefaultRoute,omitempty"`
 	FIPUnderlay                     bool          `json:"FIPUnderlay"`
 	DPI                             string        `json:"DPI,omitempty"`
+	VXLANECMPEnabled                bool          `json:"VXLANECMPEnabled"`
 	LabelID                         int           `json:"labelID,omitempty"`
 	BackHaulRouteDistinguisher      string        `json:"backHaulRouteDistinguisher,omitempty"`
 	BackHaulRouteTarget             string        `json:"backHaulRouteTarget,omitempty"`
@@ -82,6 +83,7 @@ type Domain struct {
 	PermittedAction                 string        `json:"permittedAction,omitempty"`
 	ServiceID                       int           `json:"serviceID,omitempty"`
 	Description                     string        `json:"description,omitempty"`
+	AggregateFlowsEnabled           bool          `json:"aggregateFlowsEnabled"`
 	DhcpServerAddresses             []interface{} `json:"dhcpServerAddresses,omitempty"`
 	GlobalRoutingEnabled            bool          `json:"globalRoutingEnabled"`
 	FlowCollectionEnabled           string        `json:"flowCollectionEnabled,omitempty"`
@@ -108,19 +110,24 @@ type Domain struct {
 	CustomerID                      int           `json:"customerID,omitempty"`
 	ExportRouteTarget               string        `json:"exportRouteTarget,omitempty"`
 	ExternalID                      string        `json:"externalID,omitempty"`
+	ExternalLabel                   string        `json:"externalLabel,omitempty"`
 }
 
 // NewDomain returns a new *Domain
 func NewDomain() *Domain {
 
 	return &Domain{
-		PATEnabled:            "INHERITED",
+		PATEnabled:            "DISABLED",
 		DHCPBehavior:          "CONSUME",
 		FIPIgnoreDefaultRoute: "DISABLED",
 		FIPUnderlay:           false,
 		DPI:                   "DISABLED",
+		VXLANECMPEnabled:      false,
 		MaintenanceMode:       "DISABLED",
+		AggregateFlowsEnabled: false,
 		FlowCollectionEnabled: "INHERITED",
+		Encryption:            "DISABLED",
+		UnderlayEnabled:       "DISABLED",
 		TunnelType:            "DC_DEFAULT",
 	}
 }
@@ -187,6 +194,14 @@ func (o *Domain) RedirectionTargets(info *bambou.FetchingInfo) (RedirectionTarge
 func (o *Domain) CreateRedirectionTarget(child *RedirectionTarget) *bambou.Error {
 
 	return bambou.CurrentSession().CreateChild(o, child)
+}
+
+// DeploymentFailures retrieves the list of child DeploymentFailures of the Domain
+func (o *Domain) DeploymentFailures(info *bambou.FetchingInfo) (DeploymentFailuresList, *bambou.Error) {
+
+	var list DeploymentFailuresList
+	err := bambou.CurrentSession().FetchChildren(o, DeploymentFailureIdentity, &list, info)
+	return list, err
 }
 
 // Permissions retrieves the list of child Permissions of the Domain
