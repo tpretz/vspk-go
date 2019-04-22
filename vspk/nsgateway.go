@@ -134,7 +134,6 @@ func NewNSGateway() *NSGateway {
 		ConfigurationStatus:              "UNKNOWN",
 		ControlTrafficCOSValue:           7,
 		ControlTrafficDSCPValue:          56,
-		Functions:                        UBR,
 	}
 }
 
