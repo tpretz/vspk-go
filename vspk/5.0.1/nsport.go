@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NSPortIdentity represents the Identity of the object
 var NSPortIdentity = bambou.Identity{
@@ -37,38 +37,16 @@ type NSPortsParent interface {
 
 // NSPort represents the model of a nsport
 type NSPort struct {
-	ID                          string `json:"ID,omitempty"`
-	ParentID                    string `json:"parentID,omitempty"`
-	ParentType                  string `json:"parentType,omitempty"`
-	Owner                       string `json:"owner,omitempty"`
-	NATTraversal                string `json:"NATTraversal,omitempty"`
-	VLANRange                   string `json:"VLANRange,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	TemplateID                  string `json:"templateID,omitempty"`
-	PermittedAction             string `json:"permittedAction,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	NetworkAccelerationEnabled  bool   `json:"networkAccelerationEnabled"`
-	PhysicalName                string `json:"physicalName,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	PortType                    string `json:"portType,omitempty"`
-	Speed                       string `json:"speed,omitempty"`
-	UseUserMnemonic             bool   `json:"useUserMnemonic"`
-	UserMnemonic                string `json:"userMnemonic,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
-	AssociatedRedundantPortID   string `json:"associatedRedundantPortID,omitempty"`
-	Status                      string `json:"status,omitempty"`
-	Mtu                         int    `json:"mtu,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNSPort returns a new *NSPort
 func NewNSPort() *NSPort {
 
-	return &NSPort{
-		NATTraversal: "NONE",
-		Mtu:          1500,
-	}
+	return &NSPort{}
 }
 
 // Identity returns the Identity of the object.

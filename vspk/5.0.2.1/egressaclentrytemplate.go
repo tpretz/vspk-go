@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // EgressACLEntryTemplateIdentity represents the Identity of the object
 var EgressACLEntryTemplateIdentity = bambou.Identity{
@@ -37,39 +37,10 @@ type EgressACLEntryTemplatesParent interface {
 
 // EgressACLEntryTemplate represents the model of a egressaclentrytemplate
 type EgressACLEntryTemplate struct {
-	ID                     string `json:"ID,omitempty"`
-	ParentID               string `json:"parentID,omitempty"`
-	ParentType             string `json:"parentType,omitempty"`
-	Owner                  string `json:"owner,omitempty"`
-	ACLTemplateName        string `json:"ACLTemplateName,omitempty"`
-	ICMPCode               string `json:"ICMPCode,omitempty"`
-	ICMPType               string `json:"ICMPType,omitempty"`
-	IPv6AddressOverride    string `json:"IPv6AddressOverride,omitempty"`
-	DSCP                   string `json:"DSCP,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	Action                 string `json:"action,omitempty"`
-	AddressOverride        string `json:"addressOverride,omitempty"`
-	Description            string `json:"description,omitempty"`
-	DestinationPort        string `json:"destinationPort,omitempty"`
-	NetworkID              string `json:"networkID,omitempty"`
-	NetworkType            string `json:"networkType,omitempty"`
-	MirrorDestinationID    string `json:"mirrorDestinationID,omitempty"`
-	FlowLoggingEnabled     bool   `json:"flowLoggingEnabled"`
-	EnterpriseName         string `json:"enterpriseName,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	LocationID             string `json:"locationID,omitempty"`
-	LocationType           string `json:"locationType,omitempty"`
-	PolicyState            string `json:"policyState,omitempty"`
-	DomainName             string `json:"domainName,omitempty"`
-	SourcePort             string `json:"sourcePort,omitempty"`
-	Priority               int    `json:"priority,omitempty"`
-	Protocol               string `json:"protocol,omitempty"`
-	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
-	Stateful               bool   `json:"stateful"`
-	StatsID                string `json:"statsID,omitempty"`
-	StatsLoggingEnabled    bool   `json:"statsLoggingEnabled"`
-	EtherType              string `json:"etherType,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewEgressACLEntryTemplate returns a new *EgressACLEntryTemplate

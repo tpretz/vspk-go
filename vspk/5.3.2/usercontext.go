@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // UserContextIdentity represents the Identity of the object
 var UserContextIdentity = bambou.Identity{
@@ -37,30 +37,16 @@ type UserContextsParent interface {
 
 // UserContext represents the model of a usercontext
 type UserContext struct {
-	ID                     string `json:"ID,omitempty"`
-	ParentID               string `json:"parentID,omitempty"`
-	ParentType             string `json:"parentType,omitempty"`
-	Owner                  string `json:"owner,omitempty"`
-	AARFlowStatsInterval   int    `json:"AARFlowStatsInterval,omitempty"`
-	AARProbeStatsInterval  int    `json:"AARProbeStatsInterval,omitempty"`
-	VSSFeatureEnabled      bool   `json:"VSSFeatureEnabled"`
-	VSSStatsInterval       int    `json:"VSSStatsInterval,omitempty"`
-	PageSize               string `json:"pageSize,omitempty"`
-	FlowCollectionEnabled  bool   `json:"flowCollectionEnabled"`
-	GoogleMapsAPIKey       string `json:"googleMapsAPIKey,omitempty"`
-	StatisticsEnabled      bool   `json:"statisticsEnabled"`
-	StatsTSDBServerAddress string `json:"statsTSDBServerAddress,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewUserContext returns a new *UserContext
 func NewUserContext() *UserContext {
 
-	return &UserContext{
-		AARFlowStatsInterval:  30,
-		AARProbeStatsInterval: 30,
-		VSSFeatureEnabled:     false,
-		VSSStatsInterval:      30,
-	}
+	return &UserContext{}
 }
 
 // Identity returns the Identity of the object.

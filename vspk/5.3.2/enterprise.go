@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // EnterpriseIdentity represents the Identity of the object
 var EnterpriseIdentity = bambou.Identity{
@@ -37,54 +37,16 @@ type EnterprisesParent interface {
 
 // Enterprise represents the model of a enterprise
 type Enterprise struct {
-	ID                                     string        `json:"ID,omitempty"`
-	ParentID                               string        `json:"parentID,omitempty"`
-	ParentType                             string        `json:"parentType,omitempty"`
-	Owner                                  string        `json:"owner,omitempty"`
-	LDAPAuthorizationEnabled               bool          `json:"LDAPAuthorizationEnabled"`
-	LDAPEnabled                            bool          `json:"LDAPEnabled"`
-	BGPEnabled                             bool          `json:"BGPEnabled"`
-	DHCPLeaseInterval                      int           `json:"DHCPLeaseInterval,omitempty"`
-	VNFManagementEnabled                   bool          `json:"VNFManagementEnabled"`
-	Name                                   string        `json:"name,omitempty"`
-	LastUpdatedBy                          string        `json:"lastUpdatedBy,omitempty"`
-	ReceiveMultiCastListID                 string        `json:"receiveMultiCastListID,omitempty"`
-	SendMultiCastListID                    string        `json:"sendMultiCastListID,omitempty"`
-	Description                            string        `json:"description,omitempty"`
-	SharedEnterprise                       bool          `json:"sharedEnterprise"`
-	DictionaryVersion                      int           `json:"dictionaryVersion,omitempty"`
-	VirtualFirewallRulesEnabled            bool          `json:"virtualFirewallRulesEnabled"`
-	AllowAdvancedQOSConfiguration          bool          `json:"allowAdvancedQOSConfiguration"`
-	AllowGatewayManagement                 bool          `json:"allowGatewayManagement"`
-	AllowTrustedForwardingClass            bool          `json:"allowTrustedForwardingClass"`
-	AllowedForwardingClasses               []interface{} `json:"allowedForwardingClasses,omitempty"`
-	FloatingIPsQuota                       int           `json:"floatingIPsQuota,omitempty"`
-	FloatingIPsUsed                        int           `json:"floatingIPsUsed,omitempty"`
-	FlowCollectionEnabled                  string        `json:"flowCollectionEnabled,omitempty"`
-	EnableApplicationPerformanceManagement bool          `json:"enableApplicationPerformanceManagement"`
-	EncryptionManagementMode               string        `json:"encryptionManagementMode,omitempty"`
-	EnterpriseProfileID                    string        `json:"enterpriseProfileID,omitempty"`
-	EntityScope                            string        `json:"entityScope,omitempty"`
-	LocalAS                                int           `json:"localAS,omitempty"`
-	AssociatedEnterpriseSecurityID         string        `json:"associatedEnterpriseSecurityID,omitempty"`
-	AssociatedGroupKeyEncryptionProfileID  string        `json:"associatedGroupKeyEncryptionProfileID,omitempty"`
-	AssociatedKeyServerMonitorID           string        `json:"associatedKeyServerMonitorID,omitempty"`
-	CustomerID                             int           `json:"customerID,omitempty"`
-	AvatarData                             string        `json:"avatarData,omitempty"`
-	AvatarType                             string        `json:"avatarType,omitempty"`
-	ExternalID                             string        `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewEnterprise returns a new *Enterprise
 func NewEnterprise() *Enterprise {
 
-	return &Enterprise{
-		VNFManagementEnabled:                   false,
-		DictionaryVersion:                      1,
-		VirtualFirewallRulesEnabled:            false,
-		FlowCollectionEnabled:                  "DISABLED",
-		EnableApplicationPerformanceManagement: false,
-	}
+	return &Enterprise{}
 }
 
 // Identity returns the Identity of the object.

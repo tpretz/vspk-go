@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VCenterEAMConfigIdentity represents the Identity of the object
 var VCenterEAMConfigIdentity = bambou.Identity{
@@ -37,19 +37,10 @@ type VCenterEAMConfigsParent interface {
 
 // VCenterEAMConfig represents the model of a eamconfig
 type VCenterEAMConfig struct {
-	ID                  string `json:"ID,omitempty"`
-	ParentID            string `json:"parentID,omitempty"`
-	ParentType          string `json:"parentType,omitempty"`
-	Owner               string `json:"owner,omitempty"`
-	EamServerIP         string `json:"eamServerIP,omitempty"`
-	EamServerPortNumber int    `json:"eamServerPortNumber,omitempty"`
-	EamServerPortType   string `json:"eamServerPortType,omitempty"`
-	LastUpdatedBy       string `json:"lastUpdatedBy,omitempty"`
-	VibURL              string `json:"vibURL,omitempty"`
-	EntityScope         string `json:"entityScope,omitempty"`
-	OvfURL              string `json:"ovfURL,omitempty"`
-	ExtensionKey        string `json:"extensionKey,omitempty"`
-	ExternalID          string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVCenterEAMConfig returns a new *VCenterEAMConfig

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NSRedundantGatewayGroupIdentity represents the Identity of the object
 var NSRedundantGatewayGroupIdentity = bambou.Identity{
@@ -37,38 +37,16 @@ type NSRedundantGatewayGroupsParent interface {
 
 // NSRedundantGatewayGroup represents the model of a nsgredundancygroup
 type NSRedundantGatewayGroup struct {
-	ID                                  string        `json:"ID,omitempty"`
-	ParentID                            string        `json:"parentID,omitempty"`
-	ParentType                          string        `json:"parentType,omitempty"`
-	Owner                               string        `json:"owner,omitempty"`
-	Name                                string        `json:"name,omitempty"`
-	LastUpdatedBy                       string        `json:"lastUpdatedBy,omitempty"`
-	GatewayPeer1AutodiscoveredGatewayID string        `json:"gatewayPeer1AutodiscoveredGatewayID,omitempty"`
-	GatewayPeer1ID                      string        `json:"gatewayPeer1ID,omitempty"`
-	GatewayPeer1Name                    string        `json:"gatewayPeer1Name,omitempty"`
-	GatewayPeer2AutodiscoveredGatewayID string        `json:"gatewayPeer2AutodiscoveredGatewayID,omitempty"`
-	GatewayPeer2Name                    string        `json:"gatewayPeer2Name,omitempty"`
-	HeartbeatInterval                   int           `json:"heartbeatInterval,omitempty"`
-	HeartbeatVLANID                     int           `json:"heartbeatVLANID,omitempty"`
-	RedundancyPortIDs                   []interface{} `json:"redundancyPortIDs,omitempty"`
-	RedundantGatewayStatus              string        `json:"redundantGatewayStatus,omitempty"`
-	PermittedAction                     string        `json:"permittedAction,omitempty"`
-	Personality                         string        `json:"personality,omitempty"`
-	Description                         string        `json:"description,omitempty"`
-	EnterpriseID                        string        `json:"enterpriseID,omitempty"`
-	EntityScope                         string        `json:"entityScope,omitempty"`
-	ConsecutiveFailuresCount            int           `json:"consecutiveFailuresCount,omitempty"`
-	ExternalID                          string        `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNSRedundantGatewayGroup returns a new *NSRedundantGatewayGroup
 func NewNSRedundantGatewayGroup() *NSRedundantGatewayGroup {
 
-	return &NSRedundantGatewayGroup{
-		HeartbeatInterval:        500,
-		HeartbeatVLANID:          4094,
-		ConsecutiveFailuresCount: 3,
-	}
+	return &NSRedundantGatewayGroup{}
 }
 
 // Identity returns the Identity of the object.

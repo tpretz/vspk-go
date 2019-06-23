@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // GatewayTemplateIdentity represents the Identity of the object
 var GatewayTemplateIdentity = bambou.Identity{
@@ -37,17 +37,10 @@ type GatewayTemplatesParent interface {
 
 // GatewayTemplate represents the model of a gatewaytemplate
 type GatewayTemplate struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	Name          string `json:"name,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Personality   string `json:"personality,omitempty"`
-	Description   string `json:"description,omitempty"`
-	EnterpriseID  string `json:"enterpriseID,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewGatewayTemplate returns a new *GatewayTemplate

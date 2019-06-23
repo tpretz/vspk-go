@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // UplinkConnectionIdentity represents the Identity of the object
 var UplinkConnectionIdentity = bambou.Identity{
@@ -37,48 +37,16 @@ type UplinkConnectionsParent interface {
 
 // UplinkConnection represents the model of a uplinkconnection
 type UplinkConnection struct {
-	ID                      string  `json:"ID,omitempty"`
-	ParentID                string  `json:"parentID,omitempty"`
-	ParentType              string  `json:"parentType,omitempty"`
-	Owner                   string  `json:"owner,omitempty"`
-	PATEnabled              bool    `json:"PATEnabled"`
-	DNSAddress              string  `json:"DNSAddress,omitempty"`
-	Password                string  `json:"password,omitempty"`
-	Gateway                 string  `json:"gateway,omitempty"`
-	Address                 string  `json:"address,omitempty"`
-	AdvertisementCriteria   string  `json:"advertisementCriteria,omitempty"`
-	SecondaryAddress        string  `json:"secondaryAddress,omitempty"`
-	Netmask                 string  `json:"netmask,omitempty"`
-	VlanId                  string  `json:"vlanId,omitempty"`
-	UnderlayEnabled         bool    `json:"underlayEnabled"`
-	InstallerManaged        bool    `json:"installerManaged"`
-	InterfaceConnectionType string  `json:"interfaceConnectionType,omitempty"`
-	Mode                    string  `json:"mode,omitempty"`
-	Role                    string  `json:"role,omitempty"`
-	RoleOrder               string  `json:"roleOrder,omitempty"`
-	PortName                string  `json:"portName,omitempty"`
-	DownloadRateLimit       float64 `json:"downloadRateLimit,omitempty"`
-	UplinkID                int     `json:"uplinkID,omitempty"`
-	Username                string  `json:"username,omitempty"`
-	AssocUnderlayID         string  `json:"assocUnderlayID,omitempty"`
-	AssociatedBGPNeighborID string  `json:"associatedBGPNeighborID,omitempty"`
-	AssociatedUnderlayName  string  `json:"associatedUnderlayName,omitempty"`
-	AuxiliaryLink           bool    `json:"auxiliaryLink"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewUplinkConnection returns a new *UplinkConnection
 func NewUplinkConnection() *UplinkConnection {
 
-	return &UplinkConnection{
-		PATEnabled:              true,
-		UnderlayEnabled:         true,
-		InstallerManaged:        false,
-		InterfaceConnectionType: "AUTOMATIC",
-		Mode:              "Dynamic",
-		Role:              "PRIMARY",
-		DownloadRateLimit: 8,
-		AuxiliaryLink:     false,
-	}
+	return &UplinkConnection{}
 }
 
 // Identity returns the Identity of the object.

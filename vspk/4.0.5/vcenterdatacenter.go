@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VCenterDataCenterIdentity represents the Identity of the object
 var VCenterDataCenterIdentity = bambou.Identity{
@@ -37,86 +37,16 @@ type VCenterDataCentersParent interface {
 
 // VCenterDataCenter represents the model of a vcenterdatacenter
 type VCenterDataCenter struct {
-	ID                               string `json:"ID,omitempty"`
-	ParentID                         string `json:"parentID,omitempty"`
-	ParentType                       string `json:"parentType,omitempty"`
-	Owner                            string `json:"owner,omitempty"`
-	VRequireNuageMetadata            bool   `json:"vRequireNuageMetadata"`
-	Name                             string `json:"name,omitempty"`
-	ManagedObjectID                  string `json:"managedObjectID,omitempty"`
-	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
-	DataDNS1                         string `json:"dataDNS1,omitempty"`
-	DataDNS2                         string `json:"dataDNS2,omitempty"`
-	DataGateway                      string `json:"dataGateway,omitempty"`
-	DataNetworkPortgroup             string `json:"dataNetworkPortgroup,omitempty"`
-	DatapathSyncTimeout              int    `json:"datapathSyncTimeout,omitempty"`
-	SecondaryNuageController         string `json:"secondaryNuageController,omitempty"`
-	DeletedFromVCenter               bool   `json:"deletedFromVCenter"`
-	GenericSplitActivation           bool   `json:"genericSplitActivation"`
-	SeparateDataNetwork              bool   `json:"separateDataNetwork"`
-	Personality                      string `json:"personality,omitempty"`
-	Description                      string `json:"description,omitempty"`
-	DestinationMirrorPort            string `json:"destinationMirrorPort,omitempty"`
-	MetadataServerIP                 string `json:"metadataServerIP,omitempty"`
-	MetadataServerListenPort         int    `json:"metadataServerListenPort,omitempty"`
-	MetadataServerPort               int    `json:"metadataServerPort,omitempty"`
-	MetadataServiceEnabled           bool   `json:"metadataServiceEnabled"`
-	NetworkUplinkInterface           string `json:"networkUplinkInterface,omitempty"`
-	NetworkUplinkInterfaceGateway    string `json:"networkUplinkInterfaceGateway,omitempty"`
-	NetworkUplinkInterfaceIp         string `json:"networkUplinkInterfaceIp,omitempty"`
-	NetworkUplinkInterfaceNetmask    string `json:"networkUplinkInterfaceNetmask,omitempty"`
-	NfsLogServer                     string `json:"nfsLogServer,omitempty"`
-	NfsMountPath                     string `json:"nfsMountPath,omitempty"`
-	MgmtDNS1                         string `json:"mgmtDNS1,omitempty"`
-	MgmtDNS2                         string `json:"mgmtDNS2,omitempty"`
-	MgmtGateway                      string `json:"mgmtGateway,omitempty"`
-	MgmtNetworkPortgroup             string `json:"mgmtNetworkPortgroup,omitempty"`
-	DhcpRelayServer                  string `json:"dhcpRelayServer,omitempty"`
-	MirrorNetworkPortgroup           string `json:"mirrorNetworkPortgroup,omitempty"`
-	SiteId                           string `json:"siteId,omitempty"`
-	AllowDataDHCP                    bool   `json:"allowDataDHCP"`
-	AllowMgmtDHCP                    bool   `json:"allowMgmtDHCP"`
-	FlowEvictionThreshold            int    `json:"flowEvictionThreshold,omitempty"`
-	VmNetworkPortgroup               string `json:"vmNetworkPortgroup,omitempty"`
-	EntityScope                      string `json:"entityScope,omitempty"`
-	PortgroupMetadata                bool   `json:"portgroupMetadata"`
-	NovaClientVersion                int    `json:"novaClientVersion,omitempty"`
-	NovaMetadataServiceAuthUrl       string `json:"novaMetadataServiceAuthUrl,omitempty"`
-	NovaMetadataServiceEndpoint      string `json:"novaMetadataServiceEndpoint,omitempty"`
-	NovaMetadataServicePassword      string `json:"novaMetadataServicePassword,omitempty"`
-	NovaMetadataServiceTenant        string `json:"novaMetadataServiceTenant,omitempty"`
-	NovaMetadataServiceUsername      string `json:"novaMetadataServiceUsername,omitempty"`
-	NovaMetadataSharedSecret         string `json:"novaMetadataSharedSecret,omitempty"`
-	NovaRegionName                   string `json:"novaRegionName,omitempty"`
-	PrimaryNuageController           string `json:"primaryNuageController,omitempty"`
-	VrsPassword                      string `json:"vrsPassword,omitempty"`
-	VrsUserName                      string `json:"vrsUserName,omitempty"`
-	AssociatedVCenterID              string `json:"associatedVCenterID,omitempty"`
-	StaticRoute                      string `json:"staticRoute,omitempty"`
-	StaticRouteGateway               string `json:"staticRouteGateway,omitempty"`
-	StaticRouteNetmask               string `json:"staticRouteNetmask,omitempty"`
-	NtpServer1                       string `json:"ntpServer1,omitempty"`
-	NtpServer2                       string `json:"ntpServer2,omitempty"`
-	Mtu                              int    `json:"mtu,omitempty"`
-	MultiVMSsupport                  bool   `json:"multiVMSsupport"`
-	MulticastReceiveInterface        string `json:"multicastReceiveInterface,omitempty"`
-	MulticastReceiveInterfaceIP      string `json:"multicastReceiveInterfaceIP,omitempty"`
-	MulticastReceiveInterfaceNetmask string `json:"multicastReceiveInterfaceNetmask,omitempty"`
-	MulticastReceiveRange            string `json:"multicastReceiveRange,omitempty"`
-	MulticastSendInterface           string `json:"multicastSendInterface,omitempty"`
-	MulticastSendInterfaceIP         string `json:"multicastSendInterfaceIP,omitempty"`
-	MulticastSendInterfaceNetmask    string `json:"multicastSendInterfaceNetmask,omitempty"`
-	MulticastSourcePortgroup         string `json:"multicastSourcePortgroup,omitempty"`
-	CustomizedScriptURL              string `json:"customizedScriptURL,omitempty"`
-	ExternalID                       string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVCenterDataCenter returns a new *VCenterDataCenter
 func NewVCenterDataCenter() *VCenterDataCenter {
 
-	return &VCenterDataCenter{
-		DestinationMirrorPort: "no_mirror",
-	}
+	return &VCenterDataCenter{}
 }
 
 // Identity returns the Identity of the object.

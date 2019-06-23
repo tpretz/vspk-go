@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // ViaIdentity represents the Identity of the object
 var ViaIdentity = bambou.Identity{
@@ -37,11 +37,10 @@ type ViasParent interface {
 
 // Via represents the model of a via
 type Via struct {
-	ID         string        `json:"ID,omitempty"`
-	ParentID   string        `json:"parentID,omitempty"`
-	ParentType string        `json:"parentType,omitempty"`
-	Owner      string        `json:"owner,omitempty"`
-	NextHops   []interface{} `json:"nextHops,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVia returns a new *Via

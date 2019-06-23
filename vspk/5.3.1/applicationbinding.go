@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // ApplicationBindingIdentity represents the Identity of the object
 var ApplicationBindingIdentity = bambou.Identity{
@@ -37,24 +37,16 @@ type ApplicationBindingsParent interface {
 
 // ApplicationBinding represents the model of a applicationbinding
 type ApplicationBinding struct {
-	ID                      string `json:"ID,omitempty"`
-	ParentID                string `json:"parentID,omitempty"`
-	ParentType              string `json:"parentType,omitempty"`
-	Owner                   string `json:"owner,omitempty"`
-	LastUpdatedBy           string `json:"lastUpdatedBy,omitempty"`
-	ReadOnly                bool   `json:"readOnly"`
-	EntityScope             string `json:"entityScope,omitempty"`
-	Priority                int    `json:"priority,omitempty"`
-	AssociatedApplicationID string `json:"associatedApplicationID,omitempty"`
-	ExternalID              string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewApplicationBinding returns a new *ApplicationBinding
 func NewApplicationBinding() *ApplicationBinding {
 
-	return &ApplicationBinding{
-		ReadOnly: false,
-	}
+	return &ApplicationBinding{}
 }
 
 // Identity returns the Identity of the object.

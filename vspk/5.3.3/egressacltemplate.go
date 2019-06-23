@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // EgressACLTemplateIdentity represents the Identity of the object
 var EgressACLTemplateIdentity = bambou.Identity{
@@ -37,25 +37,10 @@ type EgressACLTemplatesParent interface {
 
 // EgressACLTemplate represents the model of a egressacltemplate
 type EgressACLTemplate struct {
-	ID                                string `json:"ID,omitempty"`
-	ParentID                          string `json:"parentID,omitempty"`
-	ParentType                        string `json:"parentType,omitempty"`
-	Owner                             string `json:"owner,omitempty"`
-	Name                              string `json:"name,omitempty"`
-	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
-	Active                            bool   `json:"active"`
-	DefaultAllowIP                    bool   `json:"defaultAllowIP"`
-	DefaultAllowNonIP                 bool   `json:"defaultAllowNonIP"`
-	DefaultInstallACLImplicitRules    bool   `json:"defaultInstallACLImplicitRules"`
-	Description                       string `json:"description,omitempty"`
-	EntityScope                       string `json:"entityScope,omitempty"`
-	PolicyState                       string `json:"policyState,omitempty"`
-	Priority                          int    `json:"priority,omitempty"`
-	PriorityType                      string `json:"priorityType,omitempty"`
-	AssociatedLiveEntityID            string `json:"associatedLiveEntityID,omitempty"`
-	AssociatedVirtualFirewallPolicyID string `json:"associatedVirtualFirewallPolicyID,omitempty"`
-	AutoGeneratePriority              bool   `json:"autoGeneratePriority"`
-	ExternalID                        string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewEgressACLTemplate returns a new *EgressACLTemplate

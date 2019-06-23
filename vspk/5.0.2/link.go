@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // LinkIdentity represents the Identity of the object
 var LinkIdentity = bambou.Identity{
@@ -37,30 +37,16 @@ type LinksParent interface {
 
 // Link represents the model of a link
 type Link struct {
-	ID                        string `json:"ID,omitempty"`
-	ParentID                  string `json:"parentID,omitempty"`
-	ParentType                string `json:"parentType,omitempty"`
-	Owner                     string `json:"owner,omitempty"`
-	LastUpdatedBy             string `json:"lastUpdatedBy,omitempty"`
-	AcceptanceCriteria        string `json:"acceptanceCriteria,omitempty"`
-	ReadOnly                  bool   `json:"readOnly"`
-	EntityScope               string `json:"entityScope,omitempty"`
-	AssociatedDestinationID   string `json:"associatedDestinationID,omitempty"`
-	AssociatedDestinationName string `json:"associatedDestinationName,omitempty"`
-	AssociatedDestinationType string `json:"associatedDestinationType,omitempty"`
-	AssociatedSourceID        string `json:"associatedSourceID,omitempty"`
-	AssociatedSourceName      string `json:"associatedSourceName,omitempty"`
-	AssociatedSourceType      string `json:"associatedSourceType,omitempty"`
-	ExternalID                string `json:"externalID,omitempty"`
-	Type                      string `json:"type,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewLink returns a new *Link
 func NewLink() *Link {
 
-	return &Link{
-		AcceptanceCriteria: "ALL",
-	}
+	return &Link{}
 }
 
 // Identity returns the Identity of the object.

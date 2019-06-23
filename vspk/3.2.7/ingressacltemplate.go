@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IngressACLTemplateIdentity represents the Identity of the object
 var IngressACLTemplateIdentity = bambou.Identity{
@@ -37,24 +37,10 @@ type IngressACLTemplatesParent interface {
 
 // IngressACLTemplate represents the model of a ingressacltemplate
 type IngressACLTemplate struct {
-	ID                     string `json:"ID,omitempty"`
-	ParentID               string `json:"parentID,omitempty"`
-	ParentType             string `json:"parentType,omitempty"`
-	Owner                  string `json:"owner,omitempty"`
-	Name                   string `json:"name,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	Active                 bool   `json:"active"`
-	DefaultAllowIP         bool   `json:"defaultAllowIP"`
-	DefaultAllowNonIP      bool   `json:"defaultAllowNonIP"`
-	Description            string `json:"description,omitempty"`
-	AllowL2AddressSpoof    bool   `json:"allowL2AddressSpoof"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	PolicyState            string `json:"policyState,omitempty"`
-	Priority               int    `json:"priority,omitempty"`
-	PriorityType           string `json:"priorityType,omitempty"`
-	AssocAclTemplateId     string `json:"assocAclTemplateId,omitempty"`
-	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIngressACLTemplate returns a new *IngressACLTemplate

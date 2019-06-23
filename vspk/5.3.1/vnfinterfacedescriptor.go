@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VNFInterfaceDescriptorIdentity represents the Identity of the object
 var VNFInterfaceDescriptorIdentity = bambou.Identity{
@@ -41,16 +41,12 @@ type VNFInterfaceDescriptor struct {
 	ParentID   string `json:"parentID,omitempty"`
 	ParentType string `json:"parentType,omitempty"`
 	Owner      string `json:"owner,omitempty"`
-	Name       string `json:"name,omitempty"`
-	Type       string `json:"type,omitempty"`
 }
 
 // NewVNFInterfaceDescriptor returns a new *VNFInterfaceDescriptor
 func NewVNFInterfaceDescriptor() *VNFInterfaceDescriptor {
 
-	return &VNFInterfaceDescriptor{
-		Type: "MANAGEMENT",
-	}
+	return &VNFInterfaceDescriptor{}
 }
 
 // Identity returns the Identity of the object.

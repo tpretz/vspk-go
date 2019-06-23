@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IPReservationIdentity represents the Identity of the object
 var IPReservationIdentity = bambou.Identity{
@@ -37,16 +37,10 @@ type IPReservationsParent interface {
 
 // IPReservation represents the model of a ipreservation
 type IPReservation struct {
-	ID                       string `json:"ID,omitempty"`
-	ParentID                 string `json:"parentID,omitempty"`
-	ParentType               string `json:"parentType,omitempty"`
-	Owner                    string `json:"owner,omitempty"`
-	MAC                      string `json:"MAC,omitempty"`
-	IPAddress                string `json:"IPAddress,omitempty"`
-	LastUpdatedBy            string `json:"lastUpdatedBy,omitempty"`
-	EntityScope              string `json:"entityScope,omitempty"`
-	ExternalID               string `json:"externalID,omitempty"`
-	DynamicAllocationEnabled bool   `json:"dynamicAllocationEnabled"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIPReservation returns a new *IPReservation

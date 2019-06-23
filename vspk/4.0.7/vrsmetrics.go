@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VRSMetricsIdentity represents the Identity of the object
 var VRSMetricsIdentity = bambou.Identity{
@@ -37,23 +37,10 @@ type VRSMetricsParent interface {
 
 // VRSMetrics represents the model of a vrsmetrics
 type VRSMetrics struct {
-	ID                            string  `json:"ID,omitempty"`
-	ParentID                      string  `json:"parentID,omitempty"`
-	ParentType                    string  `json:"parentType,omitempty"`
-	Owner                         string  `json:"owner,omitempty"`
-	ALUbr0Status                  bool    `json:"ALUbr0Status"`
-	CPUUtilization                float64 `json:"CPUUtilization,omitempty"`
-	VRSProcess                    bool    `json:"VRSProcess"`
-	VRSVSCStatus                  bool    `json:"VRSVSCStatus"`
-	LastUpdatedBy                 string  `json:"lastUpdatedBy,omitempty"`
-	ReDeploy                      bool    `json:"reDeploy"`
-	ReceivingMetrics              bool    `json:"receivingMetrics"`
-	MemoryUtilization             float64 `json:"memoryUtilization,omitempty"`
-	JesxmonProcess                bool    `json:"jesxmonProcess"`
-	AgentName                     string  `json:"agentName,omitempty"`
-	EntityScope                   string  `json:"entityScope,omitempty"`
-	AssociatedVCenterHypervisorID string  `json:"associatedVCenterHypervisorID,omitempty"`
-	ExternalID                    string  `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVRSMetrics returns a new *VRSMetrics

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IngressProfileIdentity represents the Identity of the object
 var IngressProfileIdentity = bambou.Identity{
@@ -37,24 +37,10 @@ type IngressProfilesParent interface {
 
 // IngressProfile represents the model of a ingressprofile
 type IngressProfile struct {
-	ID                                 string `json:"ID,omitempty"`
-	ParentID                           string `json:"parentID,omitempty"`
-	ParentType                         string `json:"parentType,omitempty"`
-	Owner                              string `json:"owner,omitempty"`
-	Name                               string `json:"name,omitempty"`
-	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
-	Description                        string `json:"description,omitempty"`
-	EntityScope                        string `json:"entityScope,omitempty"`
-	AssocEntityType                    string `json:"assocEntityType,omitempty"`
-	AssociatedIPFilterProfileID        string `json:"associatedIPFilterProfileID,omitempty"`
-	AssociatedIPFilterProfileName      string `json:"associatedIPFilterProfileName,omitempty"`
-	AssociatedIPv6FilterProfileID      string `json:"associatedIPv6FilterProfileID,omitempty"`
-	AssociatedIPv6FilterProfileName    string `json:"associatedIPv6FilterProfileName,omitempty"`
-	AssociatedMACFilterProfileID       string `json:"associatedMACFilterProfileID,omitempty"`
-	AssociatedMACFilterProfileName     string `json:"associatedMACFilterProfileName,omitempty"`
-	AssociatedSAPIngressQoSProfileID   string `json:"associatedSAPIngressQoSProfileID,omitempty"`
-	AssociatedSAPIngressQoSProfileName string `json:"associatedSAPIngressQoSProfileName,omitempty"`
-	ExternalID                         string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIngressProfile returns a new *IngressProfile

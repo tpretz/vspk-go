@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // QOSIdentity represents the Identity of the object
 var QOSIdentity = bambou.Identity{
@@ -37,37 +37,10 @@ type QOSsParent interface {
 
 // QOS represents the model of a qos
 type QOS struct {
-	ID                                     string `json:"ID,omitempty"`
-	ParentID                               string `json:"parentID,omitempty"`
-	ParentType                             string `json:"parentType,omitempty"`
-	Owner                                  string `json:"owner,omitempty"`
-	FIPCommittedBurstSize                  string `json:"FIPCommittedBurstSize,omitempty"`
-	FIPCommittedInformationRate            string `json:"FIPCommittedInformationRate,omitempty"`
-	FIPPeakBurstSize                       string `json:"FIPPeakBurstSize,omitempty"`
-	FIPPeakInformationRate                 string `json:"FIPPeakInformationRate,omitempty"`
-	FIPRateLimitingActive                  bool   `json:"FIPRateLimitingActive"`
-	BUMCommittedBurstSize                  string `json:"BUMCommittedBurstSize,omitempty"`
-	BUMCommittedInformationRate            string `json:"BUMCommittedInformationRate,omitempty"`
-	BUMPeakBurstSize                       string `json:"BUMPeakBurstSize,omitempty"`
-	BUMPeakInformationRate                 string `json:"BUMPeakInformationRate,omitempty"`
-	BUMRateLimitingActive                  bool   `json:"BUMRateLimitingActive"`
-	Name                                   string `json:"name,omitempty"`
-	LastUpdatedBy                          string `json:"lastUpdatedBy,omitempty"`
-	RateLimitingActive                     bool   `json:"rateLimitingActive"`
-	Active                                 bool   `json:"active"`
-	Peak                                   string `json:"peak,omitempty"`
-	ServiceClass                           string `json:"serviceClass,omitempty"`
-	Description                            string `json:"description,omitempty"`
-	RewriteForwardingClass                 bool   `json:"rewriteForwardingClass"`
-	EntityScope                            string `json:"entityScope,omitempty"`
-	CommittedBurstSize                     string `json:"committedBurstSize,omitempty"`
-	CommittedInformationRate               string `json:"committedInformationRate,omitempty"`
-	TrustedForwardingClass                 bool   `json:"trustedForwardingClass"`
-	AssocQosId                             string `json:"assocQosId,omitempty"`
-	AssociatedDSCPForwardingClassTableID   string `json:"associatedDSCPForwardingClassTableID,omitempty"`
-	AssociatedDSCPForwardingClassTableName string `json:"associatedDSCPForwardingClassTableName,omitempty"`
-	Burst                                  string `json:"burst,omitempty"`
-	ExternalID                             string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewQOS returns a new *QOS

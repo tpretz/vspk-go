@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // SPATSourcesPoolIdentity represents the Identity of the object
 var SPATSourcesPoolIdentity = bambou.Identity{
@@ -37,21 +37,16 @@ type SPATSourcesPoolsParent interface {
 
 // SPATSourcesPool represents the model of a spatsourcespool
 type SPATSourcesPool struct {
-	ID          string        `json:"ID,omitempty"`
-	ParentID    string        `json:"parentID,omitempty"`
-	ParentType  string        `json:"parentType,omitempty"`
-	Owner       string        `json:"owner,omitempty"`
-	Name        string        `json:"name,omitempty"`
-	Family      string        `json:"family,omitempty"`
-	AddressList []interface{} `json:"addressList,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewSPATSourcesPool returns a new *SPATSourcesPool
 func NewSPATSourcesPool() *SPATSourcesPool {
 
-	return &SPATSourcesPool{
-		Name: "IPV4",
-	}
+	return &SPATSourcesPool{}
 }
 
 // Identity returns the Identity of the object.

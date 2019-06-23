@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // RedirectionTargetTemplateIdentity represents the Identity of the object
 var RedirectionTargetTemplateIdentity = bambou.Identity{
@@ -37,19 +37,10 @@ type RedirectionTargetTemplatesParent interface {
 
 // RedirectionTargetTemplate represents the model of a redirectiontargettemplate
 type RedirectionTargetTemplate struct {
-	ID                string `json:"ID,omitempty"`
-	ParentID          string `json:"parentID,omitempty"`
-	ParentType        string `json:"parentType,omitempty"`
-	Owner             string `json:"owner,omitempty"`
-	Name              string `json:"name,omitempty"`
-	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
-	RedundancyEnabled bool   `json:"redundancyEnabled"`
-	Description       string `json:"description,omitempty"`
-	DestinationType   string `json:"destinationType,omitempty"`
-	EndPointType      string `json:"endPointType,omitempty"`
-	EntityScope       string `json:"entityScope,omitempty"`
-	TriggerType       string `json:"triggerType,omitempty"`
-	ExternalID        string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewRedirectionTargetTemplate returns a new *RedirectionTargetTemplate

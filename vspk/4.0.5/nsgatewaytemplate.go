@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NSGatewayTemplateIdentity represents the Identity of the object
 var NSGatewayTemplateIdentity = bambou.Identity{
@@ -37,29 +37,16 @@ type NSGatewayTemplatesParent interface {
 
 // NSGatewayTemplate represents the model of a nsgatewaytemplate
 type NSGatewayTemplate struct {
-	ID                            string `json:"ID,omitempty"`
-	ParentID                      string `json:"parentID,omitempty"`
-	ParentType                    string `json:"parentType,omitempty"`
-	Owner                         string `json:"owner,omitempty"`
-	SSHService                    string `json:"SSHService,omitempty"`
-	Name                          string `json:"name,omitempty"`
-	LastUpdatedBy                 string `json:"lastUpdatedBy,omitempty"`
-	Description                   string `json:"description,omitempty"`
-	InfrastructureAccessProfileID string `json:"infrastructureAccessProfileID,omitempty"`
-	InfrastructureProfileID       string `json:"infrastructureProfileID,omitempty"`
-	InstanceSSHOverride           string `json:"instanceSSHOverride,omitempty"`
-	EnterpriseID                  string `json:"enterpriseID,omitempty"`
-	EntityScope                   string `json:"entityScope,omitempty"`
-	ExternalID                    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNSGatewayTemplate returns a new *NSGatewayTemplate
 func NewNSGatewayTemplate() *NSGatewayTemplate {
 
-	return &NSGatewayTemplate{
-		SSHService:          "ENABLED",
-		InstanceSSHOverride: "DISALLOWED",
-	}
+	return &NSGatewayTemplate{}
 }
 
 // Identity returns the Identity of the object.

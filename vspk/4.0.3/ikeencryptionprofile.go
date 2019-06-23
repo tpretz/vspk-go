@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IKEEncryptionprofileIdentity represents the Identity of the object
 var IKEEncryptionprofileIdentity = bambou.Identity{
@@ -37,33 +37,10 @@ type IKEEncryptionprofilesParent interface {
 
 // IKEEncryptionprofile represents the model of a ikeencryptionprofile
 type IKEEncryptionprofile struct {
-	ID                                string `json:"ID,omitempty"`
-	ParentID                          string `json:"parentID,omitempty"`
-	ParentType                        string `json:"parentType,omitempty"`
-	Owner                             string `json:"owner,omitempty"`
-	DPDInterval                       int    `json:"DPDInterval,omitempty"`
-	DPDMode                           string `json:"DPDMode,omitempty"`
-	DPDRetryInterval                  int    `json:"DPDRetryInterval,omitempty"`
-	DPDTimeout                        int    `json:"DPDTimeout,omitempty"`
-	IPSecAuthenticationAlgorithm      string `json:"IPSecAuthenticationAlgorithm,omitempty"`
-	IPSecDontFragment                 bool   `json:"IPSecDontFragment"`
-	IPSecEnablePFS                    bool   `json:"IPSecEnablePFS"`
-	IPSecEncryptionAlgorithm          string `json:"IPSecEncryptionAlgorithm,omitempty"`
-	IPSecPreFragment                  bool   `json:"IPSecPreFragment"`
-	IPSecSALifetime                   int    `json:"IPSecSALifetime,omitempty"`
-	IPSecSAReplayWindowSize           string `json:"IPSecSAReplayWindowSize,omitempty"`
-	ISAKMPAuthenticationMode          string `json:"ISAKMPAuthenticationMode,omitempty"`
-	ISAKMPDiffieHelmanGroupIdentifier string `json:"ISAKMPDiffieHelmanGroupIdentifier,omitempty"`
-	ISAKMPEncryptionAlgorithm         string `json:"ISAKMPEncryptionAlgorithm,omitempty"`
-	ISAKMPEncryptionKeyLifetime       int    `json:"ISAKMPEncryptionKeyLifetime,omitempty"`
-	ISAKMPHashAlgorithm               string `json:"ISAKMPHashAlgorithm,omitempty"`
-	Name                              string `json:"name,omitempty"`
-	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
-	Sequence                          int    `json:"sequence,omitempty"`
-	Description                       string `json:"description,omitempty"`
-	EntityScope                       string `json:"entityScope,omitempty"`
-	AssociatedEnterpriseID            string `json:"associatedEnterpriseID,omitempty"`
-	ExternalID                        string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIKEEncryptionprofile returns a new *IKEEncryptionprofile

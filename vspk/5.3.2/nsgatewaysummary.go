@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NSGatewaySummaryIdentity represents the Identity of the object
 var NSGatewaySummaryIdentity = bambou.Identity{
@@ -37,27 +37,10 @@ type NSGatewaySummariesParent interface {
 
 // NSGatewaySummary represents the model of a nsgatewayssummary
 type NSGatewaySummary struct {
-	ID                  string  `json:"ID,omitempty"`
-	ParentID            string  `json:"parentID,omitempty"`
-	ParentType          string  `json:"parentType,omitempty"`
-	Owner               string  `json:"owner,omitempty"`
-	MajorAlarmsCount    int     `json:"majorAlarmsCount,omitempty"`
-	GatewayID           string  `json:"gatewayID,omitempty"`
-	GatewayName         string  `json:"gatewayName,omitempty"`
-	Latitude            float64 `json:"latitude,omitempty"`
-	Address             string  `json:"address,omitempty"`
-	TimeZoneID          string  `json:"timeZoneID,omitempty"`
-	MinorAlarmsCount    int     `json:"minorAlarmsCount,omitempty"`
-	InfoAlarmsCount     string  `json:"infoAlarmsCount,omitempty"`
-	EnterpriseID        string  `json:"enterpriseID,omitempty"`
-	Locality            string  `json:"locality,omitempty"`
-	Longitude           float64 `json:"longitude,omitempty"`
-	BootstrapStatus     string  `json:"bootstrapStatus,omitempty"`
-	Country             string  `json:"country,omitempty"`
-	CriticalAlarmsCount int     `json:"criticalAlarmsCount,omitempty"`
-	NsgVersion          string  `json:"nsgVersion,omitempty"`
-	State               string  `json:"state,omitempty"`
-	SystemID            string  `json:"systemID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNSGatewaySummary returns a new *NSGatewaySummary

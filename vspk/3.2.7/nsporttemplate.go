@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NSPortTemplateIdentity represents the Identity of the object
 var NSPortTemplateIdentity = bambou.Identity{
@@ -37,21 +37,10 @@ type NSPortTemplatesParent interface {
 
 // NSPortTemplate represents the model of a nsporttemplate
 type NSPortTemplate struct {
-	ID                          string `json:"ID,omitempty"`
-	ParentID                    string `json:"parentID,omitempty"`
-	ParentType                  string `json:"parentType,omitempty"`
-	Owner                       string `json:"owner,omitempty"`
-	VLANRange                   string `json:"VLANRange,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	PhysicalName                string `json:"physicalName,omitempty"`
-	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	PortType                    string `json:"portType,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
-	AssociatedVSCProfileID      string `json:"associatedVSCProfileID,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNSPortTemplate returns a new *NSPortTemplate

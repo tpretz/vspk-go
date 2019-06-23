@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VPortIdentity represents the Identity of the object
 var VPortIdentity = bambou.Identity{
@@ -37,38 +37,16 @@ type VPortsParent interface {
 
 // VPort represents the model of a vport
 type VPort struct {
-	ID                                  string `json:"ID,omitempty"`
-	ParentID                            string `json:"parentID,omitempty"`
-	ParentType                          string `json:"parentType,omitempty"`
-	Owner                               string `json:"owner,omitempty"`
-	VLANID                              string `json:"VLANID,omitempty"`
-	DPI                                 string `json:"DPI,omitempty"`
-	Name                                string `json:"name,omitempty"`
-	HasAttachedInterfaces               bool   `json:"hasAttachedInterfaces"`
-	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
-	Active                              bool   `json:"active"`
-	AddressSpoofing                     string `json:"addressSpoofing,omitempty"`
-	Description                         string `json:"description,omitempty"`
-	EntityScope                         string `json:"entityScope,omitempty"`
-	DomainID                            string `json:"domainID,omitempty"`
-	ZoneID                              string `json:"zoneID,omitempty"`
-	OperationalState                    string `json:"operationalState,omitempty"`
-	AssociatedFloatingIPID              string `json:"associatedFloatingIPID,omitempty"`
-	AssociatedMulticastChannelMapID     string `json:"associatedMulticastChannelMapID,omitempty"`
-	AssociatedSendMulticastChannelMapID string `json:"associatedSendMulticastChannelMapID,omitempty"`
-	MultiNICVPortID                     string `json:"multiNICVPortID,omitempty"`
-	Multicast                           string `json:"multicast,omitempty"`
-	ExternalID                          string `json:"externalID,omitempty"`
-	Type                                string `json:"type,omitempty"`
-	SystemType                          string `json:"systemType,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVPort returns a new *VPort
 func NewVPort() *VPort {
 
-	return &VPort{
-		DPI: "INHERITED",
-	}
+	return &VPort{}
 }
 
 // Identity returns the Identity of the object.

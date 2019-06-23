@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // L4ServiceIdentity represents the Identity of the object
 var L4ServiceIdentity = bambou.Identity{
@@ -37,26 +37,16 @@ type L4ServicesParent interface {
 
 // L4Service represents the model of a l4service
 type L4Service struct {
-	ID             string `json:"ID,omitempty"`
-	ParentID       string `json:"parentID,omitempty"`
-	ParentType     string `json:"parentType,omitempty"`
-	Owner          string `json:"owner,omitempty"`
-	Name           string `json:"name,omitempty"`
-	LastUpdatedBy  string `json:"lastUpdatedBy,omitempty"`
-	DefaultService bool   `json:"defaultService"`
-	Description    string `json:"description,omitempty"`
-	EntityScope    string `json:"entityScope,omitempty"`
-	Ports          string `json:"ports,omitempty"`
-	Protocol       string `json:"protocol,omitempty"`
-	ExternalID     string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewL4Service returns a new *L4Service
 func NewL4Service() *L4Service {
 
-	return &L4Service{
-		DefaultService: false,
-	}
+	return &L4Service{}
 }
 
 // Identity returns the Identity of the object.

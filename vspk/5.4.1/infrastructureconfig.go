@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // InfrastructureConfigIdentity represents the Identity of the object
 var InfrastructureConfigIdentity = bambou.Identity{
@@ -37,16 +37,10 @@ type InfrastructureConfigsParent interface {
 
 // InfrastructureConfig represents the model of a infraconfig
 type InfrastructureConfig struct {
-	ID                   string      `json:"ID,omitempty"`
-	ParentID             string      `json:"parentID,omitempty"`
-	ParentType           string      `json:"parentType,omitempty"`
-	Owner                string      `json:"owner,omitempty"`
-	LastUpdatedBy        string      `json:"lastUpdatedBy,omitempty"`
-	EntityScope          string      `json:"entityScope,omitempty"`
-	Config               interface{} `json:"config,omitempty"`
-	ConfigStatus         string      `json:"configStatus,omitempty"`
-	AssociatedEntityType string      `json:"associatedEntityType,omitempty"`
-	ExternalID           string      `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewInfrastructureConfig returns a new *InfrastructureConfig

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // PSNATPoolIdentity represents the Identity of the object
 var PSNATPoolIdentity = bambou.Identity{
@@ -37,18 +37,10 @@ type PSNATPoolsParent interface {
 
 // PSNATPool represents the model of a psnatpool
 type PSNATPool struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	IPType        string `json:"IPType,omitempty"`
-	Name          string `json:"name,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Description   string `json:"description,omitempty"`
-	EndAddress    string `json:"endAddress,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	StartAddress  string `json:"startAddress,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewPSNATPool returns a new *PSNATPool

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NetconfSessionIdentity represents the Identity of the object
 var NetconfSessionIdentity = bambou.Identity{
@@ -37,19 +37,10 @@ type NetconfSessionsParent interface {
 
 // NetconfSession represents the model of a netconfsession
 type NetconfSession struct {
-	ID                    string `json:"ID,omitempty"`
-	ParentID              string `json:"parentID,omitempty"`
-	ParentType            string `json:"parentType,omitempty"`
-	Owner                 string `json:"owner,omitempty"`
-	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
-	GatewayModel          string `json:"gatewayModel,omitempty"`
-	GatewayVendor         string `json:"gatewayVendor,omitempty"`
-	GatewayVersion        string `json:"gatewayVersion,omitempty"`
-	EntityScope           string `json:"entityScope,omitempty"`
-	AssociatedGatewayID   string `json:"associatedGatewayID,omitempty"`
-	AssociatedGatewayName string `json:"associatedGatewayName,omitempty"`
-	Status                string `json:"status,omitempty"`
-	ExternalID            string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNetconfSession returns a new *NetconfSession

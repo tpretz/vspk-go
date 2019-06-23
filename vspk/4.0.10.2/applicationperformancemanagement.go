@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // ApplicationperformancemanagementIdentity represents the Identity of the object
 var ApplicationperformancemanagementIdentity = bambou.Identity{
@@ -37,23 +37,16 @@ type ApplicationperformancemanagementsParent interface {
 
 // Applicationperformancemanagement represents the model of a applicationperformancemanagement
 type Applicationperformancemanagement struct {
-	ID                             string `json:"ID,omitempty"`
-	ParentID                       string `json:"parentID,omitempty"`
-	ParentType                     string `json:"parentType,omitempty"`
-	Owner                          string `json:"owner,omitempty"`
-	Name                           string `json:"name,omitempty"`
-	ReadOnly                       bool   `json:"readOnly"`
-	Description                    string `json:"description,omitempty"`
-	AppGroupUniqueId               string `json:"appGroupUniqueId,omitempty"`
-	AssociatedPerformanceMonitorID string `json:"associatedPerformanceMonitorID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewApplicationperformancemanagement returns a new *Applicationperformancemanagement
 func NewApplicationperformancemanagement() *Applicationperformancemanagement {
 
-	return &Applicationperformancemanagement{
-		ReadOnly: false,
-	}
+	return &Applicationperformancemanagement{}
 }
 
 // Identity returns the Identity of the object.

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // JobIdentity represents the Identity of the object
 var JobIdentity = bambou.Identity{
@@ -37,19 +37,10 @@ type JobsParent interface {
 
 // Job represents the model of a job
 type Job struct {
-	ID              string      `json:"ID,omitempty"`
-	ParentID        string      `json:"parentID,omitempty"`
-	ParentType      string      `json:"parentType,omitempty"`
-	Owner           string      `json:"owner,omitempty"`
-	Parameters      interface{} `json:"parameters,omitempty"`
-	LastUpdatedBy   string      `json:"lastUpdatedBy,omitempty"`
-	Result          interface{} `json:"result,omitempty"`
-	EntityScope     string      `json:"entityScope,omitempty"`
-	Command         string      `json:"command,omitempty"`
-	Progress        float64     `json:"progress,omitempty"`
-	AssocEntityType string      `json:"assocEntityType,omitempty"`
-	Status          string      `json:"status,omitempty"`
-	ExternalID      string      `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewJob returns a new *Job

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NetconfManagerIdentity represents the Identity of the object
 var NetconfManagerIdentity = bambou.Identity{
@@ -41,9 +41,6 @@ type NetconfManager struct {
 	ParentID   string `json:"parentID,omitempty"`
 	ParentType string `json:"parentType,omitempty"`
 	Owner      string `json:"owner,omitempty"`
-	Name       string `json:"name,omitempty"`
-	Release    string `json:"release,omitempty"`
-	Status     string `json:"status,omitempty"`
 }
 
 // NewNetconfManager returns a new *NetconfManager

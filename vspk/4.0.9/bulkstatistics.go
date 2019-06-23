@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // BulkStatisticsIdentity represents the Identity of the object
 var BulkStatisticsIdentity = bambou.Identity{
@@ -37,15 +37,10 @@ type BulkStatisticsParent interface {
 
 // BulkStatistics represents the model of a bulkstatistics
 type BulkStatistics struct {
-	ID                 string        `json:"ID,omitempty"`
-	ParentID           string        `json:"parentID,omitempty"`
-	ParentType         string        `json:"parentType,omitempty"`
-	Owner              string        `json:"owner,omitempty"`
-	Data               []interface{} `json:"data,omitempty"`
-	Version            int           `json:"version,omitempty"`
-	EndTime            int           `json:"endTime,omitempty"`
-	StartTime          int           `json:"startTime,omitempty"`
-	NumberOfDataPoints int           `json:"numberOfDataPoints,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewBulkStatistics returns a new *BulkStatistics

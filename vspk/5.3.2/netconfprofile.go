@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NetconfProfileIdentity represents the Identity of the object
 var NetconfProfileIdentity = bambou.Identity{
@@ -37,23 +37,16 @@ type NetconfProfilesParent interface {
 
 // NetconfProfile represents the model of a netconfprofile
 type NetconfProfile struct {
-	ID          string `json:"ID,omitempty"`
-	ParentID    string `json:"parentID,omitempty"`
-	ParentType  string `json:"parentType,omitempty"`
-	Owner       string `json:"owner,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Password    string `json:"password,omitempty"`
-	Description string `json:"description,omitempty"`
-	Port        int    `json:"port,omitempty"`
-	UserName    string `json:"userName,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNetconfProfile returns a new *NetconfProfile
 func NewNetconfProfile() *NetconfProfile {
 
-	return &NetconfProfile{
-		Port: 830,
-	}
+	return &NetconfProfile{}
 }
 
 // Identity returns the Identity of the object.

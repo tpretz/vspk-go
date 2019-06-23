@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // OSPFInterfaceIdentity represents the Identity of the object
 var OSPFInterfaceIdentity = bambou.Identity{
@@ -37,41 +37,16 @@ type OSPFInterfacesParent interface {
 
 // OSPFInterface represents the model of a ospfinterface
 type OSPFInterface struct {
-	ID                 string        `json:"ID,omitempty"`
-	ParentID           string        `json:"parentID,omitempty"`
-	ParentType         string        `json:"parentType,omitempty"`
-	Owner              string        `json:"owner,omitempty"`
-	Name               string        `json:"name,omitempty"`
-	PassiveEnabled     bool          `json:"passiveEnabled"`
-	LastUpdatedBy      string        `json:"lastUpdatedBy,omitempty"`
-	AdminState         string        `json:"adminState,omitempty"`
-	DeadInterval       int           `json:"deadInterval,omitempty"`
-	HelloInterval      int           `json:"helloInterval,omitempty"`
-	Description        string        `json:"description,omitempty"`
-	MessageDigestKeys  []interface{} `json:"messageDigestKeys,omitempty"`
-	Metric             int           `json:"metric,omitempty"`
-	InterfaceType      string        `json:"interfaceType,omitempty"`
-	EntityScope        string        `json:"entityScope,omitempty"`
-	Priority           int           `json:"priority,omitempty"`
-	AssociatedSubnetID string        `json:"associatedSubnetID,omitempty"`
-	Mtu                int           `json:"mtu,omitempty"`
-	AuthenticationKey  string        `json:"authenticationKey,omitempty"`
-	AuthenticationType string        `json:"authenticationType,omitempty"`
-	ExternalID         string        `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewOSPFInterface returns a new *OSPFInterface
 func NewOSPFInterface() *OSPFInterface {
 
-	return &OSPFInterface{
-		PassiveEnabled:     false,
-		AdminState:         "UP",
-		DeadInterval:       40,
-		HelloInterval:      10,
-		InterfaceType:      "BROADCAST",
-		Priority:           1,
-		AuthenticationType: "NONE",
-	}
+	return &OSPFInterface{}
 }
 
 // Identity returns the Identity of the object.

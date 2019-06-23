@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VMIdentity represents the Identity of the object
 var VMIdentity = bambou.Identity{
@@ -37,33 +37,10 @@ type VMsParent interface {
 
 // VM represents the model of a vm
 type VM struct {
-	ID             string        `json:"ID,omitempty"`
-	ParentID       string        `json:"parentID,omitempty"`
-	ParentType     string        `json:"parentType,omitempty"`
-	Owner          string        `json:"owner,omitempty"`
-	L2DomainIDs    []interface{} `json:"l2DomainIDs,omitempty"`
-	VRSID          string        `json:"VRSID,omitempty"`
-	UUID           string        `json:"UUID,omitempty"`
-	Name           string        `json:"name,omitempty"`
-	LastUpdatedBy  string        `json:"lastUpdatedBy,omitempty"`
-	ReasonType     string        `json:"reasonType,omitempty"`
-	DeleteExpiry   int           `json:"deleteExpiry,omitempty"`
-	DeleteMode     string        `json:"deleteMode,omitempty"`
-	ResyncInfo     interface{}   `json:"resyncInfo,omitempty"`
-	SiteIdentifier string        `json:"siteIdentifier,omitempty"`
-	Interfaces     []interface{} `json:"interfaces,omitempty"`
-	EnterpriseID   string        `json:"enterpriseID,omitempty"`
-	EnterpriseName string        `json:"enterpriseName,omitempty"`
-	EntityScope    string        `json:"entityScope,omitempty"`
-	DomainIDs      []interface{} `json:"domainIDs,omitempty"`
-	ZoneIDs        []interface{} `json:"zoneIDs,omitempty"`
-	AppName        string        `json:"appName,omitempty"`
-	UserID         string        `json:"userID,omitempty"`
-	UserName       string        `json:"userName,omitempty"`
-	Status         string        `json:"status,omitempty"`
-	SubnetIDs      []interface{} `json:"subnetIDs,omitempty"`
-	ExternalID     string        `json:"externalID,omitempty"`
-	HypervisorIP   string        `json:"hypervisorIP,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVM returns a new *VM

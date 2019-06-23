@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // BRConnectionIdentity represents the Identity of the object
 var BRConnectionIdentity = bambou.Identity{
@@ -37,17 +37,10 @@ type BRConnectionsParent interface {
 
 // BRConnection represents the model of a brconnection
 type BRConnection struct {
-	ID                    string `json:"ID,omitempty"`
-	ParentID              string `json:"parentID,omitempty"`
-	ParentType            string `json:"parentType,omitempty"`
-	Owner                 string `json:"owner,omitempty"`
-	DNSAddress            string `json:"DNSAddress,omitempty"`
-	Gateway               string `json:"gateway,omitempty"`
-	Address               string `json:"address,omitempty"`
-	AdvertisementCriteria string `json:"advertisementCriteria,omitempty"`
-	Netmask               string `json:"netmask,omitempty"`
-	Mode                  string `json:"mode,omitempty"`
-	UplinkID              int    `json:"uplinkID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewBRConnection returns a new *BRConnection

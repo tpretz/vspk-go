@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // DeploymentFailureIdentity represents the Identity of the object
 var DeploymentFailureIdentity = bambou.Identity{
@@ -37,22 +37,10 @@ type DeploymentFailuresParent interface {
 
 // DeploymentFailure represents the model of a deploymentfailure
 type DeploymentFailure struct {
-	ID                 string `json:"ID,omitempty"`
-	ParentID           string `json:"parentID,omitempty"`
-	ParentType         string `json:"parentType,omitempty"`
-	Owner              string `json:"owner,omitempty"`
-	LastFailureReason  string `json:"lastFailureReason,omitempty"`
-	LastKnownError     string `json:"lastKnownError,omitempty"`
-	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
-	AffectedEntityID   string `json:"affectedEntityID,omitempty"`
-	AffectedEntityType string `json:"affectedEntityType,omitempty"`
-	EntityScope        string `json:"entityScope,omitempty"`
-	ErrorCondition     int    `json:"errorCondition,omitempty"`
-	AssocEntityId      string `json:"assocEntityId,omitempty"`
-	AssocEntityType    string `json:"assocEntityType,omitempty"`
-	NumberOfOccurences int    `json:"numberOfOccurences,omitempty"`
-	EventType          string `json:"eventType,omitempty"`
-	ExternalID         string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewDeploymentFailure returns a new *DeploymentFailure

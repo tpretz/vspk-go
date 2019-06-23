@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // LDAPConfigurationIdentity represents the Identity of the object
 var LDAPConfigurationIdentity = bambou.Identity{
@@ -37,24 +37,10 @@ type LDAPConfigurationsParent interface {
 
 // LDAPConfiguration represents the model of a ldapconfiguration
 type LDAPConfiguration struct {
-	ID                    string `json:"ID,omitempty"`
-	ParentID              string `json:"parentID,omitempty"`
-	ParentType            string `json:"parentType,omitempty"`
-	Owner                 string `json:"owner,omitempty"`
-	SSLEnabled            bool   `json:"SSLEnabled"`
-	Password              string `json:"password,omitempty"`
-	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
-	AcceptAllCertificates bool   `json:"acceptAllCertificates"`
-	Certificate           string `json:"certificate,omitempty"`
-	Server                string `json:"server,omitempty"`
-	Enabled               bool   `json:"enabled"`
-	EntityScope           string `json:"entityScope,omitempty"`
-	Port                  string `json:"port,omitempty"`
-	GroupDN               string `json:"groupDN,omitempty"`
-	UserDNTemplate        string `json:"userDNTemplate,omitempty"`
-	AuthorizationEnabled  bool   `json:"authorizationEnabled"`
-	AuthorizingUserDN     string `json:"authorizingUserDN,omitempty"`
-	ExternalID            string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewLDAPConfiguration returns a new *LDAPConfiguration

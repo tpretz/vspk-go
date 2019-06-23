@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // DemarcationServiceIdentity represents the Identity of the object
 var DemarcationServiceIdentity = bambou.Identity{
@@ -37,18 +37,10 @@ type DemarcationServicesParent interface {
 
 // DemarcationService represents the model of a demarcationservice
 type DemarcationService struct {
-	ID                  string `json:"ID,omitempty"`
-	ParentID            string `json:"parentID,omitempty"`
-	ParentType          string `json:"parentType,omitempty"`
-	Owner               string `json:"owner,omitempty"`
-	LastUpdatedBy       string `json:"lastUpdatedBy,omitempty"`
-	EntityScope         string `json:"entityScope,omitempty"`
-	RouteDistinguisher  string `json:"routeDistinguisher,omitempty"`
-	Priority            int    `json:"priority,omitempty"`
-	AssociatedGatewayID string `json:"associatedGatewayID,omitempty"`
-	AssociatedVLANID    string `json:"associatedVLANID,omitempty"`
-	ExternalID          string `json:"externalID,omitempty"`
-	Type                string `json:"type,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewDemarcationService returns a new *DemarcationService

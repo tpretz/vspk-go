@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NetconfManagerIdentity represents the Identity of the object
 var NetconfManagerIdentity = bambou.Identity{
@@ -37,17 +37,10 @@ type NetconfManagersParent interface {
 
 // NetconfManager represents the model of a netconfmanager
 type NetconfManager struct {
-	ID              string `json:"ID,omitempty"`
-	ParentID        string `json:"parentID,omitempty"`
-	ParentType      string `json:"parentType,omitempty"`
-	Owner           string `json:"owner,omitempty"`
-	Name            string `json:"name,omitempty"`
-	LastUpdatedBy   string `json:"lastUpdatedBy,omitempty"`
-	Release         string `json:"release,omitempty"`
-	EntityScope     string `json:"entityScope,omitempty"`
-	AssocEntityType string `json:"assocEntityType,omitempty"`
-	Status          string `json:"status,omitempty"`
-	ExternalID      string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNetconfManager returns a new *NetconfManager

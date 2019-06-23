@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IngressAdvFwdEntryTemplateIdentity represents the Identity of the object
 var IngressAdvFwdEntryTemplateIdentity = bambou.Identity{
@@ -37,38 +37,10 @@ type IngressAdvFwdEntryTemplatesParent interface {
 
 // IngressAdvFwdEntryTemplate represents the model of a ingressadvfwdentrytemplate
 type IngressAdvFwdEntryTemplate struct {
-	ID                              string `json:"ID,omitempty"`
-	ParentID                        string `json:"parentID,omitempty"`
-	ParentType                      string `json:"parentType,omitempty"`
-	Owner                           string `json:"owner,omitempty"`
-	FCOverride                      string `json:"FCOverride,omitempty"`
-	DSCP                            string `json:"DSCP,omitempty"`
-	Name                            string `json:"name,omitempty"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	Action                          string `json:"action,omitempty"`
-	AddressOverride                 string `json:"addressOverride,omitempty"`
-	RedirectVPortTagID              string `json:"redirectVPortTagID,omitempty"`
-	Description                     string `json:"description,omitempty"`
-	DestinationPort                 string `json:"destinationPort,omitempty"`
-	NetworkID                       string `json:"networkID,omitempty"`
-	NetworkType                     string `json:"networkType,omitempty"`
-	FlowLoggingEnabled              bool   `json:"flowLoggingEnabled"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	LocationID                      string `json:"locationID,omitempty"`
-	LocationType                    string `json:"locationType,omitempty"`
-	PolicyState                     string `json:"policyState,omitempty"`
-	SourcePort                      string `json:"sourcePort,omitempty"`
-	UplinkPreference                string `json:"uplinkPreference,omitempty"`
-	Priority                        int    `json:"priority,omitempty"`
-	Protocol                        string `json:"protocol,omitempty"`
-	AssociatedApplicationID         string `json:"associatedApplicationID,omitempty"`
-	AssociatedApplicationObjectID   string `json:"associatedApplicationObjectID,omitempty"`
-	AssociatedApplicationObjectType string `json:"associatedApplicationObjectType,omitempty"`
-	AssociatedLiveEntityID          string `json:"associatedLiveEntityID,omitempty"`
-	StatsID                         string `json:"statsID,omitempty"`
-	StatsLoggingEnabled             bool   `json:"statsLoggingEnabled"`
-	EtherType                       string `json:"etherType,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIngressAdvFwdEntryTemplate returns a new *IngressAdvFwdEntryTemplate

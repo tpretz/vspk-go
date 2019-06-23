@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VLANTemplateIdentity represents the Identity of the object
 var VLANTemplateIdentity = bambou.Identity{
@@ -37,31 +37,16 @@ type VLANTemplatesParent interface {
 
 // VLANTemplate represents the model of a vlantemplate
 type VLANTemplate struct {
-	ID                           string `json:"ID,omitempty"`
-	ParentID                     string `json:"parentID,omitempty"`
-	ParentType                   string `json:"parentType,omitempty"`
-	Owner                        string `json:"owner,omitempty"`
-	Value                        int    `json:"value,omitempty"`
-	LastUpdatedBy                string `json:"lastUpdatedBy,omitempty"`
-	Description                  string `json:"description,omitempty"`
-	EntityScope                  string `json:"entityScope,omitempty"`
-	IsUplink                     bool   `json:"isUplink"`
-	AssociatedConnectionType     string `json:"associatedConnectionType,omitempty"`
-	AssociatedEgressQOSPolicyID  string `json:"associatedEgressQOSPolicyID,omitempty"`
-	AssociatedIngressQOSPolicyID string `json:"associatedIngressQOSPolicyID,omitempty"`
-	AssociatedUplinkConnectionID string `json:"associatedUplinkConnectionID,omitempty"`
-	AssociatedVSCProfileID       string `json:"associatedVSCProfileID,omitempty"`
-	DucVlan                      bool   `json:"ducVlan"`
-	ExternalID                   string `json:"externalID,omitempty"`
-	Type                         string `json:"type,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVLANTemplate returns a new *VLANTemplate
 func NewVLANTemplate() *VLANTemplate {
 
-	return &VLANTemplate{
-		IsUplink: false,
-	}
+	return &VLANTemplate{}
 }
 
 // Identity returns the Identity of the object.

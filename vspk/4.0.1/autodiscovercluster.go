@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // AutoDiscoverClusterIdentity represents the Identity of the object
 var AutoDiscoverClusterIdentity = bambou.Identity{
@@ -37,13 +37,10 @@ type AutoDiscoverClustersParent interface {
 
 // AutoDiscoverCluster represents the model of a autodiscoveredcluster
 type AutoDiscoverCluster struct {
-	ID                       string `json:"ID,omitempty"`
-	ParentID                 string `json:"parentID,omitempty"`
-	ParentType               string `json:"parentType,omitempty"`
-	Owner                    string `json:"owner,omitempty"`
-	Name                     string `json:"name,omitempty"`
-	ManagedObjectID          string `json:"managedObjectID,omitempty"`
-	AssocVCenterDataCenterId string `json:"assocVCenterDataCenterId,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewAutoDiscoverCluster returns a new *AutoDiscoverCluster

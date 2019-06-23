@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // GroupKeyEncryptionProfileIdentity represents the Identity of the object
 var GroupKeyEncryptionProfileIdentity = bambou.Identity{
@@ -37,42 +37,16 @@ type GroupKeyEncryptionProfilesParent interface {
 
 // GroupKeyEncryptionProfile represents the model of a groupkeyencryptionprofile
 type GroupKeyEncryptionProfile struct {
-	ID                                   string `json:"ID,omitempty"`
-	ParentID                             string `json:"parentID,omitempty"`
-	ParentType                           string `json:"parentType,omitempty"`
-	Owner                                string `json:"owner,omitempty"`
-	SEKGenerationInterval                int    `json:"SEKGenerationInterval,omitempty"`
-	SEKLifetime                          int    `json:"SEKLifetime,omitempty"`
-	SEKPayloadEncryptionAlgorithm        string `json:"SEKPayloadEncryptionAlgorithm,omitempty"`
-	SEKPayloadEncryptionBCAlgorithm      string `json:"SEKPayloadEncryptionBCAlgorithm,omitempty"`
-	SEKPayloadEncryptionKeyLength        int    `json:"SEKPayloadEncryptionKeyLength,omitempty"`
-	SEKPayloadSigningAlgorithm           string `json:"SEKPayloadSigningAlgorithm,omitempty"`
-	Name                                 string `json:"name,omitempty"`
-	LastUpdatedBy                        string `json:"lastUpdatedBy,omitempty"`
-	SeedGenerationInterval               int    `json:"seedGenerationInterval,omitempty"`
-	SeedLifetime                         int    `json:"seedLifetime,omitempty"`
-	SeedPayloadAuthenticationAlgorithm   string `json:"seedPayloadAuthenticationAlgorithm,omitempty"`
-	SeedPayloadAuthenticationBCAlgorithm string `json:"seedPayloadAuthenticationBCAlgorithm,omitempty"`
-	SeedPayloadAuthenticationKeyLength   int    `json:"seedPayloadAuthenticationKeyLength,omitempty"`
-	SeedPayloadEncryptionAlgorithm       string `json:"seedPayloadEncryptionAlgorithm,omitempty"`
-	SeedPayloadEncryptionBCAlgorithm     string `json:"seedPayloadEncryptionBCAlgorithm,omitempty"`
-	SeedPayloadEncryptionKeyLength       int    `json:"seedPayloadEncryptionKeyLength,omitempty"`
-	SeedPayloadSigningAlgorithm          string `json:"seedPayloadSigningAlgorithm,omitempty"`
-	Description                          string `json:"description,omitempty"`
-	EntityScope                          string `json:"entityScope,omitempty"`
-	TrafficAuthenticationAlgorithm       string `json:"trafficAuthenticationAlgorithm,omitempty"`
-	TrafficEncryptionAlgorithm           string `json:"trafficEncryptionAlgorithm,omitempty"`
-	TrafficEncryptionKeyLifetime         int    `json:"trafficEncryptionKeyLifetime,omitempty"`
-	AssociatedEnterpriseID               string `json:"associatedEnterpriseID,omitempty"`
-	ExternalID                           string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewGroupKeyEncryptionProfile returns a new *GroupKeyEncryptionProfile
 func NewGroupKeyEncryptionProfile() *GroupKeyEncryptionProfile {
 
-	return &GroupKeyEncryptionProfile{
-		SeedGenerationInterval: 1200,
-	}
+	return &GroupKeyEncryptionProfile{}
 }
 
 // Identity returns the Identity of the object.

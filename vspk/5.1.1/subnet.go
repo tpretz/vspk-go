@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // SubnetIdentity represents the Identity of the object
 var SubnetIdentity = bambou.Identity{
@@ -37,60 +37,16 @@ type SubnetsParent interface {
 
 // Subnet represents the model of a subnet
 type Subnet struct {
-	ID                                string `json:"ID,omitempty"`
-	ParentID                          string `json:"parentID,omitempty"`
-	ParentType                        string `json:"parentType,omitempty"`
-	Owner                             string `json:"owner,omitempty"`
-	PATEnabled                        string `json:"PATEnabled,omitempty"`
-	DHCPRelayStatus                   string `json:"DHCPRelayStatus,omitempty"`
-	DPI                               string `json:"DPI,omitempty"`
-	IPType                            string `json:"IPType,omitempty"`
-	IPv6Address                       string `json:"IPv6Address,omitempty"`
-	IPv6Gateway                       string `json:"IPv6Gateway,omitempty"`
-	MaintenanceMode                   string `json:"maintenanceMode,omitempty"`
-	Name                              string `json:"name,omitempty"`
-	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
-	Gateway                           string `json:"gateway,omitempty"`
-	GatewayMACAddress                 string `json:"gatewayMACAddress,omitempty"`
-	AccessRestrictionEnabled          bool   `json:"accessRestrictionEnabled"`
-	Address                           string `json:"address,omitempty"`
-	Advertise                         bool   `json:"advertise"`
-	DefaultAction                     string `json:"defaultAction,omitempty"`
-	TemplateID                        string `json:"templateID,omitempty"`
-	ServiceID                         int    `json:"serviceID,omitempty"`
-	Description                       string `json:"description,omitempty"`
-	ResourceType                      string `json:"resourceType,omitempty"`
-	Netmask                           string `json:"netmask,omitempty"`
-	VnId                              int    `json:"vnId,omitempty"`
-	Encryption                        string `json:"encryption,omitempty"`
-	Underlay                          bool   `json:"underlay"`
-	UnderlayEnabled                   string `json:"underlayEnabled,omitempty"`
-	EntityScope                       string `json:"entityScope,omitempty"`
-	EntityState                       string `json:"entityState,omitempty"`
-	PolicyGroupID                     int    `json:"policyGroupID,omitempty"`
-	RouteDistinguisher                string `json:"routeDistinguisher,omitempty"`
-	RouteTarget                       string `json:"routeTarget,omitempty"`
-	SplitSubnet                       bool   `json:"splitSubnet"`
-	ProxyARP                          bool   `json:"proxyARP"`
-	UseGlobalMAC                      string `json:"useGlobalMAC,omitempty"`
-	AssociatedMulticastChannelMapID   string `json:"associatedMulticastChannelMapID,omitempty"`
-	AssociatedSharedNetworkResourceID string `json:"associatedSharedNetworkResourceID,omitempty"`
-	Public                            bool   `json:"public"`
-	Multicast                         string `json:"multicast,omitempty"`
-	ExternalID                        string `json:"externalID,omitempty"`
-	DynamicIpv6Address                bool   `json:"dynamicIpv6Address"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewSubnet returns a new *Subnet
 func NewSubnet() *Subnet {
 
-	return &Subnet{
-		DPI: "INHERITED",
-		AccessRestrictionEnabled: false,
-		Advertise:                true,
-		ResourceType:             "STANDARD",
-		DynamicIpv6Address:       false,
-	}
+	return &Subnet{}
 }
 
 // Identity returns the Identity of the object.

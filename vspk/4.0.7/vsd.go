@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VSDIdentity represents the Identity of the object
 var VSDIdentity = bambou.Identity{
@@ -37,34 +37,10 @@ type VSDsParent interface {
 
 // VSD represents the model of a vsd
 type VSD struct {
-	ID                          string        `json:"ID,omitempty"`
-	ParentID                    string        `json:"parentID,omitempty"`
-	ParentType                  string        `json:"parentType,omitempty"`
-	Owner                       string        `json:"owner,omitempty"`
-	URL                         string        `json:"URL,omitempty"`
-	Name                        string        `json:"name,omitempty"`
-	ManagementIP                string        `json:"managementIP,omitempty"`
-	LastStateChange             int           `json:"lastStateChange,omitempty"`
-	LastUpdatedBy               string        `json:"lastUpdatedBy,omitempty"`
-	Address                     string        `json:"address,omitempty"`
-	PeakCPUUsage                float64       `json:"peakCPUUsage,omitempty"`
-	PeakMemoryUsage             float64       `json:"peakMemoryUsage,omitempty"`
-	PeerAddresses               string        `json:"peerAddresses,omitempty"`
-	Description                 string        `json:"description,omitempty"`
-	Messages                    []interface{} `json:"messages,omitempty"`
-	Disks                       []interface{} `json:"disks,omitempty"`
-	AlreadyMarkedForUnavailable bool          `json:"alreadyMarkedForUnavailable"`
-	UnavailableTimestamp        int           `json:"unavailableTimestamp,omitempty"`
-	EntityScope                 string        `json:"entityScope,omitempty"`
-	Location                    string        `json:"location,omitempty"`
-	Mode                        string        `json:"mode,omitempty"`
-	ProductVersion              string        `json:"productVersion,omitempty"`
-	Status                      string        `json:"status,omitempty"`
-	CurrentCPUUsage             float64       `json:"currentCPUUsage,omitempty"`
-	CurrentMemoryUsage          float64       `json:"currentMemoryUsage,omitempty"`
-	AverageCPUUsage             float64       `json:"averageCPUUsage,omitempty"`
-	AverageMemoryUsage          float64       `json:"averageMemoryUsage,omitempty"`
-	ExternalID                  string        `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVSD returns a new *VSD

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // MonitoringPortIdentity represents the Identity of the object
 var MonitoringPortIdentity = bambou.Identity{
@@ -37,20 +37,10 @@ type MonitoringPortsParent interface {
 
 // MonitoringPort represents the model of a monitoringport
 type MonitoringPort struct {
-	ID              string `json:"ID,omitempty"`
-	ParentID        string `json:"parentID,omitempty"`
-	ParentType      string `json:"parentType,omitempty"`
-	Owner           string `json:"owner,omitempty"`
-	Name            string `json:"name,omitempty"`
-	LastStateChange int    `json:"lastStateChange,omitempty"`
-	Access          bool   `json:"access"`
-	Description     string `json:"description,omitempty"`
-	ResiliencyState string `json:"resiliencyState,omitempty"`
-	Resilient       bool   `json:"resilient"`
-	EntityScope     string `json:"entityScope,omitempty"`
-	Uplink          bool   `json:"uplink"`
-	State           string `json:"state,omitempty"`
-	ExternalID      string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewMonitoringPort returns a new *MonitoringPort

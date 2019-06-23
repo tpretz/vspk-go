@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // DomainIdentity represents the Identity of the object
 var DomainIdentity = bambou.Identity{
@@ -37,69 +37,16 @@ type DomainsParent interface {
 
 // Domain represents the model of a domain
 type Domain struct {
-	ID                              string        `json:"ID,omitempty"`
-	ParentID                        string        `json:"parentID,omitempty"`
-	ParentType                      string        `json:"parentType,omitempty"`
-	Owner                           string        `json:"owner,omitempty"`
-	PATEnabled                      string        `json:"PATEnabled,omitempty"`
-	ECMPCount                       int           `json:"ECMPCount,omitempty"`
-	BGPEnabled                      bool          `json:"BGPEnabled"`
-	DHCPBehavior                    string        `json:"DHCPBehavior,omitempty"`
-	DHCPServerAddress               string        `json:"DHCPServerAddress,omitempty"`
-	FIPUnderlay                     bool          `json:"FIPUnderlay"`
-	DPI                             string        `json:"DPI,omitempty"`
-	LabelID                         int           `json:"labelID,omitempty"`
-	BackHaulRouteDistinguisher      string        `json:"backHaulRouteDistinguisher,omitempty"`
-	BackHaulRouteTarget             string        `json:"backHaulRouteTarget,omitempty"`
-	BackHaulServiceID               int           `json:"backHaulServiceID,omitempty"`
-	BackHaulSubnetIPAddress         string        `json:"backHaulSubnetIPAddress,omitempty"`
-	BackHaulSubnetMask              string        `json:"backHaulSubnetMask,omitempty"`
-	BackHaulVNID                    int           `json:"backHaulVNID,omitempty"`
-	MaintenanceMode                 string        `json:"maintenanceMode,omitempty"`
-	Name                            string        `json:"name,omitempty"`
-	LastUpdatedBy                   string        `json:"lastUpdatedBy,omitempty"`
-	AdvertiseCriteria               string        `json:"advertiseCriteria,omitempty"`
-	LeakingEnabled                  bool          `json:"leakingEnabled"`
-	SecondaryDHCPServerAddress      string        `json:"secondaryDHCPServerAddress,omitempty"`
-	TemplateID                      string        `json:"templateID,omitempty"`
-	PermittedAction                 string        `json:"permittedAction,omitempty"`
-	ServiceID                       int           `json:"serviceID,omitempty"`
-	Description                     string        `json:"description,omitempty"`
-	DhcpServerAddresses             []interface{} `json:"dhcpServerAddresses,omitempty"`
-	GlobalRoutingEnabled            bool          `json:"globalRoutingEnabled"`
-	FlowCollectionEnabled           string        `json:"flowCollectionEnabled,omitempty"`
-	ImportRouteTarget               string        `json:"importRouteTarget,omitempty"`
-	Encryption                      string        `json:"encryption,omitempty"`
-	UnderlayEnabled                 string        `json:"underlayEnabled,omitempty"`
-	EntityScope                     string        `json:"entityScope,omitempty"`
-	LocalAS                         int           `json:"localAS,omitempty"`
-	PolicyChangeStatus              string        `json:"policyChangeStatus,omitempty"`
-	DomainID                        int           `json:"domainID,omitempty"`
-	DomainVLANID                    int           `json:"domainVLANID,omitempty"`
-	RouteDistinguisher              string        `json:"routeDistinguisher,omitempty"`
-	RouteTarget                     string        `json:"routeTarget,omitempty"`
-	UplinkPreference                string        `json:"uplinkPreference,omitempty"`
-	AssociatedBGPProfileID          string        `json:"associatedBGPProfileID,omitempty"`
-	AssociatedMulticastChannelMapID string        `json:"associatedMulticastChannelMapID,omitempty"`
-	AssociatedPATMapperID           string        `json:"associatedPATMapperID,omitempty"`
-	AssociatedSharedPATMapperID     string        `json:"associatedSharedPATMapperID,omitempty"`
-	AssociatedUnderlayID            string        `json:"associatedUnderlayID,omitempty"`
-	Stretched                       bool          `json:"stretched"`
-	Multicast                       string        `json:"multicast,omitempty"`
-	TunnelType                      string        `json:"tunnelType,omitempty"`
-	CustomerID                      int           `json:"customerID,omitempty"`
-	ExportRouteTarget               string        `json:"exportRouteTarget,omitempty"`
-	ExternalID                      string        `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewDomain returns a new *Domain
 func NewDomain() *Domain {
 
-	return &Domain{
-		FIPUnderlay: false,
-		DPI:         "DISABLED",
-		FlowCollectionEnabled: "INHERITED",
-	}
+	return &Domain{}
 }
 
 // Identity returns the Identity of the object.

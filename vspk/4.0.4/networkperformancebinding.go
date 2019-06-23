@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NetworkPerformanceBindingIdentity represents the Identity of the object
 var NetworkPerformanceBindingIdentity = bambou.Identity{
@@ -37,21 +37,16 @@ type NetworkPerformanceBindingsParent interface {
 
 // NetworkPerformanceBinding represents the model of a networkperformancebinding
 type NetworkPerformanceBinding struct {
-	ID                             string `json:"ID,omitempty"`
-	ParentID                       string `json:"parentID,omitempty"`
-	ParentType                     string `json:"parentType,omitempty"`
-	Owner                          string `json:"owner,omitempty"`
-	ReadOnly                       bool   `json:"readOnly"`
-	Priority                       int    `json:"priority,omitempty"`
-	AssociatedNetworkMeasurementID string `json:"associatedNetworkMeasurementID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNetworkPerformanceBinding returns a new *NetworkPerformanceBinding
 func NewNetworkPerformanceBinding() *NetworkPerformanceBinding {
 
-	return &NetworkPerformanceBinding{
-		ReadOnly: false,
-	}
+	return &NetworkPerformanceBinding{}
 }
 
 // Identity returns the Identity of the object.

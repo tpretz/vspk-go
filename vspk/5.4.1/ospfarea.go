@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // OSPFAreaIdentity represents the Identity of the object
 var OSPFAreaIdentity = bambou.Identity{
@@ -37,32 +37,16 @@ type OSPFAreasParent interface {
 
 // OSPFArea represents the model of a ospfarea
 type OSPFArea struct {
-	ID                          string        `json:"ID,omitempty"`
-	ParentID                    string        `json:"parentID,omitempty"`
-	ParentType                  string        `json:"parentType,omitempty"`
-	Owner                       string        `json:"owner,omitempty"`
-	LastUpdatedBy               string        `json:"lastUpdatedBy,omitempty"`
-	RedistributeExternalEnabled bool          `json:"redistributeExternalEnabled"`
-	DefaultMetric               int           `json:"defaultMetric,omitempty"`
-	DefaultOriginateOption      string        `json:"defaultOriginateOption,omitempty"`
-	Description                 string        `json:"description,omitempty"`
-	AggregateAreaRange          []interface{} `json:"aggregateAreaRange,omitempty"`
-	AggregateAreaRangeNSSA      []interface{} `json:"aggregateAreaRangeNSSA,omitempty"`
-	EntityScope                 string        `json:"entityScope,omitempty"`
-	AreaID                      int           `json:"areaID,omitempty"`
-	AreaType                    string        `json:"areaType,omitempty"`
-	SummariesEnabled            bool          `json:"summariesEnabled"`
-	SuppressAreaRange           []interface{} `json:"suppressAreaRange,omitempty"`
-	SuppressAreaRangeNSSA       []interface{} `json:"suppressAreaRangeNSSA,omitempty"`
-	ExternalID                  string        `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewOSPFArea returns a new *OSPFArea
 func NewOSPFArea() *OSPFArea {
 
-	return &OSPFArea{
-		AreaType: "NORMAL",
-	}
+	return &OSPFArea{}
 }
 
 // Identity returns the Identity of the object.

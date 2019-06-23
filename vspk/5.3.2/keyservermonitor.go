@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // KeyServerMonitorIdentity represents the Identity of the object
 var KeyServerMonitorIdentity = bambou.Identity{
@@ -37,20 +37,10 @@ type KeyServerMonitorsParent interface {
 
 // KeyServerMonitor represents the model of a keyservermonitor
 type KeyServerMonitor struct {
-	ID                                 string `json:"ID,omitempty"`
-	ParentID                           string `json:"parentID,omitempty"`
-	ParentType                         string `json:"parentType,omitempty"`
-	Owner                              string `json:"owner,omitempty"`
-	LastUpdateTime                     int    `json:"lastUpdateTime,omitempty"`
-	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
-	GatewaySecuredDataRecordCount      int    `json:"gatewaySecuredDataRecordCount,omitempty"`
-	KeyserverMonitorEncryptedSEKCount  int    `json:"keyserverMonitorEncryptedSEKCount,omitempty"`
-	KeyserverMonitorEncryptedSeedCount int    `json:"keyserverMonitorEncryptedSeedCount,omitempty"`
-	KeyserverMonitorSEKCount           int    `json:"keyserverMonitorSEKCount,omitempty"`
-	KeyserverMonitorSeedCount          int    `json:"keyserverMonitorSeedCount,omitempty"`
-	EnterpriseSecuredDataRecordCount   int    `json:"enterpriseSecuredDataRecordCount,omitempty"`
-	EntityScope                        string `json:"entityScope,omitempty"`
-	ExternalID                         string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewKeyServerMonitor returns a new *KeyServerMonitor

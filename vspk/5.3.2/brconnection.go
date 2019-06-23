@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // BRConnectionIdentity represents the Identity of the object
 var BRConnectionIdentity = bambou.Identity{
@@ -37,31 +37,16 @@ type BRConnectionsParent interface {
 
 // BRConnection represents the model of a brconnection
 type BRConnection struct {
-	ID                    string `json:"ID,omitempty"`
-	ParentID              string `json:"parentID,omitempty"`
-	ParentType            string `json:"parentType,omitempty"`
-	Owner                 string `json:"owner,omitempty"`
-	DNSAddress            string `json:"DNSAddress,omitempty"`
-	DNSAddressV6          string `json:"DNSAddressV6,omitempty"`
-	Gateway               string `json:"gateway,omitempty"`
-	GatewayV6             string `json:"gatewayV6,omitempty"`
-	Address               string `json:"address,omitempty"`
-	AddressFamily         string `json:"addressFamily,omitempty"`
-	AddressV6             string `json:"addressV6,omitempty"`
-	AdvertisementCriteria string `json:"advertisementCriteria,omitempty"`
-	Netmask               string `json:"netmask,omitempty"`
-	Inherited             bool   `json:"inherited"`
-	Mode                  string `json:"mode,omitempty"`
-	UplinkID              int    `json:"uplinkID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewBRConnection returns a new *BRConnection
 func NewBRConnection() *BRConnection {
 
-	return &BRConnection{
-		AddressFamily: "IPV4",
-		Inherited:     false,
-	}
+	return &BRConnection{}
 }
 
 // Identity returns the Identity of the object.

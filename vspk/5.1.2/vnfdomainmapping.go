@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VNFDomainMappingIdentity represents the Identity of the object
 var VNFDomainMappingIdentity = bambou.Identity{
@@ -37,22 +37,16 @@ type VNFDomainMappingsParent interface {
 
 // VNFDomainMapping represents the model of a vnfdomainmapping
 type VNFDomainMapping struct {
-	ID                      string `json:"ID,omitempty"`
-	ParentID                string `json:"parentID,omitempty"`
-	ParentType              string `json:"parentType,omitempty"`
-	Owner                   string `json:"owner,omitempty"`
-	SegmentationID          int    `json:"segmentationID,omitempty"`
-	SegmentationType        string `json:"segmentationType,omitempty"`
-	AssociatedNSGatewayID   string `json:"associatedNSGatewayID,omitempty"`
-	AssociatedNSGatewayName string `json:"associatedNSGatewayName,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVNFDomainMapping returns a new *VNFDomainMapping
 func NewVNFDomainMapping() *VNFDomainMapping {
 
-	return &VNFDomainMapping{
-		SegmentationType: "VLAN",
-	}
+	return &VNFDomainMapping{}
 }
 
 // Identity returns the Identity of the object.

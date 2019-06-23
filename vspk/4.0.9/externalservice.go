@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // ExternalServiceIdentity represents the Identity of the object
 var ExternalServiceIdentity = bambou.Identity{
@@ -37,18 +37,10 @@ type ExternalServicesParent interface {
 
 // ExternalService represents the model of a externalservice
 type ExternalService struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	Name          string `json:"name,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	ServiceType   string `json:"serviceType,omitempty"`
-	Description   string `json:"description,omitempty"`
-	Direction     string `json:"direction,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	Stage         string `json:"stage,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewExternalService returns a new *ExternalService

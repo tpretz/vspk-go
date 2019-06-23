@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VNFMetadataIdentity represents the Identity of the object
 var VNFMetadataIdentity = bambou.Identity{
@@ -37,13 +37,10 @@ type VNFMetadatasParent interface {
 
 // VNFMetadata represents the model of a vnfmetadata
 type VNFMetadata struct {
-	ID          string `json:"ID,omitempty"`
-	ParentID    string `json:"parentID,omitempty"`
-	ParentType  string `json:"parentType,omitempty"`
-	Owner       string `json:"owner,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Description string `json:"description,omitempty"`
-	Blob        string `json:"blob,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVNFMetadata returns a new *VNFMetadata

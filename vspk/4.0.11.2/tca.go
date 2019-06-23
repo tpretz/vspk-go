@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // TCAIdentity represents the Identity of the object
 var TCAIdentity = bambou.Identity{
@@ -37,37 +37,16 @@ type TCAsParent interface {
 
 // TCA represents the model of a tca
 type TCA struct {
-	ID                  string `json:"ID,omitempty"`
-	ParentID            string `json:"parentID,omitempty"`
-	ParentType          string `json:"parentType,omitempty"`
-	Owner               string `json:"owner,omitempty"`
-	URLEndPoint         string `json:"URLEndPoint,omitempty"`
-	Name                string `json:"name,omitempty"`
-	TargetPolicyGroupID string `json:"targetPolicyGroupID,omitempty"`
-	LastUpdatedBy       string `json:"lastUpdatedBy,omitempty"`
-	Action              string `json:"action,omitempty"`
-	Period              int    `json:"period,omitempty"`
-	Description         string `json:"description,omitempty"`
-	Metric              string `json:"metric,omitempty"`
-	Threshold           int    `json:"threshold,omitempty"`
-	ThrottleTime        int    `json:"throttleTime,omitempty"`
-	Disable             bool   `json:"disable"`
-	DisplayStatus       string `json:"displayStatus,omitempty"`
-	EntityScope         string `json:"entityScope,omitempty"`
-	Count               int    `json:"count,omitempty"`
-	Status              bool   `json:"status"`
-	ExternalID          string `json:"externalID,omitempty"`
-	Type                string `json:"type,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewTCA returns a new *TCA
 func NewTCA() *TCA {
 
-	return &TCA{
-		ThrottleTime: 0,
-		Disable:      false,
-		Status:       false,
-	}
+	return &TCA{}
 }
 
 // Identity returns the Identity of the object.

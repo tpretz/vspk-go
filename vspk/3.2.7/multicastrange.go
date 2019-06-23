@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // MultiCastRangeIdentity represents the Identity of the object
 var MultiCastRangeIdentity = bambou.Identity{
@@ -37,15 +37,10 @@ type MultiCastRangesParent interface {
 
 // MultiCastRange represents the model of a multicastrange
 type MultiCastRange struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	MaxAddress    string `json:"maxAddress,omitempty"`
-	MinAddress    string `json:"minAddress,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewMultiCastRange returns a new *MultiCastRange

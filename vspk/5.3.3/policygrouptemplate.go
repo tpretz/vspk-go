@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // PolicyGroupTemplateIdentity represents the Identity of the object
 var PolicyGroupTemplateIdentity = bambou.Identity{
@@ -37,18 +37,10 @@ type PolicyGroupTemplatesParent interface {
 
 // PolicyGroupTemplate represents the model of a policygrouptemplate
 type PolicyGroupTemplate struct {
-	ID               string `json:"ID,omitempty"`
-	ParentID         string `json:"parentID,omitempty"`
-	ParentType       string `json:"parentType,omitempty"`
-	Owner            string `json:"owner,omitempty"`
-	EVPNCommunityTag string `json:"EVPNCommunityTag,omitempty"`
-	Name             string `json:"name,omitempty"`
-	LastUpdatedBy    string `json:"lastUpdatedBy,omitempty"`
-	Description      string `json:"description,omitempty"`
-	EntityScope      string `json:"entityScope,omitempty"`
-	External         bool   `json:"external"`
-	ExternalID       string `json:"externalID,omitempty"`
-	Type             string `json:"type,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewPolicyGroupTemplate returns a new *PolicyGroupTemplate

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // SAPEgressQoSProfileIdentity represents the Identity of the object
 var SAPEgressQoSProfileIdentity = bambou.Identity{
@@ -37,12 +37,10 @@ type SAPEgressQoSProfilesParent interface {
 
 // SAPEgressQoSProfile represents the model of a sapegressqosprofile
 type SAPEgressQoSProfile struct {
-	ID          string `json:"ID,omitempty"`
-	ParentID    string `json:"parentID,omitempty"`
-	ParentType  string `json:"parentType,omitempty"`
-	Owner       string `json:"owner,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Description string `json:"description,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewSAPEgressQoSProfile returns a new *SAPEgressQoSProfile

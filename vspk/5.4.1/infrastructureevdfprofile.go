@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // InfrastructureEVDFProfileIdentity represents the Identity of the object
 var InfrastructureEVDFProfileIdentity = bambou.Identity{
@@ -37,34 +37,16 @@ type InfrastructureEVDFProfilesParent interface {
 
 // InfrastructureEVDFProfile represents the model of a infrastructureevdfprofile
 type InfrastructureEVDFProfile struct {
-	ID                string `json:"ID,omitempty"`
-	ParentID          string `json:"parentID,omitempty"`
-	ParentType        string `json:"parentType,omitempty"`
-	Owner             string `json:"owner,omitempty"`
-	NTPServerKey      string `json:"NTPServerKey,omitempty"`
-	NTPServerKeyID    int    `json:"NTPServerKeyID,omitempty"`
-	Name              string `json:"name,omitempty"`
-	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
-	ActiveController  string `json:"activeController,omitempty"`
-	ServiceIPv4Subnet string `json:"serviceIPv4Subnet,omitempty"`
-	Description       string `json:"description,omitempty"`
-	EnterpriseID      string `json:"enterpriseID,omitempty"`
-	EntityScope       string `json:"entityScope,omitempty"`
-	ProxyDNSName      string `json:"proxyDNSName,omitempty"`
-	UseTwoFactor      bool   `json:"useTwoFactor"`
-	StandbyController string `json:"standbyController,omitempty"`
-	NuagePlatform     string `json:"nuagePlatform,omitempty"`
-	ExternalID        string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewInfrastructureEVDFProfile returns a new *InfrastructureEVDFProfile
 func NewInfrastructureEVDFProfile() *InfrastructureEVDFProfile {
 
-	return &InfrastructureEVDFProfile{
-		ServiceIPv4Subnet: "0.0.0.0/8",
-		UseTwoFactor:      true,
-		NuagePlatform:     "KVM",
-	}
+	return &InfrastructureEVDFProfile{}
 }
 
 // Identity returns the Identity of the object.

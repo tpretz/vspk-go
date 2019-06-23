@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // KeyServerMemberIdentity represents the Identity of the object
 var KeyServerMemberIdentity = bambou.Identity{
@@ -37,19 +37,10 @@ type KeyServerMembersParent interface {
 
 // KeyServerMember represents the model of a keyservermember
 type KeyServerMember struct {
-	ID                      string `json:"ID,omitempty"`
-	ParentID                string `json:"parentID,omitempty"`
-	ParentType              string `json:"parentType,omitempty"`
-	Owner                   string `json:"owner,omitempty"`
-	LastUpdatedBy           string `json:"lastUpdatedBy,omitempty"`
-	PemEncoded              string `json:"pemEncoded,omitempty"`
-	CertificateSerialNumber int    `json:"certificateSerialNumber,omitempty"`
-	EntityScope             string `json:"entityScope,omitempty"`
-	Fqdn                    string `json:"fqdn,omitempty"`
-	IssuerDN                string `json:"issuerDN,omitempty"`
-	SubjectDN               string `json:"subjectDN,omitempty"`
-	PublicKey               string `json:"publicKey,omitempty"`
-	ExternalID              string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewKeyServerMember returns a new *KeyServerMember

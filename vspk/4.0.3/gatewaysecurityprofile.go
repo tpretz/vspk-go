@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // GatewaySecurityProfileIdentity represents the Identity of the object
 var GatewaySecurityProfileIdentity = bambou.Identity{
@@ -37,15 +37,10 @@ type GatewaySecurityProfilesParent interface {
 
 // GatewaySecurityProfile represents the model of a gatewaysecurityprofile
 type GatewaySecurityProfile struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	GatewayID     string `json:"gatewayID,omitempty"`
-	Revision      int    `json:"revision,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewGatewaySecurityProfile returns a new *GatewaySecurityProfile

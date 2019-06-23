@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IKEGatewayConnectionIdentity represents the Identity of the object
 var IKEGatewayConnectionIdentity = bambou.Identity{
@@ -37,35 +37,16 @@ type IKEGatewayConnectionsParent interface {
 
 // IKEGatewayConnection represents the model of a ikegatewayconnection
 type IKEGatewayConnection struct {
-	ID                               string `json:"ID,omitempty"`
-	ParentID                         string `json:"parentID,omitempty"`
-	ParentType                       string `json:"parentType,omitempty"`
-	Owner                            string `json:"owner,omitempty"`
-	NSGIdentifier                    string `json:"NSGIdentifier,omitempty"`
-	NSGIdentifierType                string `json:"NSGIdentifierType,omitempty"`
-	NSGRole                          string `json:"NSGRole,omitempty"`
-	Name                             string `json:"name,omitempty"`
-	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
-	Sequence                         int    `json:"sequence,omitempty"`
-	AllowAnySubnet                   bool   `json:"allowAnySubnet"`
-	UnencryptedPSK                   string `json:"unencryptedPSK,omitempty"`
-	EntityScope                      string `json:"entityScope,omitempty"`
-	PortVLANName                     string `json:"portVLANName,omitempty"`
-	Priority                         int    `json:"priority,omitempty"`
-	AssociatedIKEAuthenticationID    string `json:"associatedIKEAuthenticationID,omitempty"`
-	AssociatedIKEAuthenticationType  string `json:"associatedIKEAuthenticationType,omitempty"`
-	AssociatedIKEEncryptionProfileID string `json:"associatedIKEEncryptionProfileID,omitempty"`
-	AssociatedIKEGatewayProfileID    string `json:"associatedIKEGatewayProfileID,omitempty"`
-	AssociatedVLANID                 string `json:"associatedVLANID,omitempty"`
-	ExternalID                       string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIKEGatewayConnection returns a new *IKEGatewayConnection
 func NewIKEGatewayConnection() *IKEGatewayConnection {
 
-	return &IKEGatewayConnection{
-		NSGIdentifierType: "ID_KEY_ID",
-	}
+	return &IKEGatewayConnection{}
 }
 
 // Identity returns the Identity of the object.

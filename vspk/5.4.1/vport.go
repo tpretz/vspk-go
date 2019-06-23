@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VPortIdentity represents the Identity of the object
 var VPortIdentity = bambou.Identity{
@@ -37,66 +37,16 @@ type VPortsParent interface {
 
 // VPort represents the model of a vport
 type VPort struct {
-	ID                                  string `json:"ID,omitempty"`
-	ParentID                            string `json:"parentID,omitempty"`
-	ParentType                          string `json:"parentType,omitempty"`
-	Owner                               string `json:"owner,omitempty"`
-	FIPIgnoreDefaultRoute               string `json:"FIPIgnoreDefaultRoute,omitempty"`
-	VLAN                                int    `json:"VLAN,omitempty"`
-	VLANID                              string `json:"VLANID,omitempty"`
-	DPI                                 string `json:"DPI,omitempty"`
-	BackhaulSubnetVNID                  int    `json:"backhaulSubnetVNID,omitempty"`
-	Name                                string `json:"name,omitempty"`
-	HasAttachedInterfaces               bool   `json:"hasAttachedInterfaces"`
-	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
-	GatewayMACMoveRole                  string `json:"gatewayMACMoveRole,omitempty"`
-	GatewayPortName                     string `json:"gatewayPortName,omitempty"`
-	AccessRestrictionEnabled            bool   `json:"accessRestrictionEnabled"`
-	Active                              bool   `json:"active"`
-	AddressSpoofing                     string `json:"addressSpoofing,omitempty"`
-	PeerOperationalState                string `json:"peerOperationalState,omitempty"`
-	SegmentationID                      int    `json:"segmentationID,omitempty"`
-	SegmentationType                    string `json:"segmentationType,omitempty"`
-	ServiceID                           int    `json:"serviceID,omitempty"`
-	Description                         string `json:"description,omitempty"`
-	EntityScope                         string `json:"entityScope,omitempty"`
-	DomainID                            string `json:"domainID,omitempty"`
-	DomainName                          string `json:"domainName,omitempty"`
-	DomainServiceLabel                  string `json:"domainServiceLabel,omitempty"`
-	DomainVLANID                        int    `json:"domainVLANID,omitempty"`
-	ZoneID                              string `json:"zoneID,omitempty"`
-	OperationalState                    string `json:"operationalState,omitempty"`
-	TrunkRole                           string `json:"trunkRole,omitempty"`
-	AssocEntityID                       string `json:"assocEntityID,omitempty"`
-	AssociatedEgressProfileID           string `json:"associatedEgressProfileID,omitempty"`
-	AssociatedFloatingIPID              string `json:"associatedFloatingIPID,omitempty"`
-	AssociatedGatewayID                 string `json:"associatedGatewayID,omitempty"`
-	AssociatedGatewayPersonality        string `json:"associatedGatewayPersonality,omitempty"`
-	AssociatedGatewayType               string `json:"associatedGatewayType,omitempty"`
-	AssociatedIngressProfileID          string `json:"associatedIngressProfileID,omitempty"`
-	AssociatedMulticastChannelMapID     string `json:"associatedMulticastChannelMapID,omitempty"`
-	AssociatedSSID                      string `json:"associatedSSID,omitempty"`
-	AssociatedSendMulticastChannelMapID string `json:"associatedSendMulticastChannelMapID,omitempty"`
-	AssociatedTrunkID                   string `json:"associatedTrunkID,omitempty"`
-	SubType                             string `json:"subType,omitempty"`
-	SubnetVNID                          int    `json:"subnetVNID,omitempty"`
-	MultiNICVPortID                     string `json:"multiNICVPortID,omitempty"`
-	Multicast                           string `json:"multicast,omitempty"`
-	GwEligible                          bool   `json:"gwEligible"`
-	ExternalID                          string `json:"externalID,omitempty"`
-	Type                                string `json:"type,omitempty"`
-	SystemType                          string `json:"systemType,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVPort returns a new *VPort
 func NewVPort() *VPort {
 
-	return &VPort{
-		DPI: "INHERITED",
-		AccessRestrictionEnabled: false,
-		SubType:                  "NONE",
-		GwEligible:               false,
-	}
+	return &VPort{}
 }
 
 // Identity returns the Identity of the object.

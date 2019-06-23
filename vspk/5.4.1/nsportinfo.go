@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NSPortInfoIdentity represents the Identity of the object
 var NSPortInfoIdentity = bambou.Identity{
@@ -37,13 +37,10 @@ type NSPortInfosParent interface {
 
 // NSPortInfo represents the model of a portinfo
 type NSPortInfo struct {
-	ID              string        `json:"ID,omitempty"`
-	ParentID        string        `json:"parentID,omitempty"`
-	ParentType      string        `json:"parentType,omitempty"`
-	Owner           string        `json:"owner,omitempty"`
-	WirelessPorts   []interface{} `json:"wirelessPorts,omitempty"`
-	MonitoringPorts []interface{} `json:"monitoringPorts,omitempty"`
-	Ports           []interface{} `json:"ports,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNSPortInfo returns a new *NSPortInfo

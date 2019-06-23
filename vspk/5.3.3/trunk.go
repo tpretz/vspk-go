@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // TrunkIdentity represents the Identity of the object
 var TrunkIdentity = bambou.Identity{
@@ -37,15 +37,10 @@ type TrunksParent interface {
 
 // Trunk represents the model of a trunk
 type Trunk struct {
-	ID                string `json:"ID,omitempty"`
-	ParentID          string `json:"parentID,omitempty"`
-	ParentType        string `json:"parentType,omitempty"`
-	Owner             string `json:"owner,omitempty"`
-	Name              string `json:"name,omitempty"`
-	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
-	EntityScope       string `json:"entityScope,omitempty"`
-	AssociatedVPortID string `json:"associatedVPortID,omitempty"`
-	ExternalID        string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewTrunk returns a new *Trunk

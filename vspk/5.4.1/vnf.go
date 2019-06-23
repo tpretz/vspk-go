@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VNFIdentity represents the Identity of the object
 var VNFIdentity = bambou.Identity{
@@ -37,42 +37,16 @@ type VNFsParent interface {
 
 // VNF represents the model of a vnf
 type VNF struct {
-	ID                             string        `json:"ID,omitempty"`
-	ParentID                       string        `json:"parentID,omitempty"`
-	ParentType                     string        `json:"parentType,omitempty"`
-	Owner                          string        `json:"owner,omitempty"`
-	VNFDescriptorID                string        `json:"VNFDescriptorID,omitempty"`
-	VNFDescriptorName              string        `json:"VNFDescriptorName,omitempty"`
-	CPUCount                       int           `json:"CPUCount,omitempty"`
-	NSGName                        string        `json:"NSGName,omitempty"`
-	NSGSystemID                    string        `json:"NSGSystemID,omitempty"`
-	NSGatewayID                    string        `json:"NSGatewayID,omitempty"`
-	Name                           string        `json:"name,omitempty"`
-	TaskState                      string        `json:"taskState,omitempty"`
-	LastKnownError                 string        `json:"lastKnownError,omitempty"`
-	LastUpdatedBy                  string        `json:"lastUpdatedBy,omitempty"`
-	LastUserAction                 string        `json:"lastUserAction,omitempty"`
-	MemoryMB                       int           `json:"memoryMB,omitempty"`
-	Vendor                         string        `json:"vendor,omitempty"`
-	Description                    string        `json:"description,omitempty"`
-	AllowedActions                 []interface{} `json:"allowedActions,omitempty"`
-	EnterpriseID                   string        `json:"enterpriseID,omitempty"`
-	EntityScope                    string        `json:"entityScope,omitempty"`
-	IsAttachedToDescriptor         bool          `json:"isAttachedToDescriptor"`
-	AssociatedVNFMetadataID        string        `json:"associatedVNFMetadataID,omitempty"`
-	AssociatedVNFThresholdPolicyID string        `json:"associatedVNFThresholdPolicyID,omitempty"`
-	Status                         string        `json:"status,omitempty"`
-	StorageGB                      int           `json:"storageGB,omitempty"`
-	ExternalID                     string        `json:"externalID,omitempty"`
-	Type                           string        `json:"type,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVNF returns a new *VNF
 func NewVNF() *VNF {
 
-	return &VNF{
-		IsAttachedToDescriptor: true,
-	}
+	return &VNF{}
 }
 
 // Identity returns the Identity of the object.

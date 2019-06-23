@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // ZoneIdentity represents the Identity of the object
 var ZoneIdentity = bambou.Identity{
@@ -37,38 +37,16 @@ type ZonesParent interface {
 
 // Zone represents the model of a zone
 type Zone struct {
-	ID                              string `json:"ID,omitempty"`
-	ParentID                        string `json:"parentID,omitempty"`
-	ParentType                      string `json:"parentType,omitempty"`
-	Owner                           string `json:"owner,omitempty"`
-	DPI                             string `json:"DPI,omitempty"`
-	IPType                          string `json:"IPType,omitempty"`
-	IPv6Address                     string `json:"IPv6Address,omitempty"`
-	MaintenanceMode                 string `json:"maintenanceMode,omitempty"`
-	Name                            string `json:"name,omitempty"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	Address                         string `json:"address,omitempty"`
-	TemplateID                      string `json:"templateID,omitempty"`
-	Description                     string `json:"description,omitempty"`
-	Netmask                         string `json:"netmask,omitempty"`
-	Encryption                      string `json:"encryption,omitempty"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	PolicyGroupID                   int    `json:"policyGroupID,omitempty"`
-	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
-	PublicZone                      bool   `json:"publicZone"`
-	Multicast                       string `json:"multicast,omitempty"`
-	NumberOfHostsInSubnets          int    `json:"numberOfHostsInSubnets,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
-	DynamicIpv6Address              bool   `json:"dynamicIpv6Address"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewZone returns a new *Zone
 func NewZone() *Zone {
 
-	return &Zone{
-		DPI:        "INHERITED",
-		Encryption: "INHERITED",
-	}
+	return &Zone{}
 }
 
 // Identity returns the Identity of the object.

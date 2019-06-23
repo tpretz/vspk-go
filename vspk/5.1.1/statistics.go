@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // StatisticsIdentity represents the Identity of the object
 var StatisticsIdentity = bambou.Identity{
@@ -37,15 +37,10 @@ type StatisticsParent interface {
 
 // Statistics represents the model of a statistics
 type Statistics struct {
-	ID                 string      `json:"ID,omitempty"`
-	ParentID           string      `json:"parentID,omitempty"`
-	ParentType         string      `json:"parentType,omitempty"`
-	Owner              string      `json:"owner,omitempty"`
-	Version            int         `json:"version,omitempty"`
-	EndTime            int         `json:"endTime,omitempty"`
-	StartTime          int         `json:"startTime,omitempty"`
-	StatsData          interface{} `json:"statsData,omitempty"`
-	NumberOfDataPoints int         `json:"numberOfDataPoints,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewStatistics returns a new *Statistics

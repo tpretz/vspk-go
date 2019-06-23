@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // OverlayPATNATEntryIdentity represents the Identity of the object
 var OverlayPATNATEntryIdentity = bambou.Identity{
@@ -37,26 +37,16 @@ type OverlayPATNATEntriesParent interface {
 
 // OverlayPATNATEntry represents the model of a overlaypatnatentry
 type OverlayPATNATEntry struct {
-	ID                 string `json:"ID,omitempty"`
-	ParentID           string `json:"parentID,omitempty"`
-	ParentType         string `json:"parentType,omitempty"`
-	Owner              string `json:"owner,omitempty"`
-	NATEnabled         bool   `json:"NATEnabled"`
-	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
-	EntityScope        string `json:"entityScope,omitempty"`
-	PrivateIP          string `json:"privateIP,omitempty"`
-	AssociatedDomainID string `json:"associatedDomainID,omitempty"`
-	AssociatedLinkID   string `json:"associatedLinkID,omitempty"`
-	PublicIP           string `json:"publicIP,omitempty"`
-	ExternalID         string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewOverlayPATNATEntry returns a new *OverlayPATNATEntry
 func NewOverlayPATNATEntry() *OverlayPATNATEntry {
 
-	return &OverlayPATNATEntry{
-		NATEnabled: true,
-	}
+	return &OverlayPATNATEntry{}
 }
 
 // Identity returns the Identity of the object.

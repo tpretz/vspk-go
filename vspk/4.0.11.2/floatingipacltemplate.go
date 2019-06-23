@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // FloatingIPACLTemplateIdentity represents the Identity of the object
 var FloatingIPACLTemplateIdentity = bambou.Identity{
@@ -37,22 +37,10 @@ type FloatingIPACLTemplatesParent interface {
 
 // FloatingIPACLTemplate represents the model of a egressfloatingipacltemplate
 type FloatingIPACLTemplate struct {
-	ID                     string `json:"ID,omitempty"`
-	ParentID               string `json:"parentID,omitempty"`
-	ParentType             string `json:"parentType,omitempty"`
-	Owner                  string `json:"owner,omitempty"`
-	Name                   string `json:"name,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	Active                 bool   `json:"active"`
-	DefaultAllowIP         bool   `json:"defaultAllowIP"`
-	DefaultAllowNonIP      bool   `json:"defaultAllowNonIP"`
-	Description            string `json:"description,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	PolicyState            string `json:"policyState,omitempty"`
-	Priority               int    `json:"priority,omitempty"`
-	PriorityType           string `json:"priorityType,omitempty"`
-	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewFloatingIPACLTemplate returns a new *FloatingIPACLTemplate

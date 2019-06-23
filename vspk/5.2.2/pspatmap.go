@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // PSPATMapIdentity represents the Identity of the object
 var PSPATMapIdentity = bambou.Identity{
@@ -37,13 +37,10 @@ type PSPATMapsParent interface {
 
 // PSPATMap represents the model of a pspatmap
 type PSPATMap struct {
-	ID                          string        `json:"ID,omitempty"`
-	ParentID                    string        `json:"parentID,omitempty"`
-	ParentType                  string        `json:"parentType,omitempty"`
-	Owner                       string        `json:"owner,omitempty"`
-	Name                        string        `json:"name,omitempty"`
-	ReservedSPATIPs             []interface{} `json:"reservedSPATIPs,omitempty"`
-	AssociatedSPATSourcesPoolID string        `json:"associatedSPATSourcesPoolID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewPSPATMap returns a new *PSPATMap

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NSGatewayMonitorIdentity represents the Identity of the object
 var NSGatewayMonitorIdentity = bambou.Identity{
@@ -37,15 +37,10 @@ type NSGatewayMonitorsParent interface {
 
 // NSGatewayMonitor represents the model of a nsgatewaysmonitor
 type NSGatewayMonitor struct {
-	ID         string        `json:"ID,omitempty"`
-	ParentID   string        `json:"parentID,omitempty"`
-	ParentType string        `json:"parentType,omitempty"`
-	Owner      string        `json:"owner,omitempty"`
-	Vrsinfo    interface{}   `json:"vrsinfo,omitempty"`
-	Vscs       []interface{} `json:"vscs,omitempty"`
-	Nsginfo    interface{}   `json:"nsginfo,omitempty"`
-	Nsgstate   interface{}   `json:"nsgstate,omitempty"`
-	Nsgsummary interface{}   `json:"nsgsummary,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNSGatewayMonitor returns a new *NSGatewayMonitor

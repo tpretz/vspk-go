@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // FirewallRuleIdentity represents the Identity of the object
 var FirewallRuleIdentity = bambou.Identity{
@@ -37,56 +37,16 @@ type FirewallRulesParent interface {
 
 // FirewallRule represents the model of a firewallrule
 type FirewallRule struct {
-	ID                            string `json:"ID,omitempty"`
-	ParentID                      string `json:"parentID,omitempty"`
-	ParentType                    string `json:"parentType,omitempty"`
-	Owner                         string `json:"owner,omitempty"`
-	ACLTemplateName               string `json:"ACLTemplateName,omitempty"`
-	ICMPCode                      string `json:"ICMPCode,omitempty"`
-	ICMPType                      string `json:"ICMPType,omitempty"`
-	IPv6AddressOverride           string `json:"IPv6AddressOverride,omitempty"`
-	DSCP                          string `json:"DSCP,omitempty"`
-	Action                        string `json:"action,omitempty"`
-	AddressOverride               string `json:"addressOverride,omitempty"`
-	Description                   string `json:"description,omitempty"`
-	DestNetwork                   string `json:"destNetwork,omitempty"`
-	DestPgId                      string `json:"destPgId,omitempty"`
-	DestPgType                    string `json:"destPgType,omitempty"`
-	DestinationIpv6Value          string `json:"destinationIpv6Value,omitempty"`
-	DestinationPort               string `json:"destinationPort,omitempty"`
-	DestinationType               string `json:"destinationType,omitempty"`
-	DestinationValue              string `json:"destinationValue,omitempty"`
-	NetworkID                     string `json:"networkID,omitempty"`
-	NetworkType                   string `json:"networkType,omitempty"`
-	MirrorDestinationID           string `json:"mirrorDestinationID,omitempty"`
-	FlowLoggingEnabled            bool   `json:"flowLoggingEnabled"`
-	EnterpriseName                string `json:"enterpriseName,omitempty"`
-	LocationID                    string `json:"locationID,omitempty"`
-	LocationType                  string `json:"locationType,omitempty"`
-	DomainName                    string `json:"domainName,omitempty"`
-	SourceIpv6Value               string `json:"sourceIpv6Value,omitempty"`
-	SourceNetwork                 string `json:"sourceNetwork,omitempty"`
-	SourcePgId                    string `json:"sourcePgId,omitempty"`
-	SourcePgType                  string `json:"sourcePgType,omitempty"`
-	SourcePort                    string `json:"sourcePort,omitempty"`
-	SourceType                    string `json:"sourceType,omitempty"`
-	SourceValue                   string `json:"sourceValue,omitempty"`
-	Priority                      string `json:"priority,omitempty"`
-	AssociatedApplicationID       string `json:"associatedApplicationID,omitempty"`
-	AssociatedApplicationObjectID string `json:"associatedApplicationObjectID,omitempty"`
-	AssociatedfirewallACLID       string `json:"associatedfirewallACLID,omitempty"`
-	Stateful                      bool   `json:"stateful"`
-	StatsID                       string `json:"statsID,omitempty"`
-	StatsLoggingEnabled           bool   `json:"statsLoggingEnabled"`
-	EtherType                     string `json:"etherType,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewFirewallRule returns a new *FirewallRule
 func NewFirewallRule() *FirewallRule {
 
-	return &FirewallRule{
-		Stateful: false,
-	}
+	return &FirewallRule{}
 }
 
 // Identity returns the Identity of the object.

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // WirelessPortTemplateIdentity represents the Identity of the object
 var WirelessPortTemplateIdentity = bambou.Identity{
@@ -37,30 +37,16 @@ type WirelessPortTemplatesParent interface {
 
 // WirelessPortTemplate represents the model of a wirelessporttemplate
 type WirelessPortTemplate struct {
-	ID                string `json:"ID,omitempty"`
-	ParentID          string `json:"parentID,omitempty"`
-	ParentType        string `json:"parentType,omitempty"`
-	Owner             string `json:"owner,omitempty"`
-	Name              string `json:"name,omitempty"`
-	GenericConfig     string `json:"genericConfig,omitempty"`
-	Description       string `json:"description,omitempty"`
-	PhysicalName      string `json:"physicalName,omitempty"`
-	WifiFrequencyBand string `json:"wifiFrequencyBand,omitempty"`
-	WifiMode          string `json:"wifiMode,omitempty"`
-	PortType          string `json:"portType,omitempty"`
-	CountryCode       string `json:"countryCode,omitempty"`
-	FrequencyChannel  string `json:"frequencyChannel,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewWirelessPortTemplate returns a new *WirelessPortTemplate
 func NewWirelessPortTemplate() *WirelessPortTemplate {
 
-	return &WirelessPortTemplate{
-		WifiFrequencyBand: "FREQ_2_4_GHZ",
-		WifiMode:          "WIFI_A_N_AC",
-		PortType:          "ACCESS",
-		FrequencyChannel:  "CH_0",
-	}
+	return &WirelessPortTemplate{}
 }
 
 // Identity returns the Identity of the object.

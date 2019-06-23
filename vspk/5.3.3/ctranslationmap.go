@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // CTranslationMapIdentity represents the Identity of the object
 var CTranslationMapIdentity = bambou.Identity{
@@ -37,17 +37,10 @@ type CTranslationMapsParent interface {
 
 // CTranslationMap represents the model of a ctranslationmap
 type CTranslationMap struct {
-	ID                 string `json:"ID,omitempty"`
-	ParentID           string `json:"parentID,omitempty"`
-	ParentType         string `json:"parentType,omitempty"`
-	Owner              string `json:"owner,omitempty"`
-	MappingType        string `json:"mappingType,omitempty"`
-	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
-	EntityScope        string `json:"entityScope,omitempty"`
-	AssociatedDomainID string `json:"associatedDomainID,omitempty"`
-	CustomerAliasIP    string `json:"customerAliasIP,omitempty"`
-	CustomerIP         string `json:"customerIP,omitempty"`
-	ExternalID         string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewCTranslationMap returns a new *CTranslationMap

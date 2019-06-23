@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // ContainerResyncIdentity represents the Identity of the object
 var ContainerResyncIdentity = bambou.Identity{
@@ -37,16 +37,10 @@ type ContainerResyncsParent interface {
 
 // ContainerResync represents the model of a containerresync
 type ContainerResync struct {
-	ID                      string `json:"ID,omitempty"`
-	ParentID                string `json:"parentID,omitempty"`
-	ParentType              string `json:"parentType,omitempty"`
-	Owner                   string `json:"owner,omitempty"`
-	LastRequestTimestamp    int    `json:"lastRequestTimestamp,omitempty"`
-	LastTimeResyncInitiated int    `json:"lastTimeResyncInitiated,omitempty"`
-	LastUpdatedBy           string `json:"lastUpdatedBy,omitempty"`
-	EntityScope             string `json:"entityScope,omitempty"`
-	Status                  string `json:"status,omitempty"`
-	ExternalID              string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewContainerResync returns a new *ContainerResync

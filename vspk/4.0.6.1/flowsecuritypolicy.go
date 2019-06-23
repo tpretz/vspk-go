@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // FlowSecurityPolicyIdentity represents the Identity of the object
 var FlowSecurityPolicyIdentity = bambou.Identity{
@@ -37,20 +37,10 @@ type FlowSecurityPoliciesParent interface {
 
 // FlowSecurityPolicy represents the model of a flowsecuritypolicy
 type FlowSecurityPolicy struct {
-	ID                             string `json:"ID,omitempty"`
-	ParentID                       string `json:"parentID,omitempty"`
-	ParentType                     string `json:"parentType,omitempty"`
-	Owner                          string `json:"owner,omitempty"`
-	Action                         string `json:"action,omitempty"`
-	DestinationAddressOverwrite    string `json:"destinationAddressOverwrite,omitempty"`
-	FlowID                         string `json:"flowID,omitempty"`
-	EntityScope                    string `json:"entityScope,omitempty"`
-	SourceAddressOverwrite         string `json:"sourceAddressOverwrite,omitempty"`
-	Priority                       int    `json:"priority,omitempty"`
-	AssociatedApplicationServiceID string `json:"associatedApplicationServiceID,omitempty"`
-	AssociatedNetworkObjectID      string `json:"associatedNetworkObjectID,omitempty"`
-	AssociatedNetworkObjectType    string `json:"associatedNetworkObjectType,omitempty"`
-	ExternalID                     string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewFlowSecurityPolicy returns a new *FlowSecurityPolicy

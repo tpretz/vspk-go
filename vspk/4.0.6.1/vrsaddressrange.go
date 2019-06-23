@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VRSAddressRangeIdentity represents the Identity of the object
 var VRSAddressRangeIdentity = bambou.Identity{
@@ -37,15 +37,10 @@ type VRSAddressRangesParent interface {
 
 // VRSAddressRange represents the model of a vrsaddressrange
 type VRSAddressRange struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	MaxAddress    string `json:"maxAddress,omitempty"`
-	MinAddress    string `json:"minAddress,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVRSAddressRange returns a new *VRSAddressRange

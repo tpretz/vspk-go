@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // ContainerInterfaceIdentity represents the Identity of the object
 var ContainerInterfaceIdentity = bambou.Identity{
@@ -37,34 +37,10 @@ type ContainerInterfacesParent interface {
 
 // ContainerInterface represents the model of a containerinterface
 type ContainerInterface struct {
-	ID                          string `json:"ID,omitempty"`
-	ParentID                    string `json:"parentID,omitempty"`
-	ParentType                  string `json:"parentType,omitempty"`
-	Owner                       string `json:"owner,omitempty"`
-	MAC                         string `json:"MAC,omitempty"`
-	IPAddress                   string `json:"IPAddress,omitempty"`
-	VPortID                     string `json:"VPortID,omitempty"`
-	VPortName                   string `json:"VPortName,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	Gateway                     string `json:"gateway,omitempty"`
-	Netmask                     string `json:"netmask,omitempty"`
-	NetworkID                   string `json:"networkID,omitempty"`
-	NetworkName                 string `json:"networkName,omitempty"`
-	TierID                      string `json:"tierID,omitempty"`
-	EndpointID                  string `json:"endpointID,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	PolicyDecisionID            string `json:"policyDecisionID,omitempty"`
-	DomainID                    string `json:"domainID,omitempty"`
-	DomainName                  string `json:"domainName,omitempty"`
-	ZoneID                      string `json:"zoneID,omitempty"`
-	ZoneName                    string `json:"zoneName,omitempty"`
-	ContainerUUID               string `json:"containerUUID,omitempty"`
-	AssociatedFloatingIPAddress string `json:"associatedFloatingIPAddress,omitempty"`
-	AttachedNetworkID           string `json:"attachedNetworkID,omitempty"`
-	AttachedNetworkType         string `json:"attachedNetworkType,omitempty"`
-	MultiNICVPortName           string `json:"multiNICVPortName,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewContainerInterface returns a new *ContainerInterface

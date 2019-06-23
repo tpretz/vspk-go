@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IKEGatewayIdentity represents the Identity of the object
 var IKEGatewayIdentity = bambou.Identity{
@@ -37,28 +37,16 @@ type IKEGatewaysParent interface {
 
 // IKEGateway represents the model of a ikegateway
 type IKEGateway struct {
-	ID                     string `json:"ID,omitempty"`
-	ParentID               string `json:"parentID,omitempty"`
-	ParentType             string `json:"parentType,omitempty"`
-	Owner                  string `json:"owner,omitempty"`
-	IKEVersion             string `json:"IKEVersion,omitempty"`
-	IKEv1Mode              string `json:"IKEv1Mode,omitempty"`
-	IPAddress              string `json:"IPAddress,omitempty"`
-	Name                   string `json:"name,omitempty"`
-	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
-	Description            string `json:"description,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	AssociatedEnterpriseID string `json:"associatedEnterpriseID,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIKEGateway returns a new *IKEGateway
 func NewIKEGateway() *IKEGateway {
 
-	return &IKEGateway{
-		IKEVersion: "V2",
-		IKEv1Mode:  "NONE",
-	}
+	return &IKEGateway{}
 }
 
 // Identity returns the Identity of the object.

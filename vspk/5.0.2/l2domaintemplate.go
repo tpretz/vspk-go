@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // L2DomainTemplateIdentity represents the Identity of the object
 var L2DomainTemplateIdentity = bambou.Identity{
@@ -37,38 +37,16 @@ type L2DomainTemplatesParent interface {
 
 // L2DomainTemplate represents the model of a l2domaintemplate
 type L2DomainTemplate struct {
-	ID                              string `json:"ID,omitempty"`
-	ParentID                        string `json:"parentID,omitempty"`
-	ParentType                      string `json:"parentType,omitempty"`
-	Owner                           string `json:"owner,omitempty"`
-	DHCPManaged                     bool   `json:"DHCPManaged"`
-	DPI                             string `json:"DPI,omitempty"`
-	IPType                          string `json:"IPType,omitempty"`
-	IPv6Address                     string `json:"IPv6Address,omitempty"`
-	IPv6Gateway                     string `json:"IPv6Gateway,omitempty"`
-	Name                            string `json:"name,omitempty"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	Gateway                         string `json:"gateway,omitempty"`
-	Address                         string `json:"address,omitempty"`
-	Description                     string `json:"description,omitempty"`
-	Netmask                         string `json:"netmask,omitempty"`
-	Encryption                      string `json:"encryption,omitempty"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	EntityState                     string `json:"entityState,omitempty"`
-	PolicyChangeStatus              string `json:"policyChangeStatus,omitempty"`
-	UseGlobalMAC                    string `json:"useGlobalMAC,omitempty"`
-	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
-	Multicast                       string `json:"multicast,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewL2DomainTemplate returns a new *L2DomainTemplate
 func NewL2DomainTemplate() *L2DomainTemplate {
 
-	return &L2DomainTemplate{
-		DPI:          "false",
-		UseGlobalMAC: "DISABLED",
-	}
+	return &L2DomainTemplate{}
 }
 
 // Identity returns the Identity of the object.

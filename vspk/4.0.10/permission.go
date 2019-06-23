@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // PermissionIdentity represents the Identity of the object
 var PermissionIdentity = bambou.Identity{
@@ -37,19 +37,10 @@ type PermissionsParent interface {
 
 // Permission represents the model of a permission
 type Permission struct {
-	ID                         string `json:"ID,omitempty"`
-	ParentID                   string `json:"parentID,omitempty"`
-	ParentType                 string `json:"parentType,omitempty"`
-	Owner                      string `json:"owner,omitempty"`
-	Name                       string `json:"name,omitempty"`
-	LastUpdatedBy              string `json:"lastUpdatedBy,omitempty"`
-	PermittedAction            string `json:"permittedAction,omitempty"`
-	PermittedEntityDescription string `json:"permittedEntityDescription,omitempty"`
-	PermittedEntityID          string `json:"permittedEntityID,omitempty"`
-	PermittedEntityName        string `json:"permittedEntityName,omitempty"`
-	PermittedEntityType        string `json:"permittedEntityType,omitempty"`
-	EntityScope                string `json:"entityScope,omitempty"`
-	ExternalID                 string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewPermission returns a new *Permission

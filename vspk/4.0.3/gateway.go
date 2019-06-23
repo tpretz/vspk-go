@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // GatewayIdentity represents the Identity of the object
 var GatewayIdentity = bambou.Identity{
@@ -37,25 +37,10 @@ type GatewaysParent interface {
 
 // Gateway represents the model of a gateway
 type Gateway struct {
-	ID                string `json:"ID,omitempty"`
-	ParentID          string `json:"parentID,omitempty"`
-	ParentType        string `json:"parentType,omitempty"`
-	Owner             string `json:"owner,omitempty"`
-	Name              string `json:"name,omitempty"`
-	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
-	RedundancyGroupID string `json:"redundancyGroupID,omitempty"`
-	Peer              string `json:"peer,omitempty"`
-	TemplateID        string `json:"templateID,omitempty"`
-	Pending           bool   `json:"pending"`
-	PermittedAction   string `json:"permittedAction,omitempty"`
-	Personality       string `json:"personality,omitempty"`
-	Description       string `json:"description,omitempty"`
-	EnterpriseID      string `json:"enterpriseID,omitempty"`
-	EntityScope       string `json:"entityScope,omitempty"`
-	Vtep              string `json:"vtep,omitempty"`
-	AutoDiscGatewayID string `json:"autoDiscGatewayID,omitempty"`
-	ExternalID        string `json:"externalID,omitempty"`
-	SystemID          string `json:"systemID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewGateway returns a new *Gateway

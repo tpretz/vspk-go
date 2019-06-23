@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // DownloadProgressIdentity represents the Identity of the object
 var DownloadProgressIdentity = bambou.Identity{
@@ -37,18 +37,10 @@ type DownloadProgressParent interface {
 
 // DownloadProgress represents the model of a None
 type DownloadProgress struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	Percentage    int    `json:"percentage,omitempty"`
-	TimeLeft      string `json:"timeLeft,omitempty"`
-	TimeSpent     string `json:"timeSpent,omitempty"`
-	ImageFileName string `json:"imageFileName,omitempty"`
-	ImageVersion  string `json:"imageVersion,omitempty"`
-	StartTime     int    `json:"startTime,omitempty"`
-	CurrentSpeed  int    `json:"currentSpeed,omitempty"`
-	AverageSpeed  int    `json:"averageSpeed,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewDownloadProgress returns a new *DownloadProgress

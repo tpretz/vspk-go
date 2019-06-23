@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VNFInterfaceIdentity represents the Identity of the object
 var VNFInterfaceIdentity = bambou.Identity{
@@ -37,27 +37,10 @@ type VNFInterfacesParent interface {
 
 // VNFInterface represents the model of a vnfinterface
 type VNFInterface struct {
-	ID                  string `json:"ID,omitempty"`
-	ParentID            string `json:"parentID,omitempty"`
-	ParentType          string `json:"parentType,omitempty"`
-	Owner               string `json:"owner,omitempty"`
-	MAC                 string `json:"MAC,omitempty"`
-	VNFUUID             string `json:"VNFUUID,omitempty"`
-	IPAddress           string `json:"IPAddress,omitempty"`
-	VPortID             string `json:"VPortID,omitempty"`
-	VPortName           string `json:"VPortName,omitempty"`
-	Name                string `json:"name,omitempty"`
-	Gateway             string `json:"gateway,omitempty"`
-	Netmask             string `json:"netmask,omitempty"`
-	NetworkName         string `json:"networkName,omitempty"`
-	PolicyDecisionID    string `json:"policyDecisionID,omitempty"`
-	DomainID            string `json:"domainID,omitempty"`
-	DomainName          string `json:"domainName,omitempty"`
-	ZoneID              string `json:"zoneID,omitempty"`
-	ZoneName            string `json:"zoneName,omitempty"`
-	AttachedNetworkID   string `json:"attachedNetworkID,omitempty"`
-	AttachedNetworkType string `json:"attachedNetworkType,omitempty"`
-	Type                string `json:"type,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVNFInterface returns a new *VNFInterface

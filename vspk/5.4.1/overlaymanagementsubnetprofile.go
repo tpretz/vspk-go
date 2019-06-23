@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // OverlayManagementSubnetProfileIdentity represents the Identity of the object
 var OverlayManagementSubnetProfileIdentity = bambou.Identity{
@@ -37,14 +37,10 @@ type OverlayManagementSubnetProfilesParent interface {
 
 // OverlayManagementSubnetProfile represents the model of a overlaymanagementsubnetprofile
 type OverlayManagementSubnetProfile struct {
-	ID                    string        `json:"ID,omitempty"`
-	ParentID              string        `json:"parentID,omitempty"`
-	ParentType            string        `json:"parentType,omitempty"`
-	Owner                 string        `json:"owner,omitempty"`
-	Name                  string        `json:"name,omitempty"`
-	Description           string        `json:"description,omitempty"`
-	AssociatedDNASubnetID string        `json:"associatedDNASubnetID,omitempty"`
-	SyslogDestinationIDs  []interface{} `json:"syslogDestinationIDs,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewOverlayManagementSubnetProfile returns a new *OverlayManagementSubnetProfile

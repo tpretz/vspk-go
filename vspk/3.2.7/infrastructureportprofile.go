@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // InfrastructurePortProfileIdentity represents the Identity of the object
 var InfrastructurePortProfileIdentity = bambou.Identity{
@@ -37,20 +37,10 @@ type InfrastructurePortProfilesParent interface {
 
 // InfrastructurePortProfile represents the model of a infrastructureportprofile
 type InfrastructurePortProfile struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	Name          string `json:"name,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Description   string `json:"description,omitempty"`
-	EnterpriseID  string `json:"enterpriseID,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	Speed         string `json:"speed,omitempty"`
-	UplinkTag     string `json:"uplinkTag,omitempty"`
-	Mtu           int    `json:"mtu,omitempty"`
-	Duplex        string `json:"duplex,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewInfrastructurePortProfile returns a new *InfrastructurePortProfile

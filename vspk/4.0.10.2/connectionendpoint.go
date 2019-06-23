@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // ConnectionendpointIdentity represents the Identity of the object
 var ConnectionendpointIdentity = bambou.Identity{
@@ -37,24 +37,16 @@ type ConnectionendpointsParent interface {
 
 // Connectionendpoint represents the model of a connectionendpoint
 type Connectionendpoint struct {
-	ID           string `json:"ID,omitempty"`
-	ParentID     string `json:"parentID,omitempty"`
-	ParentType   string `json:"parentType,omitempty"`
-	Owner        string `json:"owner,omitempty"`
-	IPAddress    string `json:"IPAddress,omitempty"`
-	IPType       string `json:"IPType,omitempty"`
-	Name         string `json:"name,omitempty"`
-	Description  string `json:"description,omitempty"`
-	EndPointType string `json:"endPointType,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewConnectionendpoint returns a new *Connectionendpoint
 func NewConnectionendpoint() *Connectionendpoint {
 
-	return &Connectionendpoint{
-		IPType:       "IPV4",
-		EndPointType: "SOURCE",
-	}
+	return &Connectionendpoint{}
 }
 
 // Identity returns the Identity of the object.

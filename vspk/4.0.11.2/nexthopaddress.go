@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NextHopAddressIdentity represents the Identity of the object
 var NextHopAddressIdentity = bambou.Identity{
@@ -37,13 +37,10 @@ type NextHopAddressParent interface {
 
 // NextHopAddress represents the model of a nexthopaddress
 type NextHopAddress struct {
-	ID                 string `json:"ID,omitempty"`
-	ParentID           string `json:"parentID,omitempty"`
-	ParentType         string `json:"parentType,omitempty"`
-	Owner              string `json:"owner,omitempty"`
-	Address            string `json:"address,omitempty"`
-	RouteDistinguisher string `json:"routeDistinguisher,omitempty"`
-	Type               string `json:"type,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNextHopAddress returns a new *NextHopAddress

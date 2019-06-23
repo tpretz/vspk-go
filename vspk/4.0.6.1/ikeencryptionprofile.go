@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IKEEncryptionprofileIdentity represents the Identity of the object
 var IKEEncryptionprofileIdentity = bambou.Identity{
@@ -37,49 +37,16 @@ type IKEEncryptionprofilesParent interface {
 
 // IKEEncryptionprofile represents the model of a ikeencryptionprofile
 type IKEEncryptionprofile struct {
-	ID                                string `json:"ID,omitempty"`
-	ParentID                          string `json:"parentID,omitempty"`
-	ParentType                        string `json:"parentType,omitempty"`
-	Owner                             string `json:"owner,omitempty"`
-	DPDInterval                       int    `json:"DPDInterval,omitempty"`
-	DPDMode                           string `json:"DPDMode,omitempty"`
-	DPDTimeout                        int    `json:"DPDTimeout,omitempty"`
-	IPsecAuthenticationAlgorithm      string `json:"IPsecAuthenticationAlgorithm,omitempty"`
-	IPsecDontFragment                 bool   `json:"IPsecDontFragment"`
-	IPsecEnablePFS                    bool   `json:"IPsecEnablePFS"`
-	IPsecEncryptionAlgorithm          string `json:"IPsecEncryptionAlgorithm,omitempty"`
-	IPsecPreFragment                  bool   `json:"IPsecPreFragment"`
-	IPsecSALifetime                   int    `json:"IPsecSALifetime,omitempty"`
-	IPsecSAReplayWindowSize           string `json:"IPsecSAReplayWindowSize,omitempty"`
-	ISAKMPAuthenticationMode          string `json:"ISAKMPAuthenticationMode,omitempty"`
-	ISAKMPDiffieHelmanGroupIdentifier string `json:"ISAKMPDiffieHelmanGroupIdentifier,omitempty"`
-	ISAKMPEncryptionAlgorithm         string `json:"ISAKMPEncryptionAlgorithm,omitempty"`
-	ISAKMPEncryptionKeyLifetime       int    `json:"ISAKMPEncryptionKeyLifetime,omitempty"`
-	ISAKMPHashAlgorithm               string `json:"ISAKMPHashAlgorithm,omitempty"`
-	Name                              string `json:"name,omitempty"`
-	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
-	Sequence                          int    `json:"sequence,omitempty"`
-	Description                       string `json:"description,omitempty"`
-	EntityScope                       string `json:"entityScope,omitempty"`
-	AssociatedEnterpriseID            string `json:"associatedEnterpriseID,omitempty"`
-	ExternalID                        string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIKEEncryptionprofile returns a new *IKEEncryptionprofile
 func NewIKEEncryptionprofile() *IKEEncryptionprofile {
 
-	return &IKEEncryptionprofile{
-		DPDMode: "REPLY_ONLY",
-		IPsecAuthenticationAlgorithm:      "HMAC_SHA256",
-		IPsecEncryptionAlgorithm:          "AES256",
-		IPsecSALifetime:                   3600,
-		IPsecSAReplayWindowSize:           "WINDOW_SIZE_32",
-		ISAKMPAuthenticationMode:          "PRE_SHARED_KEY",
-		ISAKMPDiffieHelmanGroupIdentifier: "GROUP_5_1536_BIT_DH",
-		ISAKMPEncryptionAlgorithm:         "AES256",
-		ISAKMPEncryptionKeyLifetime:       28800,
-		ISAKMPHashAlgorithm:               "SHA256",
-	}
+	return &IKEEncryptionprofile{}
 }
 
 // Identity returns the Identity of the object.

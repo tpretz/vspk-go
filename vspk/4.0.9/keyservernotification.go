@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // KeyServerNotificationIdentity represents the Identity of the object
 var KeyServerNotificationIdentity = bambou.Identity{
@@ -37,15 +37,10 @@ type KeyServerNotificationsParent interface {
 
 // KeyServerNotification represents the model of a keyservernotification
 type KeyServerNotification struct {
-	ID               string      `json:"ID,omitempty"`
-	ParentID         string      `json:"parentID,omitempty"`
-	ParentType       string      `json:"parentType,omitempty"`
-	Owner            string      `json:"owner,omitempty"`
-	Base64JSONString string      `json:"base64JSONString,omitempty"`
-	Message          interface{} `json:"message,omitempty"`
-	EntityScope      string      `json:"entityScope,omitempty"`
-	NotificationType string      `json:"notificationType,omitempty"`
-	ExternalID       string      `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewKeyServerNotification returns a new *KeyServerNotification

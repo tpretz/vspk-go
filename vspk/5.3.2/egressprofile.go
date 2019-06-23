@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // EgressProfileIdentity represents the Identity of the object
 var EgressProfileIdentity = bambou.Identity{
@@ -37,20 +37,10 @@ type EgressProfilesParent interface {
 
 // EgressProfile represents the model of a egressprofile
 type EgressProfile struct {
-	ID                                string `json:"ID,omitempty"`
-	ParentID                          string `json:"parentID,omitempty"`
-	ParentType                        string `json:"parentType,omitempty"`
-	Owner                             string `json:"owner,omitempty"`
-	Name                              string `json:"name,omitempty"`
-	Description                       string `json:"description,omitempty"`
-	AssociatedIPFilterProfileID       string `json:"associatedIPFilterProfileID,omitempty"`
-	AssociatedIPFilterProfileName     string `json:"associatedIPFilterProfileName,omitempty"`
-	AssociatedIPv6FilterProfileID     string `json:"associatedIPv6FilterProfileID,omitempty"`
-	AssociatedIPv6FilterProfileName   string `json:"associatedIPv6FilterProfileName,omitempty"`
-	AssociatedMACFilterProfileID      string `json:"associatedMACFilterProfileID,omitempty"`
-	AssociatedMACFilterProfileName    string `json:"associatedMACFilterProfileName,omitempty"`
-	AssociatedSAPEgressQoSProfileID   string `json:"associatedSAPEgressQoSProfileID,omitempty"`
-	AssociatedSAPEgressQoSProfileName string `json:"associatedSAPEgressQoSProfileName,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewEgressProfile returns a new *EgressProfile

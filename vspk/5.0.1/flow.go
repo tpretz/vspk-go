@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // FlowIdentity represents the Identity of the object
 var FlowIdentity = bambou.Identity{
@@ -37,18 +37,10 @@ type FlowsParent interface {
 
 // Flow represents the model of a flow
 type Flow struct {
-	ID                string `json:"ID,omitempty"`
-	ParentID          string `json:"parentID,omitempty"`
-	ParentType        string `json:"parentType,omitempty"`
-	Owner             string `json:"owner,omitempty"`
-	Name              string `json:"name,omitempty"`
-	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
-	Description       string `json:"description,omitempty"`
-	DestinationTierID string `json:"destinationTierID,omitempty"`
-	Metadata          string `json:"metadata,omitempty"`
-	EntityScope       string `json:"entityScope,omitempty"`
-	OriginTierID      string `json:"originTierID,omitempty"`
-	ExternalID        string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewFlow returns a new *Flow

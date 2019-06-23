@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // TierIdentity represents the Identity of the object
 var TierIdentity = bambou.Identity{
@@ -37,28 +37,16 @@ type TiersParent interface {
 
 // Tier represents the model of a tier
 type Tier struct {
-	ID                 string `json:"ID,omitempty"`
-	ParentID           string `json:"parentID,omitempty"`
-	ParentType         string `json:"parentType,omitempty"`
-	Owner              string `json:"owner,omitempty"`
-	PacketCount        int    `json:"packetCount,omitempty"`
-	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
-	TierType           string `json:"tierType,omitempty"`
-	Timeout            int    `json:"timeout,omitempty"`
-	EntityScope        string `json:"entityScope,omitempty"`
-	DownThresholdCount int    `json:"downThresholdCount,omitempty"`
-	ProbeInterval      int    `json:"probeInterval,omitempty"`
-	ExternalID         string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewTier returns a new *Tier
 func NewTier() *Tier {
 
-	return &Tier{
-		PacketCount:        1,
-		DownThresholdCount: 15,
-		ProbeInterval:      10,
-	}
+	return &Tier{}
 }
 
 // Identity returns the Identity of the object.

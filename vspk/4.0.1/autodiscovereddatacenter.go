@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // AutodiscovereddatacenterIdentity represents the Identity of the object
 var AutodiscovereddatacenterIdentity = bambou.Identity{
@@ -37,13 +37,10 @@ type AutodiscovereddatacentersParent interface {
 
 // Autodiscovereddatacenter represents the model of a autodiscovereddatacenter
 type Autodiscovereddatacenter struct {
-	ID              string `json:"ID,omitempty"`
-	ParentID        string `json:"parentID,omitempty"`
-	ParentType      string `json:"parentType,omitempty"`
-	Owner           string `json:"owner,omitempty"`
-	Name            string `json:"name,omitempty"`
-	ManagedObjectID string `json:"managedObjectID,omitempty"`
-	AssocVCenterId  string `json:"assocVCenterId,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewAutodiscovereddatacenter returns a new *Autodiscovereddatacenter

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // GatewayRedundantPortIdentity represents the Identity of the object
 var GatewayRedundantPortIdentity = bambou.Identity{
@@ -37,22 +37,10 @@ type GatewayRedundantPortsParent interface {
 
 // GatewayRedundantPort represents the model of a gatewayredundantport
 type GatewayRedundantPort struct {
-	ID                          string `json:"ID,omitempty"`
-	ParentID                    string `json:"parentID,omitempty"`
-	ParentType                  string `json:"parentType,omitempty"`
-	Owner                       string `json:"owner,omitempty"`
-	VLANRange                   string `json:"VLANRange,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	PermittedAction             string `json:"permittedAction,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	PhysicalName                string `json:"physicalName,omitempty"`
-	PortPeer1ID                 string `json:"portPeer1ID,omitempty"`
-	PortPeer2ID                 string `json:"portPeer2ID,omitempty"`
-	PortType                    string `json:"portType,omitempty"`
-	UseUserMnemonic             bool   `json:"useUserMnemonic"`
-	UserMnemonic                string `json:"userMnemonic,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
-	Status                      string `json:"status,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewGatewayRedundantPort returns a new *GatewayRedundantPort

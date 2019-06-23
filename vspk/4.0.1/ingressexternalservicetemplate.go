@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IngressExternalServiceTemplateIdentity represents the Identity of the object
 var IngressExternalServiceTemplateIdentity = bambou.Identity{
@@ -37,19 +37,10 @@ type IngressExternalServiceTemplatesParent interface {
 
 // IngressExternalServiceTemplate represents the model of a ingressexternalservicetemplate
 type IngressExternalServiceTemplate struct {
-	ID                     string `json:"ID,omitempty"`
-	ParentID               string `json:"parentID,omitempty"`
-	ParentType             string `json:"parentType,omitempty"`
-	Owner                  string `json:"owner,omitempty"`
-	Name                   string `json:"name,omitempty"`
-	Active                 bool   `json:"active"`
-	Description            string `json:"description,omitempty"`
-	EntityScope            string `json:"entityScope,omitempty"`
-	PolicyState            string `json:"policyState,omitempty"`
-	Priority               int    `json:"priority,omitempty"`
-	PriorityType           string `json:"priorityType,omitempty"`
-	AssociatedLiveEntityID string `json:"associatedLiveEntityID,omitempty"`
-	ExternalID             string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIngressExternalServiceTemplate returns a new *IngressExternalServiceTemplate

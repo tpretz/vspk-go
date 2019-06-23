@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // StatsCollectorInfoIdentity represents the Identity of the object
 var StatsCollectorInfoIdentity = bambou.Identity{
@@ -37,17 +37,10 @@ type StatsCollectorInfosParent interface {
 
 // StatsCollectorInfo represents the model of a statisticscollector
 type StatsCollectorInfo struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	AddressType   string `json:"addressType,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	Port          string `json:"port,omitempty"`
-	IpAddress     string `json:"ipAddress,omitempty"`
-	ProtoBufPort  string `json:"protoBufPort,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewStatsCollectorInfo returns a new *StatsCollectorInfo

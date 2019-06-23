@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // InfrastructureVscProfileIdentity represents the Identity of the object
 var InfrastructureVscProfileIdentity = bambou.Identity{
@@ -37,19 +37,10 @@ type InfrastructureVscProfilesParent interface {
 
 // InfrastructureVscProfile represents the model of a infrastructurevscprofile
 type InfrastructureVscProfile struct {
-	ID               string `json:"ID,omitempty"`
-	ParentID         string `json:"parentID,omitempty"`
-	ParentType       string `json:"parentType,omitempty"`
-	Owner            string `json:"owner,omitempty"`
-	Name             string `json:"name,omitempty"`
-	LastUpdatedBy    string `json:"lastUpdatedBy,omitempty"`
-	SecondController string `json:"secondController,omitempty"`
-	Description      string `json:"description,omitempty"`
-	FirstController  string `json:"firstController,omitempty"`
-	EnterpriseID     string `json:"enterpriseID,omitempty"`
-	EntityScope      string `json:"entityScope,omitempty"`
-	ProbeInterval    int    `json:"probeInterval,omitempty"`
-	ExternalID       string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewInfrastructureVscProfile returns a new *InfrastructureVscProfile

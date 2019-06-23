@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // GatewaySecuredDataIdentity represents the Identity of the object
 var GatewaySecuredDataIdentity = bambou.Identity{
@@ -37,17 +37,10 @@ type GatewaySecuredDatasParent interface {
 
 // GatewaySecuredData represents the model of a gatewaysecureddata
 type GatewaySecuredData struct {
-	ID                        string `json:"ID,omitempty"`
-	ParentID                  string `json:"parentID,omitempty"`
-	ParentType                string `json:"parentType,omitempty"`
-	Owner                     string `json:"owner,omitempty"`
-	LastUpdatedBy             string `json:"lastUpdatedBy,omitempty"`
-	Data                      string `json:"data,omitempty"`
-	GatewayCertSerialNumber   string `json:"gatewayCertSerialNumber,omitempty"`
-	KeyserverCertSerialNumber string `json:"keyserverCertSerialNumber,omitempty"`
-	SignedData                string `json:"signedData,omitempty"`
-	EntityScope               string `json:"entityScope,omitempty"`
-	ExternalID                string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewGatewaySecuredData returns a new *GatewaySecuredData

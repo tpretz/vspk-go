@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // OverlayAddressPoolIdentity represents the Identity of the object
 var OverlayAddressPoolIdentity = bambou.Identity{
@@ -37,15 +37,10 @@ type OverlayAddressPoolsParent interface {
 
 // OverlayAddressPool represents the model of a overlayaddresspool
 type OverlayAddressPool struct {
-	ID                 string `json:"ID,omitempty"`
-	ParentID           string `json:"parentID,omitempty"`
-	ParentType         string `json:"parentType,omitempty"`
-	Owner              string `json:"owner,omitempty"`
-	Name               string `json:"name,omitempty"`
-	Description        string `json:"description,omitempty"`
-	EndAddressRange    string `json:"endAddressRange,omitempty"`
-	AssociatedDomainID string `json:"associatedDomainID,omitempty"`
-	StartAddressRange  string `json:"startAddressRange,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewOverlayAddressPool returns a new *OverlayAddressPool

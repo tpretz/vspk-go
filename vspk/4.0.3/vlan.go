@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VLANIdentity represents the Identity of the object
 var VLANIdentity = bambou.Identity{
@@ -37,26 +37,10 @@ type VLANsParent interface {
 
 // VLAN represents the model of a vlan
 type VLAN struct {
-	ID                          string `json:"ID,omitempty"`
-	ParentID                    string `json:"parentID,omitempty"`
-	ParentType                  string `json:"parentType,omitempty"`
-	Owner                       string `json:"owner,omitempty"`
-	Value                       int    `json:"value,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	GatewayID                   string `json:"gatewayID,omitempty"`
-	Readonly                    bool   `json:"readonly"`
-	TemplateID                  string `json:"templateID,omitempty"`
-	PermittedAction             string `json:"permittedAction,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	Restricted                  bool   `json:"restricted"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	VportID                     string `json:"vportID,omitempty"`
-	UseUserMnemonic             bool   `json:"useUserMnemonic"`
-	UserMnemonic                string `json:"userMnemonic,omitempty"`
-	AssociatedBGPProfileID      string `json:"associatedBGPProfileID,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
-	Status                      string `json:"status,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVLAN returns a new *VLAN

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // CertificateIdentity represents the Identity of the object
 var CertificateIdentity = bambou.Identity{
@@ -37,17 +37,10 @@ type CertificatesParent interface {
 
 // Certificate represents the model of a certificate
 type Certificate struct {
-	ID           string `json:"ID,omitempty"`
-	ParentID     string `json:"parentID,omitempty"`
-	ParentType   string `json:"parentType,omitempty"`
-	Owner        string `json:"owner,omitempty"`
-	PemEncoded   string `json:"pemEncoded,omitempty"`
-	SerialNumber int    `json:"serialNumber,omitempty"`
-	EntityScope  string `json:"entityScope,omitempty"`
-	IssuerDN     string `json:"issuerDN,omitempty"`
-	SubjectDN    string `json:"subjectDN,omitempty"`
-	PublicKey    string `json:"publicKey,omitempty"`
-	ExternalID   string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewCertificate returns a new *Certificate

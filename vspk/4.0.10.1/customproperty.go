@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // CustomPropertyIdentity represents the Identity of the object
 var CustomPropertyIdentity = bambou.Identity{
@@ -37,12 +37,10 @@ type CustomPropertiesParent interface {
 
 // CustomProperty represents the model of a customproperty
 type CustomProperty struct {
-	ID             string `json:"ID,omitempty"`
-	ParentID       string `json:"parentID,omitempty"`
-	ParentType     string `json:"parentType,omitempty"`
-	Owner          string `json:"owner,omitempty"`
-	AttributeName  string `json:"attributeName,omitempty"`
-	AttributeValue string `json:"attributeValue,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewCustomProperty returns a new *CustomProperty

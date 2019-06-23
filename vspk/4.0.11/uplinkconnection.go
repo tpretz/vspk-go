@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // UplinkConnectionIdentity represents the Identity of the object
 var UplinkConnectionIdentity = bambou.Identity{
@@ -37,36 +37,16 @@ type UplinkConnectionsParent interface {
 
 // UplinkConnection represents the model of a uplinkconnection
 type UplinkConnection struct {
-	ID                      string `json:"ID,omitempty"`
-	ParentID                string `json:"parentID,omitempty"`
-	ParentType              string `json:"parentType,omitempty"`
-	Owner                   string `json:"owner,omitempty"`
-	DNSAddress              string `json:"DNSAddress,omitempty"`
-	Password                string `json:"password,omitempty"`
-	Gateway                 string `json:"gateway,omitempty"`
-	Address                 string `json:"address,omitempty"`
-	AdvertisementCriteria   string `json:"advertisementCriteria,omitempty"`
-	Netmask                 string `json:"netmask,omitempty"`
-	InterfaceConnectionType string `json:"interfaceConnectionType,omitempty"`
-	Mode                    string `json:"mode,omitempty"`
-	Role                    string `json:"role,omitempty"`
-	UplinkID                string `json:"uplinkID,omitempty"`
-	Username                string `json:"username,omitempty"`
-	AssocUnderlayID         string `json:"assocUnderlayID,omitempty"`
-	AssociatedUnderlayName  string `json:"associatedUnderlayName,omitempty"`
-	AuxiliaryLink           bool   `json:"auxiliaryLink"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewUplinkConnection returns a new *UplinkConnection
 func NewUplinkConnection() *UplinkConnection {
 
-	return &UplinkConnection{
-		Address:                 "IPv4",
-		InterfaceConnectionType: "AUTOMATIC",
-		Mode:          "Dynamic",
-		Role:          "PRIMARY",
-		AuxiliaryLink: false,
-	}
+	return &UplinkConnection{}
 }
 
 // Identity returns the Identity of the object.

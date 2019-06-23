@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // NSGRoutingPolicyBindingIdentity represents the Identity of the object
 var NSGRoutingPolicyBindingIdentity = bambou.Identity{
@@ -37,27 +37,16 @@ type NSGRoutingPolicyBindingsParent interface {
 
 // NSGRoutingPolicyBinding represents the model of a nsgroutingpolicybinding
 type NSGRoutingPolicyBinding struct {
-	ID                              string `json:"ID,omitempty"`
-	ParentID                        string `json:"parentID,omitempty"`
-	ParentType                      string `json:"parentType,omitempty"`
-	Owner                           string `json:"owner,omitempty"`
-	Name                            string `json:"name,omitempty"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	Description                     string `json:"description,omitempty"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
-	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
-	AssociatedPolicyObjectGroupID   string `json:"associatedPolicyObjectGroupID,omitempty"`
-	ExportToOverlay                 string `json:"exportToOverlay,omitempty"`
-	ExternalID                      string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewNSGRoutingPolicyBinding returns a new *NSGRoutingPolicyBinding
 func NewNSGRoutingPolicyBinding() *NSGRoutingPolicyBinding {
 
-	return &NSGRoutingPolicyBinding{
-		ExportToOverlay: "INHERITED",
-	}
+	return &NSGRoutingPolicyBinding{}
 }
 
 // Identity returns the Identity of the object.

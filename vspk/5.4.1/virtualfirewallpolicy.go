@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // VirtualFirewallPolicyIdentity represents the Identity of the object
 var VirtualFirewallPolicyIdentity = bambou.Identity{
@@ -37,40 +37,16 @@ type VirtualFirewallPoliciesParent interface {
 
 // VirtualFirewallPolicy represents the model of a virtualfirewallpolicy
 type VirtualFirewallPolicy struct {
-	ID                             string `json:"ID,omitempty"`
-	ParentID                       string `json:"parentID,omitempty"`
-	ParentType                     string `json:"parentType,omitempty"`
-	Owner                          string `json:"owner,omitempty"`
-	Name                           string `json:"name,omitempty"`
-	LastUpdatedBy                  string `json:"lastUpdatedBy,omitempty"`
-	Active                         bool   `json:"active"`
-	DefaultAllowIP                 bool   `json:"defaultAllowIP"`
-	DefaultAllowNonIP              bool   `json:"defaultAllowNonIP"`
-	DefaultInstallACLImplicitRules bool   `json:"defaultInstallACLImplicitRules"`
-	Description                    string `json:"description,omitempty"`
-	AllowAddressSpoof              bool   `json:"allowAddressSpoof"`
-	EntityScope                    string `json:"entityScope,omitempty"`
-	PolicyState                    string `json:"policyState,omitempty"`
-	Priority                       int    `json:"priority,omitempty"`
-	PriorityType                   string `json:"priorityType,omitempty"`
-	AssociatedEgressTemplateID     string `json:"associatedEgressTemplateID,omitempty"`
-	AssociatedIngressTemplateID    string `json:"associatedIngressTemplateID,omitempty"`
-	AssociatedLiveEntityID         string `json:"associatedLiveEntityID,omitempty"`
-	AutoGeneratePriority           bool   `json:"autoGeneratePriority"`
-	ExternalID                     string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewVirtualFirewallPolicy returns a new *VirtualFirewallPolicy
 func NewVirtualFirewallPolicy() *VirtualFirewallPolicy {
 
-	return &VirtualFirewallPolicy{
-		Active:                         false,
-		DefaultAllowIP:                 false,
-		DefaultAllowNonIP:              false,
-		DefaultInstallACLImplicitRules: false,
-		AllowAddressSpoof:              false,
-		AutoGeneratePriority:           false,
-	}
+	return &VirtualFirewallPolicy{}
 }
 
 // Identity returns the Identity of the object.

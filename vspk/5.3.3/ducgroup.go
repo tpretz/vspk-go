@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // DUCGroupIdentity represents the Identity of the object
 var DUCGroupIdentity = bambou.Identity{
@@ -37,16 +37,10 @@ type DUCGroupsParent interface {
 
 // DUCGroup represents the model of a ducgroup
 type DUCGroup struct {
-	ID                             string `json:"ID,omitempty"`
-	ParentID                       string `json:"parentID,omitempty"`
-	ParentType                     string `json:"parentType,omitempty"`
-	Owner                          string `json:"owner,omitempty"`
-	Name                           string `json:"name,omitempty"`
-	LastUpdatedBy                  string `json:"lastUpdatedBy,omitempty"`
-	Description                    string `json:"description,omitempty"`
-	EntityScope                    string `json:"entityScope,omitempty"`
-	AssociatedPerformanceMonitorID string `json:"associatedPerformanceMonitorID,omitempty"`
-	ExternalID                     string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewDUCGroup returns a new *DUCGroup

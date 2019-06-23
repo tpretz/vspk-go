@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // DUCGroupBindingIdentity represents the Identity of the object
 var DUCGroupBindingIdentity = bambou.Identity{
@@ -37,22 +37,16 @@ type DUCGroupBindingsParent interface {
 
 // DUCGroupBinding represents the model of a ducgroupbinding
 type DUCGroupBinding struct {
-	ID                   string `json:"ID,omitempty"`
-	ParentID             string `json:"parentID,omitempty"`
-	ParentType           string `json:"parentType,omitempty"`
-	Owner                string `json:"owner,omitempty"`
-	Id                   string `json:"id,omitempty"`
-	OneWayDelay          int    `json:"oneWayDelay,omitempty"`
-	Priority             int    `json:"priority,omitempty"`
-	AssociatedDUCGroupID string `json:"associatedDUCGroupID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewDUCGroupBinding returns a new *DUCGroupBinding
 func NewDUCGroupBinding() *DUCGroupBinding {
 
-	return &DUCGroupBinding{
-		OneWayDelay: 50,
-	}
+	return &DUCGroupBinding{}
 }
 
 // Identity returns the Identity of the object.

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // BridgeInterfaceIdentity represents the Identity of the object
 var BridgeInterfaceIdentity = bambou.Identity{
@@ -37,29 +37,10 @@ type BridgeInterfacesParent interface {
 
 // BridgeInterface represents the model of a bridgeinterface
 type BridgeInterface struct {
-	ID                          string `json:"ID,omitempty"`
-	ParentID                    string `json:"parentID,omitempty"`
-	ParentType                  string `json:"parentType,omitempty"`
-	Owner                       string `json:"owner,omitempty"`
-	VPortID                     string `json:"VPortID,omitempty"`
-	VPortName                   string `json:"VPortName,omitempty"`
-	IPv6Gateway                 string `json:"IPv6Gateway,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	Gateway                     string `json:"gateway,omitempty"`
-	Netmask                     string `json:"netmask,omitempty"`
-	NetworkName                 string `json:"networkName,omitempty"`
-	TierID                      string `json:"tierID,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	PolicyDecisionID            string `json:"policyDecisionID,omitempty"`
-	DomainID                    string `json:"domainID,omitempty"`
-	DomainName                  string `json:"domainName,omitempty"`
-	ZoneID                      string `json:"zoneID,omitempty"`
-	ZoneName                    string `json:"zoneName,omitempty"`
-	AssociatedFloatingIPAddress string `json:"associatedFloatingIPAddress,omitempty"`
-	AttachedNetworkID           string `json:"attachedNetworkID,omitempty"`
-	AttachedNetworkType         string `json:"attachedNetworkType,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewBridgeInterface returns a new *BridgeInterface

@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // RedundancyGroupIdentity represents the Identity of the object
 var RedundancyGroupIdentity = bambou.Identity{
@@ -37,37 +37,16 @@ type RedundancyGroupsParent interface {
 
 // RedundancyGroup represents the model of a redundancygroup
 type RedundancyGroup struct {
-	ID                                  string `json:"ID,omitempty"`
-	ParentID                            string `json:"parentID,omitempty"`
-	ParentType                          string `json:"parentType,omitempty"`
-	Owner                               string `json:"owner,omitempty"`
-	Name                                string `json:"name,omitempty"`
-	LastUpdatedBy                       string `json:"lastUpdatedBy,omitempty"`
-	GatewayPeer1AutodiscoveredGatewayID string `json:"gatewayPeer1AutodiscoveredGatewayID,omitempty"`
-	GatewayPeer1Connected               bool   `json:"gatewayPeer1Connected"`
-	GatewayPeer1ID                      string `json:"gatewayPeer1ID,omitempty"`
-	GatewayPeer1Name                    string `json:"gatewayPeer1Name,omitempty"`
-	GatewayPeer2AutodiscoveredGatewayID string `json:"gatewayPeer2AutodiscoveredGatewayID,omitempty"`
-	GatewayPeer2Connected               bool   `json:"gatewayPeer2Connected"`
-	GatewayPeer2ID                      string `json:"gatewayPeer2ID,omitempty"`
-	GatewayPeer2Name                    string `json:"gatewayPeer2Name,omitempty"`
-	RedundantGatewayStatus              string `json:"redundantGatewayStatus,omitempty"`
-	PermittedAction                     string `json:"permittedAction,omitempty"`
-	Personality                         string `json:"personality,omitempty"`
-	Description                         string `json:"description,omitempty"`
-	EnterpriseID                        string `json:"enterpriseID,omitempty"`
-	EntityScope                         string `json:"entityScope,omitempty"`
-	Vtep                                string `json:"vtep,omitempty"`
-	ExternalID                          string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewRedundancyGroup returns a new *RedundancyGroup
 func NewRedundancyGroup() *RedundancyGroup {
 
-	return &RedundancyGroup{
-		GatewayPeer1Connected: false,
-		GatewayPeer2Connected: false,
-	}
+	return &RedundancyGroup{}
 }
 
 // Identity returns the Identity of the object.

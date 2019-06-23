@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // RateLimiterIdentity represents the Identity of the object
 var RateLimiterIdentity = bambou.Identity{
@@ -37,18 +37,10 @@ type RateLimitersParent interface {
 
 // RateLimiter represents the model of a ratelimiter
 type RateLimiter struct {
-	ID                       string `json:"ID,omitempty"`
-	ParentID                 string `json:"parentID,omitempty"`
-	ParentType               string `json:"parentType,omitempty"`
-	Owner                    string `json:"owner,omitempty"`
-	Name                     string `json:"name,omitempty"`
-	LastUpdatedBy            string `json:"lastUpdatedBy,omitempty"`
-	PeakBurstSize            string `json:"peakBurstSize,omitempty"`
-	PeakInformationRate      string `json:"peakInformationRate,omitempty"`
-	Description              string `json:"description,omitempty"`
-	EntityScope              string `json:"entityScope,omitempty"`
-	CommittedInformationRate string `json:"committedInformationRate,omitempty"`
-	ExternalID               string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewRateLimiter returns a new *RateLimiter

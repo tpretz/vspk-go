@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // GlobalMetadataIdentity represents the Identity of the object
 var GlobalMetadataIdentity = bambou.Identity{
@@ -37,19 +37,10 @@ type GlobalMetadatasParent interface {
 
 // GlobalMetadata represents the model of a globalmetadata
 type GlobalMetadata struct {
-	ID                          string        `json:"ID,omitempty"`
-	ParentID                    string        `json:"parentID,omitempty"`
-	ParentType                  string        `json:"parentType,omitempty"`
-	Owner                       string        `json:"owner,omitempty"`
-	Name                        string        `json:"name,omitempty"`
-	LastUpdatedBy               string        `json:"lastUpdatedBy,omitempty"`
-	Description                 string        `json:"description,omitempty"`
-	MetadataTagIDs              []interface{} `json:"metadataTagIDs,omitempty"`
-	NetworkNotificationDisabled bool          `json:"networkNotificationDisabled"`
-	Blob                        string        `json:"blob,omitempty"`
-	Global                      bool          `json:"global"`
-	EntityScope                 string        `json:"entityScope,omitempty"`
-	ExternalID                  string        `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewGlobalMetadata returns a new *GlobalMetadata

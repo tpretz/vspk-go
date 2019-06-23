@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // StaticRouteIdentity represents the Identity of the object
 var StaticRouteIdentity = bambou.Identity{
@@ -37,18 +37,10 @@ type StaticRoutesParent interface {
 
 // StaticRoute represents the model of a staticroute
 type StaticRoute struct {
-	ID                 string `json:"ID,omitempty"`
-	ParentID           string `json:"parentID,omitempty"`
-	ParentType         string `json:"parentType,omitempty"`
-	Owner              string `json:"owner,omitempty"`
-	IPType             string `json:"IPType,omitempty"`
-	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
-	Address            string `json:"address,omitempty"`
-	Netmask            string `json:"netmask,omitempty"`
-	NextHopIp          string `json:"nextHopIp,omitempty"`
-	EntityScope        string `json:"entityScope,omitempty"`
-	RouteDistinguisher string `json:"routeDistinguisher,omitempty"`
-	ExternalID         string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewStaticRoute returns a new *StaticRoute

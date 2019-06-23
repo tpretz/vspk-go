@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // DefaultGatewayIdentity represents the Identity of the object
 var DefaultGatewayIdentity = bambou.Identity{
@@ -37,13 +37,10 @@ type DefaultGatewaysParent interface {
 
 // DefaultGateway represents the model of a defaultgateway
 type DefaultGateway struct {
-	ID                string `json:"ID,omitempty"`
-	ParentID          string `json:"parentID,omitempty"`
-	ParentType        string `json:"parentType,omitempty"`
-	Owner             string `json:"owner,omitempty"`
-	Name              string `json:"name,omitempty"`
-	GatewayIPAddress  string `json:"gatewayIPAddress,omitempty"`
-	GatewayMACAddress string `json:"gatewayMACAddress,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewDefaultGateway returns a new *DefaultGateway

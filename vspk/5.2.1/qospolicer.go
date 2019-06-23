@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // QosPolicerIdentity represents the Identity of the object
 var QosPolicerIdentity = bambou.Identity{
@@ -37,26 +37,16 @@ type QosPolicersParent interface {
 
 // QosPolicer represents the model of a qospolicer
 type QosPolicer struct {
-	ID            string `json:"ID,omitempty"`
-	ParentID      string `json:"parentID,omitempty"`
-	ParentType    string `json:"parentType,omitempty"`
-	Owner         string `json:"owner,omitempty"`
-	Name          string `json:"name,omitempty"`
-	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
-	Rate          int    `json:"rate,omitempty"`
-	Description   string `json:"description,omitempty"`
-	EntityScope   string `json:"entityScope,omitempty"`
-	Burst         int    `json:"burst,omitempty"`
-	ExternalID    string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewQosPolicer returns a new *QosPolicer
 func NewQosPolicer() *QosPolicer {
 
-	return &QosPolicer{
-		Rate:  1,
-		Burst: 1,
-	}
+	return &QosPolicer{}
 }
 
 // Identity returns the Identity of the object.

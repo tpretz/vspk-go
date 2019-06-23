@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // PerformanceMonitorIdentity represents the Identity of the object
 var PerformanceMonitorIdentity = bambou.Identity{
@@ -37,28 +37,16 @@ type PerformanceMonitorsParent interface {
 
 // PerformanceMonitor represents the model of a performancemonitor
 type PerformanceMonitor struct {
-	ID              string `json:"ID,omitempty"`
-	ParentID        string `json:"parentID,omitempty"`
-	ParentType      string `json:"parentType,omitempty"`
-	Owner           string `json:"owner,omitempty"`
-	Name            string `json:"name,omitempty"`
-	LastUpdatedBy   string `json:"lastUpdatedBy,omitempty"`
-	PayloadSize     int    `json:"payloadSize,omitempty"`
-	ReadOnly        bool   `json:"readOnly"`
-	ServiceClass    string `json:"serviceClass,omitempty"`
-	Description     string `json:"description,omitempty"`
-	Interval        int    `json:"interval,omitempty"`
-	EntityScope     string `json:"entityScope,omitempty"`
-	NumberOfPackets int    `json:"numberOfPackets,omitempty"`
-	ExternalID      string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewPerformanceMonitor returns a new *PerformanceMonitor
 func NewPerformanceMonitor() *PerformanceMonitor {
 
-	return &PerformanceMonitor{
-		ReadOnly: false,
-	}
+	return &PerformanceMonitor{}
 }
 
 // Identity returns the Identity of the object.

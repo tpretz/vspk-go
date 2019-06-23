@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // OSPFInstanceIdentity represents the Identity of the object
 var OSPFInstanceIdentity = bambou.Identity{
@@ -37,31 +37,16 @@ type OSPFInstancesParent interface {
 
 // OSPFInstance represents the model of a ospfinstance
 type OSPFInstance struct {
-	ID                              string `json:"ID,omitempty"`
-	ParentID                        string `json:"parentID,omitempty"`
-	ParentType                      string `json:"parentType,omitempty"`
-	Owner                           string `json:"owner,omitempty"`
-	Name                            string `json:"name,omitempty"`
-	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
-	Description                     string `json:"description,omitempty"`
-	EntityScope                     string `json:"entityScope,omitempty"`
-	Preference                      int    `json:"preference,omitempty"`
-	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
-	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
-	ExportLimit                     int    `json:"exportLimit,omitempty"`
-	ExportToOverlay                 bool   `json:"exportToOverlay"`
-	ExternalID                      string `json:"externalID,omitempty"`
-	ExternalPreference              int    `json:"externalPreference,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewOSPFInstance returns a new *OSPFInstance
 func NewOSPFInstance() *OSPFInstance {
 
-	return &OSPFInstance{
-		Preference:         10,
-		ExportToOverlay:    false,
-		ExternalPreference: 150,
-	}
+	return &OSPFInstance{}
 }
 
 // Identity returns the Identity of the object.

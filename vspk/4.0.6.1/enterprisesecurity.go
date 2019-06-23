@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // EnterpriseSecurityIdentity represents the Identity of the object
 var EnterpriseSecurityIdentity = bambou.Identity{
@@ -37,16 +37,10 @@ type EnterpriseSecuritiesParent interface {
 
 // EnterpriseSecurity represents the model of a enterprisesecurity
 type EnterpriseSecurity struct {
-	ID                      string `json:"ID,omitempty"`
-	ParentID                string `json:"parentID,omitempty"`
-	ParentType              string `json:"parentType,omitempty"`
-	Owner                   string `json:"owner,omitempty"`
-	LastUpdatedBy           string `json:"lastUpdatedBy,omitempty"`
-	GatewaySecurityRevision int    `json:"gatewaySecurityRevision,omitempty"`
-	Revision                int    `json:"revision,omitempty"`
-	EnterpriseID            string `json:"enterpriseID,omitempty"`
-	EntityScope             string `json:"entityScope,omitempty"`
-	ExternalID              string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewEnterpriseSecurity returns a new *EnterpriseSecurity

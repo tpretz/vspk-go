@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // RedundantPortIdentity represents the Identity of the object
 var RedundantPortIdentity = bambou.Identity{
@@ -37,37 +37,16 @@ type RedundantPortsParent interface {
 
 // RedundantPort represents the model of a nsredundantport
 type RedundantPort struct {
-	ID                          string `json:"ID,omitempty"`
-	ParentID                    string `json:"parentID,omitempty"`
-	ParentType                  string `json:"parentType,omitempty"`
-	Owner                       string `json:"owner,omitempty"`
-	VLANRange                   string `json:"VLANRange,omitempty"`
-	MTU                         int    `json:"MTU,omitempty"`
-	Name                        string `json:"name,omitempty"`
-	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
-	PermittedAction             string `json:"permittedAction,omitempty"`
-	Description                 string `json:"description,omitempty"`
-	PhysicalName                string `json:"physicalName,omitempty"`
-	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
-	EntityScope                 string `json:"entityScope,omitempty"`
-	PortPeer1ID                 string `json:"portPeer1ID,omitempty"`
-	PortPeer2ID                 string `json:"portPeer2ID,omitempty"`
-	PortType                    string `json:"portType,omitempty"`
-	Speed                       string `json:"speed,omitempty"`
-	UseUntaggedHeartbeatVlan    bool   `json:"useUntaggedHeartbeatVlan"`
-	UseUserMnemonic             bool   `json:"useUserMnemonic"`
-	UserMnemonic                string `json:"userMnemonic,omitempty"`
-	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
-	Status                      string `json:"status,omitempty"`
-	ExternalID                  string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewRedundantPort returns a new *RedundantPort
 func NewRedundantPort() *RedundantPort {
 
-	return &RedundantPort{
-		MTU: 1500,
-	}
+	return &RedundantPort{}
 }
 
 // Identity returns the Identity of the object.

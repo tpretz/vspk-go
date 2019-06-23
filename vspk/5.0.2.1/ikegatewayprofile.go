@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // IKEGatewayProfileIdentity represents the Identity of the object
 var IKEGatewayProfileIdentity = bambou.Identity{
@@ -37,32 +37,16 @@ type IKEGatewayProfilesParent interface {
 
 // IKEGatewayProfile represents the model of a ikegatewayprofile
 type IKEGatewayProfile struct {
-	ID                               string `json:"ID,omitempty"`
-	ParentID                         string `json:"parentID,omitempty"`
-	ParentType                       string `json:"parentType,omitempty"`
-	Owner                            string `json:"owner,omitempty"`
-	IKEGatewayIdentifier             string `json:"IKEGatewayIdentifier,omitempty"`
-	IKEGatewayIdentifierType         string `json:"IKEGatewayIdentifierType,omitempty"`
-	Name                             string `json:"name,omitempty"`
-	LastUpdatedBy                    string `json:"lastUpdatedBy,omitempty"`
-	ServiceClass                     string `json:"serviceClass,omitempty"`
-	Description                      string `json:"description,omitempty"`
-	AntiReplayCheck                  bool   `json:"antiReplayCheck"`
-	EntityScope                      string `json:"entityScope,omitempty"`
-	AssociatedEnterpriseID           string `json:"associatedEnterpriseID,omitempty"`
-	AssociatedIKEAuthenticationID    string `json:"associatedIKEAuthenticationID,omitempty"`
-	AssociatedIKEAuthenticationType  string `json:"associatedIKEAuthenticationType,omitempty"`
-	AssociatedIKEEncryptionProfileID string `json:"associatedIKEEncryptionProfileID,omitempty"`
-	AssociatedIKEGatewayID           string `json:"associatedIKEGatewayID,omitempty"`
-	ExternalID                       string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewIKEGatewayProfile returns a new *IKEGatewayProfile
 func NewIKEGatewayProfile() *IKEGatewayProfile {
 
-	return &IKEGatewayProfile{
-		IKEGatewayIdentifierType: "ID_IPV4_ADDR",
-	}
+	return &IKEGatewayProfile{}
 }
 
 // Identity returns the Identity of the object.

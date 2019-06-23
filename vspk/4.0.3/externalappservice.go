@@ -9,7 +9,7 @@
 
 package vspk
 
-import "github.com/tpretz/go-bambou/bambou"
+import "github.com/nuagenetworks/go-bambou/bambou"
 
 // ExternalAppServiceIdentity represents the Identity of the object
 var ExternalAppServiceIdentity = bambou.Identity{
@@ -37,29 +37,10 @@ type ExternalAppServicesParent interface {
 
 // ExternalAppService represents the model of a externalappservice
 type ExternalAppService struct {
-	ID                                 string `json:"ID,omitempty"`
-	ParentID                           string `json:"parentID,omitempty"`
-	ParentType                         string `json:"parentType,omitempty"`
-	Owner                              string `json:"owner,omitempty"`
-	Name                               string `json:"name,omitempty"`
-	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
-	Description                        string `json:"description,omitempty"`
-	DestinationNATAddress              string `json:"destinationNATAddress,omitempty"`
-	DestinationNATEnabled              bool   `json:"destinationNATEnabled"`
-	DestinationNATMask                 string `json:"destinationNATMask,omitempty"`
-	Metadata                           string `json:"metadata,omitempty"`
-	EgressType                         string `json:"egressType,omitempty"`
-	VirtualIP                          string `json:"virtualIP,omitempty"`
-	VirtualIPRequired                  bool   `json:"virtualIPRequired"`
-	IngressType                        string `json:"ingressType,omitempty"`
-	EntityScope                        string `json:"entityScope,omitempty"`
-	SourceNATAddress                   string `json:"sourceNATAddress,omitempty"`
-	SourceNATEnabled                   bool   `json:"sourceNATEnabled"`
-	AssociatedServiceEgressGroupID     string `json:"associatedServiceEgressGroupID,omitempty"`
-	AssociatedServiceEgressRedirectID  string `json:"associatedServiceEgressRedirectID,omitempty"`
-	AssociatedServiceIngressGroupID    string `json:"associatedServiceIngressGroupID,omitempty"`
-	AssociatedServiceIngressRedirectID string `json:"associatedServiceIngressRedirectID,omitempty"`
-	ExternalID                         string `json:"externalID,omitempty"`
+	ID         string `json:"ID,omitempty"`
+	ParentID   string `json:"parentID,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	Owner      string `json:"owner,omitempty"`
 }
 
 // NewExternalAppService returns a new *ExternalAppService
