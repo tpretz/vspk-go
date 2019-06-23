@@ -37,10 +37,25 @@ type TiersParent interface {
 
 // Tier represents the model of a tier
 type Tier struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                          string `json:"ID,omitempty"`
+	ParentID                    string `json:"parentID,omitempty"`
+	ParentType                  string `json:"parentType,omitempty"`
+	Owner                       string `json:"owner,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	Gateway                     string `json:"gateway,omitempty"`
+	Address                     string `json:"address,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	Metadata                    string `json:"metadata,omitempty"`
+	Netmask                     string `json:"netmask,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	AssociatedApplicationID     string `json:"associatedApplicationID,omitempty"`
+	AssociatedFloatingIPPoolID  string `json:"associatedFloatingIPPoolID,omitempty"`
+	AssociatedNetworkMacroID    string `json:"associatedNetworkMacroID,omitempty"`
+	AssociatedNetworkObjectID   string `json:"associatedNetworkObjectID,omitempty"`
+	AssociatedNetworkObjectType string `json:"associatedNetworkObjectType,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
+	Type                        string `json:"type,omitempty"`
 }
 
 // NewTier returns a new *Tier

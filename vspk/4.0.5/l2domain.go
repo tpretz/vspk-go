@@ -37,16 +37,43 @@ type L2DomainsParent interface {
 
 // L2Domain represents the model of a l2domain
 type L2Domain struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                                string `json:"ID,omitempty"`
+	ParentID                          string `json:"parentID,omitempty"`
+	ParentType                        string `json:"parentType,omitempty"`
+	Owner                             string `json:"owner,omitempty"`
+	DHCPManaged                       bool   `json:"DHCPManaged"`
+	DPI                               string `json:"DPI,omitempty"`
+	IPType                            string `json:"IPType,omitempty"`
+	MaintenanceMode                   string `json:"maintenanceMode,omitempty"`
+	Name                              string `json:"name,omitempty"`
+	LastUpdatedBy                     string `json:"lastUpdatedBy,omitempty"`
+	Gateway                           string `json:"gateway,omitempty"`
+	GatewayMACAddress                 string `json:"gatewayMACAddress,omitempty"`
+	Address                           string `json:"address,omitempty"`
+	TemplateID                        string `json:"templateID,omitempty"`
+	ServiceID                         int    `json:"serviceID,omitempty"`
+	Description                       string `json:"description,omitempty"`
+	Netmask                           string `json:"netmask,omitempty"`
+	VnId                              int    `json:"vnId,omitempty"`
+	Encryption                        string `json:"encryption,omitempty"`
+	EntityScope                       string `json:"entityScope,omitempty"`
+	PolicyChangeStatus                string `json:"policyChangeStatus,omitempty"`
+	RouteDistinguisher                string `json:"routeDistinguisher,omitempty"`
+	RouteTarget                       string `json:"routeTarget,omitempty"`
+	UplinkPreference                  string `json:"uplinkPreference,omitempty"`
+	AssociatedMulticastChannelMapID   string `json:"associatedMulticastChannelMapID,omitempty"`
+	AssociatedSharedNetworkResourceID string `json:"associatedSharedNetworkResourceID,omitempty"`
+	Stretched                         bool   `json:"stretched"`
+	Multicast                         string `json:"multicast,omitempty"`
+	ExternalID                        string `json:"externalID,omitempty"`
 }
 
 // NewL2Domain returns a new *L2Domain
 func NewL2Domain() *L2Domain {
 
-	return &L2Domain{}
+	return &L2Domain{
+		DPI: "DISABLED",
+	}
 }
 
 // Identity returns the Identity of the object.

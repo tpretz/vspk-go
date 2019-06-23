@@ -37,10 +37,15 @@ type KeyServerNotificationsParent interface {
 
 // KeyServerNotification represents the model of a keyservernotification
 type KeyServerNotification struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID               string      `json:"ID,omitempty"`
+	ParentID         string      `json:"parentID,omitempty"`
+	ParentType       string      `json:"parentType,omitempty"`
+	Owner            string      `json:"owner,omitempty"`
+	Base64JSONString string      `json:"base64JSONString,omitempty"`
+	Message          interface{} `json:"message,omitempty"`
+	EntityScope      string      `json:"entityScope,omitempty"`
+	NotificationType string      `json:"notificationType,omitempty"`
+	ExternalID       string      `json:"externalID,omitempty"`
 }
 
 // NewKeyServerNotification returns a new *KeyServerNotification

@@ -37,10 +37,18 @@ type FlowsParent interface {
 
 // Flow represents the model of a flow
 type Flow struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                string `json:"ID,omitempty"`
+	ParentID          string `json:"parentID,omitempty"`
+	ParentType        string `json:"parentType,omitempty"`
+	Owner             string `json:"owner,omitempty"`
+	Name              string `json:"name,omitempty"`
+	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
+	Description       string `json:"description,omitempty"`
+	DestinationTierID string `json:"destinationTierID,omitempty"`
+	Metadata          string `json:"metadata,omitempty"`
+	EntityScope       string `json:"entityScope,omitempty"`
+	OriginTierID      string `json:"originTierID,omitempty"`
+	ExternalID        string `json:"externalID,omitempty"`
 }
 
 // NewFlow returns a new *Flow

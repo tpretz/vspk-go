@@ -37,10 +37,12 @@ type PSNATPoolsParent interface {
 
 // PSNATPool represents the model of a psnatpool
 type PSNATPool struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID           string `json:"ID,omitempty"`
+	ParentID     string `json:"parentID,omitempty"`
+	ParentType   string `json:"parentType,omitempty"`
+	Owner        string `json:"owner,omitempty"`
+	EndAddress   string `json:"endAddress,omitempty"`
+	StartAddress string `json:"startAddress,omitempty"`
 }
 
 // NewPSNATPool returns a new *PSNATPool

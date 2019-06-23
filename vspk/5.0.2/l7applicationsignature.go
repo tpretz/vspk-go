@@ -37,16 +37,24 @@ type L7applicationsignaturesParent interface {
 
 // L7applicationsignature represents the model of a l7applicationsignature
 type L7applicationsignature struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                string `json:"ID,omitempty"`
+	ParentID          string `json:"parentID,omitempty"`
+	ParentType        string `json:"parentType,omitempty"`
+	Owner             string `json:"owner,omitempty"`
+	Name              string `json:"name,omitempty"`
+	Category          string `json:"category,omitempty"`
+	Readonly          bool   `json:"readonly"`
+	Description       string `json:"description,omitempty"`
+	DictionaryVersion int    `json:"dictionaryVersion,omitempty"`
+	Guidstring        string `json:"guidstring,omitempty"`
 }
 
 // NewL7applicationsignature returns a new *L7applicationsignature
 func NewL7applicationsignature() *L7applicationsignature {
 
-	return &L7applicationsignature{}
+	return &L7applicationsignature{
+		Readonly: false,
+	}
 }
 
 // Identity returns the Identity of the object.

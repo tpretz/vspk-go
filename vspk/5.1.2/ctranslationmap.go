@@ -37,10 +37,13 @@ type CTranslationMapsParent interface {
 
 // CTranslationMap represents the model of a ctranslationmap
 type CTranslationMap struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID              string `json:"ID,omitempty"`
+	ParentID        string `json:"parentID,omitempty"`
+	ParentType      string `json:"parentType,omitempty"`
+	Owner           string `json:"owner,omitempty"`
+	MappingType     string `json:"mappingType,omitempty"`
+	CustomerAliasIP string `json:"customerAliasIP,omitempty"`
+	CustomerIP      string `json:"customerIP,omitempty"`
 }
 
 // NewCTranslationMap returns a new *CTranslationMap

@@ -37,16 +37,29 @@ type TiersParent interface {
 
 // Tier represents the model of a tier
 type Tier struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                 string `json:"ID,omitempty"`
+	ParentID           string `json:"parentID,omitempty"`
+	ParentType         string `json:"parentType,omitempty"`
+	Owner              string `json:"owner,omitempty"`
+	PacketCount        int    `json:"packetCount,omitempty"`
+	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
+	TierType           string `json:"tierType,omitempty"`
+	Timeout            int    `json:"timeout,omitempty"`
+	EntityScope        string `json:"entityScope,omitempty"`
+	DownThresholdCount int    `json:"downThresholdCount,omitempty"`
+	ProbeInterval      int    `json:"probeInterval,omitempty"`
+	ExternalID         string `json:"externalID,omitempty"`
 }
 
 // NewTier returns a new *Tier
 func NewTier() *Tier {
 
-	return &Tier{}
+	return &Tier{
+		PacketCount:        1,
+		Timeout:            3000,
+		DownThresholdCount: 5,
+		ProbeInterval:      10,
+	}
 }
 
 // Identity returns the Identity of the object.

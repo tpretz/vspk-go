@@ -37,16 +37,27 @@ type VNFDescriptorsParent interface {
 
 // VNFDescriptor represents the model of a vnfdescriptor
 type VNFDescriptor struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                             string `json:"ID,omitempty"`
+	ParentID                       string `json:"parentID,omitempty"`
+	ParentType                     string `json:"parentType,omitempty"`
+	Owner                          string `json:"owner,omitempty"`
+	CPUCount                       int    `json:"CPUCount,omitempty"`
+	Name                           string `json:"name,omitempty"`
+	MemoryMB                       int    `json:"memoryMB,omitempty"`
+	Vendor                         string `json:"vendor,omitempty"`
+	Description                    string `json:"description,omitempty"`
+	MetadataID                     string `json:"metadataID,omitempty"`
+	Visible                        bool   `json:"visible"`
+	AssociatedVNFThresholdPolicyID string `json:"associatedVNFThresholdPolicyID,omitempty"`
+	StorageGB                      int    `json:"storageGB,omitempty"`
 }
 
 // NewVNFDescriptor returns a new *VNFDescriptor
 func NewVNFDescriptor() *VNFDescriptor {
 
-	return &VNFDescriptor{}
+	return &VNFDescriptor{
+		Visible: true,
+	}
 }
 
 // Identity returns the Identity of the object.

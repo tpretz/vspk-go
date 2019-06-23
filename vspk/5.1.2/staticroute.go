@@ -37,10 +37,21 @@ type StaticRoutesParent interface {
 
 // StaticRoute represents the model of a staticroute
 type StaticRoute struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                 string `json:"ID,omitempty"`
+	ParentID           string `json:"parentID,omitempty"`
+	ParentType         string `json:"parentType,omitempty"`
+	Owner              string `json:"owner,omitempty"`
+	IPType             string `json:"IPType,omitempty"`
+	IPv6Address        string `json:"IPv6Address,omitempty"`
+	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
+	Address            string `json:"address,omitempty"`
+	Netmask            string `json:"netmask,omitempty"`
+	NextHopIp          string `json:"nextHopIp,omitempty"`
+	EntityScope        string `json:"entityScope,omitempty"`
+	RouteDistinguisher string `json:"routeDistinguisher,omitempty"`
+	AssociatedSubnetID string `json:"associatedSubnetID,omitempty"`
+	ExternalID         string `json:"externalID,omitempty"`
+	Type               string `json:"type,omitempty"`
 }
 
 // NewStaticRoute returns a new *StaticRoute

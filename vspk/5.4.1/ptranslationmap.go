@@ -37,10 +37,18 @@ type PTranslationMapsParent interface {
 
 // PTranslationMap represents the model of a ptranslationmap
 type PTranslationMap struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                 string        `json:"ID,omitempty"`
+	ParentID           string        `json:"parentID,omitempty"`
+	ParentType         string        `json:"parentType,omitempty"`
+	Owner              string        `json:"owner,omitempty"`
+	SPATSourceList     []interface{} `json:"SPATSourceList,omitempty"`
+	MappingType        string        `json:"mappingType,omitempty"`
+	LastUpdatedBy      string        `json:"lastUpdatedBy,omitempty"`
+	EntityScope        string        `json:"entityScope,omitempty"`
+	ProviderAliasIP    string        `json:"providerAliasIP,omitempty"`
+	ProviderIP         string        `json:"providerIP,omitempty"`
+	AssociatedDomainID string        `json:"associatedDomainID,omitempty"`
+	ExternalID         string        `json:"externalID,omitempty"`
 }
 
 // NewPTranslationMap returns a new *PTranslationMap

@@ -37,10 +37,25 @@ type EnterpriseProfilesParent interface {
 
 // EnterpriseProfile represents the model of a enterpriseprofile
 type EnterpriseProfile struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                            string        `json:"ID,omitempty"`
+	ParentID                      string        `json:"parentID,omitempty"`
+	ParentType                    string        `json:"parentType,omitempty"`
+	Owner                         string        `json:"owner,omitempty"`
+	BGPEnabled                    bool          `json:"BGPEnabled"`
+	DHCPLeaseInterval             int           `json:"DHCPLeaseInterval,omitempty"`
+	Name                          string        `json:"name,omitempty"`
+	LastUpdatedBy                 string        `json:"lastUpdatedBy,omitempty"`
+	ReceiveMultiCastListID        string        `json:"receiveMultiCastListID,omitempty"`
+	SendMultiCastListID           string        `json:"sendMultiCastListID,omitempty"`
+	Description                   string        `json:"description,omitempty"`
+	AllowAdvancedQOSConfiguration bool          `json:"allowAdvancedQOSConfiguration"`
+	AllowGatewayManagement        bool          `json:"allowGatewayManagement"`
+	AllowTrustedForwardingClass   bool          `json:"allowTrustedForwardingClass"`
+	AllowedForwardingClasses      []interface{} `json:"allowedForwardingClasses,omitempty"`
+	FloatingIPsQuota              int           `json:"floatingIPsQuota,omitempty"`
+	EncryptionManagementMode      string        `json:"encryptionManagementMode,omitempty"`
+	EntityScope                   string        `json:"entityScope,omitempty"`
+	ExternalID                    string        `json:"externalID,omitempty"`
 }
 
 // NewEnterpriseProfile returns a new *EnterpriseProfile

@@ -37,16 +37,38 @@ type PerformanceMonitorsParent interface {
 
 // PerformanceMonitor represents the model of a performancemonitor
 type PerformanceMonitor struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                    string        `json:"ID,omitempty"`
+	ParentID              string        `json:"parentID,omitempty"`
+	ParentType            string        `json:"parentType,omitempty"`
+	Owner                 string        `json:"owner,omitempty"`
+	Name                  string        `json:"name,omitempty"`
+	LastUpdatedBy         string        `json:"lastUpdatedBy,omitempty"`
+	PayloadSize           int           `json:"payloadSize,omitempty"`
+	ReadOnly              bool          `json:"readOnly"`
+	ServiceClass          string        `json:"serviceClass,omitempty"`
+	Description           string        `json:"description,omitempty"`
+	DestinationTargetList []interface{} `json:"destinationTargetList,omitempty"`
+	Timeout               int           `json:"timeout,omitempty"`
+	Interval              int           `json:"interval,omitempty"`
+	EntityScope           string        `json:"entityScope,omitempty"`
+	HoldDownTimer         int           `json:"holdDownTimer,omitempty"`
+	ProbeType             string        `json:"probeType,omitempty"`
+	NumberOfPackets       int           `json:"numberOfPackets,omitempty"`
+	ExternalID            string        `json:"externalID,omitempty"`
 }
 
 // NewPerformanceMonitor returns a new *PerformanceMonitor
 func NewPerformanceMonitor() *PerformanceMonitor {
 
-	return &PerformanceMonitor{}
+	return &PerformanceMonitor{
+		PayloadSize:     108,
+		ReadOnly:        false,
+		Timeout:         1000,
+		Interval:        3000,
+		HoldDownTimer:   900,
+		ProbeType:       "ONEWAY",
+		NumberOfPackets: 1,
+	}
 }
 
 // Identity returns the Identity of the object.

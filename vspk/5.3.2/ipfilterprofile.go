@@ -37,10 +37,12 @@ type IPFilterProfilesParent interface {
 
 // IPFilterProfile represents the model of a ipfilterprofile
 type IPFilterProfile struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID          string `json:"ID,omitempty"`
+	ParentID    string `json:"parentID,omitempty"`
+	ParentType  string `json:"parentType,omitempty"`
+	Owner       string `json:"owner,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
 }
 
 // NewIPFilterProfile returns a new *IPFilterProfile

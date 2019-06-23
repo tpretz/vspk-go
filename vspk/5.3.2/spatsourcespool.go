@@ -37,16 +37,21 @@ type SPATSourcesPoolsParent interface {
 
 // SPATSourcesPool represents the model of a spatsourcespool
 type SPATSourcesPool struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID          string        `json:"ID,omitempty"`
+	ParentID    string        `json:"parentID,omitempty"`
+	ParentType  string        `json:"parentType,omitempty"`
+	Owner       string        `json:"owner,omitempty"`
+	Name        string        `json:"name,omitempty"`
+	Family      string        `json:"family,omitempty"`
+	AddressList []interface{} `json:"addressList,omitempty"`
 }
 
 // NewSPATSourcesPool returns a new *SPATSourcesPool
 func NewSPATSourcesPool() *SPATSourcesPool {
 
-	return &SPATSourcesPool{}
+	return &SPATSourcesPool{
+		Name: "IPV4",
+	}
 }
 
 // Identity returns the Identity of the object.

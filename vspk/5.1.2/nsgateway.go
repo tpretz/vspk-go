@@ -37,16 +37,74 @@ type NSGatewaysParent interface {
 
 // NSGateway represents the model of a nsgateway
 type NSGateway struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                                 string `json:"ID,omitempty"`
+	ParentID                           string `json:"parentID,omitempty"`
+	ParentType                         string `json:"parentType,omitempty"`
+	Owner                              string `json:"owner,omitempty"`
+	MACAddress                         string `json:"MACAddress,omitempty"`
+	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
+	TCPMSSEnabled                      bool   `json:"TCPMSSEnabled"`
+	TCPMaximumSegmentSize              int    `json:"TCPMaximumSegmentSize,omitempty"`
+	BIOSVersion                        string `json:"BIOSVersion,omitempty"`
+	SKU                                string `json:"SKU,omitempty"`
+	TPMStatus                          string `json:"TPMStatus,omitempty"`
+	CPUType                            string `json:"CPUType,omitempty"`
+	NSGVersion                         string `json:"NSGVersion,omitempty"`
+	SSHService                         string `json:"SSHService,omitempty"`
+	UUID                               string `json:"UUID,omitempty"`
+	Name                               string `json:"name,omitempty"`
+	Family                             string `json:"family,omitempty"`
+	LastConfigurationReloadTimestamp   int    `json:"lastConfigurationReloadTimestamp,omitempty"`
+	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
+	DatapathID                         string `json:"datapathID,omitempty"`
+	RedundancyGroupID                  string `json:"redundancyGroupID,omitempty"`
+	TemplateID                         string `json:"templateID,omitempty"`
+	Pending                            bool   `json:"pending"`
+	SerialNumber                       string `json:"serialNumber,omitempty"`
+	DerivedSSHServiceState             string `json:"derivedSSHServiceState,omitempty"`
+	PermittedAction                    string `json:"permittedAction,omitempty"`
+	Personality                        string `json:"personality,omitempty"`
+	Description                        string `json:"description,omitempty"`
+	NetworkAcceleration                string `json:"networkAcceleration,omitempty"`
+	Libraries                          string `json:"libraries,omitempty"`
+	InheritedSSHServiceState           string `json:"inheritedSSHServiceState,omitempty"`
+	EnterpriseID                       string `json:"enterpriseID,omitempty"`
+	EntityScope                        string `json:"entityScope,omitempty"`
+	LocationID                         string `json:"locationID,omitempty"`
+	ConfigurationReloadState           string `json:"configurationReloadState,omitempty"`
+	ConfigurationStatus                string `json:"configurationStatus,omitempty"`
+	ControlTrafficCOSValue             int    `json:"controlTrafficCOSValue,omitempty"`
+	ControlTrafficDSCPValue            int    `json:"controlTrafficDSCPValue,omitempty"`
+	BootstrapID                        string `json:"bootstrapID,omitempty"`
+	BootstrapStatus                    string `json:"bootstrapStatus,omitempty"`
+	OperationMode                      string `json:"operationMode,omitempty"`
+	OperationStatus                    string `json:"operationStatus,omitempty"`
+	ProductName                        string `json:"productName,omitempty"`
+	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
+	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
+	AssociatedNSGInfoID                string `json:"associatedNSGInfoID,omitempty"`
+	AssociatedNSGUpgradeProfileID      string `json:"associatedNSGUpgradeProfileID,omitempty"`
+	AutoDiscGatewayID                  string `json:"autoDiscGatewayID,omitempty"`
+	ExternalID                         string `json:"externalID,omitempty"`
+	SystemID                           string `json:"systemID,omitempty"`
 }
 
 // NewNSGateway returns a new *NSGateway
 func NewNSGateway() *NSGateway {
 
-	return &NSGateway{}
+	return &NSGateway{
+		TCPMSSEnabled:                    false,
+		TCPMaximumSegmentSize:            1330,
+		TPMStatus:                        "UNKNOWN",
+		SSHService:                       "INHERITED",
+		LastConfigurationReloadTimestamp: -1,
+		NetworkAcceleration:              "NONE",
+		InheritedSSHServiceState:         "ENABLED",
+		ConfigurationReloadState:         "UNKNOWN",
+		ConfigurationStatus:              "UNKNOWN",
+		ControlTrafficCOSValue:           7,
+		ControlTrafficDSCPValue:          56,
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -37,10 +37,32 @@ type NSGatewaysParent interface {
 
 // NSGateway represents the model of a nsgateway
 type NSGateway struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                                 string `json:"ID,omitempty"`
+	ParentID                           string `json:"parentID,omitempty"`
+	ParentType                         string `json:"parentType,omitempty"`
+	Owner                              string `json:"owner,omitempty"`
+	NATTraversalEnabled                bool   `json:"NATTraversalEnabled"`
+	Name                               string `json:"name,omitempty"`
+	LastUpdatedBy                      string `json:"lastUpdatedBy,omitempty"`
+	DatapathID                         string `json:"datapathID,omitempty"`
+	RedundancyGroupID                  string `json:"redundancyGroupID,omitempty"`
+	TemplateID                         string `json:"templateID,omitempty"`
+	Pending                            bool   `json:"pending"`
+	PermittedAction                    string `json:"permittedAction,omitempty"`
+	Personality                        string `json:"personality,omitempty"`
+	Description                        string `json:"description,omitempty"`
+	EnterpriseID                       string `json:"enterpriseID,omitempty"`
+	EntityScope                        string `json:"entityScope,omitempty"`
+	LocationID                         string `json:"locationID,omitempty"`
+	ConfigurationReloadState           string `json:"configurationReloadState,omitempty"`
+	ConfigurationStatus                string `json:"configurationStatus,omitempty"`
+	BootstrapID                        string `json:"bootstrapID,omitempty"`
+	BootstrapStatus                    string `json:"bootstrapStatus,omitempty"`
+	AssociatedGatewaySecurityID        string `json:"associatedGatewaySecurityID,omitempty"`
+	AssociatedGatewaySecurityProfileID string `json:"associatedGatewaySecurityProfileID,omitempty"`
+	AutoDiscGatewayID                  string `json:"autoDiscGatewayID,omitempty"`
+	ExternalID                         string `json:"externalID,omitempty"`
+	SystemID                           string `json:"systemID,omitempty"`
 }
 
 // NewNSGateway returns a new *NSGateway

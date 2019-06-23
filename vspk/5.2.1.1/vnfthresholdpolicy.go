@@ -37,16 +37,31 @@ type VNFThresholdPoliciesParent interface {
 
 // VNFThresholdPolicy represents the model of a vnfthresholdpolicy
 type VNFThresholdPolicy struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID               string `json:"ID,omitempty"`
+	ParentID         string `json:"parentID,omitempty"`
+	ParentType       string `json:"parentType,omitempty"`
+	Owner            string `json:"owner,omitempty"`
+	CPUThreshold     int    `json:"CPUThreshold,omitempty"`
+	Name             string `json:"name,omitempty"`
+	Action           string `json:"action,omitempty"`
+	MemoryThreshold  int    `json:"memoryThreshold,omitempty"`
+	Description      string `json:"description,omitempty"`
+	MinOccurrence    int    `json:"minOccurrence,omitempty"`
+	MonitInterval    int    `json:"monitInterval,omitempty"`
+	StorageThreshold int    `json:"storageThreshold,omitempty"`
 }
 
 // NewVNFThresholdPolicy returns a new *VNFThresholdPolicy
 func NewVNFThresholdPolicy() *VNFThresholdPolicy {
 
-	return &VNFThresholdPolicy{}
+	return &VNFThresholdPolicy{
+		CPUThreshold:     80,
+		Action:           "NONE",
+		MemoryThreshold:  80,
+		MinOccurrence:    5,
+		MonitInterval:    10,
+		StorageThreshold: 80,
+	}
 }
 
 // Identity returns the Identity of the object.

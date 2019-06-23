@@ -37,16 +37,56 @@ type GatewaysParent interface {
 
 // Gateway represents the model of a gateway
 type Gateway struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                          string `json:"ID,omitempty"`
+	ParentID                    string `json:"parentID,omitempty"`
+	ParentType                  string `json:"parentType,omitempty"`
+	Owner                       string `json:"owner,omitempty"`
+	MACAddress                  string `json:"MACAddress,omitempty"`
+	ZFBMatchAttribute           string `json:"ZFBMatchAttribute,omitempty"`
+	ZFBMatchValue               string `json:"ZFBMatchValue,omitempty"`
+	BIOSReleaseDate             string `json:"BIOSReleaseDate,omitempty"`
+	BIOSVersion                 string `json:"BIOSVersion,omitempty"`
+	CPUType                     string `json:"CPUType,omitempty"`
+	UUID                        string `json:"UUID,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	Family                      string `json:"family,omitempty"`
+	ManagementID                string `json:"managementID,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	DatapathID                  string `json:"datapathID,omitempty"`
+	GatewayConnected            bool   `json:"gatewayConnected"`
+	GatewayVersion              string `json:"gatewayVersion,omitempty"`
+	RedundancyGroupID           string `json:"redundancyGroupID,omitempty"`
+	Peer                        string `json:"peer,omitempty"`
+	TemplateID                  string `json:"templateID,omitempty"`
+	Pending                     bool   `json:"pending"`
+	SerialNumber                string `json:"serialNumber,omitempty"`
+	PermittedAction             string `json:"permittedAction,omitempty"`
+	Personality                 string `json:"personality,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	Libraries                   string `json:"libraries,omitempty"`
+	EnterpriseID                string `json:"enterpriseID,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	LocationID                  string `json:"locationID,omitempty"`
+	BootstrapID                 string `json:"bootstrapID,omitempty"`
+	BootstrapStatus             string `json:"bootstrapStatus,omitempty"`
+	ProductName                 string `json:"productName,omitempty"`
+	UseGatewayVLANVNID          bool   `json:"useGatewayVLANVNID"`
+	AssociatedGatewaySecurityID string `json:"associatedGatewaySecurityID,omitempty"`
+	AssociatedNSGInfoID         string `json:"associatedNSGInfoID,omitempty"`
+	AssociatedNetconfProfileID  string `json:"associatedNetconfProfileID,omitempty"`
+	Vtep                        string `json:"vtep,omitempty"`
+	AutoDiscGatewayID           string `json:"autoDiscGatewayID,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
+	SystemID                    string `json:"systemID,omitempty"`
 }
 
 // NewGateway returns a new *Gateway
 func NewGateway() *Gateway {
 
-	return &Gateway{}
+	return &Gateway{
+		ZFBMatchAttribute: "NONE",
+		GatewayConnected:  false,
+	}
 }
 
 // Identity returns the Identity of the object.

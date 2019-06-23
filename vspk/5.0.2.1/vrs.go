@@ -37,10 +37,59 @@ type VRSsParent interface {
 
 // VRS represents the model of a vrs
 type VRS struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                        string        `json:"ID,omitempty"`
+	ParentID                  string        `json:"parentID,omitempty"`
+	ParentType                string        `json:"parentType,omitempty"`
+	Owner                     string        `json:"owner,omitempty"`
+	JSONRPCConnectionState    string        `json:"JSONRPCConnectionState,omitempty"`
+	Name                      string        `json:"name,omitempty"`
+	ManagementIP              string        `json:"managementIP,omitempty"`
+	ParentIDs                 []interface{} `json:"parentIDs,omitempty"`
+	LastEventName             string        `json:"lastEventName,omitempty"`
+	LastEventObject           string        `json:"lastEventObject,omitempty"`
+	LastEventTimestamp        int           `json:"lastEventTimestamp,omitempty"`
+	LastStateChange           int           `json:"lastStateChange,omitempty"`
+	LastUpdatedBy             string        `json:"lastUpdatedBy,omitempty"`
+	DbSynced                  bool          `json:"dbSynced"`
+	Address                   string        `json:"address,omitempty"`
+	PeakCPUUsage              float64       `json:"peakCPUUsage,omitempty"`
+	PeakMemoryUsage           float64       `json:"peakMemoryUsage,omitempty"`
+	Peer                      string        `json:"peer,omitempty"`
+	Personality               string        `json:"personality,omitempty"`
+	Description               string        `json:"description,omitempty"`
+	Messages                  []interface{} `json:"messages,omitempty"`
+	RevertBehaviorEnabled     bool          `json:"revertBehaviorEnabled"`
+	RevertCompleted           bool          `json:"revertCompleted"`
+	RevertCount               int           `json:"revertCount,omitempty"`
+	RevertFailedCount         int           `json:"revertFailedCount,omitempty"`
+	LicensedState             string        `json:"licensedState,omitempty"`
+	Disks                     []interface{} `json:"disks,omitempty"`
+	ClusterNodeRole           string        `json:"clusterNodeRole,omitempty"`
+	EntityScope               string        `json:"entityScope,omitempty"`
+	Location                  string        `json:"location,omitempty"`
+	Role                      string        `json:"role,omitempty"`
+	Uptime                    int           `json:"uptime,omitempty"`
+	PrimaryVSCConnectionLost  bool          `json:"primaryVSCConnectionLost"`
+	ProductVersion            string        `json:"productVersion,omitempty"`
+	IsResilient               bool          `json:"isResilient"`
+	VscConfigState            string        `json:"vscConfigState,omitempty"`
+	VscCurrentState           string        `json:"vscCurrentState,omitempty"`
+	Status                    string        `json:"status,omitempty"`
+	MultiNICVPortEnabled      bool          `json:"multiNICVPortEnabled"`
+	NumberOfBridgeInterfaces  int           `json:"numberOfBridgeInterfaces,omitempty"`
+	NumberOfContainers        int           `json:"numberOfContainers,omitempty"`
+	NumberOfHostInterfaces    int           `json:"numberOfHostInterfaces,omitempty"`
+	NumberOfVirtualMachines   int           `json:"numberOfVirtualMachines,omitempty"`
+	CurrentCPUUsage           float64       `json:"currentCPUUsage,omitempty"`
+	CurrentMemoryUsage        float64       `json:"currentMemoryUsage,omitempty"`
+	AverageCPUUsage           float64       `json:"averageCPUUsage,omitempty"`
+	AverageMemoryUsage        float64       `json:"averageMemoryUsage,omitempty"`
+	ExternalID                string        `json:"externalID,omitempty"`
+	Dynamic                   bool          `json:"dynamic"`
+	HypervisorConnectionState string        `json:"hypervisorConnectionState,omitempty"`
+	HypervisorIdentifier      string        `json:"hypervisorIdentifier,omitempty"`
+	HypervisorName            string        `json:"hypervisorName,omitempty"`
+	HypervisorType            string        `json:"hypervisorType,omitempty"`
 }
 
 // NewVRS returns a new *VRS

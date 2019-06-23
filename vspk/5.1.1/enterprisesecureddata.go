@@ -37,10 +37,18 @@ type EnterpriseSecuredDatasParent interface {
 
 // EnterpriseSecuredData represents the model of a enterprisesecureddata
 type EnterpriseSecuredData struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                        string `json:"ID,omitempty"`
+	ParentID                  string `json:"parentID,omitempty"`
+	ParentType                string `json:"parentType,omitempty"`
+	Owner                     string `json:"owner,omitempty"`
+	Hash                      string `json:"hash,omitempty"`
+	LastUpdatedBy             string `json:"lastUpdatedBy,omitempty"`
+	Data                      string `json:"data,omitempty"`
+	SekId                     int    `json:"sekId,omitempty"`
+	KeyserverCertSerialNumber string `json:"keyserverCertSerialNumber,omitempty"`
+	SignedHash                string `json:"signedHash,omitempty"`
+	EntityScope               string `json:"entityScope,omitempty"`
+	ExternalID                string `json:"externalID,omitempty"`
 }
 
 // NewEnterpriseSecuredData returns a new *EnterpriseSecuredData

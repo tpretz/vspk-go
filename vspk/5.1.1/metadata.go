@@ -37,10 +37,18 @@ type MetadatasParent interface {
 
 // Metadata represents the model of a metadata
 type Metadata struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                          string        `json:"ID,omitempty"`
+	ParentID                    string        `json:"parentID,omitempty"`
+	ParentType                  string        `json:"parentType,omitempty"`
+	Owner                       string        `json:"owner,omitempty"`
+	Name                        string        `json:"name,omitempty"`
+	Description                 string        `json:"description,omitempty"`
+	MetadataTagIDs              []interface{} `json:"metadataTagIDs,omitempty"`
+	NetworkNotificationDisabled bool          `json:"networkNotificationDisabled"`
+	Blob                        string        `json:"blob,omitempty"`
+	Global                      bool          `json:"global"`
+	EntityScope                 string        `json:"entityScope,omitempty"`
+	ExternalID                  string        `json:"externalID,omitempty"`
 }
 
 // NewMetadata returns a new *Metadata

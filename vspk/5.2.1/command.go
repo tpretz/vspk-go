@@ -37,16 +37,29 @@ type CommandsParent interface {
 
 // Command represents the model of a command
 type Command struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                 string `json:"ID,omitempty"`
+	ParentID           string `json:"parentID,omitempty"`
+	ParentType         string `json:"parentType,omitempty"`
+	Owner              string `json:"owner,omitempty"`
+	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
+	DetailedStatus     string `json:"detailedStatus,omitempty"`
+	DetailedStatusCode int    `json:"detailedStatusCode,omitempty"`
+	EntityScope        string `json:"entityScope,omitempty"`
+	Command            string `json:"command,omitempty"`
+	CommandInformation string `json:"commandInformation,omitempty"`
+	Status             string `json:"status,omitempty"`
+	Summary            string `json:"summary,omitempty"`
+	ExternalID         string `json:"externalID,omitempty"`
 }
 
 // NewCommand returns a new *Command
 func NewCommand() *Command {
 
-	return &Command{}
+	return &Command{
+		DetailedStatusCode: 0,
+		Command:            "UNKNOWN",
+		Status:             "UNKNOWN",
+	}
 }
 
 // Identity returns the Identity of the object.

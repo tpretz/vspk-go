@@ -37,16 +37,22 @@ type DUCGroupBindingsParent interface {
 
 // DUCGroupBinding represents the model of a ducgroupbinding
 type DUCGroupBinding struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                   string `json:"ID,omitempty"`
+	ParentID             string `json:"parentID,omitempty"`
+	ParentType           string `json:"parentType,omitempty"`
+	Owner                string `json:"owner,omitempty"`
+	Id                   string `json:"id,omitempty"`
+	OneWayDelay          int    `json:"oneWayDelay,omitempty"`
+	Priority             int    `json:"priority,omitempty"`
+	AssociatedDUCGroupID string `json:"associatedDUCGroupID,omitempty"`
 }
 
 // NewDUCGroupBinding returns a new *DUCGroupBinding
 func NewDUCGroupBinding() *DUCGroupBinding {
 
-	return &DUCGroupBinding{}
+	return &DUCGroupBinding{
+		OneWayDelay: 50,
+	}
 }
 
 // Identity returns the Identity of the object.

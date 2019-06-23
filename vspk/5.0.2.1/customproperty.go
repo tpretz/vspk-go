@@ -37,10 +37,12 @@ type CustomPropertiesParent interface {
 
 // CustomProperty represents the model of a customproperty
 type CustomProperty struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID             string `json:"ID,omitempty"`
+	ParentID       string `json:"parentID,omitempty"`
+	ParentType     string `json:"parentType,omitempty"`
+	Owner          string `json:"owner,omitempty"`
+	AttributeName  string `json:"attributeName,omitempty"`
+	AttributeValue string `json:"attributeValue,omitempty"`
 }
 
 // NewCustomProperty returns a new *CustomProperty

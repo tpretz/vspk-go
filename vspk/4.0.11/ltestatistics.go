@@ -37,10 +37,14 @@ type LtestatisticsParent interface {
 
 // Ltestatistics represents the model of a ltestatistics
 type Ltestatistics struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID         string        `json:"ID,omitempty"`
+	ParentID   string        `json:"parentID,omitempty"`
+	ParentType string        `json:"parentType,omitempty"`
+	Owner      string        `json:"owner,omitempty"`
+	Version    int           `json:"version,omitempty"`
+	EndTime    int           `json:"endTime,omitempty"`
+	StartTime  int           `json:"startTime,omitempty"`
+	StatsData  []interface{} `json:"statsData,omitempty"`
 }
 
 // NewLtestatistics returns a new *Ltestatistics

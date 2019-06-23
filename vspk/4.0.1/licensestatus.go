@@ -37,10 +37,20 @@ type LicensestatusParent interface {
 
 // Licensestatus represents the model of a licensestatus
 type Licensestatus struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                          string `json:"ID,omitempty"`
+	ParentID                    string `json:"parentID,omitempty"`
+	ParentType                  string `json:"parentType,omitempty"`
+	Owner                       string `json:"owner,omitempty"`
+	TotalLicensedNICsCount      string `json:"totalLicensedNICsCount,omitempty"`
+	TotalLicensedNSGsCount      string `json:"totalLicensedNSGsCount,omitempty"`
+	TotalLicensedUsedNICsCount  string `json:"totalLicensedUsedNICsCount,omitempty"`
+	TotalLicensedUsedNSGsCount  string `json:"totalLicensedUsedNSGsCount,omitempty"`
+	TotalLicensedUsedVMsCount   string `json:"totalLicensedUsedVMsCount,omitempty"`
+	TotalLicensedUsedVRSGsCount string `json:"totalLicensedUsedVRSGsCount,omitempty"`
+	TotalLicensedUsedVRSsCount  string `json:"totalLicensedUsedVRSsCount,omitempty"`
+	TotalLicensedVMsCount       string `json:"totalLicensedVMsCount,omitempty"`
+	TotalLicensedVRSGsCount     string `json:"totalLicensedVRSGsCount,omitempty"`
+	TotalLicensedVRSsCount      string `json:"totalLicensedVRSsCount,omitempty"`
 }
 
 // NewLicensestatus returns a new *Licensestatus

@@ -37,10 +37,24 @@ type SubnetTemplatesParent interface {
 
 // SubnetTemplate represents the model of a subnettemplate
 type SubnetTemplate struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                              string `json:"ID,omitempty"`
+	ParentID                        string `json:"parentID,omitempty"`
+	ParentType                      string `json:"parentType,omitempty"`
+	Owner                           string `json:"owner,omitempty"`
+	IPType                          string `json:"IPType,omitempty"`
+	Name                            string `json:"name,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
+	Gateway                         string `json:"gateway,omitempty"`
+	Address                         string `json:"address,omitempty"`
+	Description                     string `json:"description,omitempty"`
+	Netmask                         string `json:"netmask,omitempty"`
+	Encryption                      string `json:"encryption,omitempty"`
+	EntityScope                     string `json:"entityScope,omitempty"`
+	SplitSubnet                     bool   `json:"splitSubnet"`
+	ProxyARP                        bool   `json:"proxyARP"`
+	AssociatedMulticastChannelMapID string `json:"associatedMulticastChannelMapID,omitempty"`
+	Multicast                       string `json:"multicast,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewSubnetTemplate returns a new *SubnetTemplate

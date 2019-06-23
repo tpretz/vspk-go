@@ -37,10 +37,24 @@ type NSGInfosParent interface {
 
 // NSGInfo represents the model of a nsginfo
 type NSGInfo struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                    string `json:"ID,omitempty"`
+	ParentID              string `json:"parentID,omitempty"`
+	ParentType            string `json:"parentType,omitempty"`
+	Owner                 string `json:"owner,omitempty"`
+	MACAddress            string `json:"MACAddress,omitempty"`
+	BIOSVersion           string `json:"BIOSVersion,omitempty"`
+	SKU                   string `json:"SKU,omitempty"`
+	TPMStatus             string `json:"TPMStatus,omitempty"`
+	CPUType               string `json:"CPUType,omitempty"`
+	NSGVersion            string `json:"NSGVersion,omitempty"`
+	UUID                  string `json:"UUID,omitempty"`
+	Family                string `json:"family,omitempty"`
+	SerialNumber          string `json:"serialNumber,omitempty"`
+	Libraries             string `json:"libraries,omitempty"`
+	EntityScope           string `json:"entityScope,omitempty"`
+	ProductName           string `json:"productName,omitempty"`
+	AssociatedNSGatewayID string `json:"associatedNSGatewayID,omitempty"`
+	ExternalID            string `json:"externalID,omitempty"`
 }
 
 // NewNSGInfo returns a new *NSGInfo

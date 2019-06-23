@@ -37,16 +37,27 @@ type RoutingPoliciesParent interface {
 
 // RoutingPolicy represents the model of a routingpolicy
 type RoutingPolicy struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID               string `json:"ID,omitempty"`
+	ParentID         string `json:"parentID,omitempty"`
+	ParentType       string `json:"parentType,omitempty"`
+	Owner            string `json:"owner,omitempty"`
+	Name             string `json:"name,omitempty"`
+	DefaultAction    string `json:"defaultAction,omitempty"`
+	Description      string `json:"description,omitempty"`
+	EntityScope      string `json:"entityScope,omitempty"`
+	PolicyDefinition string `json:"policyDefinition,omitempty"`
+	ContentType      string `json:"contentType,omitempty"`
+	RoutingProtocol  string `json:"routingProtocol,omitempty"`
+	ExternalID       string `json:"externalID,omitempty"`
 }
 
 // NewRoutingPolicy returns a new *RoutingPolicy
 func NewRoutingPolicy() *RoutingPolicy {
 
-	return &RoutingPolicy{}
+	return &RoutingPolicy{
+		ContentType:     "DEFAULT",
+		RoutingProtocol: "ROUTING",
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -37,10 +37,15 @@ type OverlayPATNATEntriesParent interface {
 
 // OverlayPATNATEntry represents the model of a overlaypatnatentry
 type OverlayPATNATEntry struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                 string `json:"ID,omitempty"`
+	ParentID           string `json:"parentID,omitempty"`
+	ParentType         string `json:"parentType,omitempty"`
+	Owner              string `json:"owner,omitempty"`
+	NATEnabled         string `json:"NATEnabled,omitempty"`
+	PrivateIP          string `json:"privateIP,omitempty"`
+	AssociatedDomainID string `json:"associatedDomainID,omitempty"`
+	AssociatedLinkID   string `json:"associatedLinkID,omitempty"`
+	PublicIP           string `json:"publicIP,omitempty"`
 }
 
 // NewOverlayPATNATEntry returns a new *OverlayPATNATEntry

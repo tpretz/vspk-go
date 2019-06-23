@@ -37,10 +37,13 @@ type AutoDiscoverClustersParent interface {
 
 // AutoDiscoverCluster represents the model of a autodiscoveredcluster
 type AutoDiscoverCluster struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                       string `json:"ID,omitempty"`
+	ParentID                 string `json:"parentID,omitempty"`
+	ParentType               string `json:"parentType,omitempty"`
+	Owner                    string `json:"owner,omitempty"`
+	Name                     string `json:"name,omitempty"`
+	ManagedObjectID          string `json:"managedObjectID,omitempty"`
+	AssocVCenterDataCenterId string `json:"assocVCenterDataCenterId,omitempty"`
 }
 
 // NewAutoDiscoverCluster returns a new *AutoDiscoverCluster

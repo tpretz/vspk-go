@@ -37,16 +37,31 @@ type GatewaysLocationsParent interface {
 
 // GatewaysLocation represents the model of a gatewayslocation
 type GatewaysLocation struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                   string  `json:"ID,omitempty"`
+	ParentID             string  `json:"parentID,omitempty"`
+	ParentType           string  `json:"parentType,omitempty"`
+	Owner                string  `json:"owner,omitempty"`
+	LastUpdatedBy        string  `json:"lastUpdatedBy,omitempty"`
+	Latitude             float64 `json:"latitude,omitempty"`
+	Address              string  `json:"address,omitempty"`
+	IgnoreGeocode        bool    `json:"ignoreGeocode"`
+	TimeZoneID           string  `json:"timeZoneID,omitempty"`
+	EntityScope          string  `json:"entityScope,omitempty"`
+	Locality             string  `json:"locality,omitempty"`
+	Longitude            float64 `json:"longitude,omitempty"`
+	Country              string  `json:"country,omitempty"`
+	AssociatedEntityName string  `json:"associatedEntityName,omitempty"`
+	AssociatedEntityType string  `json:"associatedEntityType,omitempty"`
+	State                string  `json:"state,omitempty"`
+	ExternalID           string  `json:"externalID,omitempty"`
 }
 
 // NewGatewaysLocation returns a new *GatewaysLocation
 func NewGatewaysLocation() *GatewaysLocation {
 
-	return &GatewaysLocation{}
+	return &GatewaysLocation{
+		TimeZoneID: "UTC",
+	}
 }
 
 // Identity returns the Identity of the object.

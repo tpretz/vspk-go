@@ -37,16 +37,37 @@ type VNFsParent interface {
 
 // VNF represents the model of a vnf
 type VNF struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                      string `json:"ID,omitempty"`
+	ParentID                string `json:"parentID,omitempty"`
+	ParentType              string `json:"parentType,omitempty"`
+	Owner                   string `json:"owner,omitempty"`
+	VNFDescriptorID         string `json:"VNFDescriptorID,omitempty"`
+	VNFDescriptorName       string `json:"VNFDescriptorName,omitempty"`
+	CPUCount                int    `json:"CPUCount,omitempty"`
+	NSGName                 string `json:"NSGName,omitempty"`
+	NSGSystemID             string `json:"NSGSystemID,omitempty"`
+	NSGatewayID             string `json:"NSGatewayID,omitempty"`
+	Name                    string `json:"name,omitempty"`
+	TaskState               string `json:"taskState,omitempty"`
+	LastKnownError          string `json:"lastKnownError,omitempty"`
+	MemoryMB                int    `json:"memoryMB,omitempty"`
+	Vendor                  string `json:"vendor,omitempty"`
+	Description             string `json:"description,omitempty"`
+	MetadataID              string `json:"metadataID,omitempty"`
+	AllowedActions          string `json:"allowedActions,omitempty"`
+	EnterpriseID            string `json:"enterpriseID,omitempty"`
+	IsAttachedToDescriptor  bool   `json:"isAttachedToDescriptor"`
+	AssociatedVNFMetadataID string `json:"associatedVNFMetadataID,omitempty"`
+	Status                  string `json:"status,omitempty"`
+	StorageGB               int    `json:"storageGB,omitempty"`
 }
 
 // NewVNF returns a new *VNF
 func NewVNF() *VNF {
 
-	return &VNF{}
+	return &VNF{
+		IsAttachedToDescriptor: true,
+	}
 }
 
 // Identity returns the Identity of the object.

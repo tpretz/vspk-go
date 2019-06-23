@@ -37,16 +37,32 @@ type UplinkConnectionsParent interface {
 
 // UplinkConnection represents the model of a uplinkconnection
 type UplinkConnection struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                     string `json:"ID,omitempty"`
+	ParentID               string `json:"parentID,omitempty"`
+	ParentType             string `json:"parentType,omitempty"`
+	Owner                  string `json:"owner,omitempty"`
+	DNSAddress             string `json:"DNSAddress,omitempty"`
+	Password               string `json:"password,omitempty"`
+	Gateway                string `json:"gateway,omitempty"`
+	Address                string `json:"address,omitempty"`
+	AdvertisementCriteria  string `json:"advertisementCriteria,omitempty"`
+	Netmask                string `json:"netmask,omitempty"`
+	Mode                   string `json:"mode,omitempty"`
+	Role                   string `json:"role,omitempty"`
+	UplinkID               string `json:"uplinkID,omitempty"`
+	Username               string `json:"username,omitempty"`
+	AssocUnderlayID        string `json:"assocUnderlayID,omitempty"`
+	AssociatedVSCProfileID string `json:"associatedVSCProfileID,omitempty"`
 }
 
 // NewUplinkConnection returns a new *UplinkConnection
 func NewUplinkConnection() *UplinkConnection {
 
-	return &UplinkConnection{}
+	return &UplinkConnection{
+		Address: "IPv4",
+		Mode:    "Dynamic",
+		Role:    "PRIMARY",
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -37,16 +37,24 @@ type PolicyGroupCategoriesParent interface {
 
 // PolicyGroupCategory represents the model of a policygroupcategory
 type PolicyGroupCategory struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID            string `json:"ID,omitempty"`
+	ParentID      string `json:"parentID,omitempty"`
+	ParentType    string `json:"parentType,omitempty"`
+	Owner         string `json:"owner,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	DefaultTag    bool   `json:"defaultTag"`
+	Description   string `json:"description,omitempty"`
+	EntityScope   string `json:"entityScope,omitempty"`
+	ExternalID    string `json:"externalID,omitempty"`
 }
 
 // NewPolicyGroupCategory returns a new *PolicyGroupCategory
 func NewPolicyGroupCategory() *PolicyGroupCategory {
 
-	return &PolicyGroupCategory{}
+	return &PolicyGroupCategory{
+		DefaultTag: false,
+	}
 }
 
 // Identity returns the Identity of the object.

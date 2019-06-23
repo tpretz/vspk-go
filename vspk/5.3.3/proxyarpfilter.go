@@ -37,16 +37,24 @@ type ProxyARPFiltersParent interface {
 
 // ProxyARPFilter represents the model of a proxyarpfilter
 type ProxyARPFilter struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID            string `json:"ID,omitempty"`
+	ParentID      string `json:"parentID,omitempty"`
+	ParentType    string `json:"parentType,omitempty"`
+	Owner         string `json:"owner,omitempty"`
+	IPType        string `json:"IPType,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	MaxAddress    string `json:"maxAddress,omitempty"`
+	MinAddress    string `json:"minAddress,omitempty"`
+	EntityScope   string `json:"entityScope,omitempty"`
+	ExternalID    string `json:"externalID,omitempty"`
 }
 
 // NewProxyARPFilter returns a new *ProxyARPFilter
 func NewProxyARPFilter() *ProxyARPFilter {
 
-	return &ProxyARPFilter{}
+	return &ProxyARPFilter{
+		IPType: "IPV4",
+	}
 }
 
 // Identity returns the Identity of the object.

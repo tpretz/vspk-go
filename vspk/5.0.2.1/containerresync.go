@@ -37,10 +37,16 @@ type ContainerResyncsParent interface {
 
 // ContainerResync represents the model of a containerresync
 type ContainerResync struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                      string `json:"ID,omitempty"`
+	ParentID                string `json:"parentID,omitempty"`
+	ParentType              string `json:"parentType,omitempty"`
+	Owner                   string `json:"owner,omitempty"`
+	LastRequestTimestamp    int    `json:"lastRequestTimestamp,omitempty"`
+	LastTimeResyncInitiated int    `json:"lastTimeResyncInitiated,omitempty"`
+	LastUpdatedBy           string `json:"lastUpdatedBy,omitempty"`
+	EntityScope             string `json:"entityScope,omitempty"`
+	Status                  string `json:"status,omitempty"`
+	ExternalID              string `json:"externalID,omitempty"`
 }
 
 // NewContainerResync returns a new *ContainerResync

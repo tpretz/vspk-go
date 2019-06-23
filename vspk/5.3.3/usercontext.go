@@ -37,16 +37,33 @@ type UserContextsParent interface {
 
 // UserContext represents the model of a usercontext
 type UserContext struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                     string `json:"ID,omitempty"`
+	ParentID               string `json:"parentID,omitempty"`
+	ParentType             string `json:"parentType,omitempty"`
+	Owner                  string `json:"owner,omitempty"`
+	AARFlowStatsInterval   int    `json:"AARFlowStatsInterval,omitempty"`
+	AARProbeStatsInterval  int    `json:"AARProbeStatsInterval,omitempty"`
+	VSSFeatureEnabled      bool   `json:"VSSFeatureEnabled"`
+	VSSStatsInterval       int    `json:"VSSStatsInterval,omitempty"`
+	PageSize               int    `json:"pageSize,omitempty"`
+	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
+	FlowCollectionEnabled  bool   `json:"flowCollectionEnabled"`
+	EntityScope            string `json:"entityScope,omitempty"`
+	GoogleMapsAPIKey       string `json:"googleMapsAPIKey,omitempty"`
+	StatisticsEnabled      bool   `json:"statisticsEnabled"`
+	StatsTSDBServerAddress string `json:"statsTSDBServerAddress,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 }
 
 // NewUserContext returns a new *UserContext
 func NewUserContext() *UserContext {
 
-	return &UserContext{}
+	return &UserContext{
+		AARFlowStatsInterval:  30,
+		AARProbeStatsInterval: 30,
+		VSSFeatureEnabled:     false,
+		VSSStatsInterval:      30,
+	}
 }
 
 // Identity returns the Identity of the object.

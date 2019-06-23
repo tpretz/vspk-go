@@ -37,10 +37,15 @@ type OverlayMirrorDestinationTemplatesParent interface {
 
 // OverlayMirrorDestinationTemplate represents the model of a overlaymirrordestinationtemplate
 type OverlayMirrorDestinationTemplate struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                string `json:"ID,omitempty"`
+	ParentID          string `json:"parentID,omitempty"`
+	ParentType        string `json:"parentType,omitempty"`
+	Owner             string `json:"owner,omitempty"`
+	Name              string `json:"name,omitempty"`
+	RedundancyEnabled bool   `json:"redundancyEnabled"`
+	Description       string `json:"description,omitempty"`
+	EndPointType      string `json:"endPointType,omitempty"`
+	TriggerType       string `json:"triggerType,omitempty"`
 }
 
 // NewOverlayMirrorDestinationTemplate returns a new *OverlayMirrorDestinationTemplate

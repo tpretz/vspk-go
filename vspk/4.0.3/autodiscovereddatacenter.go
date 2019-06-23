@@ -37,10 +37,13 @@ type AutodiscovereddatacentersParent interface {
 
 // Autodiscovereddatacenter represents the model of a autodiscovereddatacenter
 type Autodiscovereddatacenter struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID              string `json:"ID,omitempty"`
+	ParentID        string `json:"parentID,omitempty"`
+	ParentType      string `json:"parentType,omitempty"`
+	Owner           string `json:"owner,omitempty"`
+	Name            string `json:"name,omitempty"`
+	ManagedObjectID string `json:"managedObjectID,omitempty"`
+	AssocVCenterId  string `json:"assocVCenterId,omitempty"`
 }
 
 // NewAutodiscovereddatacenter returns a new *Autodiscovereddatacenter

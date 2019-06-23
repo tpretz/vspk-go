@@ -37,16 +37,45 @@ type InfrastructureGatewayProfilesParent interface {
 
 // InfrastructureGatewayProfile represents the model of a infrastructuregatewayprofile
 type InfrastructureGatewayProfile struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                     string `json:"ID,omitempty"`
+	ParentID               string `json:"parentID,omitempty"`
+	ParentType             string `json:"parentType,omitempty"`
+	Owner                  string `json:"owner,omitempty"`
+	NTPServerKey           string `json:"NTPServerKey,omitempty"`
+	NTPServerKeyID         int    `json:"NTPServerKeyID,omitempty"`
+	Name                   string `json:"name,omitempty"`
+	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
+	DatapathSyncTimeout    int    `json:"datapathSyncTimeout,omitempty"`
+	DeadTimer              string `json:"deadTimer,omitempty"`
+	RemoteLogDirPath       string `json:"remoteLogDirPath,omitempty"`
+	RemoteLogMode          string `json:"remoteLogMode,omitempty"`
+	RemoteLogPassword      string `json:"remoteLogPassword,omitempty"`
+	RemoteLogServerAddress string `json:"remoteLogServerAddress,omitempty"`
+	RemoteLogServerPort    int    `json:"remoteLogServerPort,omitempty"`
+	RemoteLogUsername      string `json:"remoteLogUsername,omitempty"`
+	Description            string `json:"description,omitempty"`
+	MetadataUpgradePath    string `json:"metadataUpgradePath,omitempty"`
+	FlowEvictionThreshold  int    `json:"flowEvictionThreshold,omitempty"`
+	EnterpriseID           string `json:"enterpriseID,omitempty"`
+	EntityScope            string `json:"entityScope,omitempty"`
+	UpgradeAction          string `json:"upgradeAction,omitempty"`
+	ProxyDNSName           string `json:"proxyDNSName,omitempty"`
+	UseTwoFactor           bool   `json:"useTwoFactor"`
+	StatsCollectorPort     int    `json:"statsCollectorPort,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
+	SystemSyncScheduler    string `json:"systemSyncScheduler,omitempty"`
+	SystemSyncWindow       string `json:"systemSyncWindow,omitempty"`
 }
 
 // NewInfrastructureGatewayProfile returns a new *InfrastructureGatewayProfile
 func NewInfrastructureGatewayProfile() *InfrastructureGatewayProfile {
 
-	return &InfrastructureGatewayProfile{}
+	return &InfrastructureGatewayProfile{
+		DeadTimer:        "ONE_HOUR",
+		RemoteLogMode:    "DISABLED",
+		UpgradeAction:    "DOWNLOAD_AND_UPGRADE_AT_WINDOW",
+		SystemSyncWindow: "ONE_HOUR",
+	}
 }
 
 // Identity returns the Identity of the object.

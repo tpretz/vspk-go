@@ -37,16 +37,36 @@ type NSPortsParent interface {
 
 // NSPort represents the model of a nsport
 type NSPort struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                          string `json:"ID,omitempty"`
+	ParentID                    string `json:"parentID,omitempty"`
+	ParentType                  string `json:"parentType,omitempty"`
+	Owner                       string `json:"owner,omitempty"`
+	NATTraversal                string `json:"NATTraversal,omitempty"`
+	VLANRange                   string `json:"VLANRange,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	TemplateID                  string `json:"templateID,omitempty"`
+	PermittedAction             string `json:"permittedAction,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	PhysicalName                string `json:"physicalName,omitempty"`
+	InfrastructureProfileID     string `json:"infrastructureProfileID,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	PortType                    string `json:"portType,omitempty"`
+	UseUserMnemonic             bool   `json:"useUserMnemonic"`
+	UserMnemonic                string `json:"userMnemonic,omitempty"`
+	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
+	AssociatedRedundantPortID   string `json:"associatedRedundantPortID,omitempty"`
+	AssociatedVSCProfileID      string `json:"associatedVSCProfileID,omitempty"`
+	Status                      string `json:"status,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewNSPort returns a new *NSPort
 func NewNSPort() *NSPort {
 
-	return &NSPort{}
+	return &NSPort{
+		NATTraversal: "NONE",
+	}
 }
 
 // Identity returns the Identity of the object.

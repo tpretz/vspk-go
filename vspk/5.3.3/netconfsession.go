@@ -37,10 +37,16 @@ type NetconfSessionsParent interface {
 
 // NetconfSession represents the model of a netconfsession
 type NetconfSession struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                    string `json:"ID,omitempty"`
+	ParentID              string `json:"parentID,omitempty"`
+	ParentType            string `json:"parentType,omitempty"`
+	Owner                 string `json:"owner,omitempty"`
+	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
+	EntityScope           string `json:"entityScope,omitempty"`
+	AssociatedGatewayID   string `json:"associatedGatewayID,omitempty"`
+	AssociatedGatewayName string `json:"associatedGatewayName,omitempty"`
+	Status                string `json:"status,omitempty"`
+	ExternalID            string `json:"externalID,omitempty"`
 }
 
 // NewNetconfSession returns a new *NetconfSession

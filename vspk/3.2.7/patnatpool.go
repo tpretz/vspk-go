@@ -37,10 +37,20 @@ type PATNATPoolsParent interface {
 
 // PATNATPool represents the model of a patnatpool
 type PATNATPool struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                    string `json:"ID,omitempty"`
+	ParentID              string `json:"parentID,omitempty"`
+	ParentType            string `json:"parentType,omitempty"`
+	Owner                 string `json:"owner,omitempty"`
+	Name                  string `json:"name,omitempty"`
+	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
+	AddressRange          string `json:"addressRange,omitempty"`
+	DefaultPATIP          string `json:"defaultPATIP,omitempty"`
+	PermittedAction       string `json:"permittedAction,omitempty"`
+	Description           string `json:"description,omitempty"`
+	EntityScope           string `json:"entityScope,omitempty"`
+	AssociatedGatewayId   string `json:"associatedGatewayId,omitempty"`
+	AssociatedGatewayType string `json:"associatedGatewayType,omitempty"`
+	ExternalID            string `json:"externalID,omitempty"`
 }
 
 // NewPATNATPool returns a new *PATNATPool

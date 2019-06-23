@@ -37,16 +37,23 @@ type ApplicationperformancemanagementsParent interface {
 
 // Applicationperformancemanagement represents the model of a applicationperformancemanagement
 type Applicationperformancemanagement struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                             string `json:"ID,omitempty"`
+	ParentID                       string `json:"parentID,omitempty"`
+	ParentType                     string `json:"parentType,omitempty"`
+	Owner                          string `json:"owner,omitempty"`
+	Name                           string `json:"name,omitempty"`
+	ReadOnly                       bool   `json:"readOnly"`
+	Description                    string `json:"description,omitempty"`
+	ApplicationGroupType           string `json:"applicationGroupType,omitempty"`
+	AssociatedPerformanceMonitorID string `json:"associatedPerformanceMonitorID,omitempty"`
 }
 
 // NewApplicationperformancemanagement returns a new *Applicationperformancemanagement
 func NewApplicationperformancemanagement() *Applicationperformancemanagement {
 
-	return &Applicationperformancemanagement{}
+	return &Applicationperformancemanagement{
+		ReadOnly: false,
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -37,10 +37,35 @@ type IngressACLEntryTemplatesParent interface {
 
 // IngressACLEntryTemplate represents the model of a ingressaclentrytemplate
 type IngressACLEntryTemplate struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                              string `json:"ID,omitempty"`
+	ParentID                        string `json:"parentID,omitempty"`
+	ParentType                      string `json:"parentType,omitempty"`
+	Owner                           string `json:"owner,omitempty"`
+	DSCP                            string `json:"DSCP,omitempty"`
+	LastUpdatedBy                   string `json:"lastUpdatedBy,omitempty"`
+	Action                          string `json:"action,omitempty"`
+	AddressOverride                 string `json:"addressOverride,omitempty"`
+	Reflexive                       bool   `json:"reflexive"`
+	Description                     string `json:"description,omitempty"`
+	DestinationPort                 string `json:"destinationPort,omitempty"`
+	NetworkID                       string `json:"networkID,omitempty"`
+	NetworkType                     string `json:"networkType,omitempty"`
+	FlowLoggingEnabled              bool   `json:"flowLoggingEnabled"`
+	EntityScope                     string `json:"entityScope,omitempty"`
+	LocationID                      string `json:"locationID,omitempty"`
+	LocationType                    string `json:"locationType,omitempty"`
+	PolicyState                     string `json:"policyState,omitempty"`
+	SourcePort                      string `json:"sourcePort,omitempty"`
+	Priority                        int    `json:"priority,omitempty"`
+	Protocol                        string `json:"protocol,omitempty"`
+	AssociatedApplicationID         string `json:"associatedApplicationID,omitempty"`
+	AssociatedApplicationObjectID   string `json:"associatedApplicationObjectID,omitempty"`
+	AssociatedApplicationObjectType string `json:"associatedApplicationObjectType,omitempty"`
+	AssociatedLiveEntityID          string `json:"associatedLiveEntityID,omitempty"`
+	StatsID                         string `json:"statsID,omitempty"`
+	StatsLoggingEnabled             bool   `json:"statsLoggingEnabled"`
+	EtherType                       string `json:"etherType,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewIngressACLEntryTemplate returns a new *IngressACLEntryTemplate

@@ -37,10 +37,13 @@ type PolicyObjectGroupsParent interface {
 
 // PolicyObjectGroup represents the model of a policyobjectgroup
 type PolicyObjectGroup struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID          string `json:"ID,omitempty"`
+	ParentID    string `json:"parentID,omitempty"`
+	ParentType  string `json:"parentType,omitempty"`
+	Owner       string `json:"owner,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+	Type        string `json:"type,omitempty"`
 }
 
 // NewPolicyObjectGroup returns a new *PolicyObjectGroup

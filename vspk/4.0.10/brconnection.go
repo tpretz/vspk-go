@@ -37,10 +37,17 @@ type BRConnectionsParent interface {
 
 // BRConnection represents the model of a brconnections
 type BRConnection struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                    string `json:"ID,omitempty"`
+	ParentID              string `json:"parentID,omitempty"`
+	ParentType            string `json:"parentType,omitempty"`
+	Owner                 string `json:"owner,omitempty"`
+	DNSAddress            string `json:"DNSAddress,omitempty"`
+	Gateway               string `json:"gateway,omitempty"`
+	Address               string `json:"address,omitempty"`
+	AdvertisementCriteria string `json:"advertisementCriteria,omitempty"`
+	Netmask               string `json:"netmask,omitempty"`
+	Mode                  string `json:"mode,omitempty"`
+	UplinkID              int    `json:"uplinkID,omitempty"`
 }
 
 // NewBRConnection returns a new *BRConnection

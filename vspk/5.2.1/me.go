@@ -19,10 +19,31 @@ var MeIdentity = bambou.Identity{
 
 // Me represents the model of a me
 type Me struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                    string `json:"ID,omitempty"`
+	ParentID              string `json:"parentID,omitempty"`
+	ParentType            string `json:"parentType,omitempty"`
+	Owner                 string `json:"owner,omitempty"`
+	AARFlowStatsInterval  int    `json:"AARFlowStatsInterval,omitempty"`
+	AARProbeStatsInterval int    `json:"AARProbeStatsInterval,omitempty"`
+	VSSStatsInterval      int    `json:"VSSStatsInterval,omitempty"`
+	Password              string `json:"password,omitempty"`
+	LastName              string `json:"lastName,omitempty"`
+	LastUpdatedBy         string `json:"lastUpdatedBy,omitempty"`
+	FirstName             string `json:"firstName,omitempty"`
+	Disabled              bool   `json:"disabled"`
+	ElasticSearchAddress  string `json:"elasticSearchAddress,omitempty"`
+	FlowCollectionEnabled bool   `json:"flowCollectionEnabled"`
+	Email                 string `json:"email,omitempty"`
+	EnterpriseID          string `json:"enterpriseID,omitempty"`
+	EnterpriseName        string `json:"enterpriseName,omitempty"`
+	EntityScope           string `json:"entityScope,omitempty"`
+	MobileNumber          string `json:"mobileNumber,omitempty"`
+	Role                  string `json:"role,omitempty"`
+	UserName              string `json:"userName,omitempty"`
+	StatisticsEnabled     bool   `json:"statisticsEnabled"`
+	AvatarData            string `json:"avatarData,omitempty"`
+	AvatarType            string `json:"avatarType,omitempty"`
+	ExternalID            string `json:"externalID,omitempty"`
 
 	Token        string `json:"APIKey,omitempty"`
 	Organization string `json:"enterprise,omitempty"`
@@ -31,7 +52,11 @@ type Me struct {
 // NewMe returns a new *Me
 func NewMe() *Me {
 
-	return &Me{}
+	return &Me{
+		AARFlowStatsInterval:  30,
+		AARProbeStatsInterval: 30,
+		VSSStatsInterval:      30,
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -37,16 +37,22 @@ type VNFInterfaceDescriptorsParent interface {
 
 // VNFInterfaceDescriptor represents the model of a vnfinterfacedescriptor
 type VNFInterfaceDescriptor struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID          string `json:"ID,omitempty"`
+	ParentID    string `json:"parentID,omitempty"`
+	ParentType  string `json:"parentType,omitempty"`
+	Owner       string `json:"owner,omitempty"`
+	Name        string `json:"name,omitempty"`
+	EntityScope string `json:"entityScope,omitempty"`
+	ExternalID  string `json:"externalID,omitempty"`
+	Type        string `json:"type,omitempty"`
 }
 
 // NewVNFInterfaceDescriptor returns a new *VNFInterfaceDescriptor
 func NewVNFInterfaceDescriptor() *VNFInterfaceDescriptor {
 
-	return &VNFInterfaceDescriptor{}
+	return &VNFInterfaceDescriptor{
+		Type: "MANAGEMENT",
+	}
 }
 
 // Identity returns the Identity of the object.

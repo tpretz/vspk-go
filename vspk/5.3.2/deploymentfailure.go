@@ -37,10 +37,17 @@ type DeploymentFailuresParent interface {
 
 // DeploymentFailure represents the model of a deploymentfailure
 type DeploymentFailure struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                 string `json:"ID,omitempty"`
+	ParentID           string `json:"parentID,omitempty"`
+	ParentType         string `json:"parentType,omitempty"`
+	Owner              string `json:"owner,omitempty"`
+	LastFailureReason  string `json:"lastFailureReason,omitempty"`
+	LastKnownError     string `json:"lastKnownError,omitempty"`
+	AffectedEntityID   string `json:"affectedEntityID,omitempty"`
+	AffectedEntityType string `json:"affectedEntityType,omitempty"`
+	ErrorCondition     int    `json:"errorCondition,omitempty"`
+	NumberOfOccurences int    `json:"numberOfOccurences,omitempty"`
+	EventType          string `json:"eventType,omitempty"`
 }
 
 // NewDeploymentFailure returns a new *DeploymentFailure

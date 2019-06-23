@@ -37,16 +37,26 @@ type IKEGatewaysParent interface {
 
 // IKEGateway represents the model of a ikegateway
 type IKEGateway struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                     string `json:"ID,omitempty"`
+	ParentID               string `json:"parentID,omitempty"`
+	ParentType             string `json:"parentType,omitempty"`
+	Owner                  string `json:"owner,omitempty"`
+	IKEVersion             string `json:"IKEVersion,omitempty"`
+	IPAddress              string `json:"IPAddress,omitempty"`
+	Name                   string `json:"name,omitempty"`
+	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
+	Description            string `json:"description,omitempty"`
+	EntityScope            string `json:"entityScope,omitempty"`
+	AssociatedEnterpriseID string `json:"associatedEnterpriseID,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
 }
 
 // NewIKEGateway returns a new *IKEGateway
 func NewIKEGateway() *IKEGateway {
 
-	return &IKEGateway{}
+	return &IKEGateway{
+		IKEVersion: "V2",
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -37,10 +37,12 @@ type IPv6FilterProfilesParent interface {
 
 // IPv6FilterProfile represents the model of a ipv6filterprofile
 type IPv6FilterProfile struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID          string `json:"ID,omitempty"`
+	ParentID    string `json:"parentID,omitempty"`
+	ParentType  string `json:"parentType,omitempty"`
+	Owner       string `json:"owner,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
 }
 
 // NewIPv6FilterProfile returns a new *IPv6FilterProfile

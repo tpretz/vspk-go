@@ -37,16 +37,27 @@ type NATMapEntriesParent interface {
 
 // NATMapEntry represents the model of a natmapentry
 type NATMapEntry struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                     string `json:"ID,omitempty"`
+	ParentID               string `json:"parentID,omitempty"`
+	ParentType             string `json:"parentType,omitempty"`
+	Owner                  string `json:"owner,omitempty"`
+	LastUpdatedBy          string `json:"lastUpdatedBy,omitempty"`
+	EntityScope            string `json:"entityScope,omitempty"`
+	PrivateIP              string `json:"privateIP,omitempty"`
+	PrivatePort            int    `json:"privatePort,omitempty"`
+	AssociatedPATNATPoolID string `json:"associatedPATNATPoolID,omitempty"`
+	PublicIP               string `json:"publicIP,omitempty"`
+	PublicPort             int    `json:"publicPort,omitempty"`
+	ExternalID             string `json:"externalID,omitempty"`
+	Type                   string `json:"type,omitempty"`
 }
 
 // NewNATMapEntry returns a new *NATMapEntry
 func NewNATMapEntry() *NATMapEntry {
 
-	return &NATMapEntry{}
+	return &NATMapEntry{
+		Type: "ONE_TO_ONE_NAT",
+	}
 }
 
 // Identity returns the Identity of the object.

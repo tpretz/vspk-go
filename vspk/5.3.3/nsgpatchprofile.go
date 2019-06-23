@@ -37,10 +37,18 @@ type NSGPatchProfilesParent interface {
 
 // NSGPatchProfile represents the model of a nsgpatchprofile
 type NSGPatchProfile struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID            string `json:"ID,omitempty"`
+	ParentID      string `json:"parentID,omitempty"`
+	ParentType    string `json:"parentType,omitempty"`
+	Owner         string `json:"owner,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	PatchTag      string `json:"patchTag,omitempty"`
+	PatchURL      string `json:"patchURL,omitempty"`
+	Description   string `json:"description,omitempty"`
+	EnterpriseID  string `json:"enterpriseID,omitempty"`
+	EntityScope   string `json:"entityScope,omitempty"`
+	ExternalID    string `json:"externalID,omitempty"`
 }
 
 // NewNSGPatchProfile returns a new *NSGPatchProfile

@@ -37,16 +37,30 @@ type PatchsParent interface {
 
 // Patch represents the model of a patch
 type Patch struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                          string `json:"ID,omitempty"`
+	ParentID                    string `json:"parentID,omitempty"`
+	ParentType                  string `json:"parentType,omitempty"`
+	Owner                       string `json:"owner,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	PatchBuildNumber            int    `json:"patchBuildNumber,omitempty"`
+	PatchSummary                string `json:"patchSummary,omitempty"`
+	PatchTag                    string `json:"patchTag,omitempty"`
+	PatchVersion                string `json:"patchVersion,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	SupportsDeletion            bool   `json:"supportsDeletion"`
+	SupportsNetworkAcceleration bool   `json:"supportsNetworkAcceleration"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewPatch returns a new *Patch
 func NewPatch() *Patch {
 
-	return &Patch{}
+	return &Patch{
+		SupportsDeletion:            false,
+		SupportsNetworkAcceleration: false,
+	}
 }
 
 // Identity returns the Identity of the object.

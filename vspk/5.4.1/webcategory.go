@@ -37,16 +37,26 @@ type WebCategoriesParent interface {
 
 // WebCategory represents the model of a webcategory
 type WebCategory struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID              string `json:"ID,omitempty"`
+	ParentID        string `json:"parentID,omitempty"`
+	ParentType      string `json:"parentType,omitempty"`
+	Owner           string `json:"owner,omitempty"`
+	Name            string `json:"name,omitempty"`
+	LastUpdatedBy   string `json:"lastUpdatedBy,omitempty"`
+	DefaultCategory bool   `json:"defaultCategory"`
+	Description     string `json:"description,omitempty"`
+	EntityScope     string `json:"entityScope,omitempty"`
+	ExternalID      string `json:"externalID,omitempty"`
+	Type            string `json:"type,omitempty"`
 }
 
 // NewWebCategory returns a new *WebCategory
 func NewWebCategory() *WebCategory {
 
-	return &WebCategory{}
+	return &WebCategory{
+		DefaultCategory: false,
+		Type:            "WEB_DOMAIN_NAME",
+	}
 }
 
 // Identity returns the Identity of the object.

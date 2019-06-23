@@ -41,6 +41,9 @@ type NetconfManager struct {
 	ParentID   string `json:"parentID,omitempty"`
 	ParentType string `json:"parentType,omitempty"`
 	Owner      string `json:"owner,omitempty"`
+	Name       string `json:"name,omitempty"`
+	Release    string `json:"release,omitempty"`
+	Status     string `json:"status,omitempty"`
 }
 
 // NewNetconfManager returns a new *NetconfManager

@@ -37,10 +37,15 @@ type DUCGroupsParent interface {
 
 // DUCGroup represents the model of a ducgroup
 type DUCGroup struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                             string        `json:"ID,omitempty"`
+	ParentID                       string        `json:"parentID,omitempty"`
+	ParentType                     string        `json:"parentType,omitempty"`
+	Owner                          string        `json:"owner,omitempty"`
+	Name                           string        `json:"name,omitempty"`
+	Id                             string        `json:"id,omitempty"`
+	Description                    string        `json:"Description ,omitempty"`
+	AssociatedDUCs                 []interface{} `json:"associatedDUCs,omitempty"`
+	AssociatedPerformanceMonitorID string        `json:"associatedPerformanceMonitorID,omitempty"`
 }
 
 // NewDUCGroup returns a new *DUCGroup

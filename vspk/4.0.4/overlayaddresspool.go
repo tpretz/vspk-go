@@ -37,10 +37,15 @@ type OverlayAddressPoolsParent interface {
 
 // OverlayAddressPool represents the model of a overlayaddresspool
 type OverlayAddressPool struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                 string `json:"ID,omitempty"`
+	ParentID           string `json:"parentID,omitempty"`
+	ParentType         string `json:"parentType,omitempty"`
+	Owner              string `json:"owner,omitempty"`
+	Name               string `json:"name,omitempty"`
+	Description        string `json:"description,omitempty"`
+	EndAddressRange    string `json:"endAddressRange,omitempty"`
+	AssociatedDomainID string `json:"associatedDomainID,omitempty"`
+	StartAddressRange  string `json:"startAddressRange,omitempty"`
 }
 
 // NewOverlayAddressPool returns a new *OverlayAddressPool

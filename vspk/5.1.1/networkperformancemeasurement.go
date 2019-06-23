@@ -37,16 +37,24 @@ type NetworkPerformanceMeasurementsParent interface {
 
 // NetworkPerformanceMeasurement represents the model of a networkperformancemeasurement
 type NetworkPerformanceMeasurement struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                             string `json:"ID,omitempty"`
+	ParentID                       string `json:"parentID,omitempty"`
+	ParentType                     string `json:"parentType,omitempty"`
+	Owner                          string `json:"owner,omitempty"`
+	NPMType                        string `json:"NPMType,omitempty"`
+	Name                           string `json:"name,omitempty"`
+	ReadOnly                       bool   `json:"readOnly"`
+	Description                    string `json:"description,omitempty"`
+	AssociatedPerformanceMonitorID string `json:"associatedPerformanceMonitorID,omitempty"`
 }
 
 // NewNetworkPerformanceMeasurement returns a new *NetworkPerformanceMeasurement
 func NewNetworkPerformanceMeasurement() *NetworkPerformanceMeasurement {
 
-	return &NetworkPerformanceMeasurement{}
+	return &NetworkPerformanceMeasurement{
+		NPMType:  "NONE",
+		ReadOnly: false,
+	}
 }
 
 // Identity returns the Identity of the object.

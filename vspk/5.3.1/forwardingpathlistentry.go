@@ -37,10 +37,16 @@ type ForwardingPathListEntriesParent interface {
 
 // ForwardingPathListEntry represents the model of a forwardingpathlistentry
 type ForwardingPathListEntry struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID               string `json:"ID,omitempty"`
+	ParentID         string `json:"parentID,omitempty"`
+	ParentType       string `json:"parentType,omitempty"`
+	Owner            string `json:"owner,omitempty"`
+	FCOverride       string `json:"FCOverride,omitempty"`
+	LastUpdatedBy    string `json:"lastUpdatedBy,omitempty"`
+	EntityScope      string `json:"entityScope,omitempty"`
+	ForwardingAction string `json:"forwardingAction,omitempty"`
+	UplinkPreference string `json:"uplinkPreference,omitempty"`
+	ExternalID       string `json:"externalID,omitempty"`
 }
 
 // NewForwardingPathListEntry returns a new *ForwardingPathListEntry

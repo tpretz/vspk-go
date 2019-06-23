@@ -37,10 +37,20 @@ type BGPNeighborsParent interface {
 
 // BGPNeighbor represents the model of a bgpneighbor
 type BGPNeighbor struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                              string `json:"ID,omitempty"`
+	ParentID                        string `json:"parentID,omitempty"`
+	ParentType                      string `json:"parentType,omitempty"`
+	Owner                           string `json:"owner,omitempty"`
+	Name                            string `json:"name,omitempty"`
+	DampeningEnabled                bool   `json:"dampeningEnabled"`
+	PeerAS                          int    `json:"peerAS,omitempty"`
+	PeerIP                          string `json:"peerIP,omitempty"`
+	Description                     string `json:"description,omitempty"`
+	Session                         string `json:"session,omitempty"`
+	EntityScope                     string `json:"entityScope,omitempty"`
+	AssociatedExportRoutingPolicyID string `json:"associatedExportRoutingPolicyID,omitempty"`
+	AssociatedImportRoutingPolicyID string `json:"associatedImportRoutingPolicyID,omitempty"`
+	ExternalID                      string `json:"externalID,omitempty"`
 }
 
 // NewBGPNeighbor returns a new *BGPNeighbor

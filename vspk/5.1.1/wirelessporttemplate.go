@@ -37,16 +37,30 @@ type WirelessPortTemplatesParent interface {
 
 // WirelessPortTemplate represents the model of a wirelessporttemplate
 type WirelessPortTemplate struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                string `json:"ID,omitempty"`
+	ParentID          string `json:"parentID,omitempty"`
+	ParentType        string `json:"parentType,omitempty"`
+	Owner             string `json:"owner,omitempty"`
+	Name              string `json:"name,omitempty"`
+	GenericConfig     string `json:"genericConfig,omitempty"`
+	Description       string `json:"description,omitempty"`
+	PhysicalName      string `json:"physicalName,omitempty"`
+	WifiFrequencyBand string `json:"wifiFrequencyBand,omitempty"`
+	WifiMode          string `json:"wifiMode,omitempty"`
+	PortType          string `json:"portType,omitempty"`
+	CountryCode       string `json:"countryCode,omitempty"`
+	FrequencyChannel  string `json:"frequencyChannel,omitempty"`
 }
 
 // NewWirelessPortTemplate returns a new *WirelessPortTemplate
 func NewWirelessPortTemplate() *WirelessPortTemplate {
 
-	return &WirelessPortTemplate{}
+	return &WirelessPortTemplate{
+		WifiFrequencyBand: "FREQ_2_4_GHZ",
+		WifiMode:          "WIFI_A_N_AC",
+		PortType:          "ACCESS",
+		FrequencyChannel:  "CH_0",
+	}
 }
 
 // Identity returns the Identity of the object.

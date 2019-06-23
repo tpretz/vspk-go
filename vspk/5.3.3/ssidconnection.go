@@ -37,16 +37,43 @@ type SSIDConnectionsParent interface {
 
 // SSIDConnection represents the model of a ssidconnection
 type SSIDConnection struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                               string        `json:"ID,omitempty"`
+	ParentID                         string        `json:"parentID,omitempty"`
+	ParentType                       string        `json:"parentType,omitempty"`
+	Owner                            string        `json:"owner,omitempty"`
+	Name                             string        `json:"name,omitempty"`
+	Passphrase                       string        `json:"passphrase,omitempty"`
+	LastUpdatedBy                    string        `json:"lastUpdatedBy,omitempty"`
+	GatewayID                        string        `json:"gatewayID,omitempty"`
+	Readonly                         bool          `json:"readonly"`
+	RedirectOption                   string        `json:"redirectOption,omitempty"`
+	RedirectURL                      string        `json:"redirectURL,omitempty"`
+	GenericConfig                    string        `json:"genericConfig,omitempty"`
+	PermittedAction                  string        `json:"permittedAction,omitempty"`
+	Description                      string        `json:"description,omitempty"`
+	Restricted                       bool          `json:"restricted"`
+	WhiteList                        []interface{} `json:"whiteList,omitempty"`
+	BlackList                        []interface{} `json:"blackList,omitempty"`
+	VlanID                           int           `json:"vlanID,omitempty"`
+	InterfaceName                    string        `json:"interfaceName,omitempty"`
+	EntityScope                      string        `json:"entityScope,omitempty"`
+	VportID                          string        `json:"vportID,omitempty"`
+	BroadcastSSID                    bool          `json:"broadcastSSID"`
+	AssociatedCaptivePortalProfileID string        `json:"associatedCaptivePortalProfileID,omitempty"`
+	AssociatedEgressQOSPolicyID      string        `json:"associatedEgressQOSPolicyID,omitempty"`
+	Status                           string        `json:"status,omitempty"`
+	AuthenticationMode               string        `json:"authenticationMode,omitempty"`
+	ExternalID                       string        `json:"externalID,omitempty"`
 }
 
 // NewSSIDConnection returns a new *SSIDConnection
 func NewSSIDConnection() *SSIDConnection {
 
-	return &SSIDConnection{}
+	return &SSIDConnection{
+		RedirectOption:     "ORIGINAL_REQUEST",
+		BroadcastSSID:      true,
+		AuthenticationMode: "WPA2",
+	}
 }
 
 // Identity returns the Identity of the object.

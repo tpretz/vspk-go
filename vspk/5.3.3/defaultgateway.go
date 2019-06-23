@@ -37,10 +37,16 @@ type DefaultGatewaysParent interface {
 
 // DefaultGateway represents the model of a defaultgateway
 type DefaultGateway struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                string `json:"ID,omitempty"`
+	ParentID          string `json:"parentID,omitempty"`
+	ParentType        string `json:"parentType,omitempty"`
+	Owner             string `json:"owner,omitempty"`
+	Name              string `json:"name,omitempty"`
+	LastUpdatedBy     string `json:"lastUpdatedBy,omitempty"`
+	GatewayIPAddress  string `json:"gatewayIPAddress,omitempty"`
+	GatewayMACAddress string `json:"gatewayMACAddress,omitempty"`
+	EntityScope       string `json:"entityScope,omitempty"`
+	ExternalID        string `json:"externalID,omitempty"`
 }
 
 // NewDefaultGateway returns a new *DefaultGateway

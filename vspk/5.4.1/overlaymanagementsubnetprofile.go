@@ -37,10 +37,14 @@ type OverlayManagementSubnetProfilesParent interface {
 
 // OverlayManagementSubnetProfile represents the model of a overlaymanagementsubnetprofile
 type OverlayManagementSubnetProfile struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                    string        `json:"ID,omitempty"`
+	ParentID              string        `json:"parentID,omitempty"`
+	ParentType            string        `json:"parentType,omitempty"`
+	Owner                 string        `json:"owner,omitempty"`
+	Name                  string        `json:"name,omitempty"`
+	Description           string        `json:"description,omitempty"`
+	AssociatedDNASubnetID string        `json:"associatedDNASubnetID,omitempty"`
+	SyslogDestinationIDs  []interface{} `json:"syslogDestinationIDs,omitempty"`
 }
 
 // NewOverlayManagementSubnetProfile returns a new *OverlayManagementSubnetProfile

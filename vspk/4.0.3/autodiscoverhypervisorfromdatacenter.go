@@ -37,10 +37,13 @@ type AutoDiscoverHypervisorFromDatacentersParent interface {
 
 // AutoDiscoverHypervisorFromDatacenter represents the model of a autodiscoveredcomputeresource
 type AutoDiscoverHypervisorFromDatacenter struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                       string        `json:"ID,omitempty"`
+	ParentID                 string        `json:"parentID,omitempty"`
+	ParentType               string        `json:"parentType,omitempty"`
+	Owner                    string        `json:"owner,omitempty"`
+	NetworkList              []interface{} `json:"networkList,omitempty"`
+	AssocVCenterDataCenterId string        `json:"assocVCenterDataCenterId,omitempty"`
+	HypervisorIP             string        `json:"hypervisorIP,omitempty"`
 }
 
 // NewAutoDiscoverHypervisorFromDatacenter returns a new *AutoDiscoverHypervisorFromDatacenter

@@ -37,16 +37,22 @@ type SSHKeysParent interface {
 
 // SSHKey represents the model of a sshkey
 type SSHKey struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID          string `json:"ID,omitempty"`
+	ParentID    string `json:"parentID,omitempty"`
+	ParentType  string `json:"parentType,omitempty"`
+	Owner       string `json:"owner,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
+	KeyType     string `json:"keyType,omitempty"`
+	PublicKey   string `json:"publicKey,omitempty"`
 }
 
 // NewSSHKey returns a new *SSHKey
 func NewSSHKey() *SSHKey {
 
-	return &SSHKey{}
+	return &SSHKey{
+		KeyType: "RSA",
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -37,10 +37,18 @@ type KeyServerMonitorEncryptedSEKsParent interface {
 
 // KeyServerMonitorEncryptedSEK represents the model of a keyservermonitorencryptedsek
 type KeyServerMonitorEncryptedSEK struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                                        string  `json:"ID,omitempty"`
+	ParentID                                  string  `json:"parentID,omitempty"`
+	ParentType                                string  `json:"parentType,omitempty"`
+	Owner                                     string  `json:"owner,omitempty"`
+	NSGCertificateSerialNumber                float64 `json:"NSGCertificateSerialNumber,omitempty"`
+	LastUpdatedBy                             string  `json:"lastUpdatedBy,omitempty"`
+	GatewaySecuredDataID                      string  `json:"gatewaySecuredDataID,omitempty"`
+	KeyServerCertificateSerialNumber          float64 `json:"keyServerCertificateSerialNumber,omitempty"`
+	EntityScope                               string  `json:"entityScope,omitempty"`
+	AssociatedKeyServerMonitorSEKCreationTime float64 `json:"associatedKeyServerMonitorSEKCreationTime,omitempty"`
+	AssociatedKeyServerMonitorSEKID           string  `json:"associatedKeyServerMonitorSEKID,omitempty"`
+	ExternalID                                string  `json:"externalID,omitempty"`
 }
 
 // NewKeyServerMonitorEncryptedSEK returns a new *KeyServerMonitorEncryptedSEK

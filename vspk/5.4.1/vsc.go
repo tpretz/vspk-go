@@ -37,10 +37,33 @@ type VSCsParent interface {
 
 // VSC represents the model of a vsc
 type VSC struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                          string        `json:"ID,omitempty"`
+	ParentID                    string        `json:"parentID,omitempty"`
+	ParentType                  string        `json:"parentType,omitempty"`
+	Owner                       string        `json:"owner,omitempty"`
+	Name                        string        `json:"name,omitempty"`
+	ManagementIP                string        `json:"managementIP,omitempty"`
+	LastStateChange             int           `json:"lastStateChange,omitempty"`
+	LastUpdatedBy               string        `json:"lastUpdatedBy,omitempty"`
+	Address                     string        `json:"address,omitempty"`
+	Addresses                   []interface{} `json:"addresses,omitempty"`
+	PeakCPUUsage                float64       `json:"peakCPUUsage,omitempty"`
+	PeakMemoryUsage             float64       `json:"peakMemoryUsage,omitempty"`
+	Description                 string        `json:"description,omitempty"`
+	Messages                    []interface{} `json:"messages,omitempty"`
+	Disks                       []interface{} `json:"disks,omitempty"`
+	AlreadyMarkedForUnavailable bool          `json:"alreadyMarkedForUnavailable"`
+	UnavailableTimestamp        int           `json:"unavailableTimestamp,omitempty"`
+	EntityScope                 string        `json:"entityScope,omitempty"`
+	Location                    string        `json:"location,omitempty"`
+	ProductVersion              string        `json:"productVersion,omitempty"`
+	Vsds                        []interface{} `json:"vsds,omitempty"`
+	Status                      string        `json:"status,omitempty"`
+	CurrentCPUUsage             float64       `json:"currentCPUUsage,omitempty"`
+	CurrentMemoryUsage          float64       `json:"currentMemoryUsage,omitempty"`
+	AverageCPUUsage             float64       `json:"averageCPUUsage,omitempty"`
+	AverageMemoryUsage          float64       `json:"averageMemoryUsage,omitempty"`
+	ExternalID                  string        `json:"externalID,omitempty"`
 }
 
 // NewVSC returns a new *VSC

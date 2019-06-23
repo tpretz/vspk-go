@@ -37,16 +37,39 @@ type WirelessPortsParent interface {
 
 // WirelessPort represents the model of a wirelessport
 type WirelessPort struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                          string `json:"ID,omitempty"`
+	ParentID                    string `json:"parentID,omitempty"`
+	ParentType                  string `json:"parentType,omitempty"`
+	Owner                       string `json:"owner,omitempty"`
+	VLANRange                   string `json:"VLANRange,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	GenericConfig               string `json:"genericConfig,omitempty"`
+	PermittedAction             string `json:"permittedAction,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	PhysicalName                string `json:"physicalName,omitempty"`
+	WifiFrequencyBand           string `json:"wifiFrequencyBand,omitempty"`
+	WifiMode                    string `json:"wifiMode,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	PortType                    string `json:"portType,omitempty"`
+	CountryCode                 string `json:"countryCode,omitempty"`
+	FrequencyChannel            string `json:"frequencyChannel,omitempty"`
+	UseUserMnemonic             bool   `json:"useUserMnemonic"`
+	UserMnemonic                string `json:"userMnemonic,omitempty"`
+	AssociatedEgressQOSPolicyID string `json:"associatedEgressQOSPolicyID,omitempty"`
+	Status                      string `json:"status,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewWirelessPort returns a new *WirelessPort
 func NewWirelessPort() *WirelessPort {
 
-	return &WirelessPort{}
+	return &WirelessPort{
+		WifiFrequencyBand: "FREQ_2_4_GHZ",
+		WifiMode:          "WIFI_B_G_N",
+		PortType:          "ACCESS",
+		FrequencyChannel:  "CH_0",
+	}
 }
 
 // Identity returns the Identity of the object.

@@ -37,10 +37,18 @@ type NSPortStaticConfigurationsParent interface {
 
 // NSPortStaticConfiguration represents the model of a nsportstaticconfiguration
 type NSPortStaticConfiguration struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID            string `json:"ID,omitempty"`
+	ParentID      string `json:"parentID,omitempty"`
+	ParentType    string `json:"parentType,omitempty"`
+	Owner         string `json:"owner,omitempty"`
+	DNSAddress    string `json:"DNSAddress,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	Gateway       string `json:"gateway,omitempty"`
+	Address       string `json:"address,omitempty"`
+	Netmask       string `json:"netmask,omitempty"`
+	Enabled       bool   `json:"enabled"`
+	EntityScope   string `json:"entityScope,omitempty"`
+	ExternalID    string `json:"externalID,omitempty"`
 }
 
 // NewNSPortStaticConfiguration returns a new *NSPortStaticConfiguration

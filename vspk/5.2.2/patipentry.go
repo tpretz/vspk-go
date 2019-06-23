@@ -37,16 +37,26 @@ type PATIPEntriesParent interface {
 
 // PATIPEntry represents the model of a patipentry
 type PATIPEntry struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                 string `json:"ID,omitempty"`
+	ParentID           string `json:"parentID,omitempty"`
+	ParentType         string `json:"parentType,omitempty"`
+	Owner              string `json:"owner,omitempty"`
+	PATCentralized     bool   `json:"PATCentralized"`
+	IPAddress          string `json:"IPAddress,omitempty"`
+	IPType             string `json:"IPType,omitempty"`
+	LastUpdatedBy      string `json:"lastUpdatedBy,omitempty"`
+	EntityScope        string `json:"entityScope,omitempty"`
+	AssociatedDomainID string `json:"associatedDomainID,omitempty"`
+	ExternalID         string `json:"externalID,omitempty"`
+	HypervisorID       string `json:"hypervisorID,omitempty"`
 }
 
 // NewPATIPEntry returns a new *PATIPEntry
 func NewPATIPEntry() *PATIPEntry {
 
-	return &PATIPEntry{}
+	return &PATIPEntry{
+		IPType: "IPV4",
+	}
 }
 
 // Identity returns the Identity of the object.

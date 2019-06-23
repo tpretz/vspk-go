@@ -37,16 +37,26 @@ type NSGUpgradeProfilesParent interface {
 
 // NSGUpgradeProfile represents the model of a nsgupgradeprofile
 type NSGUpgradeProfile struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                  string `json:"ID,omitempty"`
+	ParentID            string `json:"parentID,omitempty"`
+	ParentType          string `json:"parentType,omitempty"`
+	Owner               string `json:"owner,omitempty"`
+	Name                string `json:"name,omitempty"`
+	LastUpdatedBy       string `json:"lastUpdatedBy,omitempty"`
+	Description         string `json:"description,omitempty"`
+	MetadataUpgradePath string `json:"metadataUpgradePath,omitempty"`
+	EnterpriseID        string `json:"enterpriseID,omitempty"`
+	EntityScope         string `json:"entityScope,omitempty"`
+	DownloadRateLimit   int    `json:"downloadRateLimit,omitempty"`
+	ExternalID          string `json:"externalID,omitempty"`
 }
 
 // NewNSGUpgradeProfile returns a new *NSGUpgradeProfile
 func NewNSGUpgradeProfile() *NSGUpgradeProfile {
 
-	return &NSGUpgradeProfile{}
+	return &NSGUpgradeProfile{
+		DownloadRateLimit: 10000,
+	}
 }
 
 // Identity returns the Identity of the object.

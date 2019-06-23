@@ -37,16 +37,33 @@ type SSIDConnectionsParent interface {
 
 // SSIDConnection represents the model of a ssidconnection
 type SSIDConnection struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                               string        `json:"ID,omitempty"`
+	ParentID                         string        `json:"parentID,omitempty"`
+	ParentType                       string        `json:"parentType,omitempty"`
+	Owner                            string        `json:"owner,omitempty"`
+	Name                             string        `json:"name,omitempty"`
+	Passphrase                       string        `json:"passphrase,omitempty"`
+	RedirectOption                   string        `json:"redirectOption,omitempty"`
+	RedirectURL                      string        `json:"redirectURL,omitempty"`
+	GenericConfig                    string        `json:"genericConfig,omitempty"`
+	Description                      string        `json:"description,omitempty"`
+	WhiteList                        []interface{} `json:"whiteList,omitempty"`
+	BlackList                        []interface{} `json:"blackList,omitempty"`
+	InterfaceName                    string        `json:"interfaceName,omitempty"`
+	BroadcastSSID                    bool          `json:"broadcastSSID"`
+	AssociatedCaptivePortalProfileID string        `json:"associatedCaptivePortalProfileID,omitempty"`
+	AssociatedEgressQOSPolicyID      string        `json:"associatedEgressQOSPolicyID,omitempty"`
+	AuthenticationMode               string        `json:"authenticationMode,omitempty"`
 }
 
 // NewSSIDConnection returns a new *SSIDConnection
 func NewSSIDConnection() *SSIDConnection {
 
-	return &SSIDConnection{}
+	return &SSIDConnection{
+		RedirectOption:     "ORIGINAL_REQUEST",
+		BroadcastSSID:      true,
+		AuthenticationMode: "OPEN",
+	}
 }
 
 // Identity returns the Identity of the object.

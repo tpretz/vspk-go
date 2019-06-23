@@ -37,10 +37,21 @@ type AppsParent interface {
 
 // App represents the model of a application
 type App struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                          string `json:"ID,omitempty"`
+	ParentID                    string `json:"parentID,omitempty"`
+	ParentType                  string `json:"parentType,omitempty"`
+	Owner                       string `json:"owner,omitempty"`
+	Name                        string `json:"name,omitempty"`
+	LastUpdatedBy               string `json:"lastUpdatedBy,omitempty"`
+	Description                 string `json:"description,omitempty"`
+	EntityScope                 string `json:"entityScope,omitempty"`
+	AssocEgressACLTemplateId    string `json:"assocEgressACLTemplateId,omitempty"`
+	AssocIngressACLTemplateId   string `json:"assocIngressACLTemplateId,omitempty"`
+	AssociatedDomainID          string `json:"associatedDomainID,omitempty"`
+	AssociatedDomainType        string `json:"associatedDomainType,omitempty"`
+	AssociatedNetworkObjectID   string `json:"associatedNetworkObjectID,omitempty"`
+	AssociatedNetworkObjectType string `json:"associatedNetworkObjectType,omitempty"`
+	ExternalID                  string `json:"externalID,omitempty"`
 }
 
 // NewApp returns a new *App

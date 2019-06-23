@@ -37,10 +37,21 @@ type TCAsParent interface {
 
 // TCA represents the model of a tca
 type TCA struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID            string `json:"ID,omitempty"`
+	ParentID      string `json:"parentID,omitempty"`
+	ParentType    string `json:"parentType,omitempty"`
+	Owner         string `json:"owner,omitempty"`
+	URLEndPoint   string `json:"URLEndPoint,omitempty"`
+	Name          string `json:"name,omitempty"`
+	LastUpdatedBy string `json:"lastUpdatedBy,omitempty"`
+	Scope         string `json:"scope,omitempty"`
+	Period        int    `json:"period,omitempty"`
+	Description   string `json:"description,omitempty"`
+	Metric        string `json:"metric,omitempty"`
+	Threshold     int    `json:"threshold,omitempty"`
+	EntityScope   string `json:"entityScope,omitempty"`
+	ExternalID    string `json:"externalID,omitempty"`
+	Type          string `json:"type,omitempty"`
 }
 
 // NewTCA returns a new *TCA

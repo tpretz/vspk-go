@@ -37,10 +37,16 @@ type PolicyEntriesParent interface {
 
 // PolicyEntry represents the model of a policyentry
 type PolicyEntry struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                        string      `json:"ID,omitempty"`
+	ParentID                  string      `json:"parentID,omitempty"`
+	ParentType                string      `json:"parentType,omitempty"`
+	Owner                     string      `json:"owner,omitempty"`
+	Name                      string      `json:"name,omitempty"`
+	MatchCriteria             interface{} `json:"matchCriteria,omitempty"`
+	MatchOverlayAddressPoolID string      `json:"matchOverlayAddressPoolID,omitempty"`
+	MatchPolicyObjectGroupID  string      `json:"matchPolicyObjectGroupID,omitempty"`
+	Actions                   interface{} `json:"actions,omitempty"`
+	Description               string      `json:"description,omitempty"`
 }
 
 // NewPolicyEntry returns a new *PolicyEntry

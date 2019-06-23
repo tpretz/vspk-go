@@ -37,16 +37,21 @@ type ApplicationBindingsParent interface {
 
 // ApplicationBinding represents the model of a applicationbinding
 type ApplicationBinding struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                      string `json:"ID,omitempty"`
+	ParentID                string `json:"parentID,omitempty"`
+	ParentType              string `json:"parentType,omitempty"`
+	Owner                   string `json:"owner,omitempty"`
+	ReadOnly                bool   `json:"readOnly"`
+	Priority                int    `json:"priority,omitempty"`
+	AssociatedApplicationID string `json:"associatedApplicationID,omitempty"`
 }
 
 // NewApplicationBinding returns a new *ApplicationBinding
 func NewApplicationBinding() *ApplicationBinding {
 
-	return &ApplicationBinding{}
+	return &ApplicationBinding{
+		ReadOnly: false,
+	}
 }
 
 // Identity returns the Identity of the object.

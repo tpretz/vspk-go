@@ -37,16 +37,24 @@ type NetworkPerformanceBindingsParent interface {
 
 // NetworkPerformanceBinding represents the model of a networkperformancebinding
 type NetworkPerformanceBinding struct {
-	ID         string `json:"ID,omitempty"`
-	ParentID   string `json:"parentID,omitempty"`
-	ParentType string `json:"parentType,omitempty"`
-	Owner      string `json:"owner,omitempty"`
+	ID                             string `json:"ID,omitempty"`
+	ParentID                       string `json:"parentID,omitempty"`
+	ParentType                     string `json:"parentType,omitempty"`
+	Owner                          string `json:"owner,omitempty"`
+	LastUpdatedBy                  string `json:"lastUpdatedBy,omitempty"`
+	ReadOnly                       bool   `json:"readOnly"`
+	EntityScope                    string `json:"entityScope,omitempty"`
+	Priority                       int    `json:"priority,omitempty"`
+	AssociatedNetworkMeasurementID string `json:"associatedNetworkMeasurementID,omitempty"`
+	ExternalID                     string `json:"externalID,omitempty"`
 }
 
 // NewNetworkPerformanceBinding returns a new *NetworkPerformanceBinding
 func NewNetworkPerformanceBinding() *NetworkPerformanceBinding {
 
-	return &NetworkPerformanceBinding{}
+	return &NetworkPerformanceBinding{
+		ReadOnly: false,
+	}
 }
 
 // Identity returns the Identity of the object.
